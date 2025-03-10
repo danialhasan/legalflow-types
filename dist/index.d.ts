@@ -1,0 +1,19 @@
+/**
+ * Unified Types for LegalFlow
+ *
+ * This package contains all shared types used across LegalFlow services:
+ * - AI Service
+ * - Communication Service
+ * - Frontend
+ *
+ * These types are consolidated to prevent schema drift and type fragmentation
+ * between services.
+ */
+export * from './basic';
+export * from './deals';
+export { EmailMessage, EmailAttachment, CalendarEvent, CalendarAttendee, UnifiedViewResponse, ExtractedEmailData, ExtractedCalendarData, UnifiedAnalysisResult, ExtractedAddress, ExtractedDate, ActionItem, SyncJobStatus, ClientMapping as CommunicationClientMapping, UICategoryItem, UICategories } from './communication';
+export * from './documents';
+export * from './jobs';
+export * from './api';
+export * from './enums';
+export { Client, ClientMetadata, ClientMapping as CRMClientMapping, CRMClient, ClientInsight, IdentifiedClient, ClientTimeline, ClientRelationship } from './clients';

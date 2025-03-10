@@ -1,0 +1,51 @@
+{
+  "name": "legalflow-types",
+  "version": "1.0.0",
+  "description": "Unified TypeScript types for LegalFlow services",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write \"**/*.ts\"",
+    "test": "jest",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/legalflow/legalflow-types.git"
+  },
+  "keywords": [
+    "legalflow",
+    "types",
+    "typescript",
+    "legal"
+  ],
+  "author": "LegalFlow",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/legalflow/legalflow-types/issues"
+  },
+  "homepage": "https://github.com/legalflow/legalflow-types#readme",
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/node": "^18.15.11",
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "@typescript-eslint/parser": "^5.57.1",
+    "eslint": "^8.38.0",
+    "jest": "^29.5.0",
+    "prettier": "^2.8.7",
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.0.4"
+  },
+  "files": [
+    "*.js",
+    "*.d.ts",
+    "**/*.js",
+    "**/*.d.ts",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  }
+} 
