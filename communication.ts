@@ -760,6 +760,61 @@ export type CallOutcome = 'no_answer' | 'short_call' | 'interested' | 'not_inter
 export type LeadStatus = 'pending' | 'contacted' | 'qualified' | 'dnc' | 'failed';
 
 /**
+ * Sources for status updates
+ */
+export type StatusUpdateSource = 'user' | 'system' | 'twilio' | 'ai' | 'scheduler';
+
+/**
+ * Request to update campaign or call status
+ */
+export interface StatusUpdateRequest {
+  /** Entity identifier (campaign or call) */
+  id: string;
+  /** New status value */
+  status: CampaignStatus | LeadStatus | CallOutcome;
+  /** Source of the status update */
+  source: StatusUpdateSource;
+  /** Additional notes about the status change */
+  notes?: string;
+  /** Timestamp of the status change */
+  timestamp?: string;
+  /** User who initiated the change (if source is 'user') */
+  userId?: string;
+}
+
+/**
+ * Request to execute a campaign
+ */
+export interface CampaignExecutionRequest {
+  /** Campaign identifier */
+  campaignId: string;
+  /** User identifier */
+  userId: string;
+  /** Whether to execute immediately regardless of schedule */
+  executeImmediately?: boolean;
+  /** Maximum number of calls to make */
+  maxCalls?: number;
+  /** Specific lead IDs to target (if empty, follows campaign targeting) */
+  specificLeadIds?: string[];
+}
+
+/**
+ * Request to execute a single call
+ */
+export interface CallExecutionRequest {
+  /** Campaign identifier */
+  campaignId: string;
+  /** Lead identifier */
+  leadId: string;
+  /** User identifier */
+  userId: string;
+  /** Job identifier for tracking */
+  jobId?: string;
+  /** Script override (if not provided, uses campaign script) */
+  scriptOverride?: string;
+}
+
+/**
  * Campaign schedule configuration
  */
 export interface CampaignSchedule {

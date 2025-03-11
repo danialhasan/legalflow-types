@@ -53,6 +53,10 @@ export {
   CampaignStatus,
   CallOutcome,
   LeadStatus,
+  StatusUpdateSource,
+  StatusUpdateRequest,
+  CampaignExecutionRequest,
+  CallExecutionRequest,
   CampaignSchedule,
   Campaign,
   
@@ -96,3 +100,14 @@ export {
   ClientTimeline,
   ClientRelationship
 } from './clients';
+
+// Export database types
+export { 
+  Json,
+  Database,
+  Tables,
+  TablesInsert,
+  TablesUpdate,
+  Enums,
+  CompositeTypes
+} from './supabase';
