@@ -14,7 +14,7 @@ These types are consolidated to prevent schema drift and type fragmentation betw
 ## Installation
 
 ```bash
-npm install legalflow-types
+npm install @legalflow/types
 ```
 
 ## Usage
@@ -22,7 +22,7 @@ npm install legalflow-types
 Import types directly from the package:
 
 ```typescript
-import { Deal, Client, Document } from 'legalflow-types';
+import { Deal, Client, Document } from '@legalflow/types';
 
 // Use the types in your code
 const deal: Deal = {
