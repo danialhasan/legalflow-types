@@ -628,6 +628,97 @@ export interface DynamicVariables {
 }
 
 /**
+ * Custom parameters for Twilio Stream connection
+ */
+export interface CustomParameters {
+  /** Dynamic variables for the call */
+  dynamicVariables: DynamicVariables | string;
+  /** Voice to use for the call */
+  voice?: string;
+}
+
+/**
+ * Twilio start message sent when a stream connection is established
+ */
+export interface TwilioStartMessage {
+  /** Event type */
+  event: 'start';
+  /** Start event data */
+  start: {
+    /** Stream session ID */
+    streamSid: string;
+    /** Call session ID */
+    callSid: string;
+    /** Custom parameters passed to the stream */
+    customParameters: CustomParameters;
+  };
+}
+
+/**
+ * Twilio media message containing audio data
+ */
+export interface TwilioMediaMessage {
+  /** Event type */
+  event: 'media';
+  /** Media event data */
+  media: {
+    /** Base64 encoded audio payload */
+    payload: string;
+  };
+}
+
+/**
+ * Twilio stop message sent when a stream connection is terminated
+ */
+export interface TwilioStopMessage {
+  /** Event type */
+  event: 'stop';
+  /** Stream session ID */
+  streamSid: string;
+}
+
+/**
+ * Twilio message with unknown event type
+ */
+export interface TwilioUnknownMessage {
+  /** Event type */
+  event: string;
+  /** Additional properties */
+  [key: string]: any;
+}
+
+/**
+ * Union type for all possible Twilio messages
+ */
+export type TwilioMessage =
+  | TwilioStartMessage
+  | TwilioMediaMessage
+  | TwilioStopMessage
+  | TwilioUnknownMessage;
+
+/**
+ * Options for initializing the ElevenLabs client
+ */
+export interface ElevenLabsOptions {
+  /** API key for authentication */
+  apiKey: string;
+  /** Timeout in seconds for API requests */
+  timeoutInSeconds?: number;
+  /** Maximum number of retry attempts for failed requests */
+  maxRetries?: number;
+}
+
+/**
+ * Query parameters for API requests
+ */
+export interface QueryParams {
+  /** JSON string of dynamic variables */
+  dynamicVariables?: string;
+  /** Voice ID or name to use */
+  voice?: string;
+}
+
+/**
  * Request parameters for initiating an outbound call
  */
 export interface OutboundCallRequest {

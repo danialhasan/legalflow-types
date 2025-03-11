@@ -37,6 +37,14 @@ export {
   // Outbound call related types
   DynamicVariables,
   OutboundCallRequest,
+  CustomParameters,
+  TwilioStartMessage,
+  TwilioMediaMessage,
+  TwilioStopMessage,
+  TwilioUnknownMessage,
+  TwilioMessage,
+  ElevenLabsOptions,
+  QueryParams,
   
   // OAuth types
   OAuthTokenData,

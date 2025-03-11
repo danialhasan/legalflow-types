@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "clean": "rm -rf dist/*.js dist/*.d.ts",
+    "build": "npm run clean && tsc",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"**/*.ts\"",
     "test": "jest",
