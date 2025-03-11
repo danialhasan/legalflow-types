@@ -18,10 +18,37 @@ export * from './deals';
 
 // Export communication types, but rename ClientMapping to avoid collision
 export {
+  // Email related types
+  EmailAddress,
   EmailMessage,
   EmailAttachment,
+  AttachmentStatus,
+  
+  // Calendar related types
   CalendarEvent,
   CalendarAttendee,
+  
+  // Integration related types
+  SyncStatus,
+  SyncStatusState,
+  WebhookNotification,
+  WebhookChannel,
+  
+  // Outbound call related types
+  DynamicVariables,
+  OutboundCallRequest,
+  
+  // OAuth types
+  OAuthTokenData,
+
+  // Campaign related types
+  CampaignStatus,
+  CallOutcome,
+  LeadStatus,
+  CampaignSchedule,
+  Campaign,
+  
+  // Analysis and view related types
   UnifiedViewResponse,
   ExtractedEmailData,
   ExtractedCalendarData,
@@ -30,6 +57,7 @@ export {
   ExtractedDate,
   ActionItem,
   SyncJobStatus,
+  
   // Rename ClientMapping to avoid collision
   ClientMapping as CommunicationClientMapping,
   UICategoryItem,
@@ -59,4 +87,4 @@ export {
   IdentifiedClient,
   ClientTimeline,
   ClientRelationship
-} from './clients'; 
+} from './clients';

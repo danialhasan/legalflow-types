@@ -11,7 +11,7 @@
  */
 export * from './basic';
 export * from './deals';
-export { EmailMessage, EmailAttachment, CalendarEvent, CalendarAttendee, UnifiedViewResponse, ExtractedEmailData, ExtractedCalendarData, UnifiedAnalysisResult, ExtractedAddress, ExtractedDate, ActionItem, SyncJobStatus, ClientMapping as CommunicationClientMapping, UICategoryItem, UICategories } from './communication';
+export { EmailAddress, EmailMessage, EmailAttachment, AttachmentStatus, CalendarEvent, CalendarAttendee, SyncStatus, SyncStatusState, WebhookNotification, WebhookChannel, DynamicVariables, OutboundCallRequest, OAuthTokenData, CampaignStatus, CallOutcome, LeadStatus, CampaignSchedule, Campaign, UnifiedViewResponse, ExtractedEmailData, ExtractedCalendarData, UnifiedAnalysisResult, ExtractedAddress, ExtractedDate, ActionItem, SyncJobStatus, ClientMapping as CommunicationClientMapping, UICategoryItem, UICategories } from './communication';
 export * from './documents';
 export * from './jobs';
 export * from './api';
