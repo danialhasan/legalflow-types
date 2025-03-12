@@ -865,4 +865,68 @@ export interface Campaign {
   updatedAt: string;
   /** User ID who owns the campaign */
   userId: string;
+  /** Additional metadata for the campaign */
+  metadata?: Record<string, any>;
+}
+
+/**
+ * Campaign progress tracking information
+ */
+export interface CampaignProgress {
+  /** Campaign identifier */
+  campaignId: string;
+  /** Overall campaign progress percentage (0-100) */
+  progress: number;
+  /** Number of leads that have been contacted */
+  leadsContacted: number;
+  /** Number of leads still to be contacted */
+  leadsRemaining: number;
+  /** Conversion rate percentage */
+  conversionRate: number;
+  /** When the progress was last updated */
+  lastUpdated: string;
+}
+
+/**
+ * Call log entry for tracking call execution
+ */
+export interface CallLog {
+  /** Unique identifier for the call log */
+  id?: string;
+  /** Twilio Call SID for the call */
+  callSid: string | null;
+  /** Campaign identifier this call belongs to */
+  campaignId: string;
+  /** Lead identifier this call was made to */
+  leadId: string;
+  /** Script identifier used for the call */
+  scriptId?: string;
+  /** When the call started */
+  startTime?: string;
+  /** Call duration in seconds */
+  duration?: number;
+  /** Call status (completed, failed) */
+  status?: 'completed' | 'failed';
+  /** URL to call recording if available */
+  recordingUrl?: string;
+  /** Call transcript text */
+  transcript?: string;
+  /** Additional notes about the call */
+  notes?: string;
+  /** Tracking ID for call context management */
+  jobId: string;
+  /** Call outcome classification */
+  outcome?: CallOutcome | string;
+  /** JSON representation of the conversation */
+  conversationJson?: any;
+  /** Summary of the call transcript */
+  transcriptSummary?: string;
+  /** Sentiment analysis of the call */
+  sentiment?: string;
+  /** When the call log was created */
+  createdAt?: string;
+  /** When the call log was last updated */
+  updatedAt?: string;
+  /** User ID who initiated the call */
+  userId: string;
 }

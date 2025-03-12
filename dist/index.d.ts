@@ -11,9 +11,10 @@
  */
 export * from './basic';
 export * from './deals';
-export { EmailAddress, EmailMessage, EmailAttachment, AttachmentStatus, CalendarEvent, CalendarAttendee, SyncStatus, SyncStatusState, WebhookNotification, WebhookChannel, DynamicVariables, OutboundCallRequest, OAuthTokenData, CampaignStatus, CallOutcome, LeadStatus, CampaignSchedule, Campaign, UnifiedViewResponse, ExtractedEmailData, ExtractedCalendarData, UnifiedAnalysisResult, ExtractedAddress, ExtractedDate, ActionItem, SyncJobStatus, ClientMapping as CommunicationClientMapping, UICategoryItem, UICategories } from './communication';
+export { EmailAddress, EmailMessage, EmailAttachment, AttachmentStatus, CalendarEvent, CalendarAttendee, SyncStatus, SyncStatusState, WebhookNotification, WebhookChannel, DynamicVariables, OutboundCallRequest, CustomParameters, TwilioStartMessage, TwilioMediaMessage, TwilioStopMessage, TwilioUnknownMessage, TwilioMessage, ElevenLabsOptions, QueryParams, OAuthTokenData, CampaignStatus, CallOutcome, LeadStatus, StatusUpdateSource, StatusUpdateRequest, CampaignExecutionRequest, CallExecutionRequest, CampaignSchedule, Campaign, CampaignProgress, CallLog, UnifiedViewResponse, ExtractedEmailData, ExtractedCalendarData, UnifiedAnalysisResult, ExtractedAddress, ExtractedDate, ActionItem, SyncJobStatus, ClientMapping as CommunicationClientMapping, UICategoryItem, UICategories } from './communication';
 export * from './documents';
 export * from './jobs';
 export * from './api';
 export * from './enums';
 export { Client, ClientMetadata, ClientMapping as CRMClientMapping, CRMClient, ClientInsight, IdentifiedClient, ClientTimeline, ClientRelationship } from './clients';
+export { Json, Database, Tables, TablesInsert, TablesUpdate, Enums, CompositeTypes } from './supabase';

@@ -59,6 +59,8 @@ export {
   CallExecutionRequest,
   CampaignSchedule,
   Campaign,
+  CampaignProgress,
+  CallLog,
   
   // Analysis and view related types
   UnifiedViewResponse,

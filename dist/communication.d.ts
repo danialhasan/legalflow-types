@@ -605,6 +605,85 @@ export interface DynamicVariables {
     firstMessage?: string;
 }
 /**
+ * Custom parameters for Twilio Stream connection
+ */
+export interface CustomParameters {
+    /** Dynamic variables for the call */
+    dynamicVariables: DynamicVariables | string;
+    /** Voice to use for the call */
+    voice?: string;
+}
+/**
+ * Twilio start message sent when a stream connection is established
+ */
+export interface TwilioStartMessage {
+    /** Event type */
+    event: 'start';
+    /** Start event data */
+    start: {
+        /** Stream session ID */
+        streamSid: string;
+        /** Call session ID */
+        callSid: string;
+        /** Custom parameters passed to the stream */
+        customParameters: CustomParameters;
+    };
+}
+/**
+ * Twilio media message containing audio data
+ */
+export interface TwilioMediaMessage {
+    /** Event type */
+    event: 'media';
+    /** Media event data */
+    media: {
+        /** Base64 encoded audio payload */
+        payload: string;
+    };
+}
+/**
+ * Twilio stop message sent when a stream connection is terminated
+ */
+export interface TwilioStopMessage {
+    /** Event type */
+    event: 'stop';
+    /** Stream session ID */
+    streamSid: string;
+}
+/**
+ * Twilio message with unknown event type
+ */
+export interface TwilioUnknownMessage {
+    /** Event type */
+    event: string;
+    /** Additional properties */
+    [key: string]: any;
+}
+/**
+ * Union type for all possible Twilio messages
+ */
+export type TwilioMessage = TwilioStartMessage | TwilioMediaMessage | TwilioStopMessage | TwilioUnknownMessage;
+/**
+ * Options for initializing the ElevenLabs client
+ */
+export interface ElevenLabsOptions {
+    /** API key for authentication */
+    apiKey: string;
+    /** Timeout in seconds for API requests */
+    timeoutInSeconds?: number;
+    /** Maximum number of retry attempts for failed requests */
+    maxRetries?: number;
+}
+/**
+ * Query parameters for API requests
+ */
+export interface QueryParams {
+    /** JSON string of dynamic variables */
+    dynamicVariables?: string;
+    /** Voice ID or name to use */
+    voice?: string;
+}
+/**
  * Request parameters for initiating an outbound call
  */
 export interface OutboundCallRequest {
@@ -640,6 +719,57 @@ export type CallOutcome = 'no_answer' | 'short_call' | 'interested' | 'not_inter
  * Status of a lead in a campaign
  */
 export type LeadStatus = 'pending' | 'contacted' | 'qualified' | 'dnc' | 'failed';
+/**
+ * Sources for status updates
+ */
+export type StatusUpdateSource = 'user' | 'system' | 'twilio' | 'ai' | 'scheduler';
+/**
+ * Request to update campaign or call status
+ */
+export interface StatusUpdateRequest {
+    /** Entity identifier (campaign or call) */
+    id: string;
+    /** New status value */
+    status: CampaignStatus | LeadStatus | CallOutcome;
+    /** Source of the status update */
+    source: StatusUpdateSource;
+    /** Additional notes about the status change */
+    notes?: string;
+    /** Timestamp of the status change */
+    timestamp?: string;
+    /** User who initiated the change (if source is 'user') */
+    userId?: string;
+}
+/**
+ * Request to execute a campaign
+ */
+export interface CampaignExecutionRequest {
+    /** Campaign identifier */
+    campaignId: string;
+    /** User identifier */
+    userId: string;
+    /** Whether to execute immediately regardless of schedule */
+    executeImmediately?: boolean;
+    /** Maximum number of calls to make */
+    maxCalls?: number;
+    /** Specific lead IDs to target (if empty, follows campaign targeting) */
+    specificLeadIds?: string[];
+}
+/**
+ * Request to execute a single call
+ */
+export interface CallExecutionRequest {
+    /** Campaign identifier */
+    campaignId: string;
+    /** Lead identifier */
+    leadId: string;
+    /** User identifier */
+    userId: string;
+    /** Job identifier for tracking */
+    jobId?: string;
+    /** Script override (if not provided, uses campaign script) */
+    scriptOverride?: string;
+}
 /**
  * Campaign schedule configuration
  */
@@ -689,5 +819,67 @@ export interface Campaign {
     /** When the campaign was last updated */
     updatedAt: string;
     /** User ID who owns the campaign */
+    userId: string;
+    /** Additional metadata for the campaign */
+    metadata?: Record<string, any>;
+}
+/**
+ * Campaign progress tracking information
+ */
+export interface CampaignProgress {
+    /** Campaign identifier */
+    campaignId: string;
+    /** Overall campaign progress percentage (0-100) */
+    progress: number;
+    /** Number of leads that have been contacted */
+    leadsContacted: number;
+    /** Number of leads still to be contacted */
+    leadsRemaining: number;
+    /** Conversion rate percentage */
+    conversionRate: number;
+    /** When the progress was last updated */
+    lastUpdated: string;
+}
+/**
+ * Call log entry for tracking call execution
+ */
+export interface CallLog {
+    /** Unique identifier for the call log */
+    id?: string;
+    /** Twilio Call SID for the call */
+    callSid: string | null;
+    /** Campaign identifier this call belongs to */
+    campaignId: string;
+    /** Lead identifier this call was made to */
+    leadId: string;
+    /** Script identifier used for the call */
+    scriptId?: string;
+    /** When the call started */
+    startTime?: string;
+    /** Call duration in seconds */
+    duration?: number;
+    /** Call status (completed, failed) */
+    status?: 'completed' | 'failed';
+    /** URL to call recording if available */
+    recordingUrl?: string;
+    /** Call transcript text */
+    transcript?: string;
+    /** Additional notes about the call */
+    notes?: string;
+    /** Tracking ID for call context management */
+    jobId: string;
+    /** Call outcome classification */
+    outcome?: CallOutcome | string;
+    /** JSON representation of the conversation */
+    conversationJson?: any;
+    /** Summary of the call transcript */
+    transcriptSummary?: string;
+    /** Sentiment analysis of the call */
+    sentiment?: string;
+    /** When the call log was created */
+    createdAt?: string;
+    /** When the call log was last updated */
+    updatedAt?: string;
+    /** User ID who initiated the call */
     userId: string;
 }
