@@ -90,6 +90,37 @@ export * from './api';
 // Export enum types
 export * from './enums';
 
+// Export AI service types
+export {
+  // API response types
+  EmailApiResponse,
+  CalendarApiResponse,
+  GoogleDataQueryParams,
+  
+  // Conversation types
+  ConversationStatus,
+  MessageRole,
+  ConversationParameters,
+  Message,
+  ToolCall,
+  Conversation,
+  
+  // Processing request/response types
+  EmailProcessingRequest,
+  CalendarProcessingRequest,
+  UnifiedAnalysisRequest,
+  EmailProcessingResponse,
+  CalendarProcessingResponse,
+  UnifiedAnalysisResponse,
+  
+  // Document processing types
+  DocumentProcessingStatus,
+  DocumentType,
+  DocumentMetadata,
+  DocumentProcessingJob,
+  DocumentProcessingResult
+} from './ai';
+
 // Export client types
 export {
   Client,
