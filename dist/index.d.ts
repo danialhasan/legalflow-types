@@ -16,5 +16,6 @@ export * from './documents';
 export * from './jobs';
 export * from './api';
 export * from './enums';
+export { EmailApiResponse, CalendarApiResponse, GoogleDataQueryParams, ConversationStatus, MessageRole, ConversationParameters, Message, ToolCall, Conversation, EmailProcessingRequest, CalendarProcessingRequest, UnifiedAnalysisRequest, EmailProcessingResponse, CalendarProcessingResponse, UnifiedAnalysisResponse, DocumentProcessingStatus, DocumentType, DocumentMetadata, DocumentProcessingJob, DocumentProcessingResult } from './ai';
 export { Client, ClientMetadata, ClientMapping as CRMClientMapping, CRMClient, ClientInsight, IdentifiedClient, ClientTimeline, ClientRelationship } from './clients';
 export { Json, Database, Tables, TablesInsert, TablesUpdate, Enums, CompositeTypes } from './supabase';
