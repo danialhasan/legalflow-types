@@ -48,6 +48,13 @@ export {
   
   // OAuth types
   OAuthTokenData,
+  AuthUrlResponse,
+  OAuthStatusResponse,
+  GmailSettings,
+  
+  // Response types
+  EmailsResponse,
+  CalendarEventsResponse,
 
   // Campaign related types
   CampaignStatus,
