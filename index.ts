@@ -29,16 +29,28 @@ export {
   EmailMessage,
   EmailAttachment,
   AttachmentStatus,
+  GoogleEmail,
   
   // Calendar related types
   CalendarEvent,
   CalendarAttendee,
+  GoogleCalendarEvent,
   
   // Integration related types
   SyncStatus,
   SyncStatusState,
   WebhookNotification,
   WebhookChannel,
+  GoogleSyncStatus,
+  GoogleWebhookNotification,
+  GoogleWebhookChannel,
+  
+  // Analysis related types
+  ProcessedEmail,
+  ProcessedEmailThread,
+  ProcessedCalendarEvent,
+  ProcessedEventSeries,
+  UnifiedAnalysisRecord,
   
   // Outbound call related types
   DynamicVariables,
@@ -51,6 +63,11 @@ export {
   TwilioMessage,
   ElevenLabsOptions,
   QueryParams,
+  
+  // Telephony related types
+  CallLog,
+  CallEvent,
+  CallScript,
   
   // OAuth types
   OAuthTokenData,
@@ -72,8 +89,8 @@ export {
   CallExecutionRequest,
   CampaignSchedule,
   Campaign,
+  CampaignLead,
   CampaignProgress,
-  CallLog,
   
   // Analysis and view related types
   UnifiedViewResponse,
@@ -91,11 +108,20 @@ export {
   UICategories
 } from './communication';
 
+// Export message and conversation types
+export * from './messages';
+
 // Export document types
 export * from './documents';
 
 // Export job types
 export * from './jobs';
+
+// Export lead types
+export * from './leads';
+
+// Export compliance types
+export * from './compliance';
 
 // Export API types
 export * from './api';
@@ -110,14 +136,6 @@ export {
   CalendarApiResponse,
   GoogleDataQueryParams,
   
-  // Conversation types
-  ConversationStatus,
-  MessageRole,
-  ConversationParameters,
-  Message,
-  ToolCall,
-  Conversation,
-  
   // Processing request/response types
   EmailProcessingRequest,
   CalendarProcessingRequest,
@@ -129,7 +147,6 @@ export {
   // Document processing types
   DocumentProcessingStatus,
   DocumentType,
-  DocumentMetadata,
   DocumentProcessingJob,
   DocumentProcessingResult
 } from './ai';

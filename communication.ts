@@ -2,8 +2,10 @@
  * Communication Types
  *
  * Contains types related to communication and messaging through email, calendar, etc.
+ * Updated to use the new schema-specific types from the modularized database structure
  */
 import { Organization, Person, PriorityLevel, ProcessingStatus, UIDisplayInfo } from './basic';
+import { IntegrationsTable, AnalysisTable, TelephonyTable, SalesTable } from './helpers';
 
 /**
  * Represents an email address with optional name
@@ -16,17 +18,24 @@ export interface EmailAddress {
 }
 
 /**
- * Represents an email message
+ * Status of an email attachment
  */
-export interface EmailMessage {
-  /** Unique identifier for the email */
-  id: string;
-  /** Gmail-specific identifier */
-  gmailId: string;
-  /** Thread identifier this email belongs to */
-  threadId: string;
-  /** Email subject */
-  subject: string;
+export type AttachmentStatus = 'metadata_only' | 'stored' | 'ready_to_process' | 'processing' | 'processed' | 'failed';
+
+/**
+ * Email attachment from integrations.email_attachments table
+ */
+export type EmailAttachment = IntegrationsTable<'email_attachments'>;
+
+/**
+ * Google email from integrations.google_emails table
+ */
+export type GoogleEmail = IntegrationsTable<'google_emails'>;
+
+/**
+ * Represents an email message - wrapper over GoogleEmail
+ */
+export interface EmailMessage extends Omit<GoogleEmail, 'from_email' | 'to_emails' | 'cc_emails' | 'bcc_emails'> {
   /** Sender's email address */
   fromEmail: EmailAddress;
   /** Recipients' email addresses */
@@ -35,61 +44,6 @@ export interface EmailMessage {
   ccEmails?: EmailAddress[];
   /** Blind carbon copy recipients */
   bccEmails?: EmailAddress[];
-  /** When the email was sent (ISO string) */
-  sentAt: string;
-  /** When the email was received (ISO string) */
-  receivedAt: string;
-  /** Brief preview of the email content */
-  snippet: string;
-  /** Plain text content of the email */
-  bodyText?: string;
-  /** HTML content of the email */
-  bodyHtml?: string;
-  /** Whether the email has attachments */
-  hasAttachments: boolean;
-  /** Email attachments if available */
-  attachments?: EmailAttachment[];
-  /** Gmail labels associated with the email */
-  labels?: string[];
-  /** Whether the email has been read */
-  isRead: boolean;
-  /** Whether the email is marked as important */
-  isImportant?: boolean;
-  /** Additional metadata */
-  metadata?: Record<string, any>;
-}
-
-/**
- * Status of an email attachment
- */
-export type AttachmentStatus = 'metadata_only' | 'stored' | 'ready_to_process' | 'processing' | 'processed' | 'failed';
-
-/**
- * Represents an email attachment
- */
-export interface EmailAttachment {
-  /** Unique identifier for the attachment */
-  id: string;
-  /** Email ID this attachment belongs to */
-  emailId: string;
-  /** Gmail-specific attachment identifier */
-  gmailAttachmentId: string;
-  /** Filename of the attachment */
-  filename: string;
-  /** MIME type of the attachment */
-  mimeType: string;
-  /** Size of the attachment in bytes */
-  size: number;
-  /** Storage path where the attachment is saved */
-  storagePath?: string;
-  /** Public URL to access the attachment */
-  publicUrl?: string;
-  /** Processing status of the attachment */
-  status?: AttachmentStatus;
-  /** Associated document ID if processed */
-  documentId?: string;
-  /** When the attachment was processed */
-  processedAt?: string;
 }
 
 /**
@@ -107,37 +61,16 @@ export interface CalendarAttendee {
 }
 
 /**
- * Represents a calendar event
+ * Google calendar event from integrations.google_calendar_events table
  */
-export interface CalendarEvent {
-  /** Unique identifier for the event */
-  id: string;
-  /** Calendar-specific event identifier */
-  eventId: string;
-  /** Calendar identifier this event belongs to */
-  calendarId: string;
-  /** Event title/summary */
-  summary: string;
-  /** Event description */
-  description?: string | null;
-  /** Event location */
-  location?: string | null;
-  /** Start time of the event (ISO string) */
-  startTime: string;
-  /** End time of the event (ISO string) */
-  endTime: string;
+export type GoogleCalendarEvent = IntegrationsTable<'google_calendar_events'>;
+
+/**
+ * Represents a calendar event - wrapper over GoogleCalendarEvent
+ */
+export interface CalendarEvent extends Omit<GoogleCalendarEvent, 'attendees'> {
   /** Event attendees */
   attendees: CalendarAttendee[];
-  /** Whether the event is an all-day event */
-  allDay: boolean;
-  /** Event status (confirmed, tentative, cancelled) */
-  status: string;
-  /** Recurrence rule if the event is recurring */
-  recurringRule?: string | null;
-  /** HTML link to the event */
-  htmlLink?: string;
-  /** Additional metadata */
-  metadata?: Record<string, any>;
 }
 
 /**
@@ -156,6 +89,31 @@ export interface UnifiedViewResponse {
     events: number;
   };
 }
+
+/**
+ * Processed email data from analysis.processed_emails table
+ */
+export type ProcessedEmail = AnalysisTable<'processed_emails'>;
+
+/**
+ * Processed email thread from analysis.processed_email_threads table
+ */
+export type ProcessedEmailThread = AnalysisTable<'processed_email_threads'>;
+
+/**
+ * Processed calendar event from analysis.processed_calendar_events table
+ */
+export type ProcessedCalendarEvent = AnalysisTable<'processed_calendar_events'>;
+
+/**
+ * Processed event series from analysis.processed_event_series table
+ */
+export type ProcessedEventSeries = AnalysisTable<'processed_event_series'>;
+
+/**
+ * Unified analysis result from analysis.unified_analysis_results table
+ */
+export type UnifiedAnalysisRecord = AnalysisTable<'unified_analysis_results'>;
 
 /**
  * Data extracted from an email message by AI
@@ -549,6 +507,21 @@ export interface UICategories {
 }
 
 /**
+ * Google sync status from integrations.google_sync_status table
+ */
+export type GoogleSyncStatus = IntegrationsTable<'google_sync_status'>;
+
+/**
+ * Google webhook notification from integrations.google_webhook_notifications table
+ */
+export type GoogleWebhookNotification = IntegrationsTable<'google_webhook_notifications'>;
+
+/**
+ * Google webhook channel from integrations.google_webhook_channels table
+ */
+export type GoogleWebhookChannel = IntegrationsTable<'google_webhook_channels'>;
+
+/**
  * Status of a Google API synchronization
  */
 export interface SyncStatus {
@@ -906,38 +879,29 @@ export interface CampaignSchedule {
 }
 
 /**
- * Campaign entity representing a marketing campaign
+ * Campaign from sales.campaigns table
  */
-export interface Campaign {
-  /** Unique identifier */
-  id: string;
-  /** Campaign name */
-  name: string;
-  /** Campaign goal */
-  goal: string;
-  /** Current status */
-  status: CampaignStatus;
-  /** Script ID used for calls */
-  scriptId: string;
-  /** Type of target (e.g., 'leads') */
-  targetType: string;
-  /** List of target IDs */
-  targetIds: string[];
-  /** Campaign schedule configuration */
-  schedule: CampaignSchedule;
-  /** Campaign metrics */
-  metrics: Record<string, any>;
-  /** Current progress percentage */
-  progress?: number;
-  /** When the campaign was created */
-  createdAt: string;
-  /** When the campaign was last updated */
-  updatedAt: string;
-  /** User ID who owns the campaign */
-  userId: string;
-  /** Additional metadata for the campaign */
-  metadata?: Record<string, any>;
-}
+export type Campaign = SalesTable<'campaigns'>;
+
+/**
+ * Campaign lead from sales.campaign_leads table
+ */
+export type CampaignLead = SalesTable<'campaign_leads'>;
+
+/**
+ * Call log from telephony.call_logs table
+ */
+export type CallLog = TelephonyTable<'call_logs'>;
+
+/**
+ * Call event from telephony.call_events table
+ */
+export type CallEvent = TelephonyTable<'call_events'>;
+
+/**
+ * Call script from telephony.call_scripts table
+ */
+export type CallScript = TelephonyTable<'call_scripts'>;
 
 /**
  * Campaign progress tracking information
@@ -955,48 +919,4 @@ export interface CampaignProgress {
   conversionRate: number;
   /** When the progress was last updated */
   lastUpdated: string;
-}
-
-/**
- * Call log entry for tracking call execution
- */
-export interface CallLog {
-  /** Unique identifier for the call log */
-  id?: string;
-  /** Twilio Call SID for the call */
-  callSid: string | null;
-  /** Campaign identifier this call belongs to */
-  campaignId: string;
-  /** Lead identifier this call was made to */
-  leadId: string;
-  /** Script identifier used for the call */
-  scriptId?: string;
-  /** When the call started */
-  startTime?: string;
-  /** Call duration in seconds */
-  duration?: number;
-  /** Call status (completed, failed) */
-  status?: 'completed' | 'failed';
-  /** URL to call recording if available */
-  recordingUrl?: string;
-  /** Call transcript text */
-  transcript?: string;
-  /** Additional notes about the call */
-  notes?: string;
-  /** Tracking ID for call context management */
-  jobId: string;
-  /** Call outcome classification */
-  outcome?: CallOutcome | string;
-  /** JSON representation of the conversation */
-  conversationJson?: any;
-  /** Summary of the call transcript */
-  transcriptSummary?: string;
-  /** Sentiment analysis of the call */
-  sentiment?: string;
-  /** When the call log was created */
-  createdAt?: string;
-  /** When the call log was last updated */
-  updatedAt?: string;
-  /** User ID who initiated the call */
-  userId: string;
 }
