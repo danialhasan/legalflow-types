@@ -708,6 +708,71 @@ export interface OAuthTokenData {
     provider?: string;
 }
 /**
+ * Response structure for email listing
+ */
+export interface EmailsResponse {
+    /** List of email messages */
+    messages: EmailMessage[];
+    /** Pagination information */
+    pagination: {
+        /** Total number of messages available */
+        total: number;
+        /** Maximum number of messages returned */
+        limit: number;
+        /** Starting offset for pagination */
+        offset: number;
+    };
+}
+/**
+ * Response structure for calendar events listing
+ */
+export interface CalendarEventsResponse {
+    /** List of calendar events */
+    events: CalendarEvent[];
+    /** Pagination information */
+    pagination: {
+        /** Total number of messages available */
+        total: number;
+        /** Maximum number of messages returned */
+        limit: number;
+        /** Starting offset for pagination */
+        offset: number;
+    };
+}
+/**
+ * Response structure for OAuth authorization URL
+ */
+export interface AuthUrlResponse {
+    /** URL to redirect the user to for OAuth authorization */
+    authUrl: string;
+}
+/**
+ * Response structure for OAuth operation status
+ */
+export interface OAuthStatusResponse {
+    /** Whether the operation was successful */
+    success: boolean;
+    /** Whether the user is currently connected */
+    isConnected: boolean;
+    /** Message describing the result */
+    message: string;
+}
+/**
+ * Gmail integration settings
+ */
+export interface GmailSettings {
+    /** Whether email synchronization is enabled */
+    emailSyncEnabled: boolean;
+    /** Whether calendar synchronization is enabled */
+    calendarSyncEnabled: boolean;
+    /** Whether contact synchronization is enabled */
+    contactSyncEnabled: boolean;
+    /** Whether auto-replies are enabled */
+    autoReplyEnabled: boolean;
+    /** Custom message for auto-replies */
+    autoReplyMessage?: string;
+}
+/**
  * Status of a marketing campaign
  */
 export type CampaignStatus = 'draft' | 'active' | 'paused' | 'completed' | 'failed';

@@ -2,8 +2,10 @@
  * Deal Types
  * 
  * Contains types related to legal deals, their properties, and associated actions
+ * Updated to use the new schema-specific types from the modularized database structure
  */
 import { Address, ContactInfo, ModelConfidence, Organization, Person, PriorityLevel, UIDisplayInfo } from './basic';
+import { SalesTable, DocumentsTable, CoreTable } from './helpers';
 
 /**
  * Represents an entity in a deal (individual or organization)
@@ -56,24 +58,31 @@ export interface ReferenceNumber {
 }
 
 /**
- * Core Deal interface representing a legal transaction or matter
+ * Core Deal interface from sales.deals table
  */
-export interface Deal {
-  id: number | string;
-  name: string;
-  deal_type: string;
-  status: string;
-  created_at: string;
-  updated_at?: string;
-  metadata?: {
-    addresses?: Address[];
-    organizations?: Organization[];
-    human_entities?: HumanEntity[];
-    documents?: string[];
-    key_dates?: KeyDate[];
-    reference_numbers?: ReferenceNumber[];
-    ai_analysis?: DealAIAnalysis;
-  };
+export type Deal = SalesTable<'deals'>;
+
+/**
+ * Deal document mapping from documents.deal_documents table
+ */
+export type DealDocument = DocumentsTable<'deal_documents'>;
+
+/**
+ * Lead deal match from sales.lead_deal_matches table
+ */
+export type LeadDealMatch = SalesTable<'lead_deal_matches'>;
+
+/**
+ * Extended deal metadata interface
+ */
+export interface DealMetadata {
+  addresses?: Address[];
+  organizations?: Organization[];
+  human_entities?: HumanEntity[];
+  documents?: string[];
+  key_dates?: KeyDate[];
+  reference_numbers?: ReferenceNumber[];
+  ai_analysis?: DealAIAnalysis;
 }
 
 /**
@@ -147,6 +156,11 @@ export interface DealActionRecommendation {
     params: Record<string, any>; // Parameters for the quick action
   };
 }
+
+/**
+ * User rankings for deals from core.user_rankings table
+ */
+export type UserRanking = CoreTable<'user_rankings'>;
 
 /**
  * Represents an AI-ranked deal with priority information

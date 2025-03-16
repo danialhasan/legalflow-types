@@ -10,11 +10,17 @@
  * between services.
  */
 
+// Export schema helpers
+export * from './helpers';
+
 // Export basic shared types
 export * from './basic';
 
 // Export types for deals
 export * from './deals';
+
+// Export user types
+export * from './users';
 
 // Export communication types, but rename ClientMapping to avoid collision
 export {
@@ -132,6 +138,7 @@ export {
 export {
   Client,
   ClientMetadata,
+  ClientMappingData,
   // Rename ClientMapping to avoid collision
   ClientMapping as CRMClientMapping,
   CRMClient,
