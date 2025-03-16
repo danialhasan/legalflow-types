@@ -2,465 +2,168 @@ export type Json = string | number | boolean | null | {
     [key: string]: Json | undefined;
 } | Json[];
 export type Database = {
-    public: {
+    analysis: {
         Tables: {
-            call_events: {
+            processed_calendar_events: {
                 Row: {
-                    call_log_id: string | null;
-                    campaign_id: string | null;
-                    created_at: string | null;
-                    event_data: Json | null;
-                    event_type: string | null;
-                    id: string;
-                    user_id: string;
-                };
-                Insert: {
-                    call_log_id?: string | null;
-                    campaign_id?: string | null;
-                    created_at?: string | null;
-                    event_data?: Json | null;
-                    event_type?: string | null;
-                    id?: string;
-                    user_id: string;
-                };
-                Update: {
-                    call_log_id?: string | null;
-                    campaign_id?: string | null;
-                    created_at?: string | null;
-                    event_data?: Json | null;
-                    event_type?: string | null;
-                    id?: string;
-                    user_id?: string;
-                };
-                Relationships: [
-                    {
-                        foreignKeyName: "call_events_call_log_id_fkey";
-                        columns: ["call_log_id"];
-                        isOneToOne: false;
-                        referencedRelation: "call_logs";
-                        referencedColumns: ["id"];
-                    },
-                    {
-                        foreignKeyName: "call_events_campaign_id_fkey";
-                        columns: ["campaign_id"];
-                        isOneToOne: false;
-                        referencedRelation: "campaigns";
-                        referencedColumns: ["id"];
-                    },
-                    {
-                        foreignKeyName: "call_events_user_id_fkey";
-                        columns: ["user_id"];
-                        isOneToOne: false;
-                        referencedRelation: "users";
-                        referencedColumns: ["id"];
-                    }
-                ];
-            };
-            call_logs: {
-                Row: {
-                    call_sid: string | null;
-                    campaign_id: string | null;
-                    conversation_json: Json | null;
-                    created_at: string | null;
-                    id: string;
-                    job_id: string | null;
-                    lead_id: string | null;
-                    outcome: string | null;
-                    sentiment: string | null;
-                    transcript_summary: string | null;
-                    updated_at: string | null;
-                    user_id: string;
-                };
-                Insert: {
-                    call_sid?: string | null;
-                    campaign_id?: string | null;
-                    conversation_json?: Json | null;
-                    created_at?: string | null;
-                    id?: string;
-                    job_id?: string | null;
-                    lead_id?: string | null;
-                    outcome?: string | null;
-                    sentiment?: string | null;
-                    transcript_summary?: string | null;
-                    updated_at?: string | null;
-                    user_id: string;
-                };
-                Update: {
-                    call_sid?: string | null;
-                    campaign_id?: string | null;
-                    conversation_json?: Json | null;
-                    created_at?: string | null;
-                    id?: string;
-                    job_id?: string | null;
-                    lead_id?: string | null;
-                    outcome?: string | null;
-                    sentiment?: string | null;
-                    transcript_summary?: string | null;
-                    updated_at?: string | null;
-                    user_id?: string;
-                };
-                Relationships: [
-                    {
-                        foreignKeyName: "call_logs_campaign_id_fkey";
-                        columns: ["campaign_id"];
-                        isOneToOne: false;
-                        referencedRelation: "campaigns";
-                        referencedColumns: ["id"];
-                    },
-                    {
-                        foreignKeyName: "call_logs_lead_id_fkey";
-                        columns: ["lead_id"];
-                        isOneToOne: false;
-                        referencedRelation: "leads";
-                        referencedColumns: ["id"];
-                    },
-                    {
-                        foreignKeyName: "call_logs_user_id_fkey";
-                        columns: ["user_id"];
-                        isOneToOne: false;
-                        referencedRelation: "users";
-                        referencedColumns: ["id"];
-                    }
-                ];
-            };
-            call_scripts: {
-                Row: {
-                    category: string;
-                    content: string;
                     created_at: string;
+                    event_id: string;
+                    extracted_data: Json;
+                    google_event_id: string;
                     id: string;
-                    is_active: boolean;
-                    name: string;
-                    performance_metrics: Json | null;
-                    updated_at: string;
+                    identified_clients: Json | null;
+                    processed_at: string;
                     user_id: string;
-                    version: number;
                 };
                 Insert: {
-                    category: string;
-                    content: string;
                     created_at?: string;
+                    event_id: string;
+                    extracted_data: Json;
+                    google_event_id: string;
                     id?: string;
-                    is_active?: boolean;
-                    name: string;
-                    performance_metrics?: Json | null;
-                    updated_at?: string;
+                    identified_clients?: Json | null;
+                    processed_at: string;
                     user_id: string;
-                    version?: number;
                 };
                 Update: {
-                    category?: string;
-                    content?: string;
                     created_at?: string;
+                    event_id?: string;
+                    extracted_data?: Json;
+                    google_event_id?: string;
                     id?: string;
-                    is_active?: boolean;
-                    name?: string;
-                    performance_metrics?: Json | null;
-                    updated_at?: string;
+                    identified_clients?: Json | null;
+                    processed_at?: string;
                     user_id?: string;
-                    version?: number;
                 };
                 Relationships: [];
             };
-            campaign_leads: {
-                Row: {
-                    campaign_id: string;
-                    created_at: string;
-                    id: string;
-                    lead_id: string;
-                    notes: string | null;
-                    status: string;
-                    updated_at: string;
-                };
-                Insert: {
-                    campaign_id: string;
-                    created_at?: string;
-                    id?: string;
-                    lead_id: string;
-                    notes?: string | null;
-                    status: string;
-                    updated_at?: string;
-                };
-                Update: {
-                    campaign_id?: string;
-                    created_at?: string;
-                    id?: string;
-                    lead_id?: string;
-                    notes?: string | null;
-                    status?: string;
-                    updated_at?: string;
-                };
-                Relationships: [
-                    {
-                        foreignKeyName: "campaign_leads_campaign_id_fkey";
-                        columns: ["campaign_id"];
-                        isOneToOne: false;
-                        referencedRelation: "campaigns";
-                        referencedColumns: ["id"];
-                    },
-                    {
-                        foreignKeyName: "campaign_leads_lead_id_fkey";
-                        columns: ["lead_id"];
-                        isOneToOne: false;
-                        referencedRelation: "leads";
-                        referencedColumns: ["id"];
-                    }
-                ];
-            };
-            campaigns: {
+            processed_email_threads: {
                 Row: {
                     created_at: string;
-                    description: string | null;
-                    goal: string;
+                    extracted_data: Json;
                     id: string;
-                    metrics: Json;
-                    name: string;
-                    progress: number | null;
-                    schedule: Json;
-                    script_id: string;
-                    status: string;
-                    target_ids: string[];
-                    target_type: string;
-                    updated_at: string;
+                    processed_at: string;
+                    thread_id: string;
                     user_id: string;
                 };
                 Insert: {
                     created_at?: string;
-                    description?: string | null;
-                    goal: string;
+                    extracted_data: Json;
                     id?: string;
-                    metrics?: Json;
-                    name: string;
-                    progress?: number | null;
-                    schedule: Json;
-                    script_id: string;
-                    status: string;
-                    target_ids: string[];
-                    target_type: string;
-                    updated_at?: string;
+                    processed_at: string;
+                    thread_id: string;
                     user_id: string;
                 };
                 Update: {
                     created_at?: string;
-                    description?: string | null;
-                    goal?: string;
+                    extracted_data?: Json;
                     id?: string;
-                    metrics?: Json;
-                    name?: string;
-                    progress?: number | null;
-                    schedule?: Json;
-                    script_id?: string;
-                    status?: string;
-                    target_ids?: string[];
-                    target_type?: string;
-                    updated_at?: string;
+                    processed_at?: string;
+                    thread_id?: string;
                     user_id?: string;
                 };
-                Relationships: [
-                    {
-                        foreignKeyName: "campaigns_script_id_fkey";
-                        columns: ["script_id"];
-                        isOneToOne: false;
-                        referencedRelation: "call_scripts";
-                        referencedColumns: ["id"];
-                    }
-                ];
+                Relationships: [];
             };
-            citations: {
+            processed_emails: {
                 Row: {
-                    bbox: Json;
-                    citation_number: number;
-                    content: string;
                     created_at: string;
-                    document_id: string;
-                    document_name: string | null;
-                    id: number;
+                    email_id: string;
+                    extracted_data: Json;
+                    id: string;
+                    identified_clients: Json | null;
                     message_id: string;
-                    page_number: number;
+                    processed_at: string;
+                    user_id: string;
                 };
                 Insert: {
-                    bbox: Json;
-                    citation_number: number;
-                    content: string;
                     created_at?: string;
-                    document_id: string;
-                    document_name?: string | null;
-                    id?: never;
+                    email_id: string;
+                    extracted_data: Json;
+                    id?: string;
+                    identified_clients?: Json | null;
                     message_id: string;
-                    page_number: number;
+                    processed_at: string;
+                    user_id: string;
                 };
                 Update: {
-                    bbox?: Json;
-                    citation_number?: number;
-                    content?: string;
                     created_at?: string;
-                    document_id?: string;
-                    document_name?: string | null;
-                    id?: never;
+                    email_id?: string;
+                    extracted_data?: Json;
+                    id?: string;
+                    identified_clients?: Json | null;
                     message_id?: string;
-                    page_number?: number;
-                };
-                Relationships: [
-                    {
-                        foreignKeyName: "citations_document_id_fkey";
-                        columns: ["document_id"];
-                        isOneToOne: false;
-                        referencedRelation: "document_metadata";
-                        referencedColumns: ["document_id"];
-                    },
-                    {
-                        foreignKeyName: "citations_message_id_fkey";
-                        columns: ["message_id"];
-                        isOneToOne: false;
-                        referencedRelation: "messages";
-                        referencedColumns: ["id"];
-                    }
-                ];
-            };
-            client_mappings: {
-                Row: {
-                    client_data: Json;
-                    created_at: string | null;
-                    deal_id: number | null;
-                    id: string;
-                    source_id: string;
-                    source_type: string;
-                    updated_at: string | null;
-                    user_id: string;
-                };
-                Insert: {
-                    client_data: Json;
-                    created_at?: string | null;
-                    deal_id?: number | null;
-                    id?: string;
-                    source_id: string;
-                    source_type: string;
-                    updated_at?: string | null;
-                    user_id: string;
-                };
-                Update: {
-                    client_data?: Json;
-                    created_at?: string | null;
-                    deal_id?: number | null;
-                    id?: string;
-                    source_id?: string;
-                    source_type?: string;
-                    updated_at?: string | null;
+                    processed_at?: string;
                     user_id?: string;
                 };
-                Relationships: [
-                    {
-                        foreignKeyName: "client_mappings_deal_id_fkey";
-                        columns: ["deal_id"];
-                        isOneToOne: false;
-                        referencedRelation: "deals";
-                        referencedColumns: ["id"];
-                    }
-                ];
+                Relationships: [];
             };
-            clients: {
+            processed_event_series: {
                 Row: {
-                    address: Json | null;
-                    contact_info: Json | null;
                     created_at: string;
-                    crm_id: string;
-                    date_of_birth: string | null;
-                    group_ids: string[] | null;
+                    extracted_data: Json;
                     id: string;
-                    metadata: Json | null;
-                    name: string | null;
-                    notes: string | null;
-                    possession_date: string | null;
-                    updated_at: string;
-                };
-                Insert: {
-                    address?: Json | null;
-                    contact_info?: Json | null;
-                    created_at?: string;
-                    crm_id: string;
-                    date_of_birth?: string | null;
-                    group_ids?: string[] | null;
-                    id?: string;
-                    metadata?: Json | null;
-                    name?: string | null;
-                    notes?: string | null;
-                    possession_date?: string | null;
-                    updated_at?: string;
-                };
-                Update: {
-                    address?: Json | null;
-                    contact_info?: Json | null;
-                    created_at?: string;
-                    crm_id?: string;
-                    date_of_birth?: string | null;
-                    group_ids?: string[] | null;
-                    id?: string;
-                    metadata?: Json | null;
-                    name?: string | null;
-                    notes?: string | null;
-                    possession_date?: string | null;
-                    updated_at?: string;
-                };
-                Relationships: [
-                    {
-                        foreignKeyName: "clients_crm_id_fkey";
-                        columns: ["crm_id"];
-                        isOneToOne: false;
-                        referencedRelation: "crms";
-                        referencedColumns: ["id"];
-                    }
-                ];
-            };
-            compliance_reports: {
-                Row: {
-                    created_at: string | null;
-                    date_generated: string | null;
-                    document_id: string;
-                    document_name: string;
-                    findings: Json;
-                    id: number;
-                    recommendations: Json;
-                    report_url: string | null;
-                    status: string;
-                    updated_at: string | null;
+                    processed_at: string;
+                    series_id: string;
                     user_id: string;
                 };
                 Insert: {
-                    created_at?: string | null;
-                    date_generated?: string | null;
-                    document_id: string;
-                    document_name: string;
-                    findings?: Json;
-                    id?: never;
-                    recommendations?: Json;
-                    report_url?: string | null;
-                    status: string;
-                    updated_at?: string | null;
+                    created_at?: string;
+                    extracted_data: Json;
+                    id?: string;
+                    processed_at: string;
+                    series_id: string;
                     user_id: string;
                 };
                 Update: {
-                    created_at?: string | null;
-                    date_generated?: string | null;
-                    document_id?: string;
-                    document_name?: string;
-                    findings?: Json;
-                    id?: never;
-                    recommendations?: Json;
-                    report_url?: string | null;
-                    status?: string;
-                    updated_at?: string | null;
+                    created_at?: string;
+                    extracted_data?: Json;
+                    id?: string;
+                    processed_at?: string;
+                    series_id?: string;
                     user_id?: string;
                 };
-                Relationships: [
-                    {
-                        foreignKeyName: "compliance_reports_document_id_fkey";
-                        columns: ["document_id"];
-                        isOneToOne: false;
-                        referencedRelation: "document_metadata";
-                        referencedColumns: ["document_id"];
-                    }
-                ];
+                Relationships: [];
             };
+            unified_analysis_results: {
+                Row: {
+                    analysis_result: Json;
+                    created_at: string;
+                    id: string;
+                    processed_at: string;
+                    user_id: string;
+                };
+                Insert: {
+                    analysis_result: Json;
+                    created_at?: string;
+                    id?: string;
+                    processed_at: string;
+                    user_id: string;
+                };
+                Update: {
+                    analysis_result?: Json;
+                    created_at?: string;
+                    id?: string;
+                    processed_at?: string;
+                    user_id?: string;
+                };
+                Relationships: [];
+            };
+        };
+        Views: {
+            [_ in never]: never;
+        };
+        Functions: {
+            [_ in never]: never;
+        };
+        Enums: {
+            [_ in never]: never;
+        };
+        CompositeTypes: {
+            [_ in never]: never;
+        };
+    };
+    assistant: {
+        Tables: {
             conversations: {
                 Row: {
                     created_at: string;
@@ -492,117 +195,391 @@ export type Database = {
                     title?: string | null;
                     user_id?: string | null;
                 };
+                Relationships: [];
+            };
+            messages: {
+                Row: {
+                    content: string | null;
+                    context: Json | null;
+                    conversation_id: string | null;
+                    created_at: string;
+                    follow_up_questions: Json | null;
+                    id: string;
+                    role: string | null;
+                    thread_id: string | null;
+                    user_id: string | null;
+                };
+                Insert: {
+                    content?: string | null;
+                    context?: Json | null;
+                    conversation_id?: string | null;
+                    created_at?: string;
+                    follow_up_questions?: Json | null;
+                    id?: string;
+                    role?: string | null;
+                    thread_id?: string | null;
+                    user_id?: string | null;
+                };
+                Update: {
+                    content?: string | null;
+                    context?: Json | null;
+                    conversation_id?: string | null;
+                    created_at?: string;
+                    follow_up_questions?: Json | null;
+                    id?: string;
+                    role?: string | null;
+                    thread_id?: string | null;
+                    user_id?: string | null;
+                };
                 Relationships: [
                     {
-                        foreignKeyName: "conversations_group_id_fkey";
-                        columns: ["group_id"];
+                        foreignKeyName: "messages_conversation_id_fkey";
+                        columns: ["conversation_id"];
                         isOneToOne: false;
-                        referencedRelation: "document_groups";
-                        referencedColumns: ["id"];
-                    },
-                    {
-                        foreignKeyName: "conversations_user_id_fkey";
-                        columns: ["user_id"];
-                        isOneToOne: false;
-                        referencedRelation: "users";
+                        referencedRelation: "conversations";
                         referencedColumns: ["id"];
                     }
                 ];
             };
-            crms: {
+        };
+        Views: {
+            [_ in never]: never;
+        };
+        Functions: {
+            [_ in never]: never;
+        };
+        Enums: {
+            [_ in never]: never;
+        };
+        CompositeTypes: {
+            [_ in never]: never;
+        };
+    };
+    compliance: {
+        Tables: {
+            citations: {
+                Row: {
+                    bbox: Json;
+                    citation_number: number;
+                    content: string;
+                    created_at: string;
+                    doc_metadata_id: string;
+                    document_name: string | null;
+                    id: string;
+                    message_id: string;
+                    page_number: number;
+                };
+                Insert: {
+                    bbox: Json;
+                    citation_number: number;
+                    content: string;
+                    created_at?: string;
+                    doc_metadata_id: string;
+                    document_name?: string | null;
+                    id?: string;
+                    message_id: string;
+                    page_number: number;
+                };
+                Update: {
+                    bbox?: Json;
+                    citation_number?: number;
+                    content?: string;
+                    created_at?: string;
+                    doc_metadata_id?: string;
+                    document_name?: string | null;
+                    id?: string;
+                    message_id?: string;
+                    page_number?: number;
+                };
+                Relationships: [];
+            };
+            compliance_reports: {
                 Row: {
                     created_at: string;
+                    date_generated: string;
+                    doc_metadata_id: string;
+                    document_name: string;
+                    findings: Json;
                     id: string;
-                    metadata: Json | null;
+                    recommendations: Json;
+                    report_url: string | null;
+                    status: string;
+                    updated_at: string;
                     user_id: string;
                 };
                 Insert: {
                     created_at?: string;
+                    date_generated?: string;
+                    doc_metadata_id: string;
+                    document_name: string;
+                    findings?: Json;
                     id?: string;
-                    metadata?: Json | null;
+                    recommendations?: Json;
+                    report_url?: string | null;
+                    status: string;
+                    updated_at?: string;
                     user_id: string;
                 };
                 Update: {
                     created_at?: string;
+                    date_generated?: string;
+                    doc_metadata_id?: string;
+                    document_name?: string;
+                    findings?: Json;
                     id?: string;
-                    metadata?: Json | null;
+                    recommendations?: Json;
+                    report_url?: string | null;
+                    status?: string;
+                    updated_at?: string;
+                    user_id?: string;
+                };
+                Relationships: [];
+            };
+        };
+        Views: {
+            [_ in never]: never;
+        };
+        Functions: {
+            [_ in never]: never;
+        };
+        Enums: {
+            [_ in never]: never;
+        };
+        CompositeTypes: {
+            [_ in never]: never;
+        };
+    };
+    core: {
+        Tables: {
+            agents: {
+                Row: {
+                    assistant_id: string;
+                    created_at: string;
+                    id: string;
+                    updated_at: string;
+                    user_id: string;
+                };
+                Insert: {
+                    assistant_id: string;
+                    created_at?: string;
+                    id?: string;
+                    updated_at?: string;
+                    user_id: string;
+                };
+                Update: {
+                    assistant_id?: string;
+                    created_at?: string;
+                    id?: string;
+                    updated_at?: string;
                     user_id?: string;
                 };
                 Relationships: [
                     {
-                        foreignKeyName: "crms_user_id_fkey";
+                        foreignKeyName: "agents_user_id_fkey";
                         columns: ["user_id"];
-                        isOneToOne: true;
+                        isOneToOne: false;
                         referencedRelation: "users";
                         referencedColumns: ["id"];
                     }
                 ];
             };
-            deal_documents: {
+            error_logs: {
                 Row: {
-                    created_at: string | null;
-                    deal_id: number;
-                    document_id: string;
-                    id: number;
+                    created_at: string;
+                    environment: string | null;
+                    error_code: string | null;
+                    error_message: string;
+                    id: string;
+                    metadata: Json | null;
+                    processing_duration: number | null;
+                    record_id: string;
+                    severity: string | null;
+                    source: string;
+                    stack_trace: string | null;
+                    status: string | null;
+                    updated_at: string;
+                    user_id: string;
                 };
                 Insert: {
-                    created_at?: string | null;
-                    deal_id: number;
-                    document_id: string;
-                    id?: never;
+                    created_at?: string;
+                    environment?: string | null;
+                    error_code?: string | null;
+                    error_message: string;
+                    id?: string;
+                    metadata?: Json | null;
+                    processing_duration?: number | null;
+                    record_id: string;
+                    severity?: string | null;
+                    source: string;
+                    stack_trace?: string | null;
+                    status?: string | null;
+                    updated_at?: string;
+                    user_id: string;
                 };
                 Update: {
-                    created_at?: string | null;
-                    deal_id?: number;
+                    created_at?: string;
+                    environment?: string | null;
+                    error_code?: string | null;
+                    error_message?: string;
+                    id?: string;
+                    metadata?: Json | null;
+                    processing_duration?: number | null;
+                    record_id?: string;
+                    severity?: string | null;
+                    source?: string;
+                    stack_trace?: string | null;
+                    status?: string | null;
+                    updated_at?: string;
+                    user_id?: string;
+                };
+                Relationships: [];
+            };
+            jobs: {
+                Row: {
+                    completed_at: string | null;
+                    created_at: string;
+                    current_step: string | null;
+                    error: string | null;
+                    id: string;
+                    message: string | null;
+                    params: Json | null;
+                    progress: number | null;
+                    result: Json | null;
+                    started_at: string | null;
+                    status: string | null;
+                    type: string | null;
+                    updated_at: string;
+                    user_id: string | null;
+                };
+                Insert: {
+                    completed_at?: string | null;
+                    created_at?: string;
+                    current_step?: string | null;
+                    error?: string | null;
+                    id?: string;
+                    message?: string | null;
+                    params?: Json | null;
+                    progress?: number | null;
+                    result?: Json | null;
+                    started_at?: string | null;
+                    status?: string | null;
+                    type?: string | null;
+                    updated_at?: string;
+                    user_id?: string | null;
+                };
+                Update: {
+                    completed_at?: string | null;
+                    created_at?: string;
+                    current_step?: string | null;
+                    error?: string | null;
+                    id?: string;
+                    message?: string | null;
+                    params?: Json | null;
+                    progress?: number | null;
+                    result?: Json | null;
+                    started_at?: string | null;
+                    status?: string | null;
+                    type?: string | null;
+                    updated_at?: string;
+                    user_id?: string | null;
+                };
+                Relationships: [];
+            };
+            user_rankings: {
+                Row: {
+                    created_at: string;
+                    entity_id: string;
+                    entity_type: string;
+                    id: string;
+                    is_pinned: boolean | null;
+                    updated_at: string;
+                    user_id: string;
+                };
+                Insert: {
+                    created_at?: string;
+                    entity_id: string;
+                    entity_type: string;
+                    id?: string;
+                    is_pinned?: boolean | null;
+                    updated_at?: string;
+                    user_id: string;
+                };
+                Update: {
+                    created_at?: string;
+                    entity_id?: string;
+                    entity_type?: string;
+                    id?: string;
+                    is_pinned?: boolean | null;
+                    updated_at?: string;
+                    user_id?: string;
+                };
+                Relationships: [];
+            };
+            users: {
+                Row: {
+                    created_at: string;
+                    crm_id: string | null;
+                    google_integrated: boolean | null;
+                    id: string;
+                    name: string | null;
+                };
+                Insert: {
+                    created_at?: string;
+                    crm_id?: string | null;
+                    google_integrated?: boolean | null;
+                    id: string;
+                    name?: string | null;
+                };
+                Update: {
+                    created_at?: string;
+                    crm_id?: string | null;
+                    google_integrated?: boolean | null;
+                    id?: string;
+                    name?: string | null;
+                };
+                Relationships: [];
+            };
+        };
+        Views: {
+            [_ in never]: never;
+        };
+        Functions: {
+            [_ in never]: never;
+        };
+        Enums: {
+            [_ in never]: never;
+        };
+        CompositeTypes: {
+            [_ in never]: never;
+        };
+    };
+    documents: {
+        Tables: {
+            deal_documents: {
+                Row: {
+                    deal_id: string;
+                    document_id: string;
+                    document_type: string;
+                };
+                Insert: {
+                    deal_id: string;
+                    document_id: string;
+                    document_type: string;
+                };
+                Update: {
+                    deal_id?: string;
                     document_id?: string;
-                    id?: never;
+                    document_type?: string;
                 };
                 Relationships: [
-                    {
-                        foreignKeyName: "deal_documents_deal_id_fkey";
-                        columns: ["deal_id"];
-                        isOneToOne: false;
-                        referencedRelation: "deals";
-                        referencedColumns: ["id"];
-                    },
                     {
                         foreignKeyName: "deal_documents_document_id_fkey";
                         columns: ["document_id"];
                         isOneToOne: false;
                         referencedRelation: "document_metadata";
-                        referencedColumns: ["document_id"];
+                        referencedColumns: ["id"];
                     }
                 ];
-            };
-            deals: {
-                Row: {
-                    created_at: string | null;
-                    deal_type: string;
-                    id: number;
-                    metadata: Json | null;
-                    name: string;
-                    status: string;
-                    user_id: string;
-                };
-                Insert: {
-                    created_at?: string | null;
-                    deal_type: string;
-                    id?: never;
-                    metadata?: Json | null;
-                    name: string;
-                    status: string;
-                    user_id: string;
-                };
-                Update: {
-                    created_at?: string | null;
-                    deal_type?: string;
-                    id?: never;
-                    metadata?: Json | null;
-                    name?: string;
-                    status?: string;
-                    user_id?: string;
-                };
-                Relationships: [];
             };
             document_chunks: {
                 Row: {
@@ -611,7 +588,7 @@ export type Database = {
                     created_at: string;
                     document_id: string;
                     document_metadata_id: string;
-                    id: number;
+                    id: string;
                 };
                 Insert: {
                     chunk_content: Json;
@@ -619,7 +596,7 @@ export type Database = {
                     created_at?: string;
                     document_id: string;
                     document_metadata_id: string;
-                    id?: never;
+                    id?: string;
                 };
                 Update: {
                     chunk_content?: Json;
@@ -627,7 +604,7 @@ export type Database = {
                     created_at?: string;
                     document_id?: string;
                     document_metadata_id?: string;
-                    id?: never;
+                    id?: string;
                 };
                 Relationships: [
                     {
@@ -667,200 +644,121 @@ export type Database = {
                     name?: string | null;
                     user_id?: string | null;
                 };
-                Relationships: [
-                    {
-                        foreignKeyName: "document_groups_client_id_fkey";
-                        columns: ["client_id"];
-                        isOneToOne: false;
-                        referencedRelation: "clients";
-                        referencedColumns: ["id"];
-                    },
-                    {
-                        foreignKeyName: "document_groups_conversation_id_fkey";
-                        columns: ["conversation_id"];
-                        isOneToOne: false;
-                        referencedRelation: "conversations";
-                        referencedColumns: ["id"];
-                    },
-                    {
-                        foreignKeyName: "document_groups_user_id_fkey";
-                        columns: ["user_id"];
-                        isOneToOne: false;
-                        referencedRelation: "users";
-                        referencedColumns: ["id"];
-                    }
-                ];
+                Relationships: [];
             };
             document_metadata: {
                 Row: {
                     classifications: string[] | null;
                     created_at: string;
-                    deal_id: number | null;
+                    deal_id: string | null;
                     deal_name: string | null;
-                    document_id: string | null;
                     extracted_data: Json | null;
                     group_id: string | null;
                     id: string;
                     metadata: Json | null;
                     status: string | null;
+                    storage_object_id: string | null;
                     user_id: string | null;
                 };
                 Insert: {
                     classifications?: string[] | null;
                     created_at?: string;
-                    deal_id?: number | null;
+                    deal_id?: string | null;
                     deal_name?: string | null;
-                    document_id?: string | null;
                     extracted_data?: Json | null;
                     group_id?: string | null;
                     id?: string;
                     metadata?: Json | null;
                     status?: string | null;
+                    storage_object_id?: string | null;
                     user_id?: string | null;
                 };
                 Update: {
                     classifications?: string[] | null;
                     created_at?: string;
-                    deal_id?: number | null;
+                    deal_id?: string | null;
                     deal_name?: string | null;
-                    document_id?: string | null;
                     extracted_data?: Json | null;
                     group_id?: string | null;
                     id?: string;
                     metadata?: Json | null;
                     status?: string | null;
+                    storage_object_id?: string | null;
                     user_id?: string | null;
                 };
                 Relationships: [
-                    {
-                        foreignKeyName: "document_metadata_deal_id_fkey";
-                        columns: ["deal_id"];
-                        isOneToOne: false;
-                        referencedRelation: "deals";
-                        referencedColumns: ["id"];
-                    },
                     {
                         foreignKeyName: "document_metadata_group_id_fkey";
                         columns: ["group_id"];
                         isOneToOne: false;
                         referencedRelation: "document_groups";
                         referencedColumns: ["id"];
-                    },
-                    {
-                        foreignKeyName: "document_metadata_user_id_fkey";
-                        columns: ["user_id"];
-                        isOneToOne: false;
-                        referencedRelation: "users";
-                        referencedColumns: ["id"];
                     }
                 ];
             };
+        };
+        Views: {
+            [_ in never]: never;
+        };
+        Functions: {
+            [_ in never]: never;
+        };
+        Enums: {
+            [_ in never]: never;
+        };
+        CompositeTypes: {
+            [_ in never]: never;
+        };
+    };
+    integrations: {
+        Tables: {
             email_attachments: {
                 Row: {
-                    created_at: string | null;
+                    created_at: string;
                     document_id: string | null;
                     email_id: string;
                     file_name: string;
                     gmail_attachment_id: string;
-                    id: number;
+                    id: string;
                     mime_type: string;
                     processed_at: string | null;
                     public_url: string | null;
                     size: number;
                     status: string | null;
                     storage_path: string | null;
-                    updated_at: string | null;
+                    updated_at: string;
                     user_id: string;
                 };
                 Insert: {
-                    created_at?: string | null;
+                    created_at?: string;
                     document_id?: string | null;
                     email_id: string;
                     file_name: string;
                     gmail_attachment_id: string;
-                    id?: never;
+                    id?: string;
                     mime_type: string;
                     processed_at?: string | null;
                     public_url?: string | null;
                     size: number;
                     status?: string | null;
                     storage_path?: string | null;
-                    updated_at?: string | null;
+                    updated_at?: string;
                     user_id: string;
                 };
                 Update: {
-                    created_at?: string | null;
+                    created_at?: string;
                     document_id?: string | null;
                     email_id?: string;
                     file_name?: string;
                     gmail_attachment_id?: string;
-                    id?: never;
+                    id?: string;
                     mime_type?: string;
                     processed_at?: string | null;
                     public_url?: string | null;
                     size?: number;
                     status?: string | null;
                     storage_path?: string | null;
-                    updated_at?: string | null;
-                    user_id?: string;
-                };
-                Relationships: [
-                    {
-                        foreignKeyName: "email_attachments_document_id_fkey";
-                        columns: ["document_id"];
-                        isOneToOne: false;
-                        referencedRelation: "document_metadata";
-                        referencedColumns: ["document_id"];
-                    }
-                ];
-            };
-            error_logs: {
-                Row: {
-                    created_at: string | null;
-                    environment: string | null;
-                    error_code: string | null;
-                    error_message: string;
-                    id: number;
-                    metadata: Json | null;
-                    processing_duration: number | null;
-                    record_id: string;
-                    severity: string | null;
-                    source: string;
-                    stack_trace: string | null;
-                    status: string | null;
-                    updated_at: string | null;
-                    user_id: string;
-                };
-                Insert: {
-                    created_at?: string | null;
-                    environment?: string | null;
-                    error_code?: string | null;
-                    error_message: string;
-                    id?: never;
-                    metadata?: Json | null;
-                    processing_duration?: number | null;
-                    record_id: string;
-                    severity?: string | null;
-                    source: string;
-                    stack_trace?: string | null;
-                    status?: string | null;
-                    updated_at?: string | null;
-                    user_id: string;
-                };
-                Update: {
-                    created_at?: string | null;
-                    environment?: string | null;
-                    error_code?: string | null;
-                    error_message?: string;
-                    id?: never;
-                    metadata?: Json | null;
-                    processing_duration?: number | null;
-                    record_id?: string;
-                    severity?: string | null;
-                    source?: string;
-                    stack_trace?: string | null;
-                    status?: string | null;
-                    updated_at?: string | null;
+                    updated_at?: string;
                     user_id?: string;
                 };
                 Relationships: [];
@@ -1141,61 +1039,295 @@ export type Database = {
                 };
                 Relationships: [];
             };
-            jobs: {
+        };
+        Views: {
+            [_ in never]: never;
+        };
+        Functions: {
+            [_ in never]: never;
+        };
+        Enums: {
+            [_ in never]: never;
+        };
+        CompositeTypes: {
+            [_ in never]: never;
+        };
+    };
+    sales: {
+        Tables: {
+            campaign_leads: {
                 Row: {
-                    completed_at: string | null;
+                    campaign_id: string;
                     created_at: string;
-                    current_step: string | null;
-                    error: string | null;
+                    generated_content: Json | null;
                     id: string;
-                    message: string | null;
-                    params: Json | null;
-                    progress: number | null;
-                    result: Json | null;
-                    started_at: string | null;
-                    status: string | null;
-                    type: string | null;
-                    updated_at: string | null;
-                    user_id: string | null;
+                    lead_id: string;
+                    notes: string | null;
+                    status: string;
+                    updated_at: string;
                 };
                 Insert: {
-                    completed_at?: string | null;
+                    campaign_id: string;
                     created_at?: string;
-                    current_step?: string | null;
-                    error?: string | null;
+                    generated_content?: Json | null;
                     id?: string;
-                    message?: string | null;
-                    params?: Json | null;
-                    progress?: number | null;
-                    result?: Json | null;
-                    started_at?: string | null;
-                    status?: string | null;
-                    type?: string | null;
-                    updated_at?: string | null;
-                    user_id?: string | null;
+                    lead_id: string;
+                    notes?: string | null;
+                    status: string;
+                    updated_at?: string;
                 };
                 Update: {
-                    completed_at?: string | null;
+                    campaign_id?: string;
                     created_at?: string;
-                    current_step?: string | null;
-                    error?: string | null;
+                    generated_content?: Json | null;
                     id?: string;
-                    message?: string | null;
-                    params?: Json | null;
-                    progress?: number | null;
-                    result?: Json | null;
-                    started_at?: string | null;
-                    status?: string | null;
-                    type?: string | null;
-                    updated_at?: string | null;
-                    user_id?: string | null;
+                    lead_id?: string;
+                    notes?: string | null;
+                    status?: string;
+                    updated_at?: string;
                 };
                 Relationships: [
                     {
-                        foreignKeyName: "jobs_user_id_fkey";
-                        columns: ["user_id"];
+                        foreignKeyName: "campaign_leads_campaign_id_fkey";
+                        columns: ["campaign_id"];
                         isOneToOne: false;
-                        referencedRelation: "users";
+                        referencedRelation: "campaigns";
+                        referencedColumns: ["id"];
+                    },
+                    {
+                        foreignKeyName: "campaign_leads_lead_id_fkey";
+                        columns: ["lead_id"];
+                        isOneToOne: false;
+                        referencedRelation: "leads";
+                        referencedColumns: ["id"];
+                    }
+                ];
+            };
+            campaigns: {
+                Row: {
+                    created_at: string;
+                    description: string | null;
+                    goal: string;
+                    id: string;
+                    metrics: Json;
+                    name: string;
+                    progress: number | null;
+                    schedule: Json;
+                    script_id: string;
+                    status: string;
+                    target_ids: string[];
+                    target_type: string;
+                    updated_at: string;
+                    user_id: string;
+                };
+                Insert: {
+                    created_at?: string;
+                    description?: string | null;
+                    goal: string;
+                    id?: string;
+                    metrics?: Json;
+                    name: string;
+                    progress?: number | null;
+                    schedule: Json;
+                    script_id: string;
+                    status: string;
+                    target_ids: string[];
+                    target_type: string;
+                    updated_at?: string;
+                    user_id: string;
+                };
+                Update: {
+                    created_at?: string;
+                    description?: string | null;
+                    goal?: string;
+                    id?: string;
+                    metrics?: Json;
+                    name?: string;
+                    progress?: number | null;
+                    schedule?: Json;
+                    script_id?: string;
+                    status?: string;
+                    target_ids?: string[];
+                    target_type?: string;
+                    updated_at?: string;
+                    user_id?: string;
+                };
+                Relationships: [];
+            };
+            client_mappings: {
+                Row: {
+                    client_data: Json;
+                    created_at: string;
+                    deal_id: string | null;
+                    id: string;
+                    source_id: string;
+                    source_type: string;
+                    updated_at: string;
+                    user_id: string;
+                };
+                Insert: {
+                    client_data: Json;
+                    created_at?: string;
+                    deal_id?: string | null;
+                    id?: string;
+                    source_id: string;
+                    source_type: string;
+                    updated_at?: string;
+                    user_id: string;
+                };
+                Update: {
+                    client_data?: Json;
+                    created_at?: string;
+                    deal_id?: string | null;
+                    id?: string;
+                    source_id?: string;
+                    source_type?: string;
+                    updated_at?: string;
+                    user_id?: string;
+                };
+                Relationships: [
+                    {
+                        foreignKeyName: "client_mappings_deal_id_fkey";
+                        columns: ["deal_id"];
+                        isOneToOne: false;
+                        referencedRelation: "deals";
+                        referencedColumns: ["id"];
+                    }
+                ];
+            };
+            clients: {
+                Row: {
+                    address: Json | null;
+                    contact_info: Json | null;
+                    created_at: string;
+                    crm_id: string;
+                    date_of_birth: string | null;
+                    group_ids: string[] | null;
+                    id: string;
+                    metadata: Json | null;
+                    name: string | null;
+                    notes: string | null;
+                    possession_date: string | null;
+                    updated_at: string;
+                };
+                Insert: {
+                    address?: Json | null;
+                    contact_info?: Json | null;
+                    created_at?: string;
+                    crm_id: string;
+                    date_of_birth?: string | null;
+                    group_ids?: string[] | null;
+                    id?: string;
+                    metadata?: Json | null;
+                    name?: string | null;
+                    notes?: string | null;
+                    possession_date?: string | null;
+                    updated_at?: string;
+                };
+                Update: {
+                    address?: Json | null;
+                    contact_info?: Json | null;
+                    created_at?: string;
+                    crm_id?: string;
+                    date_of_birth?: string | null;
+                    group_ids?: string[] | null;
+                    id?: string;
+                    metadata?: Json | null;
+                    name?: string | null;
+                    notes?: string | null;
+                    possession_date?: string | null;
+                    updated_at?: string;
+                };
+                Relationships: [
+                    {
+                        foreignKeyName: "clients_crm_id_fkey";
+                        columns: ["crm_id"];
+                        isOneToOne: false;
+                        referencedRelation: "crms";
+                        referencedColumns: ["id"];
+                    }
+                ];
+            };
+            crms: {
+                Row: {
+                    created_at: string;
+                    id: string;
+                    metadata: Json | null;
+                    user_id: string;
+                };
+                Insert: {
+                    created_at?: string;
+                    id?: string;
+                    metadata?: Json | null;
+                    user_id: string;
+                };
+                Update: {
+                    created_at?: string;
+                    id?: string;
+                    metadata?: Json | null;
+                    user_id?: string;
+                };
+                Relationships: [];
+            };
+            deals: {
+                Row: {
+                    created_at: string;
+                    deal_type: string;
+                    id: string;
+                    metadata: Json | null;
+                    name: string;
+                    status: string;
+                    user_id: string;
+                };
+                Insert: {
+                    created_at?: string;
+                    deal_type: string;
+                    id?: string;
+                    metadata?: Json | null;
+                    name: string;
+                    status: string;
+                    user_id: string;
+                };
+                Update: {
+                    created_at?: string;
+                    deal_type?: string;
+                    id?: string;
+                    metadata?: Json | null;
+                    name?: string;
+                    status?: string;
+                    user_id?: string;
+                };
+                Relationships: [];
+            };
+            lead_deal_matches: {
+                Row: {
+                    deal_id: string;
+                    lead_id: string;
+                    match_score: number;
+                };
+                Insert: {
+                    deal_id: string;
+                    lead_id: string;
+                    match_score: number;
+                };
+                Update: {
+                    deal_id?: string;
+                    lead_id?: string;
+                    match_score?: number;
+                };
+                Relationships: [
+                    {
+                        foreignKeyName: "lead_deal_matches_deal_id_fkey";
+                        columns: ["deal_id"];
+                        isOneToOne: false;
+                        referencedRelation: "deals";
+                        referencedColumns: ["id"];
+                    },
+                    {
+                        foreignKeyName: "lead_deal_matches_lead_id_fkey";
+                        columns: ["lead_id"];
+                        isOneToOne: false;
+                        referencedRelation: "leads";
                         referencedColumns: ["id"];
                     }
                 ];
@@ -1205,6 +1337,7 @@ export type Database = {
                     assigned_to: string | null;
                     created_at: string;
                     email: string;
+                    enrichment_data: Json | null;
                     id: string;
                     name: string;
                     notes: string | null;
@@ -1219,6 +1352,7 @@ export type Database = {
                     assigned_to?: string | null;
                     created_at?: string;
                     email: string;
+                    enrichment_data?: Json | null;
                     id?: string;
                     name: string;
                     notes?: string | null;
@@ -1233,6 +1367,7 @@ export type Database = {
                     assigned_to?: string | null;
                     created_at?: string;
                     email?: string;
+                    enrichment_data?: Json | null;
                     id?: string;
                     name?: string;
                     notes?: string | null;
@@ -1245,345 +1380,159 @@ export type Database = {
                 };
                 Relationships: [];
             };
-            messages: {
+        };
+        Views: {
+            [_ in never]: never;
+        };
+        Functions: {
+            [_ in never]: never;
+        };
+        Enums: {
+            [_ in never]: never;
+        };
+        CompositeTypes: {
+            [_ in never]: never;
+        };
+    };
+    telephony: {
+        Tables: {
+            call_events: {
                 Row: {
-                    content: string | null;
-                    conversation_id: string | null;
+                    call_log_id: string | null;
+                    campaign_id: string;
                     created_at: string;
-                    follow_up_questions: Json | null;
+                    event_data: Json | null;
+                    event_type: string | null;
                     id: string;
-                    role: string | null;
-                    thread_id: string | null;
-                    user_id: string | null;
+                    user_id: string;
                 };
                 Insert: {
-                    content?: string | null;
-                    conversation_id?: string | null;
+                    call_log_id?: string | null;
+                    campaign_id: string;
                     created_at?: string;
-                    follow_up_questions?: Json | null;
+                    event_data?: Json | null;
+                    event_type?: string | null;
                     id?: string;
-                    role?: string | null;
-                    thread_id?: string | null;
-                    user_id?: string | null;
+                    user_id: string;
                 };
                 Update: {
-                    content?: string | null;
-                    conversation_id?: string | null;
+                    call_log_id?: string | null;
+                    campaign_id?: string;
                     created_at?: string;
-                    follow_up_questions?: Json | null;
+                    event_data?: Json | null;
+                    event_type?: string | null;
                     id?: string;
-                    role?: string | null;
-                    thread_id?: string | null;
-                    user_id?: string | null;
+                    user_id?: string;
                 };
                 Relationships: [
                     {
-                        foreignKeyName: "messages_conversation_id_fkey";
-                        columns: ["conversation_id"];
+                        foreignKeyName: "call_events_call_log_id_fkey";
+                        columns: ["call_log_id"];
                         isOneToOne: false;
-                        referencedRelation: "conversations";
-                        referencedColumns: ["id"];
-                    },
-                    {
-                        foreignKeyName: "messages_user_id_fkey";
-                        columns: ["user_id"];
-                        isOneToOne: false;
-                        referencedRelation: "users";
+                        referencedRelation: "call_logs";
                         referencedColumns: ["id"];
                     }
                 ];
             };
-            oauth_tokens: {
+            call_logs: {
                 Row: {
-                    access_token: string;
+                    call_sid: string | null;
+                    campaign_id: string;
+                    conversation_json: Json | null;
                     created_at: string;
-                    expires_at: string;
-                    id: number;
-                    provider: string;
-                    refresh_token: string;
+                    id: string;
+                    job_id: string | null;
+                    lead_id: string | null;
+                    outcome: string | null;
+                    sentiment: string | null;
+                    transcript_summary: string | null;
                     updated_at: string;
                     user_id: string;
                 };
                 Insert: {
-                    access_token: string;
+                    call_sid?: string | null;
+                    campaign_id: string;
+                    conversation_json?: Json | null;
                     created_at?: string;
-                    expires_at: string;
-                    id?: number;
-                    provider: string;
-                    refresh_token: string;
+                    id?: string;
+                    job_id?: string | null;
+                    lead_id?: string | null;
+                    outcome?: string | null;
+                    sentiment?: string | null;
+                    transcript_summary?: string | null;
                     updated_at?: string;
                     user_id: string;
                 };
                 Update: {
-                    access_token?: string;
+                    call_sid?: string | null;
+                    campaign_id?: string;
+                    conversation_json?: Json | null;
                     created_at?: string;
-                    expires_at?: string;
-                    id?: number;
-                    provider?: string;
-                    refresh_token?: string;
+                    id?: string;
+                    job_id?: string | null;
+                    lead_id?: string | null;
+                    outcome?: string | null;
+                    sentiment?: string | null;
+                    transcript_summary?: string | null;
                     updated_at?: string;
                     user_id?: string;
                 };
                 Relationships: [];
             };
-            processed_calendar_events: {
+            call_scripts: {
                 Row: {
-                    created_at: string | null;
-                    event_id: string;
-                    extracted_data: Json;
-                    google_event_id: string;
-                    id: string;
-                    identified_clients: Json | null;
-                    processed_at: string;
-                    user_id: string;
-                };
-                Insert: {
-                    created_at?: string | null;
-                    event_id: string;
-                    extracted_data: Json;
-                    google_event_id: string;
-                    id?: string;
-                    identified_clients?: Json | null;
-                    processed_at: string;
-                    user_id: string;
-                };
-                Update: {
-                    created_at?: string | null;
-                    event_id?: string;
-                    extracted_data?: Json;
-                    google_event_id?: string;
-                    id?: string;
-                    identified_clients?: Json | null;
-                    processed_at?: string;
-                    user_id?: string;
-                };
-                Relationships: [];
-            };
-            processed_email_threads: {
-                Row: {
-                    created_at: string | null;
-                    extracted_data: Json;
-                    id: string;
-                    processed_at: string;
-                    thread_id: string;
-                    user_id: string;
-                };
-                Insert: {
-                    created_at?: string | null;
-                    extracted_data: Json;
-                    id?: string;
-                    processed_at: string;
-                    thread_id: string;
-                    user_id: string;
-                };
-                Update: {
-                    created_at?: string | null;
-                    extracted_data?: Json;
-                    id?: string;
-                    processed_at?: string;
-                    thread_id?: string;
-                    user_id?: string;
-                };
-                Relationships: [];
-            };
-            processed_emails: {
-                Row: {
-                    created_at: string | null;
-                    email_id: string;
-                    extracted_data: Json;
-                    id: string;
-                    identified_clients: Json | null;
-                    message_id: string;
-                    processed_at: string;
-                    user_id: string;
-                };
-                Insert: {
-                    created_at?: string | null;
-                    email_id: string;
-                    extracted_data: Json;
-                    id?: string;
-                    identified_clients?: Json | null;
-                    message_id: string;
-                    processed_at: string;
-                    user_id: string;
-                };
-                Update: {
-                    created_at?: string | null;
-                    email_id?: string;
-                    extracted_data?: Json;
-                    id?: string;
-                    identified_clients?: Json | null;
-                    message_id?: string;
-                    processed_at?: string;
-                    user_id?: string;
-                };
-                Relationships: [];
-            };
-            processed_event_series: {
-                Row: {
-                    created_at: string | null;
-                    extracted_data: Json;
-                    id: string;
-                    processed_at: string;
-                    series_id: string;
-                    user_id: string;
-                };
-                Insert: {
-                    created_at?: string | null;
-                    extracted_data: Json;
-                    id?: string;
-                    processed_at: string;
-                    series_id: string;
-                    user_id: string;
-                };
-                Update: {
-                    created_at?: string | null;
-                    extracted_data?: Json;
-                    id?: string;
-                    processed_at?: string;
-                    series_id?: string;
-                    user_id?: string;
-                };
-                Relationships: [];
-            };
-            unified_analysis_results: {
-                Row: {
-                    analysis_result: Json;
-                    created_at: string | null;
-                    id: string;
-                    processed_at: string;
-                    user_id: string;
-                };
-                Insert: {
-                    analysis_result: Json;
-                    created_at?: string | null;
-                    id?: string;
-                    processed_at: string;
-                    user_id: string;
-                };
-                Update: {
-                    analysis_result?: Json;
-                    created_at?: string | null;
-                    id?: string;
-                    processed_at?: string;
-                    user_id?: string;
-                };
-                Relationships: [];
-            };
-            user_rankings: {
-                Row: {
-                    created_at: string | null;
-                    entity_id: string;
-                    entity_type: string;
-                    id: string;
-                    is_pinned: boolean | null;
-                    updated_at: string | null;
-                    user_id: string;
-                };
-                Insert: {
-                    created_at?: string | null;
-                    entity_id: string;
-                    entity_type: string;
-                    id?: string;
-                    is_pinned?: boolean | null;
-                    updated_at?: string | null;
-                    user_id: string;
-                };
-                Update: {
-                    created_at?: string | null;
-                    entity_id?: string;
-                    entity_type?: string;
-                    id?: string;
-                    is_pinned?: boolean | null;
-                    updated_at?: string | null;
-                    user_id?: string;
-                };
-                Relationships: [];
-            };
-            users: {
-                Row: {
-                    assistant_resources: Json | null;
+                    avg_duration: number | null;
+                    category: string;
+                    content: string;
                     created_at: string;
-                    crm_id: string | null;
-                    google_integrated: boolean | null;
                     id: string;
-                    name: string | null;
+                    is_active: boolean;
+                    name: string;
+                    positive_sentiment_rate: number | null;
+                    success_rate: number | null;
+                    updated_at: string;
+                    user_id: string;
+                    version: number;
                 };
                 Insert: {
-                    assistant_resources?: Json | null;
+                    avg_duration?: number | null;
+                    category: string;
+                    content: string;
                     created_at?: string;
-                    crm_id?: string | null;
-                    google_integrated?: boolean | null;
-                    id: string;
-                    name?: string | null;
+                    id?: string;
+                    is_active?: boolean;
+                    name: string;
+                    positive_sentiment_rate?: number | null;
+                    success_rate?: number | null;
+                    updated_at?: string;
+                    user_id: string;
+                    version?: number;
                 };
                 Update: {
-                    assistant_resources?: Json | null;
+                    avg_duration?: number | null;
+                    category?: string;
+                    content?: string;
                     created_at?: string;
-                    crm_id?: string | null;
-                    google_integrated?: boolean | null;
                     id?: string;
-                    name?: string | null;
+                    is_active?: boolean;
+                    name?: string;
+                    positive_sentiment_rate?: number | null;
+                    success_rate?: number | null;
+                    updated_at?: string;
+                    user_id?: string;
+                    version?: number;
                 };
-                Relationships: [
-                    {
-                        foreignKeyName: "users_crm_id_fkey";
-                        columns: ["crm_id"];
-                        isOneToOne: true;
-                        referencedRelation: "crms";
-                        referencedColumns: ["id"];
-                    }
-                ];
+                Relationships: [];
             };
         };
         Views: {
-            communication_timeline: {
-                Row: {
-                    date: string | null;
-                    deal_id: string | null;
-                    item_id: string | null;
-                    summary: string | null;
-                    type: string | null;
-                    user_id: string | null;
-                };
-                Relationships: [];
-            };
+            [_ in never]: never;
         };
         Functions: {
-            get_calendar_deal_relevance: {
-                Args: {
-                    user_id: string;
-                };
-                Returns: {
-                    event_id: string;
-                    deal_id: number;
-                    relevance_score: number;
-                    relevance_context: string;
-                }[];
-            };
-            get_email_deal_relevance: {
-                Args: {
-                    user_id: string;
-                };
-                Returns: {
-                    email_id: string;
-                    deal_id: number;
-                    relevance_score: number;
-                    relevance_context: string;
-                }[];
-            };
-            get_source_type_counts: {
-                Args: {
-                    user_id_param: string;
-                };
-                Returns: {
-                    source_type: string;
-                    count: number;
-                }[];
-            };
+            [_ in never]: never;
         };
         Enums: {
-            error_source: "email_processing" | "email_thread_processing" | "calendar_processing" | "client_matching" | "database_storage" | "ai_processing";
+            [_ in never]: never;
         };
         CompositeTypes: {
             [_ in never]: never;

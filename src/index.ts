@@ -17,7 +17,30 @@ export * from './helpers';
 export * from './basic';
 
 // Export types for deals
-export * from './deals';
+// Export types for deals with renamed types to avoid conflicts
+export {
+  Entity,
+  HumanEntity,
+  Relationship,
+  KeyDate,
+  ReferenceNumber,
+  Deal,
+  DealDocument as SalesDealDocument,
+  LeadDealMatch as SalesLeadDealMatch,
+  DealMetadata,
+  DealAIAnalysis,
+  ExtractedDealInfo,
+  DealContext,
+  ActionType,
+  DealActionRecommendation,
+  UserRanking,
+  DealRanking,
+  AIRankedDeal,
+  AIDealAction,
+  DealInsightResponse,
+  DealRealTimeUpdate,
+  AIRankingResponse
+} from './deals';
 
 // Export user types
 export * from './users';
@@ -103,7 +126,7 @@ export {
   SyncJobStatus,
   
   // Rename ClientMapping to avoid collision
-  ClientMapping as CommunicationClientMapping,
+  ClientMapping as IntegrationsClientMapping,
   UICategoryItem,
   UICategories
 } from './communication';
@@ -111,17 +134,47 @@ export {
 // Export message and conversation types
 export * from './messages';
 
-// Export document types
-export * from './documents';
+// Export document types with renamed types to avoid conflicts
+export {
+  Document,
+  DocumentMetadata,
+  DocumentMetadataExtended,
+  DocumentInterface,
+  ClassificationDetails,
+  SourceInfo,
+  DocumentChunk,
+  DocumentChunkContent,
+  DocumentChunkMetadata,
+  Citation as DocumentsCitation,
+  CitationBBox,
+  UnstructuredInsight,
+  UnstructuredData,
+  DocumentGroup,
+  DealDocument as DocsDealDocument,
+  PdfViewerOptions
+} from './documents';
 
 // Export job types
 export * from './jobs';
 
-// Export lead types
-export * from './leads';
+// Export lead types with renamed types to avoid conflicts
+export {
+  Lead,
+  LeadDealMatch as SalesLeadDealMatch2,
+  LeadStatus as SalesLeadStatus,
+  LeadEnrichmentData
+} from './leads';
 
-// Export compliance types
-export * from './compliance';
+// Export compliance types with renamed types to avoid conflicts
+export {
+  Citation as ComplianceCitation,
+  ComplianceReport,
+  ComplianceReportStatus,
+  ComplianceFindingCategory,
+  ComplianceFindingSeverity,
+  ComplianceFinding,
+  ComplianceRecommendation
+} from './compliance';
 
 // Export API types
 export * from './api';
@@ -157,7 +210,7 @@ export {
   ClientMetadata,
   ClientMappingData,
   // Rename ClientMapping to avoid collision
-  ClientMapping as CRMClientMapping,
+  ClientMapping as SalesClientMapping,
   CRMClient,
   ClientInsight,
   IdentifiedClient,

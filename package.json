@@ -1,14 +1,14 @@
 {
   "name": "@legalflow/types",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "description": "Unified TypeScript types for LegalFlow services",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "clean": "rm -rf dist/*.js dist/*.d.ts",
+    "clean": "rm -rf dist/*.js dist/*.d.ts && rm -f *.js *.js.map",
     "build": "npm run clean && tsc",
     "lint": "eslint . --ext .ts",
-    "format": "prettier --write \"**/*.ts\"",
+    "format": "prettier --write \"src/**/*.ts\"",
     "test": "jest",
     "prepare": "npm run build"
   },

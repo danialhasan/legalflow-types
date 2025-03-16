@@ -2,25 +2,15 @@
  * Client Types
  *
  * Contains types related to clients, client mappings, and client interactions
+ * Updated to use the new schema-specific types from the modularized database structure
  */
-import { Address, ContactInfo, Json, PriorityLevel, UIDisplayInfo } from './basic';
+import { PriorityLevel, UIDisplayInfo } from './basic';
+import { SalesTable } from './helpers';
 /**
  * Client interface representing a customer in the system
+ * Now maps to sales.clients table
  */
-export interface Client {
-    id: string;
-    crm_id: string;
-    name: string | null;
-    date_of_birth: string | null;
-    possession_date: string | null;
-    address: Address | null;
-    contact_info: ContactInfo | null;
-    notes: string | null;
-    group_ids: string[] | null;
-    metadata: ClientMetadata | null;
-    created_at: string;
-    updated_at: string;
-}
+export type Client = SalesTable<'clients'>;
 /**
  * Extended metadata for clients
  */
@@ -40,8 +30,13 @@ export interface ClientMetadata {
 }
 /**
  * Mapping between a communication entity and an existing client
+ * Now maps to sales.client_mappings table
  */
-export interface ClientMapping {
+export type ClientMapping = SalesTable<'client_mappings'>;
+/**
+ * Additional interface for client mappings with structured client data
+ */
+export interface ClientMappingData {
     identified_clients: Array<{
         name: string;
         type: 'person' | 'organization';
@@ -54,13 +49,9 @@ export interface ClientMapping {
 }
 /**
  * Client in the CRM system
+ * Now maps to sales.crms table
  */
-export interface CRMClient {
-    id: string;
-    user_id: string;
-    metadata: Json | null;
-    created_at: string;
-}
+export type CRMClient = SalesTable<'crms'>;
 /**
  * Client ranking and insights
  */

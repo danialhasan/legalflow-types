@@ -25,12 +25,14 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+// Export schema helpers
+__exportStar(require("./helpers"), exports);
 // Export basic shared types
 __exportStar(require("./basic"), exports);
-// Export types for deals
-__exportStar(require("./deals"), exports);
-// Export document types
-__exportStar(require("./documents"), exports);
+// Export user types
+__exportStar(require("./users"), exports);
+// Export message and conversation types
+__exportStar(require("./messages"), exports);
 // Export job types
 __exportStar(require("./jobs"), exports);
 // Export API types

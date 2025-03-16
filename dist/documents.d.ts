@@ -1,9 +1,4 @@
-/**
- * Document Types
- *
- * Contains types related to documents, document processing, and document metadata
- */
-import { Json } from './basic';
+import { DocumentsTable, ComplianceTable } from './helpers';
 /**
  * Document interface representing a document in the system
  */
@@ -14,17 +9,13 @@ export interface Document {
     status?: string;
 }
 /**
- * Document metadata
+ * Document metadata from the documents.document_metadata table
  */
-export interface DocumentMetadata {
-    id: string;
-    document_id: string;
-    user_id?: string;
-    group_id?: string;
-    deal_id?: number | null;
-    deal_name?: string | null;
-    classifications?: string[] | null;
-    status?: string | null;
+export type DocumentMetadata = DocumentsTable<'document_metadata'>;
+/**
+ * Document metadata interface for extended properties
+ */
+export interface DocumentMetadataExtended {
     metadata?: {
         title?: string;
         filename?: string;
@@ -37,8 +28,6 @@ export interface DocumentMetadata {
         source?: string;
         custom_metadata?: Record<string, any>;
     };
-    extracted_data?: Json | null;
-    created_at: string;
 }
 /**
  * Document interface for AI service document handling
@@ -80,48 +69,45 @@ export interface SourceInfo {
 }
 /**
  * Document chunk from text splitting
+ * Maps to documents.document_chunks table
  */
-export interface DocumentChunk {
-    id: number;
-    document_id: string;
-    document_metadata_id: string;
-    chunk_content: {
-        text: string;
-        metadata?: Record<string, any>;
-    };
-    chunkr_metadata?: {
-        chunk_index: number;
-        page_number?: number;
-        bbox?: {
-            x: number;
-            y: number;
-            width: number;
-            height: number;
-            page: number;
-        };
-        embedding_id?: string;
-    };
-    created_at: string;
+export type DocumentChunk = DocumentsTable<'document_chunks'>;
+/**
+ * Document chunk content interface
+ */
+export interface DocumentChunkContent {
+    text: string;
+    metadata?: Record<string, any>;
 }
 /**
- * Document citation from a conversation
+ * Document chunk metadata interface
  */
-export interface Citation {
-    id: number;
-    message_id: string;
-    document_id: string;
-    document_name?: string;
-    content: string;
-    page_number: number;
-    citation_number: number;
-    bbox: {
+export interface DocumentChunkMetadata {
+    chunk_index: number;
+    page_number?: number;
+    bbox?: {
         x: number;
         y: number;
         width: number;
         height: number;
         page: number;
     };
-    created_at: string;
+    embedding_id?: string;
+}
+/**
+ * Document citation from a conversation
+ * Maps to compliance.citations table
+ */
+export type Citation = ComplianceTable<'citations'>;
+/**
+ * Document citation bbox interface
+ */
+export interface CitationBBox {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+    page: number;
 }
 /**
  * Unstructured insights from document analysis
@@ -143,16 +129,14 @@ export interface UnstructuredData {
 }
 /**
  * Document group for organizing related documents
+ * Maps to documents.document_groups table
  */
-export interface DocumentGroup {
-    id: string;
-    name?: string;
-    user_id?: string;
-    client_id?: string;
-    conversation_id?: string;
-    metadata?: Record<string, any>;
-    created_at: string;
-}
+export type DocumentGroup = DocumentsTable<'document_groups'>;
+/**
+ * Deal document mapping
+ * Maps to documents.deal_documents table
+ */
+export type DealDocument = DocumentsTable<'deal_documents'>;
 /**
  * PDF-specific types for the UI
  */
