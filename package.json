@@ -1,12 +1,13 @@
 {
   "name": "@legalflow/types",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Unified TypeScript types for LegalFlow services",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "clean": "rm -rf dist/*.js dist/*.d.ts && rm -f *.js *.js.map",
-    "build": "npm run clean && tsc",
+    "generate-constants": "ts-node scripts/generate-db-constants.ts",
+    "build": "npm run generate-constants && npm run clean && tsc",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"src/**/*.ts\"",
     "test": "jest",
@@ -37,6 +38,7 @@
     "jest": "^29.5.0",
     "prettier": "^2.8.7",
     "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.1",
     "typescript": "^5.0.4"
   },
   "files": [

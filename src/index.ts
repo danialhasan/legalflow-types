@@ -228,3 +228,11 @@ export {
   Enums,
   CompositeTypes
 } from './supabase';
+
+// Export database constants
+export {
+  Schema,
+  Table,
+  SchemaName,
+  getTableRef
+} from './db-constants';
