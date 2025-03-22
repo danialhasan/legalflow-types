@@ -1,7 +1,7 @@
 {
   "name": "@legalflow/types",
-  "version": "1.1.2",
-  "description": "Unified TypeScript types for LegalFlow services",
+  "version": "1.0.0",
+  "description": "Domain-driven TypeScript types for LegalFlow services",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {

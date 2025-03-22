@@ -1,15 +1,104 @@
 # LegalFlow Types
 
-A unified TypeScript type library for LegalFlow services.
+A domain-driven TypeScript type library for LegalFlow services.
 
 ## Overview
 
-This package contains all shared TypeScript types used across LegalFlow services:
-- AI Service
-- Communication Service
-- Frontend
+This package contains all shared TypeScript types used across LegalFlow services, organized by database schema domains:
+- Analysis
+- Assistant
+- Compliance
+- Core
+- Documents
+- Integrations  
+- Sales
+- Telephony
 
-These types are consolidated to prevent schema drift and type fragmentation between services.
+These types maintain a clean domain-driven structure to prevent schema drift and type fragmentation.
+
+## Structure
+```
+src/
+├── generated/          # Auto-generated files
+│   ├── database.ts     # Database type definitions (from Supabase)
+│   └── constants.ts    # Auto-generated schema/table constants
+├── domains/            # Domain-specific types organized by schema
+│   ├── analysis/
+│   ├── assistant/
+│   ├── compliance/
+│   ├── core/
+│   ├── documents/
+│   ├── integrations/
+│   ├── sales/
+│   └── telephony/
+├── shared/             # Truly shared types
+│   ├── constants.ts    # Shared constants
+│   ├── enums.ts        # Shared enums
+│   └── primitives.ts   # Shared primitive types
+├── utils/              # Utilities
+│   └── schema-helpers.ts # Type utilities
+└── index.ts            # Domain-based exports
+```
+
+## Case Conventions
+
+This library follows a strict case convention approach:
+
+1. **Database Types** - Strictly `snake_case`
+   - All database table types maintain their original `snake_case` from the database
+   - No automatic case conversion happens in this library
+   - Example: `user_id`, `first_name`, `created_at`
+
+2. **Case Conversion** - Handled at service boundaries
+   - Each service is responsible for converting between snake_case and camelCase at DB boundaries
+   - This library does not include any case conversion functionality
+
+### Usage Pattern
+
+```typescript
+// Import domain namespace
+import { Sales } from '@legalflow/types';
+
+// Use table types in snake_case for DB operations
+const deal: Sales.Deal = {
+  id: 123,
+  client_id: 456,
+  deal_name: 'Example Deal',
+  created_at: new Date().toISOString()
+};
+
+// In your service, convert to camelCase when needed
+const dealDto = convertSnakeToCamel(deal);
+// Result: { id: 123, clientId: 456, dealName: 'Example Deal', createdAt: '...' }
+```
+
+## Database Schema Constants
+
+The library provides type-safe schema and table constants:
+
+```typescript
+import { Schema, Table, getTableRef } from '@legalflow/types';
+
+// Reference schemas and tables in a type-safe way
+const { schema, table } = getTableRef(Schema.SALES, Table.Sales.DEALS);
+// Result: { schema: 'sales', table: 'deals' }
+
+// Use in Supabase queries
+await supabase.schema(schema).from(table).select('*');
+```
+
+## Domain-Based Import Pattern
+
+The library exports each schema domain as a namespace:
+
+```typescript
+import { Sales, Documents, Core } from '@legalflow/types';
+
+// Access types from specific domains
+const deal: Sales.Deal = { /* ... */ };
+const user: Core.User = { /* ... */ };
+const doc: Documents.DocumentMetadata = { /* ... */ };
+```
 
 ## Installation
 

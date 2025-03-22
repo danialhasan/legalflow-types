@@ -1,7 +1,8 @@
 /**
- * Basic Types
+ * Shared Primitive Types
  * 
- * Contains fundamental primitive types shared across the application
+ * Contains fundamental primitive types shared across all domains.
+ * These are basic building blocks used throughout the application.
  */
 
 /**
@@ -26,11 +27,6 @@ export interface ModelConfidence {
   confidence: number; // Value between 0 and 1
   reason?: string;    // Optional explanation for the confidence score
 }
-
-/**
- * Common status values for processing items
- */
-export type ProcessingStatus = 'pending' | 'in_progress' | 'processing' | 'queued' | 'completed' | 'failed';
 
 /**
  * Contact information shared across multiple entities
