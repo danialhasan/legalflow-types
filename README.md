@@ -1,20 +1,16 @@
-# LegalFlow Types
+# @legalflow/types
 
-A domain-driven TypeScript type library for LegalFlow services.
+A domain-driven TypeScript type library for LegalFlow services with clear schema boundaries.
 
-## Overview
+## Purpose
 
-This package contains all shared TypeScript types used across LegalFlow services, organized by database schema domains:
-- Analysis
-- Assistant
-- Compliance
-- Core
-- Documents
-- Integrations  
-- Sales
-- Telephony
+This package provides a clean, domain-driven type system for all LegalFlow database schemas, with:
 
-These types maintain a clean domain-driven structure to prevent schema drift and type fragmentation.
+- **Schema-based organization**: Types grouped by database schema
+- **Clear boundaries**: Database types stay in `snake_case`, conversion happens in services
+- **No transformations**: Pure type definitions without service-specific logic
+- **No duplication**: Single source of truth for all database types
+- **Consistent naming**: Predictable type patterns across all domains
 
 ## Structure
 ```
@@ -40,41 +36,30 @@ src/
 └── index.ts            # Domain-based exports
 ```
 
-## Case Conventions
+## Installation
 
-This library follows a strict case convention approach:
-
-1. **Database Types** - Strictly `snake_case`
-   - All database table types maintain their original `snake_case` from the database
-   - No automatic case conversion happens in this library
-   - Example: `user_id`, `first_name`, `created_at`
-
-2. **Case Conversion** - Handled at service boundaries
-   - Each service is responsible for converting between snake_case and camelCase at DB boundaries
-   - This library does not include any case conversion functionality
-
-### Usage Pattern
-
-```typescript
-// Import domain namespace
-import { Sales } from '@legalflow/types';
-
-// Use table types in snake_case for DB operations
-const deal: Sales.Deal = {
-  id: 123,
-  client_id: 456,
-  deal_name: 'Example Deal',
-  created_at: new Date().toISOString()
-};
-
-// In your service, convert to camelCase when needed
-const dealDto = convertSnakeToCamel(deal);
-// Result: { id: 123, clientId: 456, dealName: 'Example Deal', createdAt: '...' }
+```bash
+npm install @legalflow/types
 ```
 
-## Database Schema Constants
+## Usage
 
-The library provides type-safe schema and table constants:
+### Domain-Based Imports
+
+Import types from specific domains:
+
+```typescript
+import { Sales, Documents, Core } from '@legalflow/types';
+
+// Access types from specific domains
+const deal: Sales.Deal = { /* ... */ };
+const user: Core.User = { /* ... */ };
+const doc: Documents.DocumentMetadata = { /* ... */ };
+```
+
+### Schema & Table References
+
+Type-safe schema and table constants:
 
 ```typescript
 import { Schema, Table, getTableRef } from '@legalflow/types';
@@ -87,91 +72,54 @@ const { schema, table } = getTableRef(Schema.SALES, Table.Sales.DEALS);
 await supabase.schema(schema).from(table).select('*');
 ```
 
-## Domain-Based Import Pattern
+### Case Convention
 
-The library exports each schema domain as a namespace:
+This library follows a strict case convention approach:
+
+1. **Database Types**: All types are in `snake_case` to match the database
+   ```typescript
+   // Database type with snake_case properties
+   const deal: Sales.Deal = {
+     id: 123,
+     client_id: 456,
+     deal_name: 'Example Deal',
+     created_at: new Date().toISOString()
+   };
+   ```
+
+2. **Case Conversion**: Should happen at service boundaries
+   ```typescript
+   // In your service layer
+   import { snakeToCamel } from 'case-anything';
+   
+   // Convert at DB boundary
+   const dealDto = snakeToCamel(deal);
+   // Result: { id: 123, clientId: 456, dealName: 'Example Deal', createdAt: '...' }
+   ```
+
+## Type Pattern
+
+Each domain follows a consistent type pattern:
 
 ```typescript
-import { Sales, Documents, Core } from '@legalflow/types';
+// Row types (database rows)
+export type Deal = SalesSchema['deals']['Row'];
 
-// Access types from specific domains
-const deal: Sales.Deal = { /* ... */ };
-const user: Core.User = { /* ... */ };
-const doc: Documents.DocumentMetadata = { /* ... */ };
-```
+// Insert types (for creating new records)
+export type DealInsert = SalesSchema['deals']['Insert'];
 
-## Installation
-
-```bash
-npm install @legalflow/types
-```
-
-## Usage
-
-Import types directly from the package:
-
-```typescript
-import { Deal, Client, Document } from '@legalflow/types';
-
-// Use the types in your code
-const deal: Deal = {
-  id: '123',
-  name: 'Example Deal',
-  deal_type: 'real_estate',
-  status: 'active',
-  created_at: new Date().toISOString()
-};
-```
-
-## Type Categories
-
-The package is organized into several domain-specific modules:
-
-- **Basic Types**: Common primitive types and interfaces (`basic.ts`)
-- **API Types**: API request/response interfaces (`api.ts`)
-- **Deal Types**: Deal-related interfaces (`deals.ts`)
-- **Document Types**: Document-related interfaces (`documents.ts`)
-- **Communication Types**: Email and calendar interfaces (`communication.ts`)
-- **Client Types**: Client and CRM interfaces (`clients.ts`)
-- **Job Types**: Background job interfaces (`jobs.ts`)
-- **Enum Types**: Common enumerations (`enums.ts`)
-
-## Development
-
-### Building
-
-```bash
-npm run build
-```
-
-### Linting
-
-```bash
-npm run lint
-```
-
-### Formatting
-
-```bash
-npm run format
+// Update types (for updating existing records)
+export type DealUpdate = SalesSchema['deals']['Update'];
 ```
 
 ## Contributing
 
-When adding or modifying types:
+When modifying this package:
 
-1. Place types in the appropriate domain-specific file
-2. Ensure proper documentation with JSDoc comments
-3. Maintain backward compatibility when possible
-4. Update the index.ts file if adding new exports
-5. Run linting and formatting before committing
-
-## Versioning
-
-This package follows semantic versioning:
-- MAJOR version for incompatible API changes
-- MINOR version for backward-compatible functionality
-- PATCH version for backward-compatible bug fixes
+1. **Maintain schema organization**: Keep domain types in correct schema folders
+2. **Avoid service logic**: No transformations or mappings in this package
+3. **Preserve case conventions**: Keep database types in `snake_case`
+4. **Test thoroughly**: Ensure types work correctly in consuming services
 
 ## License
 
