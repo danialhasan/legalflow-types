@@ -441,52 +441,58 @@ export type Database = {
       }
       jobs: {
         Row: {
+          backoff_until: string | null
           completed_at: string | null
           created_at: string
-          current_step: string | null
           error: string | null
           id: string
-          message: string | null
-          params: Json | null
-          progress: number | null
+          max_retries: number
+          origin: string | null
+          params: Json
+          priority: string
           result: Json | null
+          retry_count: number
           started_at: string | null
-          status: string | null
-          type: string | null
+          status: string
+          tags: string[] | null
+          type: string
           updated_at: string
-          user_id: string | null
         }
         Insert: {
+          backoff_until?: string | null
           completed_at?: string | null
           created_at?: string
-          current_step?: string | null
           error?: string | null
           id?: string
-          message?: string | null
-          params?: Json | null
-          progress?: number | null
+          max_retries?: number
+          origin?: string | null
+          params: Json
+          priority?: string
           result?: Json | null
+          retry_count?: number
           started_at?: string | null
-          status?: string | null
-          type?: string | null
+          status: string
+          tags?: string[] | null
+          type: string
           updated_at?: string
-          user_id?: string | null
         }
         Update: {
+          backoff_until?: string | null
           completed_at?: string | null
           created_at?: string
-          current_step?: string | null
           error?: string | null
           id?: string
-          message?: string | null
-          params?: Json | null
-          progress?: number | null
+          max_retries?: number
+          origin?: string | null
+          params?: Json
+          priority?: string
           result?: Json | null
+          retry_count?: number
           started_at?: string | null
-          status?: string | null
-          type?: string | null
+          status?: string
+          tags?: string[] | null
+          type?: string
           updated_at?: string
-          user_id?: string | null
         }
         Relationships: []
       }

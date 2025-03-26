@@ -1,13 +1,15 @@
 {
   "name": "@legalflow/types",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Domain-driven TypeScript types for LegalFlow services",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "clean": "rm -rf dist/*.js dist/*.d.ts && rm -f *.js *.js.map",
     "generate-constants": "ts-node scripts/generate-db-constants.ts",
-    "build": "npm run generate-constants && npm run clean && tsc",
+    "generate-database": "supabase gen types typescript --project-id rzwbkmmsmwnihicmnszq --schema analysis,assistant,compliance,core,documents,integrations,sales,telephony > src/generated/database.ts",
+    "generate": "npm run generate-database && npm run generate-constants ",
+    "build": "npm run generate && npm run clean && tsc",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"src/**/*.ts\"",
     "test": "jest",
@@ -50,6 +52,6 @@
     "node": ">=14.0.0"
   },
   "dependencies": {
-    "supabase": "^2.15.8"
+    "supabase": "^2.20.3"
   }
 }
