@@ -356,6 +356,77 @@ export type Database = {
   }
   core: {
     Tables: {
+      agent_run_steps: {
+        Row: {
+          agent_run_id: string
+          completed_at: string | null
+          error_message: string | null
+          id: string
+          input_json: Json
+          output_json: Json | null
+          started_at: string
+          step_name: string
+        }
+        Insert: {
+          agent_run_id: string
+          completed_at?: string | null
+          error_message?: string | null
+          id?: string
+          input_json: Json
+          output_json?: Json | null
+          started_at?: string
+          step_name: string
+        }
+        Update: {
+          agent_run_id?: string
+          completed_at?: string | null
+          error_message?: string | null
+          id?: string
+          input_json?: Json
+          output_json?: Json | null
+          started_at?: string
+          step_name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "agent_run_steps_agent_run_id_fkey"
+            columns: ["agent_run_id"]
+            isOneToOne: false
+            referencedRelation: "agent_runs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      agent_runs: {
+        Row: {
+          agent_name: string
+          completed_at: string | null
+          id: string
+          metadata: Json | null
+          started_at: string
+          status: string | null
+          user_id: string
+        }
+        Insert: {
+          agent_name: string
+          completed_at?: string | null
+          id?: string
+          metadata?: Json | null
+          started_at?: string
+          status?: string | null
+          user_id: string
+        }
+        Update: {
+          agent_name?: string
+          completed_at?: string | null
+          id?: string
+          metadata?: Json | null
+          started_at?: string
+          status?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       agents: {
         Row: {
           assistant_id: string
