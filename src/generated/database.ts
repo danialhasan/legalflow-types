@@ -796,6 +796,8 @@ export type Database = {
     Tables: {
       email_attachments: {
         Row: {
+          chunkr_task_id: string | null
+          chunks_count: number | null
           created_at: string
           document_id: string | null
           email_id: string
@@ -812,6 +814,8 @@ export type Database = {
           user_id: string
         }
         Insert: {
+          chunkr_task_id?: string | null
+          chunks_count?: number | null
           created_at?: string
           document_id?: string | null
           email_id: string
@@ -828,6 +832,8 @@ export type Database = {
           user_id: string
         }
         Update: {
+          chunkr_task_id?: string | null
+          chunks_count?: number | null
           created_at?: string
           document_id?: string | null
           email_id?: string
