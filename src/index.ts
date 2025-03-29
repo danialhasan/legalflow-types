@@ -26,6 +26,8 @@ export * as Telephony from './domains/telephony';
 export * from './shared/constants';
 export * from './shared/enums';
 export * from './shared/primitives';
+export * as AIService from './shared/ai-service';
+export * as JobsService from './shared/jobs-service';
 
 // Utilities
 export * from './utils/schema-helpers';
