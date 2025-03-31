@@ -9,8 +9,8 @@
  */
 
 // Database types
-export { Database } from './generated/database';
 export { DatabaseCamel } from './generated/databaseCamel';
+export { Database } from './generated/database';
 export { Schema, Table, getTableRef } from './generated/constants';
 
 // Domain exports with namespace organization

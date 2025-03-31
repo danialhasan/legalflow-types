@@ -1477,6 +1477,321 @@ export type DatabaseCamel = {
       [_ in never]: never
     }
   }
+  storage: {
+    Tables: {
+      buckets: {
+        Row: {
+          allowedMimeTypes: string[] | null
+          avifAutodetection: boolean | null
+          createdAt: string | null
+          fileSizeLimit: number | null
+          id: string
+          name: string
+          owner: string | null
+          ownerId: string | null
+          public: boolean | null
+          updatedAt: string | null
+        }
+        Insert: {
+          allowedMimeTypes?: string[] | null
+          avifAutodetection?: boolean | null
+          createdAt?: string | null
+          fileSizeLimit?: number | null
+          id: string
+          name: string
+          owner?: string | null
+          ownerId?: string | null
+          public?: boolean | null
+          updatedAt?: string | null
+        }
+        Update: {
+          allowedMimeTypes?: string[] | null
+          avifAutodetection?: boolean | null
+          createdAt?: string | null
+          fileSizeLimit?: number | null
+          id?: string
+          name?: string
+          owner?: string | null
+          ownerId?: string | null
+          public?: boolean | null
+          updatedAt?: string | null
+        }
+        Relationships: []
+      }
+      migrations: {
+        Row: {
+          executedAt: string | null
+          hash: string
+          id: number
+          name: string
+        }
+        Insert: {
+          executedAt?: string | null
+          hash: string
+          id: number
+          name: string
+        }
+        Update: {
+          executedAt?: string | null
+          hash?: string
+          id?: number
+          name?: string
+        }
+        Relationships: []
+      }
+      objects: {
+        Row: {
+          bucketId: string | null
+          createdAt: string | null
+          id: string
+          lastAccessedAt: string | null
+          metadata: Json | null
+          name: string | null
+          owner: string | null
+          ownerId: string | null
+          pathTokens: string[] | null
+          updatedAt: string | null
+          userMetadata: Json | null
+          version: string | null
+        }
+        Insert: {
+          bucketId?: string | null
+          createdAt?: string | null
+          id?: string
+          lastAccessedAt?: string | null
+          metadata?: Json | null
+          name?: string | null
+          owner?: string | null
+          ownerId?: string | null
+          pathTokens?: string[] | null
+          updatedAt?: string | null
+          userMetadata?: Json | null
+          version?: string | null
+        }
+        Update: {
+          bucketId?: string | null
+          createdAt?: string | null
+          id?: string
+          lastAccessedAt?: string | null
+          metadata?: Json | null
+          name?: string | null
+          owner?: string | null
+          ownerId?: string | null
+          pathTokens?: string[] | null
+          updatedAt?: string | null
+          userMetadata?: Json | null
+          version?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "objects_bucketId_fkey"
+            columns: ["bucket_id"]
+            isOneToOne: false
+            referencedRelation: "buckets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      s3MultipartUploads: {
+        Row: {
+          bucketId: string
+          createdAt: string
+          id: string
+          inProgressSize: number
+          key: string
+          ownerId: string | null
+          uploadSignature: string
+          userMetadata: Json | null
+          version: string
+        }
+        Insert: {
+          bucketId: string
+          createdAt?: string
+          id: string
+          inProgressSize?: number
+          key: string
+          ownerId?: string | null
+          uploadSignature: string
+          userMetadata?: Json | null
+          version: string
+        }
+        Update: {
+          bucketId?: string
+          createdAt?: string
+          id?: string
+          inProgressSize?: number
+          key?: string
+          ownerId?: string | null
+          uploadSignature?: string
+          userMetadata?: Json | null
+          version?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "s3_multipart_uploads_bucket_id_fkey"
+            columns: ["bucket_id"]
+            isOneToOne: false
+            referencedRelation: "buckets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      s3MultipartUploadsParts: {
+        Row: {
+          bucketId: string
+          createdAt: string
+          etag: string
+          id: string
+          key: string
+          ownerId: string | null
+          partNumber: number
+          size: number
+          uploadId: string
+          version: string
+        }
+        Insert: {
+          bucketId: string
+          createdAt?: string
+          etag: string
+          id?: string
+          key: string
+          ownerId?: string | null
+          partNumber: number
+          size?: number
+          uploadId: string
+          version: string
+        }
+        Update: {
+          bucketId?: string
+          createdAt?: string
+          etag?: string
+          id?: string
+          key?: string
+          ownerId?: string | null
+          partNumber?: number
+          size?: number
+          uploadId?: string
+          version?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "s3_multipart_uploads_parts_bucket_id_fkey"
+            columns: ["bucket_id"]
+            isOneToOne: false
+            referencedRelation: "buckets"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "s3_multipart_uploads_parts_upload_id_fkey"
+            columns: ["upload_id"]
+            isOneToOne: false
+            referencedRelation: "s3_multipart_uploads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+    }
+    Views: {
+      [_ in never]: never
+    }
+    Functions: {
+      canInsertObject: {
+        Args: {
+          bucketid: string
+          name: string
+          owner: string
+          metadata: Json
+        }
+        Returns: undefined
+      }
+      extension: {
+        Args: {
+          name: string
+        }
+        Returns: string
+      }
+      filename: {
+        Args: {
+          name: string
+        }
+        Returns: string
+      }
+      foldername: {
+        Args: {
+          name: string
+        }
+        Returns: string[]
+      }
+      getSizeByBucket: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          size: number
+          bucketId: string
+        }[]
+      }
+      listMultipartUploadsWithDelimiter: {
+        Args: {
+          bucketId: string
+          prefixParam: string
+          delimiterParam: string
+          maxKeys?: number
+          nextKeyToken?: string
+          nextUploadToken?: string
+        }
+        Returns: {
+          key: string
+          id: string
+          createdAt: string
+        }[]
+      }
+      listObjectsWithDelimiter: {
+        Args: {
+          bucketId: string
+          prefixParam: string
+          delimiterParam: string
+          maxKeys?: number
+          startAfter?: string
+          nextToken?: string
+        }
+        Returns: {
+          name: string
+          id: string
+          metadata: Json
+          updatedAt: string
+        }[]
+      }
+      operation: {
+        Args: Record<PropertyKey, never>
+        Returns: string
+      }
+      search: {
+        Args: {
+          prefix: string
+          bucketname: string
+          limits?: number
+          levels?: number
+          offsets?: number
+          search?: string
+          sortcolumn?: string
+          sortorder?: string
+        }
+        Returns: {
+          name: string
+          id: string
+          updatedAt: string
+          createdAt: string
+          lastAccessedAt: string
+          metadata: Json
+        }[]
+      }
+    }
+    Enums: {
+      [_ in never]: never
+    }
+    CompositeTypes: {
+      [_ in never]: never
+    }
+  }
   telephony: {
     Tables: {
       callEvents: {
