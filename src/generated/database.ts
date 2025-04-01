@@ -169,6 +169,51 @@ export type Database = {
   }
   assistant: {
     Tables: {
+      agent_recommendations: {
+        Row: {
+          client_id: string | null
+          created_at: string
+          deal_id: string | null
+          executed_at: string | null
+          id: string
+          message_template: string | null
+          priority: number
+          reasoning: string
+          recommended_action: string
+          triggered_at: string
+          type: string
+          user_id: string
+        }
+        Insert: {
+          client_id?: string | null
+          created_at?: string
+          deal_id?: string | null
+          executed_at?: string | null
+          id?: string
+          message_template?: string | null
+          priority: number
+          reasoning: string
+          recommended_action: string
+          triggered_at?: string
+          type: string
+          user_id: string
+        }
+        Update: {
+          client_id?: string | null
+          created_at?: string
+          deal_id?: string | null
+          executed_at?: string | null
+          id?: string
+          message_template?: string | null
+          priority?: number
+          reasoning?: string
+          recommended_action?: string
+          triggered_at?: string
+          type?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       agent_run_steps: {
         Row: {
           agent_run_id: string

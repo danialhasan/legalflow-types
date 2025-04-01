@@ -164,6 +164,51 @@ export type DatabaseCamel = {
   }
   assistant: {
     Tables: {
+      agentRecommendations: {
+        Row: {
+          clientId: string | null
+          createdAt: string
+          dealId: string | null
+          executedAt: string | null
+          id: string
+          messageTemplate: string | null
+          priority: number
+          reasoning: string
+          recommendedAction: string
+          triggeredAt: string
+          type: string
+          userId: string
+        }
+        Insert: {
+          clientId?: string | null
+          createdAt?: string
+          dealId?: string | null
+          executedAt?: string | null
+          id?: string
+          messageTemplate?: string | null
+          priority: number
+          reasoning: string
+          recommendedAction: string
+          triggeredAt?: string
+          type: string
+          userId: string
+        }
+        Update: {
+          clientId?: string | null
+          createdAt?: string
+          dealId?: string | null
+          executedAt?: string | null
+          id?: string
+          messageTemplate?: string | null
+          priority?: number
+          reasoning?: string
+          recommendedAction?: string
+          triggeredAt?: string
+          type?: string
+          userId?: string
+        }
+        Relationships: []
+      }
       agentRunSteps: {
         Row: {
           agentRunId: string
