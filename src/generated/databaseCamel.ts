@@ -4,147 +4,147 @@ import type { Json } from '../index';
 export type DatabaseCamel = {
   analysis: {
     Tables: {
-      processed_calendar_events: {
+      processedCalendarEvents: {
         Row: {
-          created_at: string
-          event_id: string
-          extracted_data: Json
-          google_event_id: string
+          createdAt: string
+          eventId: string
+          extractedData: Json
+          googleEventId: string
           id: string
-          identified_clients: Json | null
-          processed_at: string
-          user_id: string
+          identifiedClients: Json | null
+          processedAt: string
+          userId: string
         }
         Insert: {
-          created_at?: string
-          event_id: string
-          extracted_data: Json
-          google_event_id: string
+          createdAt?: string
+          eventId: string
+          extractedData: Json
+          googleEventId: string
           id?: string
-          identified_clients?: Json | null
-          processed_at: string
-          user_id: string
+          identifiedClients?: Json | null
+          processedAt: string
+          userId: string
         }
         Update: {
-          created_at?: string
-          event_id?: string
-          extracted_data?: Json
-          google_event_id?: string
+          createdAt?: string
+          eventId?: string
+          extractedData?: Json
+          googleEventId?: string
           id?: string
-          identified_clients?: Json | null
-          processed_at?: string
-          user_id?: string
+          identifiedClients?: Json | null
+          processedAt?: string
+          userId?: string
         }
         Relationships: []
       }
-      processed_email_threads: {
+      processedEmailThreads: {
         Row: {
-          created_at: string
-          extracted_data: Json
+          createdAt: string
+          extractedData: Json
           id: string
-          processed_at: string
-          thread_id: string
-          user_id: string
+          processedAt: string
+          threadId: string
+          userId: string
         }
         Insert: {
-          created_at?: string
-          extracted_data: Json
+          createdAt?: string
+          extractedData: Json
           id?: string
-          processed_at: string
-          thread_id: string
-          user_id: string
+          processedAt: string
+          threadId: string
+          userId: string
         }
         Update: {
-          created_at?: string
-          extracted_data?: Json
+          createdAt?: string
+          extractedData?: Json
           id?: string
-          processed_at?: string
-          thread_id?: string
-          user_id?: string
+          processedAt?: string
+          threadId?: string
+          userId?: string
         }
         Relationships: []
       }
-      processed_emails: {
+      processedEmails: {
         Row: {
-          created_at: string
-          email_id: string
-          extracted_data: Json
+          createdAt: string
+          emailId: string
+          extractedData: Json
           id: string
-          identified_clients: Json | null
-          message_id: string
-          processed_at: string
-          user_id: string
+          identifiedClients: Json | null
+          messageId: string
+          processedAt: string
+          userId: string
         }
         Insert: {
-          created_at?: string
-          email_id: string
-          extracted_data: Json
+          createdAt?: string
+          emailId: string
+          extractedData: Json
           id?: string
-          identified_clients?: Json | null
-          message_id: string
-          processed_at: string
-          user_id: string
+          identifiedClients?: Json | null
+          messageId: string
+          processedAt: string
+          userId: string
         }
         Update: {
-          created_at?: string
-          email_id?: string
-          extracted_data?: Json
+          createdAt?: string
+          emailId?: string
+          extractedData?: Json
           id?: string
-          identified_clients?: Json | null
-          message_id?: string
-          processed_at?: string
-          user_id?: string
+          identifiedClients?: Json | null
+          messageId?: string
+          processedAt?: string
+          userId?: string
         }
         Relationships: []
       }
-      processed_event_series: {
+      processedEventSeries: {
         Row: {
-          created_at: string
-          extracted_data: Json
+          createdAt: string
+          extractedData: Json
           id: string
-          processed_at: string
-          series_id: string
-          user_id: string
+          processedAt: string
+          seriesId: string
+          userId: string
         }
         Insert: {
-          created_at?: string
-          extracted_data: Json
+          createdAt?: string
+          extractedData: Json
           id?: string
-          processed_at: string
-          series_id: string
-          user_id: string
+          processedAt: string
+          seriesId: string
+          userId: string
         }
         Update: {
-          created_at?: string
-          extracted_data?: Json
+          createdAt?: string
+          extractedData?: Json
           id?: string
-          processed_at?: string
-          series_id?: string
-          user_id?: string
+          processedAt?: string
+          seriesId?: string
+          userId?: string
         }
         Relationships: []
       }
-      unified_analysis_results: {
+      unifiedAnalysisResults: {
         Row: {
-          analysis_result: Json
-          created_at: string
+          analysisResult: Json
+          createdAt: string
           id: string
-          processed_at: string
-          user_id: string
+          processedAt: string
+          userId: string
         }
         Insert: {
-          analysis_result: Json
-          created_at?: string
+          analysisResult: Json
+          createdAt?: string
           id?: string
-          processed_at: string
-          user_id: string
+          processedAt: string
+          userId: string
         }
         Update: {
-          analysis_result?: Json
-          created_at?: string
+          analysisResult?: Json
+          createdAt?: string
           id?: string
-          processed_at?: string
-          user_id?: string
+          processedAt?: string
+          userId?: string
         }
         Relationships: []
       }
@@ -164,36 +164,36 @@ export type DatabaseCamel = {
   }
   assistant: {
     Tables: {
-      agent_run_steps: {
+      agentRunSteps: {
         Row: {
-          agent_run_id: string
-          completed_at: string | null
-          error_message: string | null
+          agentRunId: string
+          completedAt: string | null
+          errorMessage: string | null
           id: string
-          input_json: Json
-          output_json: Json | null
-          started_at: string
-          step_name: string
+          inputJson: Json
+          outputJson: Json | null
+          startedAt: string
+          stepName: string
         }
         Insert: {
-          agent_run_id: string
-          completed_at?: string | null
-          error_message?: string | null
+          agentRunId: string
+          completedAt?: string | null
+          errorMessage?: string | null
           id?: string
-          input_json: Json
-          output_json?: Json | null
-          started_at?: string
-          step_name: string
+          inputJson: Json
+          outputJson?: Json | null
+          startedAt?: string
+          stepName: string
         }
         Update: {
-          agent_run_id?: string
-          completed_at?: string | null
-          error_message?: string | null
+          agentRunId?: string
+          completedAt?: string | null
+          errorMessage?: string | null
           id?: string
-          input_json?: Json
-          output_json?: Json | null
-          started_at?: string
-          step_name?: string
+          inputJson?: Json
+          outputJson?: Json | null
+          startedAt?: string
+          stepName?: string
         }
         Relationships: [
           {
@@ -205,90 +205,90 @@ export type DatabaseCamel = {
           },
         ]
       }
-      agent_runs: {
+      agentRuns: {
         Row: {
-          agent_name: string
-          completed_at: string | null
+          agentName: string
+          completedAt: string | null
           id: string
           metadata: Json | null
-          started_at: string
+          startedAt: string
           status: string | null
-          user_id: string
+          userId: string
         }
         Insert: {
-          agent_name: string
-          completed_at?: string | null
+          agentName: string
+          completedAt?: string | null
           id?: string
           metadata?: Json | null
-          started_at?: string
+          startedAt?: string
           status?: string | null
-          user_id: string
+          userId: string
         }
         Update: {
-          agent_name?: string
-          completed_at?: string | null
+          agentName?: string
+          completedAt?: string | null
           id?: string
           metadata?: Json | null
-          started_at?: string
+          startedAt?: string
           status?: string | null
-          user_id?: string
+          userId?: string
         }
         Relationships: []
       }
       agents: {
         Row: {
-          assistant_id: string
-          created_at: string
+          assistantId: string
+          createdAt: string
           id: string
-          updated_at: string
-          user_id: string
+          updatedAt: string
+          userId: string
         }
         Insert: {
-          assistant_id: string
-          created_at?: string
+          assistantId: string
+          createdAt?: string
           id?: string
-          updated_at?: string
-          user_id: string
+          updatedAt?: string
+          userId: string
         }
         Update: {
-          assistant_id?: string
-          created_at?: string
+          assistantId?: string
+          createdAt?: string
           id?: string
-          updated_at?: string
-          user_id?: string
+          updatedAt?: string
+          userId?: string
         }
         Relationships: []
       }
       conversations: {
         Row: {
-          created_at: string
+          createdAt: string
           documents: string[] | null
-          group_id: string | null
+          groupId: string | null
           id: string
-          retrieved_chunks: Json[] | null
-          thread_id: string | null
+          retrievedChunks: Json[] | null
+          threadId: string | null
           title: string | null
-          user_id: string | null
+          userId: string | null
         }
         Insert: {
-          created_at?: string
+          createdAt?: string
           documents?: string[] | null
-          group_id?: string | null
+          groupId?: string | null
           id?: string
-          retrieved_chunks?: Json[] | null
-          thread_id?: string | null
+          retrievedChunks?: Json[] | null
+          threadId?: string | null
           title?: string | null
-          user_id?: string | null
+          userId?: string | null
         }
         Update: {
-          created_at?: string
+          createdAt?: string
           documents?: string[] | null
-          group_id?: string | null
+          groupId?: string | null
           id?: string
-          retrieved_chunks?: Json[] | null
-          thread_id?: string | null
+          retrievedChunks?: Json[] | null
+          threadId?: string | null
           title?: string | null
-          user_id?: string | null
+          userId?: string | null
         }
         Relationships: []
       }
@@ -296,35 +296,35 @@ export type DatabaseCamel = {
         Row: {
           content: string | null
           context: Json | null
-          conversation_id: string | null
-          created_at: string
-          follow_up_questions: Json | null
+          conversationId: string | null
+          createdAt: string
+          followUpQuestions: Json | null
           id: string
           role: string | null
-          thread_id: string | null
-          user_id: string | null
+          threadId: string | null
+          userId: string | null
         }
         Insert: {
           content?: string | null
           context?: Json | null
-          conversation_id?: string | null
-          created_at?: string
-          follow_up_questions?: Json | null
+          conversationId?: string | null
+          createdAt?: string
+          followUpQuestions?: Json | null
           id?: string
           role?: string | null
-          thread_id?: string | null
-          user_id?: string | null
+          threadId?: string | null
+          userId?: string | null
         }
         Update: {
           content?: string | null
           context?: Json | null
-          conversation_id?: string | null
-          created_at?: string
-          follow_up_questions?: Json | null
+          conversationId?: string | null
+          createdAt?: string
+          followUpQuestions?: Json | null
           id?: string
           role?: string | null
-          thread_id?: string | null
-          user_id?: string | null
+          threadId?: string | null
+          userId?: string | null
         }
         Relationships: [
           {
@@ -355,78 +355,78 @@ export type DatabaseCamel = {
       citations: {
         Row: {
           bbox: Json
-          citation_number: number
+          citationNumber: number
           content: string
-          created_at: string
-          doc_metadata_id: string
-          document_name: string | null
+          createdAt: string
+          docMetadataId: string
+          documentName: string | null
           id: string
-          message_id: string
-          page_number: number
+          messageId: string
+          pageNumber: number
         }
         Insert: {
           bbox: Json
-          citation_number: number
+          citationNumber: number
           content: string
-          created_at?: string
-          doc_metadata_id: string
-          document_name?: string | null
+          createdAt?: string
+          docMetadataId: string
+          documentName?: string | null
           id?: string
-          message_id: string
-          page_number: number
+          messageId: string
+          pageNumber: number
         }
         Update: {
           bbox?: Json
-          citation_number?: number
+          citationNumber?: number
           content?: string
-          created_at?: string
-          doc_metadata_id?: string
-          document_name?: string | null
+          createdAt?: string
+          docMetadataId?: string
+          documentName?: string | null
           id?: string
-          message_id?: string
-          page_number?: number
+          messageId?: string
+          pageNumber?: number
         }
         Relationships: []
       }
-      compliance_reports: {
+      complianceReports: {
         Row: {
-          created_at: string
-          date_generated: string
-          doc_metadata_id: string
-          document_name: string
+          createdAt: string
+          dateGenerated: string
+          docMetadataId: string
+          documentName: string
           findings: Json
           id: string
           recommendations: Json
-          report_url: string | null
+          reportUrl: string | null
           status: string
-          updated_at: string
-          user_id: string
+          updatedAt: string
+          userId: string
         }
         Insert: {
-          created_at?: string
-          date_generated?: string
-          doc_metadata_id: string
-          document_name: string
+          createdAt?: string
+          dateGenerated?: string
+          docMetadataId: string
+          documentName: string
           findings?: Json
           id?: string
           recommendations?: Json
-          report_url?: string | null
+          reportUrl?: string | null
           status: string
-          updated_at?: string
-          user_id: string
+          updatedAt?: string
+          userId: string
         }
         Update: {
-          created_at?: string
-          date_generated?: string
-          doc_metadata_id?: string
-          document_name?: string
+          createdAt?: string
+          dateGenerated?: string
+          docMetadataId?: string
+          documentName?: string
           findings?: Json
           id?: string
           recommendations?: Json
-          report_url?: string | null
+          reportUrl?: string | null
           status?: string
-          updated_at?: string
-          user_id?: string
+          updatedAt?: string
+          userId?: string
         }
         Relationships: []
       }
@@ -446,163 +446,163 @@ export type DatabaseCamel = {
   }
   core: {
     Tables: {
-      error_logs: {
+      errorLogs: {
         Row: {
-          created_at: string
+          createdAt: string
           environment: string | null
-          error_code: string | null
-          error_message: string
+          errorCode: string | null
+          errorMessage: string
           id: string
           metadata: Json | null
-          processing_duration: number | null
-          record_id: string
+          processingDuration: number | null
+          recordId: string
           severity: string | null
           source: string
-          stack_trace: string | null
+          stackTrace: string | null
           status: string | null
-          updated_at: string
-          user_id: string
+          updatedAt: string
+          userId: string
         }
         Insert: {
-          created_at?: string
+          createdAt?: string
           environment?: string | null
-          error_code?: string | null
-          error_message: string
+          errorCode?: string | null
+          errorMessage: string
           id?: string
           metadata?: Json | null
-          processing_duration?: number | null
-          record_id: string
+          processingDuration?: number | null
+          recordId: string
           severity?: string | null
           source: string
-          stack_trace?: string | null
+          stackTrace?: string | null
           status?: string | null
-          updated_at?: string
-          user_id: string
+          updatedAt?: string
+          userId: string
         }
         Update: {
-          created_at?: string
+          createdAt?: string
           environment?: string | null
-          error_code?: string | null
-          error_message?: string
+          errorCode?: string | null
+          errorMessage?: string
           id?: string
           metadata?: Json | null
-          processing_duration?: number | null
-          record_id?: string
+          processingDuration?: number | null
+          recordId?: string
           severity?: string | null
           source?: string
-          stack_trace?: string | null
+          stackTrace?: string | null
           status?: string | null
-          updated_at?: string
-          user_id?: string
+          updatedAt?: string
+          userId?: string
         }
         Relationships: []
       }
       jobs: {
         Row: {
-          backoff_until: string | null
-          completed_at: string | null
-          created_at: string
+          backoffUntil: string | null
+          completedAt: string | null
+          createdAt: string
           error: string | null
           id: string
-          max_retries: number
+          maxRetries: number
           origin: string | null
           params: Json
           priority: string
           result: Json | null
-          retry_count: number
-          started_at: string | null
+          retryCount: number
+          startedAt: string | null
           status: string
           tags: string[] | null
           type: string
-          updated_at: string
+          updatedAt: string
         }
         Insert: {
-          backoff_until?: string | null
-          completed_at?: string | null
-          created_at?: string
+          backoffUntil?: string | null
+          completedAt?: string | null
+          createdAt?: string
           error?: string | null
           id?: string
-          max_retries?: number
+          maxRetries?: number
           origin?: string | null
           params: Json
           priority?: string
           result?: Json | null
-          retry_count?: number
-          started_at?: string | null
+          retryCount?: number
+          startedAt?: string | null
           status: string
           tags?: string[] | null
           type: string
-          updated_at?: string
+          updatedAt?: string
         }
         Update: {
-          backoff_until?: string | null
-          completed_at?: string | null
-          created_at?: string
+          backoffUntil?: string | null
+          completedAt?: string | null
+          createdAt?: string
           error?: string | null
           id?: string
-          max_retries?: number
+          maxRetries?: number
           origin?: string | null
           params?: Json
           priority?: string
           result?: Json | null
-          retry_count?: number
-          started_at?: string | null
+          retryCount?: number
+          startedAt?: string | null
           status?: string
           tags?: string[] | null
           type?: string
-          updated_at?: string
+          updatedAt?: string
         }
         Relationships: []
       }
-      user_rankings: {
+      userRankings: {
         Row: {
-          created_at: string
-          entity_id: string
-          entity_type: string
+          createdAt: string
+          entityId: string
+          entityType: string
           id: string
-          is_pinned: boolean | null
-          updated_at: string
-          user_id: string
+          isPinned: boolean | null
+          updatedAt: string
+          userId: string
         }
         Insert: {
-          created_at?: string
-          entity_id: string
-          entity_type: string
+          createdAt?: string
+          entityId: string
+          entityType: string
           id?: string
-          is_pinned?: boolean | null
-          updated_at?: string
-          user_id: string
+          isPinned?: boolean | null
+          updatedAt?: string
+          userId: string
         }
         Update: {
-          created_at?: string
-          entity_id?: string
-          entity_type?: string
+          createdAt?: string
+          entityId?: string
+          entityType?: string
           id?: string
-          is_pinned?: boolean | null
-          updated_at?: string
-          user_id?: string
+          isPinned?: boolean | null
+          updatedAt?: string
+          userId?: string
         }
         Relationships: []
       }
       users: {
         Row: {
-          created_at: string
-          crm_id: string | null
-          google_integrated: boolean | null
+          createdAt: string
+          crmId: string | null
+          googleIntegrated: boolean | null
           id: string
           name: string | null
         }
         Insert: {
-          created_at?: string
-          crm_id?: string | null
-          google_integrated?: boolean | null
+          createdAt?: string
+          crmId?: string | null
+          googleIntegrated?: boolean | null
           id: string
           name?: string | null
         }
         Update: {
-          created_at?: string
-          crm_id?: string | null
-          google_integrated?: boolean | null
+          createdAt?: string
+          crmId?: string | null
+          googleIntegrated?: boolean | null
           id?: string
           name?: string | null
         }
@@ -624,21 +624,21 @@ export type DatabaseCamel = {
   }
   documents: {
     Tables: {
-      deal_documents: {
+      dealDocuments: {
         Row: {
-          deal_id: string
-          document_id: string
-          document_type: string
+          dealId: string
+          documentId: string
+          documentType: string
         }
         Insert: {
-          deal_id: string
-          document_id: string
-          document_type: string
+          dealId: string
+          documentId: string
+          documentType: string
         }
         Update: {
-          deal_id?: string
-          document_id?: string
-          document_type?: string
+          dealId?: string
+          documentId?: string
+          documentType?: string
         }
         Relationships: [
           {
@@ -650,29 +650,29 @@ export type DatabaseCamel = {
           },
         ]
       }
-      document_chunks: {
+      documentChunks: {
         Row: {
-          chunk_content: Json
-          chunkr_metadata: Json | null
-          created_at: string
-          document_id: string
-          document_metadata_id: string
+          chunkContent: Json
+          chunkrMetadata: Json | null
+          createdAt: string
+          documentId: string
+          documentMetadataId: string
           id: string
         }
         Insert: {
-          chunk_content: Json
-          chunkr_metadata?: Json | null
-          created_at?: string
-          document_id: string
-          document_metadata_id: string
+          chunkContent: Json
+          chunkrMetadata?: Json | null
+          createdAt?: string
+          documentId: string
+          documentMetadataId: string
           id?: string
         }
         Update: {
-          chunk_content?: Json
-          chunkr_metadata?: Json | null
-          created_at?: string
-          document_id?: string
-          document_metadata_id?: string
+          chunkContent?: Json
+          chunkrMetadata?: Json | null
+          createdAt?: string
+          documentId?: string
+          documentMetadataId?: string
           id?: string
         }
         Relationships: [
@@ -685,75 +685,75 @@ export type DatabaseCamel = {
           },
         ]
       }
-      document_groups: {
+      documentGroups: {
         Row: {
-          client_id: string | null
-          conversation_id: string | null
-          created_at: string
+          clientId: string | null
+          conversationId: string | null
+          createdAt: string
           id: string
           metadata: Json | null
           name: string | null
-          user_id: string | null
+          userId: string | null
         }
         Insert: {
-          client_id?: string | null
-          conversation_id?: string | null
-          created_at?: string
+          clientId?: string | null
+          conversationId?: string | null
+          createdAt?: string
           id?: string
           metadata?: Json | null
           name?: string | null
-          user_id?: string | null
+          userId?: string | null
         }
         Update: {
-          client_id?: string | null
-          conversation_id?: string | null
-          created_at?: string
+          clientId?: string | null
+          conversationId?: string | null
+          createdAt?: string
           id?: string
           metadata?: Json | null
           name?: string | null
-          user_id?: string | null
+          userId?: string | null
         }
         Relationships: []
       }
-      document_metadata: {
+      documentMetadata: {
         Row: {
           classifications: string[] | null
-          created_at: string
-          deal_id: string | null
-          deal_name: string | null
-          extracted_data: Json | null
-          group_id: string | null
+          createdAt: string
+          dealId: string | null
+          dealName: string | null
+          extractedData: Json | null
+          groupId: string | null
           id: string
           metadata: Json | null
           status: string | null
-          storage_object_id: string | null
-          user_id: string | null
+          storageObjectId: string | null
+          userId: string | null
         }
         Insert: {
           classifications?: string[] | null
-          created_at?: string
-          deal_id?: string | null
-          deal_name?: string | null
-          extracted_data?: Json | null
-          group_id?: string | null
+          createdAt?: string
+          dealId?: string | null
+          dealName?: string | null
+          extractedData?: Json | null
+          groupId?: string | null
           id?: string
           metadata?: Json | null
           status?: string | null
-          storage_object_id?: string | null
-          user_id?: string | null
+          storageObjectId?: string | null
+          userId?: string | null
         }
         Update: {
           classifications?: string[] | null
-          created_at?: string
-          deal_id?: string | null
-          deal_name?: string | null
-          extracted_data?: Json | null
-          group_id?: string | null
+          createdAt?: string
+          dealId?: string | null
+          dealName?: string | null
+          extractedData?: Json | null
+          groupId?: string | null
           id?: string
           metadata?: Json | null
           status?: string | null
-          storage_object_id?: string | null
-          user_id?: string | null
+          storageObjectId?: string | null
+          userId?: string | null
         }
         Relationships: [
           {
@@ -781,336 +781,336 @@ export type DatabaseCamel = {
   }
   integrations: {
     Tables: {
-      email_attachments: {
+      emailAttachments: {
         Row: {
-          chunkr_task_id: string | null
-          chunks_count: number | null
-          created_at: string
-          document_id: string | null
-          email_id: string
-          file_name: string
-          gmail_attachment_id: string
+          chunkrTaskId: string | null
+          chunksCount: number | null
+          createdAt: string
+          documentId: string | null
+          emailId: string
+          fileName: string
+          gmailAttachmentId: string
           id: string
-          mime_type: string
-          processed_at: string | null
-          public_url: string | null
+          mimeType: string
+          processedAt: string | null
+          publicUrl: string | null
           size: number
           status: string | null
-          storage_path: string | null
-          updated_at: string
-          user_id: string
+          storagePath: string | null
+          updatedAt: string
+          userId: string
         }
         Insert: {
-          chunkr_task_id?: string | null
-          chunks_count?: number | null
-          created_at?: string
-          document_id?: string | null
-          email_id: string
-          file_name: string
-          gmail_attachment_id: string
+          chunkrTaskId?: string | null
+          chunksCount?: number | null
+          createdAt?: string
+          documentId?: string | null
+          emailId: string
+          fileName: string
+          gmailAttachmentId: string
           id?: string
-          mime_type: string
-          processed_at?: string | null
-          public_url?: string | null
+          mimeType: string
+          processedAt?: string | null
+          publicUrl?: string | null
           size: number
           status?: string | null
-          storage_path?: string | null
-          updated_at?: string
-          user_id: string
+          storagePath?: string | null
+          updatedAt?: string
+          userId: string
         }
         Update: {
-          chunkr_task_id?: string | null
-          chunks_count?: number | null
-          created_at?: string
-          document_id?: string | null
-          email_id?: string
-          file_name?: string
-          gmail_attachment_id?: string
+          chunkrTaskId?: string | null
+          chunksCount?: number | null
+          createdAt?: string
+          documentId?: string | null
+          emailId?: string
+          fileName?: string
+          gmailAttachmentId?: string
           id?: string
-          mime_type?: string
-          processed_at?: string | null
-          public_url?: string | null
+          mimeType?: string
+          processedAt?: string | null
+          publicUrl?: string | null
           size?: number
           status?: string | null
-          storage_path?: string | null
-          updated_at?: string
-          user_id?: string
+          storagePath?: string | null
+          updatedAt?: string
+          userId?: string
         }
         Relationships: []
       }
-      google_calendar_events: {
+      googleCalendarEvents: {
         Row: {
-          all_day: boolean | null
+          allDay: boolean | null
           attendees: Json | null
-          calendar_id: string
-          created_at: string
+          calendarId: string
+          createdAt: string
           description: string | null
-          end_time: string
-          event_id: string
-          html_link: string | null
+          endTime: string
+          eventId: string
+          htmlLink: string | null
           id: string
           location: string | null
           metadata: Json | null
-          recurring_rule: string | null
-          start_time: string
+          recurringRule: string | null
+          startTime: string
           status: string | null
           summary: string
-          updated_at: string
-          user_id: string
+          updatedAt: string
+          userId: string
         }
         Insert: {
-          all_day?: boolean | null
+          allDay?: boolean | null
           attendees?: Json | null
-          calendar_id: string
-          created_at?: string
+          calendarId: string
+          createdAt?: string
           description?: string | null
-          end_time: string
-          event_id: string
-          html_link?: string | null
+          endTime: string
+          eventId: string
+          htmlLink?: string | null
           id?: string
           location?: string | null
           metadata?: Json | null
-          recurring_rule?: string | null
-          start_time: string
+          recurringRule?: string | null
+          startTime: string
           status?: string | null
           summary: string
-          updated_at?: string
-          user_id: string
+          updatedAt?: string
+          userId: string
         }
         Update: {
-          all_day?: boolean | null
+          allDay?: boolean | null
           attendees?: Json | null
-          calendar_id?: string
-          created_at?: string
+          calendarId?: string
+          createdAt?: string
           description?: string | null
-          end_time?: string
-          event_id?: string
-          html_link?: string | null
+          endTime?: string
+          eventId?: string
+          htmlLink?: string | null
           id?: string
           location?: string | null
           metadata?: Json | null
-          recurring_rule?: string | null
-          start_time?: string
+          recurringRule?: string | null
+          startTime?: string
           status?: string | null
           summary?: string
-          updated_at?: string
-          user_id?: string
+          updatedAt?: string
+          userId?: string
         }
         Relationships: []
       }
-      google_data_jobs: {
+      googleDataJobs: {
         Row: {
-          completed_at: string | null
-          created_at: string
+          completedAt: string | null
+          createdAt: string
           error: string | null
           id: string
-          job_type: string
+          jobType: string
           params: Json | null
           progress: number | null
           result: Json | null
-          started_at: string | null
+          startedAt: string | null
           status: string
-          updated_at: string
-          user_id: string
+          updatedAt: string
+          userId: string
         }
         Insert: {
-          completed_at?: string | null
-          created_at?: string
+          completedAt?: string | null
+          createdAt?: string
           error?: string | null
           id?: string
-          job_type: string
+          jobType: string
           params?: Json | null
           progress?: number | null
           result?: Json | null
-          started_at?: string | null
+          startedAt?: string | null
           status?: string
-          updated_at?: string
-          user_id: string
+          updatedAt?: string
+          userId: string
         }
         Update: {
-          completed_at?: string | null
-          created_at?: string
+          completedAt?: string | null
+          createdAt?: string
           error?: string | null
           id?: string
-          job_type?: string
+          jobType?: string
           params?: Json | null
           progress?: number | null
           result?: Json | null
-          started_at?: string | null
+          startedAt?: string | null
           status?: string
-          updated_at?: string
-          user_id?: string
+          updatedAt?: string
+          userId?: string
         }
         Relationships: []
       }
-      google_emails: {
+      googleEmails: {
         Row: {
-          bcc_emails: string[] | null
-          body_html: string | null
-          body_text: string | null
-          cc_emails: string[] | null
-          created_at: string
-          from_email: string
-          gmail_id: string
-          has_attachments: boolean | null
+          bccEmails: string[] | null
+          bodyHtml: string | null
+          bodyText: string | null
+          ccEmails: string[] | null
+          createdAt: string
+          fromEmail: string
+          gmailId: string
+          hasAttachments: boolean | null
           id: string
-          is_important: boolean | null
-          is_read: boolean | null
+          isImportant: boolean | null
+          isRead: boolean | null
           labels: string[] | null
           metadata: Json | null
-          received_at: string | null
-          sent_at: string | null
+          receivedAt: string | null
+          sentAt: string | null
           snippet: string | null
           subject: string | null
-          thread_id: string
-          to_emails: string[]
-          updated_at: string
-          user_id: string
+          threadId: string
+          toEmails: string[]
+          updatedAt: string
+          userId: string
         }
         Insert: {
-          bcc_emails?: string[] | null
-          body_html?: string | null
-          body_text?: string | null
-          cc_emails?: string[] | null
-          created_at?: string
-          from_email: string
-          gmail_id: string
-          has_attachments?: boolean | null
+          bccEmails?: string[] | null
+          bodyHtml?: string | null
+          bodyText?: string | null
+          ccEmails?: string[] | null
+          createdAt?: string
+          fromEmail: string
+          gmailId: string
+          hasAttachments?: boolean | null
           id?: string
-          is_important?: boolean | null
-          is_read?: boolean | null
+          isImportant?: boolean | null
+          isRead?: boolean | null
           labels?: string[] | null
           metadata?: Json | null
-          received_at?: string | null
-          sent_at?: string | null
+          receivedAt?: string | null
+          sentAt?: string | null
           snippet?: string | null
           subject?: string | null
-          thread_id: string
-          to_emails: string[]
-          updated_at?: string
-          user_id: string
+          threadId: string
+          toEmails: string[]
+          updatedAt?: string
+          userId: string
         }
         Update: {
-          bcc_emails?: string[] | null
-          body_html?: string | null
-          body_text?: string | null
-          cc_emails?: string[] | null
-          created_at?: string
-          from_email?: string
-          gmail_id?: string
-          has_attachments?: boolean | null
+          bccEmails?: string[] | null
+          bodyHtml?: string | null
+          bodyText?: string | null
+          ccEmails?: string[] | null
+          createdAt?: string
+          fromEmail?: string
+          gmailId?: string
+          hasAttachments?: boolean | null
           id?: string
-          is_important?: boolean | null
-          is_read?: boolean | null
+          isImportant?: boolean | null
+          isRead?: boolean | null
           labels?: string[] | null
           metadata?: Json | null
-          received_at?: string | null
-          sent_at?: string | null
+          receivedAt?: string | null
+          sentAt?: string | null
           snippet?: string | null
           subject?: string | null
-          thread_id?: string
-          to_emails?: string[]
-          updated_at?: string
-          user_id?: string
+          threadId?: string
+          toEmails?: string[]
+          updatedAt?: string
+          userId?: string
         }
         Relationships: []
       }
-      google_sync_status: {
+      googleSyncStatus: {
         Row: {
-          created_at: string
+          createdAt: string
           error: string | null
-          history_id: string | null
+          historyId: string | null
           id: string
-          last_sync_time: string | null
+          lastSyncTime: string | null
           metadata: Json | null
           service: string
           status: string | null
-          sync_token: string | null
-          updated_at: string
-          user_id: string
+          syncToken: string | null
+          updatedAt: string
+          userId: string
         }
         Insert: {
-          created_at?: string
+          createdAt?: string
           error?: string | null
-          history_id?: string | null
+          historyId?: string | null
           id?: string
-          last_sync_time?: string | null
+          lastSyncTime?: string | null
           metadata?: Json | null
           service: string
           status?: string | null
-          sync_token?: string | null
-          updated_at?: string
-          user_id: string
+          syncToken?: string | null
+          updatedAt?: string
+          userId: string
         }
         Update: {
-          created_at?: string
+          createdAt?: string
           error?: string | null
-          history_id?: string | null
+          historyId?: string | null
           id?: string
-          last_sync_time?: string | null
+          lastSyncTime?: string | null
           metadata?: Json | null
           service?: string
           status?: string | null
-          sync_token?: string | null
-          updated_at?: string
-          user_id?: string
+          syncToken?: string | null
+          updatedAt?: string
+          userId?: string
         }
         Relationships: []
       }
-      google_webhook_channels: {
+      googleWebhookChannels: {
         Row: {
-          channel_id: string
-          created_at: string | null
+          channelId: string
+          createdAt: string | null
           expiration: string | null
-          resource_id: string | null
-          resource_type: string | null
-          user_id: string
+          resourceId: string | null
+          resourceType: string | null
+          userId: string
         }
         Insert: {
-          channel_id: string
-          created_at?: string | null
+          channelId: string
+          createdAt?: string | null
           expiration?: string | null
-          resource_id?: string | null
-          resource_type?: string | null
-          user_id: string
+          resourceId?: string | null
+          resourceType?: string | null
+          userId: string
         }
         Update: {
-          channel_id?: string
-          created_at?: string | null
+          channelId?: string
+          createdAt?: string | null
           expiration?: string | null
-          resource_id?: string | null
-          resource_type?: string | null
-          user_id?: string
+          resourceId?: string | null
+          resourceType?: string | null
+          userId?: string
         }
         Relationships: []
       }
-      google_webhook_notifications: {
+      googleWebhookNotifications: {
         Row: {
-          created_at: string | null
+          createdAt: string | null
           data: Json | null
           id: string
           processed: boolean | null
-          resource_id: string | null
-          resource_type: string | null
-          user_id: string | null
+          resourceId: string | null
+          resourceType: string | null
+          userId: string | null
         }
         Insert: {
-          created_at?: string | null
+          createdAt?: string | null
           data?: Json | null
           id?: string
           processed?: boolean | null
-          resource_id?: string | null
-          resource_type?: string | null
-          user_id?: string | null
+          resourceId?: string | null
+          resourceType?: string | null
+          userId?: string | null
         }
         Update: {
-          created_at?: string | null
+          createdAt?: string | null
           data?: Json | null
           id?: string
           processed?: boolean | null
-          resource_id?: string | null
-          resource_type?: string | null
-          user_id?: string | null
+          resourceId?: string | null
+          resourceType?: string | null
+          userId?: string | null
         }
         Relationships: []
       }
@@ -1130,36 +1130,36 @@ export type DatabaseCamel = {
   }
   sales: {
     Tables: {
-      campaign_leads: {
+      campaignLeads: {
         Row: {
-          campaign_id: string
-          created_at: string
-          generated_content: Json | null
+          campaignId: string
+          createdAt: string
+          generatedContent: Json | null
           id: string
-          lead_id: string
+          leadId: string
           notes: string | null
           status: string
-          updated_at: string
+          updatedAt: string
         }
         Insert: {
-          campaign_id: string
-          created_at?: string
-          generated_content?: Json | null
+          campaignId: string
+          createdAt?: string
+          generatedContent?: Json | null
           id?: string
-          lead_id: string
+          leadId: string
           notes?: string | null
           status: string
-          updated_at?: string
+          updatedAt?: string
         }
         Update: {
-          campaign_id?: string
-          created_at?: string
-          generated_content?: Json | null
+          campaignId?: string
+          createdAt?: string
+          generatedContent?: Json | null
           id?: string
-          lead_id?: string
+          leadId?: string
           notes?: string | null
           status?: string
-          updated_at?: string
+          updatedAt?: string
         }
         Relationships: [
           {
@@ -1180,7 +1180,7 @@ export type DatabaseCamel = {
       }
       campaigns: {
         Row: {
-          created_at: string
+          createdAt: string
           description: string | null
           goal: string
           id: string
@@ -1188,15 +1188,15 @@ export type DatabaseCamel = {
           name: string
           progress: number | null
           schedule: Json
-          script_id: string
+          scriptId: string
           status: string
-          target_ids: string[]
-          target_type: string
-          updated_at: string
-          user_id: string
+          targetIds: string[]
+          targetType: string
+          updatedAt: string
+          userId: string
         }
         Insert: {
-          created_at?: string
+          createdAt?: string
           description?: string | null
           goal: string
           id?: string
@@ -1204,15 +1204,15 @@ export type DatabaseCamel = {
           name: string
           progress?: number | null
           schedule: Json
-          script_id: string
+          scriptId: string
           status: string
-          target_ids: string[]
-          target_type: string
-          updated_at?: string
-          user_id: string
+          targetIds: string[]
+          targetType: string
+          updatedAt?: string
+          userId: string
         }
         Update: {
-          created_at?: string
+          createdAt?: string
           description?: string | null
           goal?: string
           id?: string
@@ -1220,45 +1220,45 @@ export type DatabaseCamel = {
           name?: string
           progress?: number | null
           schedule?: Json
-          script_id?: string
+          scriptId?: string
           status?: string
-          target_ids?: string[]
-          target_type?: string
-          updated_at?: string
-          user_id?: string
+          targetIds?: string[]
+          targetType?: string
+          updatedAt?: string
+          userId?: string
         }
         Relationships: []
       }
-      client_mappings: {
+      clientMappings: {
         Row: {
-          client_data: Json
-          created_at: string
-          deal_id: string | null
+          clientData: Json
+          createdAt: string
+          dealId: string | null
           id: string
-          source_id: string
-          source_type: string
-          updated_at: string
-          user_id: string
+          sourceId: string
+          sourceType: string
+          updatedAt: string
+          userId: string
         }
         Insert: {
-          client_data: Json
-          created_at?: string
-          deal_id?: string | null
+          clientData: Json
+          createdAt?: string
+          dealId?: string | null
           id?: string
-          source_id: string
-          source_type: string
-          updated_at?: string
-          user_id: string
+          sourceId: string
+          sourceType: string
+          updatedAt?: string
+          userId: string
         }
         Update: {
-          client_data?: Json
-          created_at?: string
-          deal_id?: string | null
+          clientData?: Json
+          createdAt?: string
+          dealId?: string | null
           id?: string
-          source_id?: string
-          source_type?: string
-          updated_at?: string
-          user_id?: string
+          sourceId?: string
+          sourceType?: string
+          updatedAt?: string
+          userId?: string
         }
         Relationships: [
           {
@@ -1273,45 +1273,45 @@ export type DatabaseCamel = {
       clients: {
         Row: {
           address: Json | null
-          contact_info: Json | null
-          created_at: string
-          crm_id: string
-          date_of_birth: string | null
-          group_ids: string[] | null
+          contactInfo: Json | null
+          createdAt: string
+          crmId: string
+          dateOfBirth: string | null
+          groupIds: string[] | null
           id: string
           metadata: Json | null
           name: string | null
           notes: string | null
-          possession_date: string | null
-          updated_at: string
+          possessionDate: string | null
+          updatedAt: string
         }
         Insert: {
           address?: Json | null
-          contact_info?: Json | null
-          created_at?: string
-          crm_id: string
-          date_of_birth?: string | null
-          group_ids?: string[] | null
+          contactInfo?: Json | null
+          createdAt?: string
+          crmId: string
+          dateOfBirth?: string | null
+          groupIds?: string[] | null
           id?: string
           metadata?: Json | null
           name?: string | null
           notes?: string | null
-          possession_date?: string | null
-          updated_at?: string
+          possessionDate?: string | null
+          updatedAt?: string
         }
         Update: {
           address?: Json | null
-          contact_info?: Json | null
-          created_at?: string
-          crm_id?: string
-          date_of_birth?: string | null
-          group_ids?: string[] | null
+          contactInfo?: Json | null
+          createdAt?: string
+          crmId?: string
+          dateOfBirth?: string | null
+          groupIds?: string[] | null
           id?: string
           metadata?: Json | null
           name?: string | null
           notes?: string | null
-          possession_date?: string | null
-          updated_at?: string
+          possessionDate?: string | null
+          updatedAt?: string
         }
         Relationships: [
           {
@@ -1325,70 +1325,70 @@ export type DatabaseCamel = {
       }
       crms: {
         Row: {
-          created_at: string
+          createdAt: string
           id: string
           metadata: Json | null
-          user_id: string
+          userId: string
         }
         Insert: {
-          created_at?: string
+          createdAt?: string
           id?: string
           metadata?: Json | null
-          user_id: string
+          userId: string
         }
         Update: {
-          created_at?: string
+          createdAt?: string
           id?: string
           metadata?: Json | null
-          user_id?: string
+          userId?: string
         }
         Relationships: []
       }
       deals: {
         Row: {
-          created_at: string
-          deal_type: string
+          createdAt: string
+          dealType: string
           id: string
           metadata: Json | null
           name: string
           status: string
-          user_id: string
+          userId: string
         }
         Insert: {
-          created_at?: string
-          deal_type: string
+          createdAt?: string
+          dealType: string
           id?: string
           metadata?: Json | null
           name: string
           status: string
-          user_id: string
+          userId: string
         }
         Update: {
-          created_at?: string
-          deal_type?: string
+          createdAt?: string
+          dealType?: string
           id?: string
           metadata?: Json | null
           name?: string
           status?: string
-          user_id?: string
+          userId?: string
         }
         Relationships: []
       }
-      lead_deal_matches: {
+      leadDealMatches: {
         Row: {
-          deal_id: string
-          lead_id: string
-          match_score: number
+          dealId: string
+          leadId: string
+          matchScore: number
         }
         Insert: {
-          deal_id: string
-          lead_id: string
-          match_score: number
+          dealId: string
+          leadId: string
+          matchScore: number
         }
         Update: {
-          deal_id?: string
-          lead_id?: string
-          match_score?: number
+          dealId?: string
+          leadId?: string
+          matchScore?: number
         }
         Relationships: [
           {
@@ -1409,10 +1409,10 @@ export type DatabaseCamel = {
       }
       leads: {
         Row: {
-          assigned_to: string | null
-          created_at: string
+          assignedTo: string | null
+          createdAt: string
           email: string
-          enrichment_data: Json | null
+          enrichmentData: Json | null
           id: string
           name: string
           notes: string | null
@@ -1420,14 +1420,14 @@ export type DatabaseCamel = {
           source: string
           status: string
           tags: string[] | null
-          updated_at: string
-          user_id: string
+          updatedAt: string
+          userId: string
         }
         Insert: {
-          assigned_to?: string | null
-          created_at?: string
+          assignedTo?: string | null
+          createdAt?: string
           email: string
-          enrichment_data?: Json | null
+          enrichmentData?: Json | null
           id?: string
           name: string
           notes?: string | null
@@ -1435,14 +1435,14 @@ export type DatabaseCamel = {
           source: string
           status: string
           tags?: string[] | null
-          updated_at?: string
-          user_id: string
+          updatedAt?: string
+          userId: string
         }
         Update: {
-          assigned_to?: string | null
-          created_at?: string
+          assignedTo?: string | null
+          createdAt?: string
           email?: string
-          enrichment_data?: Json | null
+          enrichmentData?: Json | null
           id?: string
           name?: string
           notes?: string | null
@@ -1450,8 +1450,8 @@ export type DatabaseCamel = {
           source?: string
           status?: string
           tags?: string[] | null
-          updated_at?: string
-          user_id?: string
+          updatedAt?: string
+          userId?: string
         }
         Relationships: []
       }
@@ -1473,58 +1473,58 @@ export type DatabaseCamel = {
     Tables: {
       buckets: {
         Row: {
-          allowed_mime_types: string[] | null
-          avif_autodetection: boolean | null
-          created_at: string | null
-          file_size_limit: number | null
+          allowedMimeTypes: string[] | null
+          avifAutodetection: boolean | null
+          createdAt: string | null
+          fileSizeLimit: number | null
           id: string
           name: string
           owner: string | null
-          owner_id: string | null
+          ownerId: string | null
           public: boolean | null
-          updated_at: string | null
+          updatedAt: string | null
         }
         Insert: {
-          allowed_mime_types?: string[] | null
-          avif_autodetection?: boolean | null
-          created_at?: string | null
-          file_size_limit?: number | null
+          allowedMimeTypes?: string[] | null
+          avifAutodetection?: boolean | null
+          createdAt?: string | null
+          fileSizeLimit?: number | null
           id: string
           name: string
           owner?: string | null
-          owner_id?: string | null
+          ownerId?: string | null
           public?: boolean | null
-          updated_at?: string | null
+          updatedAt?: string | null
         }
         Update: {
-          allowed_mime_types?: string[] | null
-          avif_autodetection?: boolean | null
-          created_at?: string | null
-          file_size_limit?: number | null
+          allowedMimeTypes?: string[] | null
+          avifAutodetection?: boolean | null
+          createdAt?: string | null
+          fileSizeLimit?: number | null
           id?: string
           name?: string
           owner?: string | null
-          owner_id?: string | null
+          ownerId?: string | null
           public?: boolean | null
-          updated_at?: string | null
+          updatedAt?: string | null
         }
         Relationships: []
       }
       migrations: {
         Row: {
-          executed_at: string | null
+          executedAt: string | null
           hash: string
           id: number
           name: string
         }
         Insert: {
-          executed_at?: string | null
+          executedAt?: string | null
           hash: string
           id: number
           name: string
         }
         Update: {
-          executed_at?: string | null
+          executedAt?: string | null
           hash?: string
           id?: number
           name?: string
@@ -1533,45 +1533,45 @@ export type DatabaseCamel = {
       }
       objects: {
         Row: {
-          bucket_id: string | null
-          created_at: string | null
+          bucketId: string | null
+          createdAt: string | null
           id: string
-          last_accessed_at: string | null
+          lastAccessedAt: string | null
           metadata: Json | null
           name: string | null
           owner: string | null
-          owner_id: string | null
-          path_tokens: string[] | null
-          updated_at: string | null
-          user_metadata: Json | null
+          ownerId: string | null
+          pathTokens: string[] | null
+          updatedAt: string | null
+          userMetadata: Json | null
           version: string | null
         }
         Insert: {
-          bucket_id?: string | null
-          created_at?: string | null
+          bucketId?: string | null
+          createdAt?: string | null
           id?: string
-          last_accessed_at?: string | null
+          lastAccessedAt?: string | null
           metadata?: Json | null
           name?: string | null
           owner?: string | null
-          owner_id?: string | null
-          path_tokens?: string[] | null
-          updated_at?: string | null
-          user_metadata?: Json | null
+          ownerId?: string | null
+          pathTokens?: string[] | null
+          updatedAt?: string | null
+          userMetadata?: Json | null
           version?: string | null
         }
         Update: {
-          bucket_id?: string | null
-          created_at?: string | null
+          bucketId?: string | null
+          createdAt?: string | null
           id?: string
-          last_accessed_at?: string | null
+          lastAccessedAt?: string | null
           metadata?: Json | null
           name?: string | null
           owner?: string | null
-          owner_id?: string | null
-          path_tokens?: string[] | null
-          updated_at?: string | null
-          user_metadata?: Json | null
+          ownerId?: string | null
+          pathTokens?: string[] | null
+          updatedAt?: string | null
+          userMetadata?: Json | null
           version?: string | null
         }
         Relationships: [
@@ -1584,38 +1584,38 @@ export type DatabaseCamel = {
           },
         ]
       }
-      s3_multipart_uploads: {
+      s3MultipartUploads: {
         Row: {
-          bucket_id: string
-          created_at: string
+          bucketId: string
+          createdAt: string
           id: string
-          in_progress_size: number
+          inProgressSize: number
           key: string
-          owner_id: string | null
-          upload_signature: string
-          user_metadata: Json | null
+          ownerId: string | null
+          uploadSignature: string
+          userMetadata: Json | null
           version: string
         }
         Insert: {
-          bucket_id: string
-          created_at?: string
+          bucketId: string
+          createdAt?: string
           id: string
-          in_progress_size?: number
+          inProgressSize?: number
           key: string
-          owner_id?: string | null
-          upload_signature: string
-          user_metadata?: Json | null
+          ownerId?: string | null
+          uploadSignature: string
+          userMetadata?: Json | null
           version: string
         }
         Update: {
-          bucket_id?: string
-          created_at?: string
+          bucketId?: string
+          createdAt?: string
           id?: string
-          in_progress_size?: number
+          inProgressSize?: number
           key?: string
-          owner_id?: string | null
-          upload_signature?: string
-          user_metadata?: Json | null
+          ownerId?: string | null
+          uploadSignature?: string
+          userMetadata?: Json | null
           version?: string
         }
         Relationships: [
@@ -1628,41 +1628,41 @@ export type DatabaseCamel = {
           },
         ]
       }
-      s3_multipart_uploads_parts: {
+      s3MultipartUploadsParts: {
         Row: {
-          bucket_id: string
-          created_at: string
+          bucketId: string
+          createdAt: string
           etag: string
           id: string
           key: string
-          owner_id: string | null
-          part_number: number
+          ownerId: string | null
+          partNumber: number
           size: number
-          upload_id: string
+          uploadId: string
           version: string
         }
         Insert: {
-          bucket_id: string
-          created_at?: string
+          bucketId: string
+          createdAt?: string
           etag: string
           id?: string
           key: string
-          owner_id?: string | null
-          part_number: number
+          ownerId?: string | null
+          partNumber: number
           size?: number
-          upload_id: string
+          uploadId: string
           version: string
         }
         Update: {
-          bucket_id?: string
-          created_at?: string
+          bucketId?: string
+          createdAt?: string
           etag?: string
           id?: string
           key?: string
-          owner_id?: string | null
-          part_number?: number
+          ownerId?: string | null
+          partNumber?: number
           size?: number
-          upload_id?: string
+          uploadId?: string
           version?: string
         }
         Relationships: [
@@ -1687,7 +1687,7 @@ export type DatabaseCamel = {
       [_ in never]: never
     }
     Functions: {
-      can_insert_object: {
+      canInsertObject: {
         Args: {
           bucketid: string
           name: string
@@ -1714,42 +1714,42 @@ export type DatabaseCamel = {
         }
         Returns: string[]
       }
-      get_size_by_bucket: {
+      getSizeByBucket: {
         Args: Record<PropertyKey, never>
         Returns: {
           size: number
-          bucket_id: string
+          bucketId: string
         }[]
       }
-      list_multipart_uploads_with_delimiter: {
+      listMultipartUploadsWithDelimiter: {
         Args: {
-          bucket_id: string
-          prefix_param: string
-          delimiter_param: string
-          max_keys?: number
-          next_key_token?: string
-          next_upload_token?: string
+          bucketId: string
+          prefixParam: string
+          delimiterParam: string
+          maxKeys?: number
+          nextKeyToken?: string
+          nextUploadToken?: string
         }
         Returns: {
           key: string
           id: string
-          created_at: string
+          createdAt: string
         }[]
       }
-      list_objects_with_delimiter: {
+      listObjectsWithDelimiter: {
         Args: {
-          bucket_id: string
-          prefix_param: string
-          delimiter_param: string
-          max_keys?: number
-          start_after?: string
-          next_token?: string
+          bucketId: string
+          prefixParam: string
+          delimiterParam: string
+          maxKeys?: number
+          startAfter?: string
+          nextToken?: string
         }
         Returns: {
           name: string
           id: string
           metadata: Json
-          updated_at: string
+          updatedAt: string
         }[]
       }
       operation: {
@@ -1770,9 +1770,9 @@ export type DatabaseCamel = {
         Returns: {
           name: string
           id: string
-          updated_at: string
-          created_at: string
-          last_accessed_at: string
+          updatedAt: string
+          createdAt: string
+          lastAccessedAt: string
           metadata: Json
         }[]
       }
@@ -1786,33 +1786,33 @@ export type DatabaseCamel = {
   }
   telephony: {
     Tables: {
-      call_events: {
+      callEvents: {
         Row: {
-          call_log_id: string | null
-          campaign_id: string
-          created_at: string
-          event_data: Json | null
-          event_type: string | null
+          callLogId: string | null
+          campaignId: string
+          createdAt: string
+          eventData: Json | null
+          eventType: string | null
           id: string
-          user_id: string
+          userId: string
         }
         Insert: {
-          call_log_id?: string | null
-          campaign_id: string
-          created_at?: string
-          event_data?: Json | null
-          event_type?: string | null
+          callLogId?: string | null
+          campaignId: string
+          createdAt?: string
+          eventData?: Json | null
+          eventType?: string | null
           id?: string
-          user_id: string
+          userId: string
         }
         Update: {
-          call_log_id?: string | null
-          campaign_id?: string
-          created_at?: string
-          event_data?: Json | null
-          event_type?: string | null
+          callLogId?: string | null
+          campaignId?: string
+          createdAt?: string
+          eventData?: Json | null
+          eventType?: string | null
           id?: string
-          user_id?: string
+          userId?: string
         }
         Relationships: [
           {
@@ -1824,92 +1824,92 @@ export type DatabaseCamel = {
           },
         ]
       }
-      call_logs: {
+      callLogs: {
         Row: {
-          call_sid: string | null
-          campaign_id: string
-          conversation_json: Json | null
-          created_at: string
+          callSid: string | null
+          campaignId: string
+          conversationJson: Json | null
+          createdAt: string
           id: string
-          job_id: string | null
-          lead_id: string | null
+          jobId: string | null
+          leadId: string | null
           outcome: string | null
           sentiment: string | null
-          transcript_summary: string | null
-          updated_at: string
-          user_id: string
+          transcriptSummary: string | null
+          updatedAt: string
+          userId: string
         }
         Insert: {
-          call_sid?: string | null
-          campaign_id: string
-          conversation_json?: Json | null
-          created_at?: string
+          callSid?: string | null
+          campaignId: string
+          conversationJson?: Json | null
+          createdAt?: string
           id?: string
-          job_id?: string | null
-          lead_id?: string | null
+          jobId?: string | null
+          leadId?: string | null
           outcome?: string | null
           sentiment?: string | null
-          transcript_summary?: string | null
-          updated_at?: string
-          user_id: string
+          transcriptSummary?: string | null
+          updatedAt?: string
+          userId: string
         }
         Update: {
-          call_sid?: string | null
-          campaign_id?: string
-          conversation_json?: Json | null
-          created_at?: string
+          callSid?: string | null
+          campaignId?: string
+          conversationJson?: Json | null
+          createdAt?: string
           id?: string
-          job_id?: string | null
-          lead_id?: string | null
+          jobId?: string | null
+          leadId?: string | null
           outcome?: string | null
           sentiment?: string | null
-          transcript_summary?: string | null
-          updated_at?: string
-          user_id?: string
+          transcriptSummary?: string | null
+          updatedAt?: string
+          userId?: string
         }
         Relationships: []
       }
-      call_scripts: {
+      callScripts: {
         Row: {
-          avg_duration: number | null
+          avgDuration: number | null
           category: string
           content: string
-          created_at: string
+          createdAt: string
           id: string
-          is_active: boolean
+          isActive: boolean
           name: string
-          positive_sentiment_rate: number | null
-          success_rate: number | null
-          updated_at: string
-          user_id: string
+          positiveSentimentRate: number | null
+          successRate: number | null
+          updatedAt: string
+          userId: string
           version: number
         }
         Insert: {
-          avg_duration?: number | null
+          avgDuration?: number | null
           category: string
           content: string
-          created_at?: string
+          createdAt?: string
           id?: string
-          is_active?: boolean
+          isActive?: boolean
           name: string
-          positive_sentiment_rate?: number | null
-          success_rate?: number | null
-          updated_at?: string
-          user_id: string
+          positiveSentimentRate?: number | null
+          successRate?: number | null
+          updatedAt?: string
+          userId: string
           version?: number
         }
         Update: {
-          avg_duration?: number | null
+          avgDuration?: number | null
           category?: string
           content?: string
-          created_at?: string
+          createdAt?: string
           id?: string
-          is_active?: boolean
+          isActive?: boolean
           name?: string
-          positive_sentiment_rate?: number | null
-          success_rate?: number | null
-          updated_at?: string
-          user_id?: string
+          positiveSentimentRate?: number | null
+          successRate?: number | null
+          updatedAt?: string
+          userId?: string
           version?: number
         }
         Relationships: []
