@@ -7,8 +7,8 @@
  *
  * Case conversion should be handled at the service level, not in this package.
  */
-export { Database } from './generated/database';
 export { DatabaseCamel } from './generated/databaseCamel';
+export { Database } from './generated/database';
 export { Schema, Table, getTableRef } from './generated/constants';
 export * as Analysis from './domains/analysis';
 export * as Assistant from './domains/assistant';

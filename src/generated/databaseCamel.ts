@@ -164,6 +164,101 @@ export type DatabaseCamel = {
   }
   assistant: {
     Tables: {
+      agentRunSteps: {
+        Row: {
+          agentRunId: string
+          completedAt: string | null
+          errorMessage: string | null
+          id: string
+          inputJson: Json
+          outputJson: Json | null
+          startedAt: string
+          stepName: string
+        }
+        Insert: {
+          agentRunId: string
+          completedAt?: string | null
+          errorMessage?: string | null
+          id?: string
+          inputJson: Json
+          outputJson?: Json | null
+          startedAt?: string
+          stepName: string
+        }
+        Update: {
+          agentRunId?: string
+          completedAt?: string | null
+          errorMessage?: string | null
+          id?: string
+          inputJson?: Json
+          outputJson?: Json | null
+          startedAt?: string
+          stepName?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "agent_run_steps_agent_run_id_fkey"
+            columns: ["agent_run_id"]
+            isOneToOne: false
+            referencedRelation: "agent_runs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      agentRuns: {
+        Row: {
+          agentName: string
+          completedAt: string | null
+          id: string
+          metadata: Json | null
+          startedAt: string
+          status: string | null
+          userId: string
+        }
+        Insert: {
+          agentName: string
+          completedAt?: string | null
+          id?: string
+          metadata?: Json | null
+          startedAt?: string
+          status?: string | null
+          userId: string
+        }
+        Update: {
+          agentName?: string
+          completedAt?: string | null
+          id?: string
+          metadata?: Json | null
+          startedAt?: string
+          status?: string | null
+          userId?: string
+        }
+        Relationships: []
+      }
+      agents: {
+        Row: {
+          assistantId: string
+          createdAt: string
+          id: string
+          updatedAt: string
+          userId: string
+        }
+        Insert: {
+          assistantId: string
+          createdAt?: string
+          id?: string
+          updatedAt?: string
+          userId: string
+        }
+        Update: {
+          assistantId?: string
+          createdAt?: string
+          id?: string
+          updatedAt?: string
+          userId?: string
+        }
+        Relationships: []
+      }
       conversations: {
         Row: {
           createdAt: string
@@ -351,109 +446,6 @@ export type DatabaseCamel = {
   }
   core: {
     Tables: {
-      agentRunSteps: {
-        Row: {
-          agentRunId: string
-          completedAt: string | null
-          errorMessage: string | null
-          id: string
-          inputJson: Json
-          outputJson: Json | null
-          startedAt: string
-          stepName: string
-        }
-        Insert: {
-          agentRunId: string
-          completedAt?: string | null
-          errorMessage?: string | null
-          id?: string
-          inputJson: Json
-          outputJson?: Json | null
-          startedAt?: string
-          stepName: string
-        }
-        Update: {
-          agentRunId?: string
-          completedAt?: string | null
-          errorMessage?: string | null
-          id?: string
-          inputJson?: Json
-          outputJson?: Json | null
-          startedAt?: string
-          stepName?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "agent_run_steps_agent_run_id_fkey"
-            columns: ["agent_run_id"]
-            isOneToOne: false
-            referencedRelation: "agent_runs"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      agentRuns: {
-        Row: {
-          agentName: string
-          completedAt: string | null
-          id: string
-          metadata: Json | null
-          startedAt: string
-          status: string | null
-          userId: string
-        }
-        Insert: {
-          agentName: string
-          completedAt?: string | null
-          id?: string
-          metadata?: Json | null
-          startedAt?: string
-          status?: string | null
-          userId: string
-        }
-        Update: {
-          agentName?: string
-          completedAt?: string | null
-          id?: string
-          metadata?: Json | null
-          startedAt?: string
-          status?: string | null
-          userId?: string
-        }
-        Relationships: []
-      }
-      agents: {
-        Row: {
-          assistantId: string
-          createdAt: string
-          id: string
-          updatedAt: string
-          userId: string
-        }
-        Insert: {
-          assistantId: string
-          createdAt?: string
-          id?: string
-          updatedAt?: string
-          userId: string
-        }
-        Update: {
-          assistantId?: string
-          createdAt?: string
-          id?: string
-          updatedAt?: string
-          userId?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "agents_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       errorLogs: {
         Row: {
           createdAt: string
