@@ -12,11 +12,20 @@ export type AssistantSchema = Database['assistant']['Tables'];
 // Table type exports - Row types
 export type Conversation = AssistantSchema['conversations']['Row'];
 export type Message = AssistantSchema['messages']['Row'];
+export type AgentRunStep = AssistantSchema['agent_run_steps']['Row'];
+export type AgentRun = AssistantSchema['agent_runs']['Row'];
+export type Agent = AssistantSchema['agents']['Row'];
 
 // Table type exports - Insert types
 export type ConversationInsert = AssistantSchema['conversations']['Insert'];
 export type MessageInsert = AssistantSchema['messages']['Insert'];
+export type AgentRunStepInsert = AssistantSchema['agent_run_steps']['Insert'];
+export type AgentRunInsert = AssistantSchema['agent_runs']['Insert'];
+export type AgentInsert = AssistantSchema['agents']['Insert'];
 
 // Table type exports - Update types
 export type ConversationUpdate = AssistantSchema['conversations']['Update'];
 export type MessageUpdate = AssistantSchema['messages']['Update']; 
+export type AgentRunStepUpdate = AssistantSchema['agent_run_steps']['Update'];
+export type AgentRunUpdate = AssistantSchema['agent_runs']['Update'];
+export type AgentUpdate = AssistantSchema['agents']['Update'];
