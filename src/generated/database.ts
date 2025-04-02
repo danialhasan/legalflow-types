@@ -175,6 +175,7 @@ export type Database = {
           created_at: string
           deal_id: string | null
           executed_at: string | null
+          execution_strategy: string
           id: string
           message_template: string | null
           priority: number
@@ -189,6 +190,7 @@ export type Database = {
           created_at?: string
           deal_id?: string | null
           executed_at?: string | null
+          execution_strategy?: string
           id?: string
           message_template?: string | null
           priority: number
@@ -203,6 +205,7 @@ export type Database = {
           created_at?: string
           deal_id?: string | null
           executed_at?: string | null
+          execution_strategy?: string
           id?: string
           message_template?: string | null
           priority?: number

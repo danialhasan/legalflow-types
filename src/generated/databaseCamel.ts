@@ -170,6 +170,7 @@ export type DatabaseCamel = {
           createdAt: string
           dealId: string | null
           executedAt: string | null
+          executionStrategy: string
           id: string
           messageTemplate: string | null
           priority: number
@@ -184,6 +185,7 @@ export type DatabaseCamel = {
           createdAt?: string
           dealId?: string | null
           executedAt?: string | null
+          executionStrategy?: string
           id?: string
           messageTemplate?: string | null
           priority: number
@@ -198,6 +200,7 @@ export type DatabaseCamel = {
           createdAt?: string
           dealId?: string | null
           executedAt?: string | null
+          executionStrategy?: string
           id?: string
           messageTemplate?: string | null
           priority?: number
