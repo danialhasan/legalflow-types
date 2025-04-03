@@ -92,28 +92,28 @@ export type Database = {
       }
       deal_context_graphs: {
         Row: {
-          aggregate_embedding: string | null
           created_at: string
+          deal_summary: string | null
+          deal_summary_embedding: string | null
           enriched_extracted_data: Json
-          enriched_summary: string | null
           id: string
           source_input_ids: string[] | null
           updated_at: string
         }
         Insert: {
-          aggregate_embedding?: string | null
           created_at?: string
+          deal_summary?: string | null
+          deal_summary_embedding?: string | null
           enriched_extracted_data: Json
-          enriched_summary?: string | null
           id?: string
           source_input_ids?: string[] | null
           updated_at?: string
         }
         Update: {
-          aggregate_embedding?: string | null
           created_at?: string
+          deal_summary?: string | null
+          deal_summary_embedding?: string | null
           enriched_extracted_data?: Json
-          enriched_summary?: string | null
           id?: string
           source_input_ids?: string[] | null
           updated_at?: string

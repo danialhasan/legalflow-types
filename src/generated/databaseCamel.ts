@@ -87,28 +87,28 @@ export type DatabaseCamel = {
       }
       dealContextGraphs: {
         Row: {
-          aggregateEmbedding: string | null
           createdAt: string
+          dealSummary: string | null
+          dealSummaryEmbedding: string | null
           enrichedExtractedData: Json
-          enrichedSummary: string | null
           id: string
           sourceInputIds: string[] | null
           updatedAt: string
         }
         Insert: {
-          aggregateEmbedding?: string | null
           createdAt?: string
+          dealSummary?: string | null
+          dealSummaryEmbedding?: string | null
           enrichedExtractedData: Json
-          enrichedSummary?: string | null
           id?: string
           sourceInputIds?: string[] | null
           updatedAt?: string
         }
         Update: {
-          aggregateEmbedding?: string | null
           createdAt?: string
+          dealSummary?: string | null
+          dealSummaryEmbedding?: string | null
           enrichedExtractedData?: Json
-          enrichedSummary?: string | null
           id?: string
           sourceInputIds?: string[] | null
           updatedAt?: string
