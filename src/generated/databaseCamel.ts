@@ -7,6 +7,7 @@ export type DatabaseCamel = {
       canonBlocks: {
         Row: {
           createdAt: string
+          dealContextGraphId: string | null
           embedding: string
           extractedInputId: string | null
           id: string
@@ -17,6 +18,7 @@ export type DatabaseCamel = {
         }
         Insert: {
           createdAt?: string
+          dealContextGraphId?: string | null
           embedding: string
           extractedInputId?: string | null
           id?: string
@@ -27,6 +29,7 @@ export type DatabaseCamel = {
         }
         Update: {
           createdAt?: string
+          dealContextGraphId?: string | null
           embedding?: string
           extractedInputId?: string | null
           id?: string
@@ -36,6 +39,13 @@ export type DatabaseCamel = {
           summary?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_context_graph_id"]
+            isOneToOne: false
+            referencedRelation: "deal_context_graphs"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "canon_blocks_extracted_input_id_fkey"
             columns: ["extracted_input_id"]

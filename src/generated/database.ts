@@ -12,6 +12,7 @@ export type Database = {
       canon_blocks: {
         Row: {
           created_at: string
+          deal_context_graph_id: string | null
           embedding: string
           extracted_input_id: string | null
           id: string
@@ -22,6 +23,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string
+          deal_context_graph_id?: string | null
           embedding: string
           extracted_input_id?: string | null
           id?: string
@@ -32,6 +34,7 @@ export type Database = {
         }
         Update: {
           created_at?: string
+          deal_context_graph_id?: string | null
           embedding?: string
           extracted_input_id?: string | null
           id?: string
@@ -41,6 +44,13 @@ export type Database = {
           summary?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_context_graph_id"]
+            isOneToOne: false
+            referencedRelation: "deal_context_graphs"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "canon_blocks_extracted_input_id_fkey"
             columns: ["extracted_input_id"]
