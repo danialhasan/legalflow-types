@@ -4,6 +4,140 @@ import type { Json } from '../index';
 export type DatabaseCamel = {
   analysis: {
     Tables: {
+      canonBlocks: {
+        Row: {
+          createdAt: string
+          embedding: string
+          extractedInputId: string | null
+          id: string
+          sourceId: string
+          sourceSubtype: string | null
+          sourceType: string
+          summary: string
+        }
+        Insert: {
+          createdAt?: string
+          embedding: string
+          extractedInputId?: string | null
+          id?: string
+          sourceId: string
+          sourceSubtype?: string | null
+          sourceType: string
+          summary: string
+        }
+        Update: {
+          createdAt?: string
+          embedding?: string
+          extractedInputId?: string | null
+          id?: string
+          sourceId?: string
+          sourceSubtype?: string | null
+          sourceType?: string
+          summary?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "canon_blocks_extracted_input_id_fkey"
+            columns: ["extracted_input_id"]
+            isOneToOne: false
+            referencedRelation: "extracted_inputs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      dealContextGraphCanonBlocks: {
+        Row: {
+          canonBlockId: string
+          dealContextGraphId: string
+        }
+        Insert: {
+          canonBlockId: string
+          dealContextGraphId: string
+        }
+        Update: {
+          canonBlockId?: string
+          dealContextGraphId?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_canon_block_id_fkey"
+            columns: ["canon_block_id"]
+            isOneToOne: false
+            referencedRelation: "canon_blocks"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_context_graph_id"]
+            isOneToOne: false
+            referencedRelation: "deal_context_graphs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      dealContextGraphs: {
+        Row: {
+          aggregateEmbedding: string | null
+          createdAt: string
+          enrichedExtractedData: Json
+          enrichedSummary: string | null
+          id: string
+          sourceInputIds: string[] | null
+          updatedAt: string
+        }
+        Insert: {
+          aggregateEmbedding?: string | null
+          createdAt?: string
+          enrichedExtractedData: Json
+          enrichedSummary?: string | null
+          id?: string
+          sourceInputIds?: string[] | null
+          updatedAt?: string
+        }
+        Update: {
+          aggregateEmbedding?: string | null
+          createdAt?: string
+          enrichedExtractedData?: Json
+          enrichedSummary?: string | null
+          id?: string
+          sourceInputIds?: string[] | null
+          updatedAt?: string
+        }
+        Relationships: []
+      }
+      extractedInputs: {
+        Row: {
+          createdAt: string
+          extractedData: Json
+          id: string
+          modelVersion: string | null
+          processingTimeMs: number | null
+          sourceId: string
+          sourceType: string | null
+          updatedAt: string
+        }
+        Insert: {
+          createdAt?: string
+          extractedData: Json
+          id?: string
+          modelVersion?: string | null
+          processingTimeMs?: number | null
+          sourceId: string
+          sourceType?: string | null
+          updatedAt?: string
+        }
+        Update: {
+          createdAt?: string
+          extractedData?: Json
+          id?: string
+          modelVersion?: string | null
+          processingTimeMs?: number | null
+          sourceId?: string
+          sourceType?: string | null
+          updatedAt?: string
+        }
+        Relationships: []
+      }
       processedCalendarEvents: {
         Row: {
           createdAt: string

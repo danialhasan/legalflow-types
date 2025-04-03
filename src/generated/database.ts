@@ -9,6 +9,140 @@ export type Json =
 export type Database = {
   analysis: {
     Tables: {
+      canon_blocks: {
+        Row: {
+          created_at: string
+          embedding: string
+          extracted_input_id: string | null
+          id: string
+          source_id: string
+          source_subtype: string | null
+          source_type: string
+          summary: string
+        }
+        Insert: {
+          created_at?: string
+          embedding: string
+          extracted_input_id?: string | null
+          id?: string
+          source_id: string
+          source_subtype?: string | null
+          source_type: string
+          summary: string
+        }
+        Update: {
+          created_at?: string
+          embedding?: string
+          extracted_input_id?: string | null
+          id?: string
+          source_id?: string
+          source_subtype?: string | null
+          source_type?: string
+          summary?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "canon_blocks_extracted_input_id_fkey"
+            columns: ["extracted_input_id"]
+            isOneToOne: false
+            referencedRelation: "extracted_inputs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      deal_context_graph_canon_blocks: {
+        Row: {
+          canon_block_id: string
+          deal_context_graph_id: string
+        }
+        Insert: {
+          canon_block_id: string
+          deal_context_graph_id: string
+        }
+        Update: {
+          canon_block_id?: string
+          deal_context_graph_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_canon_block_id_fkey"
+            columns: ["canon_block_id"]
+            isOneToOne: false
+            referencedRelation: "canon_blocks"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_context_graph_id"]
+            isOneToOne: false
+            referencedRelation: "deal_context_graphs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      deal_context_graphs: {
+        Row: {
+          aggregate_embedding: string | null
+          created_at: string
+          enriched_extracted_data: Json
+          enriched_summary: string | null
+          id: string
+          source_input_ids: string[] | null
+          updated_at: string
+        }
+        Insert: {
+          aggregate_embedding?: string | null
+          created_at?: string
+          enriched_extracted_data: Json
+          enriched_summary?: string | null
+          id?: string
+          source_input_ids?: string[] | null
+          updated_at?: string
+        }
+        Update: {
+          aggregate_embedding?: string | null
+          created_at?: string
+          enriched_extracted_data?: Json
+          enriched_summary?: string | null
+          id?: string
+          source_input_ids?: string[] | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      extracted_inputs: {
+        Row: {
+          created_at: string
+          extracted_data: Json
+          id: string
+          model_version: string | null
+          processing_time_ms: number | null
+          source_id: string
+          source_type: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          extracted_data: Json
+          id?: string
+          model_version?: string | null
+          processing_time_ms?: number | null
+          source_id: string
+          source_type?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          extracted_data?: Json
+          id?: string
+          model_version?: string | null
+          processing_time_ms?: number | null
+          source_id?: string
+          source_type?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       processed_calendar_events: {
         Row: {
           created_at: string
