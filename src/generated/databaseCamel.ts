@@ -1207,6 +1207,48 @@ export type DatabaseCamel = {
         }
         Relationships: []
       }
+      googleOauthTokens: {
+        Row: {
+          accessToken: string
+          createdAt: string
+          email: string | null
+          expiresAt: string
+          googleUserId: string
+          id: string
+          provider: string
+          refreshToken: string | null
+          scopes: string[]
+          updatedAt: string
+          userId: string
+        }
+        Insert: {
+          accessToken: string
+          createdAt?: string
+          email?: string | null
+          expiresAt: string
+          googleUserId: string
+          id?: string
+          provider?: string
+          refreshToken?: string | null
+          scopes?: string[]
+          updatedAt?: string
+          userId: string
+        }
+        Update: {
+          accessToken?: string
+          createdAt?: string
+          email?: string | null
+          expiresAt?: string
+          googleUserId?: string
+          id?: string
+          provider?: string
+          refreshToken?: string | null
+          scopes?: string[]
+          updatedAt?: string
+          userId?: string
+        }
+        Relationships: []
+      }
       googleSyncStatus: {
         Row: {
           createdAt: string
