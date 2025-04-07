@@ -1480,33 +1480,59 @@ export type DatabaseCamel = {
       }
       googleWebhookNotifications: {
         Row: {
+          changed: string[] | null
+          channelId: string
           createdAt: string | null
           data: Json | null
           id: string
+          messageNumber: number | null
           processed: boolean | null
+          processedAt: string | null
           resourceId: string | null
+          resourceState: string | null
           resourceType: string | null
+          resourceUri: string | null
           userId: string | null
         }
         Insert: {
+          changed?: string[] | null
+          channelId: string
           createdAt?: string | null
           data?: Json | null
           id?: string
+          messageNumber?: number | null
           processed?: boolean | null
+          processedAt?: string | null
           resourceId?: string | null
+          resourceState?: string | null
           resourceType?: string | null
+          resourceUri?: string | null
           userId?: string | null
         }
         Update: {
+          changed?: string[] | null
+          channelId?: string
           createdAt?: string | null
           data?: Json | null
           id?: string
+          messageNumber?: number | null
           processed?: boolean | null
+          processedAt?: string | null
           resourceId?: string | null
+          resourceState?: string | null
           resourceType?: string | null
+          resourceUri?: string | null
           userId?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "fk_channel"
+            columns: ["user_id", "channel_id"]
+            isOneToOne: false
+            referencedRelation: "google_webhook_channels"
+            referencedColumns: ["user_id", "channel_id"]
+          },
+        ]
       }
     }
     Views: {

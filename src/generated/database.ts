@@ -1485,33 +1485,59 @@ export type Database = {
       }
       google_webhook_notifications: {
         Row: {
+          changed: string[] | null
+          channel_id: string
           created_at: string | null
           data: Json | null
           id: string
+          message_number: number | null
           processed: boolean | null
+          processed_at: string | null
           resource_id: string | null
+          resource_state: string | null
           resource_type: string | null
+          resource_uri: string | null
           user_id: string | null
         }
         Insert: {
+          changed?: string[] | null
+          channel_id: string
           created_at?: string | null
           data?: Json | null
           id?: string
+          message_number?: number | null
           processed?: boolean | null
+          processed_at?: string | null
           resource_id?: string | null
+          resource_state?: string | null
           resource_type?: string | null
+          resource_uri?: string | null
           user_id?: string | null
         }
         Update: {
+          changed?: string[] | null
+          channel_id?: string
           created_at?: string | null
           data?: Json | null
           id?: string
+          message_number?: number | null
           processed?: boolean | null
+          processed_at?: string | null
           resource_id?: string | null
+          resource_state?: string | null
           resource_type?: string | null
+          resource_uri?: string | null
           user_id?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "fk_channel"
+            columns: ["user_id", "channel_id"]
+            isOneToOne: false
+            referencedRelation: "google_webhook_channels"
+            referencedColumns: ["user_id", "channel_id"]
+          },
+        ]
       }
     }
     Views: {
