@@ -41,7 +41,8 @@ if (!databaseTypeAlias) {
 // Create a new source file for the DatabaseCamel interface
 const outputFile = project.createSourceFile(
   OUTPUT_FILE,
-  `// Generated file - do not modify directly\n\nimport type { Json } from '../index';\n\n`,
+  `// Generated file - do not modify directly\n\nimport type { Database, Json } from '../index';\n\n`,
+
   { overwrite: true }
 );
 

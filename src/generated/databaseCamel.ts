@@ -1,6 +1,6 @@
 // Generated file - do not modify directly
 
-import type { Json } from '../index';
+import type { Database, Json } from '../index';
 export type DatabaseCamel = {
   analysis: {
     Tables: {
