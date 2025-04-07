@@ -60,6 +60,39 @@ export type Database = {
           },
         ]
       }
+      client_context_graphs: {
+        Row: {
+          client_summary: string | null
+          client_summary_embedding: string | null
+          created_at: string | null
+          enriched_extracted_data: Json
+          id: string
+          source_input_ids: string[] | null
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          client_summary?: string | null
+          client_summary_embedding?: string | null
+          created_at?: string | null
+          enriched_extracted_data: Json
+          id?: string
+          source_input_ids?: string[] | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          client_summary?: string | null
+          client_summary_embedding?: string | null
+          created_at?: string | null
+          enriched_extracted_data?: Json
+          id?: string
+          source_input_ids?: string[] | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       deal_context_graph_canon_blocks: {
         Row: {
           canon_block_id: string
@@ -643,6 +676,30 @@ export type Database = {
   }
   core: {
     Tables: {
+      client_types: {
+        Row: {
+          created_at: string
+          deleted_at: string | null
+          id: string
+          is_deleted: boolean
+          label: string
+        }
+        Insert: {
+          created_at?: string
+          deleted_at?: string | null
+          id?: string
+          is_deleted?: boolean
+          label: string
+        }
+        Update: {
+          created_at?: string
+          deleted_at?: string | null
+          id?: string
+          is_deleted?: boolean
+          label?: string
+        }
+        Relationships: []
+      }
       error_logs: {
         Row: {
           created_at: string
@@ -751,6 +808,39 @@ export type Database = {
         }
         Relationships: []
       }
+      user_client_types: {
+        Row: {
+          client_type_id: string
+          created_at: string
+          user_id: string
+        }
+        Insert: {
+          client_type_id: string
+          created_at?: string
+          user_id: string
+        }
+        Update: {
+          client_type_id?: string
+          created_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_client_types_client_type_id_fkey"
+            columns: ["client_type_id"]
+            isOneToOne: false
+            referencedRelation: "client_types"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "user_client_types_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_rankings: {
         Row: {
           created_at: string
@@ -780,6 +870,62 @@ export type Database = {
           user_id?: string
         }
         Relationships: []
+      }
+      user_settings: {
+        Row: {
+          communication_style:
+            | Database["core"]["Enums"]["communication_style"]
+            | null
+          created_at: string
+          google_email: string | null
+          id: string
+          location: string | null
+          role: Database["core"]["Enums"]["agent_role"] | null
+          special_notes: string | null
+          timezone: string | null
+          updated_at: string
+          user_id: string
+          work_schedule: Database["core"]["Enums"]["work_schedule"] | null
+        }
+        Insert: {
+          communication_style?:
+            | Database["core"]["Enums"]["communication_style"]
+            | null
+          created_at?: string
+          google_email?: string | null
+          id?: string
+          location?: string | null
+          role?: Database["core"]["Enums"]["agent_role"] | null
+          special_notes?: string | null
+          timezone?: string | null
+          updated_at?: string
+          user_id: string
+          work_schedule?: Database["core"]["Enums"]["work_schedule"] | null
+        }
+        Update: {
+          communication_style?:
+            | Database["core"]["Enums"]["communication_style"]
+            | null
+          created_at?: string
+          google_email?: string | null
+          id?: string
+          location?: string | null
+          role?: Database["core"]["Enums"]["agent_role"] | null
+          special_notes?: string | null
+          timezone?: string | null
+          updated_at?: string
+          user_id?: string
+          work_schedule?: Database["core"]["Enums"]["work_schedule"] | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_settings_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       users: {
         Row: {
@@ -813,7 +959,21 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      agent_role:
+        | "realtor"
+        | "leasing_agent"
+        | "buyer_agent"
+        | "listing_agent"
+        | "admin"
+        | "other"
+      communication_style: "friendly" | "professional" | "direct" | "casual"
+      work_schedule:
+        | "mornings"
+        | "evenings"
+        | "weekends"
+        | "full_time"
+        | "part_time"
+        | "flexible"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -1927,30 +2087,19 @@ export type Database = {
     }
     Functions: {
       can_insert_object: {
-        Args: {
-          bucketid: string
-          name: string
-          owner: string
-          metadata: Json
-        }
+        Args: { bucketid: string; name: string; owner: string; metadata: Json }
         Returns: undefined
       }
       extension: {
-        Args: {
-          name: string
-        }
+        Args: { name: string }
         Returns: string
       }
       filename: {
-        Args: {
-          name: string
-        }
+        Args: { name: string }
         Returns: string
       }
       foldername: {
-        Args: {
-          name: string
-        }
+        Args: { name: string }
         Returns: string[]
       }
       get_size_by_bucket: {
@@ -2169,27 +2318,29 @@ export type Database = {
   }
 }
 
-type PublicSchema = Database[Extract<keyof Database, "public">]
+type DefaultSchema = Database[Extract<keyof Database, "public">]
 
 export type Tables<
-  PublicTableNameOrOptions extends
-    | keyof (PublicSchema["Tables"] & PublicSchema["Views"])
+  DefaultSchemaTableNameOrOptions extends
+    | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
     | { schema: keyof Database },
-  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
-        Database[PublicTableNameOrOptions["schema"]]["Views"])
+  TableName extends DefaultSchemaTableNameOrOptions extends {
+    schema: keyof Database
+  }
+    ? keyof (Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
+        Database[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
     : never = never,
-> = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
-      Database[PublicTableNameOrOptions["schema"]]["Views"])[TableName] extends {
+> = DefaultSchemaTableNameOrOptions extends { schema: keyof Database }
+  ? (Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
+      Database[DefaultSchemaTableNameOrOptions["schema"]]["Views"])[TableName] extends {
       Row: infer R
     }
     ? R
     : never
-  : PublicTableNameOrOptions extends keyof (PublicSchema["Tables"] &
-        PublicSchema["Views"])
-    ? (PublicSchema["Tables"] &
-        PublicSchema["Views"])[PublicTableNameOrOptions] extends {
+  : DefaultSchemaTableNameOrOptions extends keyof (DefaultSchema["Tables"] &
+        DefaultSchema["Views"])
+    ? (DefaultSchema["Tables"] &
+        DefaultSchema["Views"])[DefaultSchemaTableNameOrOptions] extends {
         Row: infer R
       }
       ? R
@@ -2197,20 +2348,22 @@ export type Tables<
     : never
 
 export type TablesInsert<
-  PublicTableNameOrOptions extends
-    | keyof PublicSchema["Tables"]
+  DefaultSchemaTableNameOrOptions extends
+    | keyof DefaultSchema["Tables"]
     | { schema: keyof Database },
-  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
+  TableName extends DefaultSchemaTableNameOrOptions extends {
+    schema: keyof Database
+  }
+    ? keyof Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
     : never = never,
-> = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+> = DefaultSchemaTableNameOrOptions extends { schema: keyof Database }
+  ? Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
       Insert: infer I
     }
     ? I
     : never
-  : PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
-    ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
+  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
+    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
         Insert: infer I
       }
       ? I
@@ -2218,20 +2371,22 @@ export type TablesInsert<
     : never
 
 export type TablesUpdate<
-  PublicTableNameOrOptions extends
-    | keyof PublicSchema["Tables"]
+  DefaultSchemaTableNameOrOptions extends
+    | keyof DefaultSchema["Tables"]
     | { schema: keyof Database },
-  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
+  TableName extends DefaultSchemaTableNameOrOptions extends {
+    schema: keyof Database
+  }
+    ? keyof Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
     : never = never,
-> = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+> = DefaultSchemaTableNameOrOptions extends { schema: keyof Database }
+  ? Database[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
       Update: infer U
     }
     ? U
     : never
-  : PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
-    ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
+  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
+    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
         Update: infer U
       }
       ? U
@@ -2239,21 +2394,23 @@ export type TablesUpdate<
     : never
 
 export type Enums<
-  PublicEnumNameOrOptions extends
-    | keyof PublicSchema["Enums"]
+  DefaultSchemaEnumNameOrOptions extends
+    | keyof DefaultSchema["Enums"]
     | { schema: keyof Database },
-  EnumName extends PublicEnumNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicEnumNameOrOptions["schema"]]["Enums"]
+  EnumName extends DefaultSchemaEnumNameOrOptions extends {
+    schema: keyof Database
+  }
+    ? keyof Database[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
     : never = never,
-> = PublicEnumNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicEnumNameOrOptions["schema"]]["Enums"][EnumName]
-  : PublicEnumNameOrOptions extends keyof PublicSchema["Enums"]
-    ? PublicSchema["Enums"][PublicEnumNameOrOptions]
+> = DefaultSchemaEnumNameOrOptions extends { schema: keyof Database }
+  ? Database[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
+  : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema["Enums"]
+    ? DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions]
     : never
 
 export type CompositeTypes<
   PublicCompositeTypeNameOrOptions extends
-    | keyof PublicSchema["CompositeTypes"]
+    | keyof DefaultSchema["CompositeTypes"]
     | { schema: keyof Database },
   CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
     schema: keyof Database
@@ -2262,6 +2419,54 @@ export type CompositeTypes<
     : never = never,
 > = PublicCompositeTypeNameOrOptions extends { schema: keyof Database }
   ? Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
-  : PublicCompositeTypeNameOrOptions extends keyof PublicSchema["CompositeTypes"]
-    ? PublicSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
+  : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema["CompositeTypes"]
+    ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
     : never
+
+export const Constants = {
+  analysis: {
+    Enums: {},
+  },
+  assistant: {
+    Enums: {},
+  },
+  compliance: {
+    Enums: {},
+  },
+  core: {
+    Enums: {
+      agent_role: [
+        "realtor",
+        "leasing_agent",
+        "buyer_agent",
+        "listing_agent",
+        "admin",
+        "other",
+      ],
+      communication_style: ["friendly", "professional", "direct", "casual"],
+      work_schedule: [
+        "mornings",
+        "evenings",
+        "weekends",
+        "full_time",
+        "part_time",
+        "flexible",
+      ],
+    },
+  },
+  documents: {
+    Enums: {},
+  },
+  integrations: {
+    Enums: {},
+  },
+  sales: {
+    Enums: {},
+  },
+  storage: {
+    Enums: {},
+  },
+  telephony: {
+    Enums: {},
+  },
+} as const

@@ -55,6 +55,39 @@ export type DatabaseCamel = {
           },
         ]
       }
+      clientContextGraphs: {
+        Row: {
+          clientSummary: string | null
+          clientSummaryEmbedding: string | null
+          createdAt: string | null
+          enrichedExtractedData: Json
+          id: string
+          sourceInputIds: string[] | null
+          updatedAt: string | null
+          userId: string | null
+        }
+        Insert: {
+          clientSummary?: string | null
+          clientSummaryEmbedding?: string | null
+          createdAt?: string | null
+          enrichedExtractedData: Json
+          id?: string
+          sourceInputIds?: string[] | null
+          updatedAt?: string | null
+          userId?: string | null
+        }
+        Update: {
+          clientSummary?: string | null
+          clientSummaryEmbedding?: string | null
+          createdAt?: string | null
+          enrichedExtractedData?: Json
+          id?: string
+          sourceInputIds?: string[] | null
+          updatedAt?: string | null
+          userId?: string | null
+        }
+        Relationships: []
+      }
       dealContextGraphCanonBlocks: {
         Row: {
           canonBlockId: string
@@ -638,6 +671,30 @@ export type DatabaseCamel = {
   }
   core: {
     Tables: {
+      clientTypes: {
+        Row: {
+          createdAt: string
+          deletedAt: string | null
+          id: string
+          isDeleted: boolean
+          label: string
+        }
+        Insert: {
+          createdAt?: string
+          deletedAt?: string | null
+          id?: string
+          isDeleted?: boolean
+          label: string
+        }
+        Update: {
+          createdAt?: string
+          deletedAt?: string | null
+          id?: string
+          isDeleted?: boolean
+          label?: string
+        }
+        Relationships: []
+      }
       errorLogs: {
         Row: {
           createdAt: string
@@ -746,6 +803,39 @@ export type DatabaseCamel = {
         }
         Relationships: []
       }
+      userClientTypes: {
+        Row: {
+          clientTypeId: string
+          createdAt: string
+          userId: string
+        }
+        Insert: {
+          clientTypeId: string
+          createdAt?: string
+          userId: string
+        }
+        Update: {
+          clientTypeId?: string
+          createdAt?: string
+          userId?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_client_types_client_type_id_fkey"
+            columns: ["client_type_id"]
+            isOneToOne: false
+            referencedRelation: "client_types"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "user_client_types_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       userRankings: {
         Row: {
           createdAt: string
@@ -775,6 +865,62 @@ export type DatabaseCamel = {
           userId?: string
         }
         Relationships: []
+      }
+      userSettings: {
+        Row: {
+          communicationStyle:
+            | Database["core"]["Enums"]["communication_style"]
+            | null
+          createdAt: string
+          googleEmail: string | null
+          id: string
+          location: string | null
+          role: Database["core"]["Enums"]["agent_role"] | null
+          specialNotes: string | null
+          timezone: string | null
+          updatedAt: string
+          userId: string
+          workSchedule: Database["core"]["Enums"]["work_schedule"] | null
+        }
+        Insert: {
+          communicationStyle?:
+            | Database["core"]["Enums"]["communication_style"]
+            | null
+          createdAt?: string
+          googleEmail?: string | null
+          id?: string
+          location?: string | null
+          role?: Database["core"]["Enums"]["agent_role"] | null
+          specialNotes?: string | null
+          timezone?: string | null
+          updatedAt?: string
+          userId: string
+          workSchedule?: Database["core"]["Enums"]["work_schedule"] | null
+        }
+        Update: {
+          communicationStyle?:
+            | Database["core"]["Enums"]["communication_style"]
+            | null
+          createdAt?: string
+          googleEmail?: string | null
+          id?: string
+          location?: string | null
+          role?: Database["core"]["Enums"]["agent_role"] | null
+          specialNotes?: string | null
+          timezone?: string | null
+          updatedAt?: string
+          userId?: string
+          workSchedule?: Database["core"]["Enums"]["work_schedule"] | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_settings_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       users: {
         Row: {
@@ -808,7 +954,21 @@ export type DatabaseCamel = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      agentRole:
+        | "realtor"
+        | "leasing_agent"
+        | "buyer_agent"
+        | "listing_agent"
+        | "admin"
+        | "other"
+      communicationStyle: "friendly" | "professional" | "direct" | "casual"
+      workSchedule:
+        | "mornings"
+        | "evenings"
+        | "weekends"
+        | "full_time"
+        | "part_time"
+        | "flexible"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -1922,30 +2082,19 @@ export type DatabaseCamel = {
     }
     Functions: {
       canInsertObject: {
-        Args: {
-          bucketid: string
-          name: string
-          owner: string
-          metadata: Json
-        }
+        Args: { bucketid: string; name: string; owner: string; metadata: Json }
         Returns: undefined
       }
       extension: {
-        Args: {
-          name: string
-        }
+        Args: { name: string }
         Returns: string
       }
       filename: {
-        Args: {
-          name: string
-        }
+        Args: { name: string }
         Returns: string
       }
       foldername: {
-        Args: {
-          name: string
-        }
+        Args: { name: string }
         Returns: string[]
       }
       getSizeByBucket: {
