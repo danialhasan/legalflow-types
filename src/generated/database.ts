@@ -837,7 +837,7 @@ export type Database = {
             columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "user_metadata"
-            referencedColumns: ["id"]
+            referencedColumns: ["user_id"]
           },
         ]
       }
@@ -847,21 +847,21 @@ export type Database = {
           crm_id: string | null
           email: string | null
           google_integrated: boolean | null
-          id: string
+          user_id: string
         }
         Insert: {
           created_at?: string
           crm_id?: string | null
           email?: string | null
           google_integrated?: boolean | null
-          id: string
+          user_id: string
         }
         Update: {
           created_at?: string
           crm_id?: string | null
           email?: string | null
           google_integrated?: boolean | null
-          id?: string
+          user_id?: string
         }
         Relationships: []
       }
@@ -947,7 +947,7 @@ export type Database = {
             columns: ["user_id"]
             isOneToOne: true
             referencedRelation: "user_metadata"
-            referencedColumns: ["id"]
+            referencedColumns: ["user_id"]
           },
         ]
       }

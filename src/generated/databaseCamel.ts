@@ -832,7 +832,7 @@ export type DatabaseCamel = {
             columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "user_metadata"
-            referencedColumns: ["id"]
+            referencedColumns: ["user_id"]
           },
         ]
       }
@@ -842,21 +842,21 @@ export type DatabaseCamel = {
           crmId: string | null
           email: string | null
           googleIntegrated: boolean | null
-          id: string
+          userId: string
         }
         Insert: {
           createdAt?: string
           crmId?: string | null
           email?: string | null
           googleIntegrated?: boolean | null
-          id: string
+          userId: string
         }
         Update: {
           createdAt?: string
           crmId?: string | null
           email?: string | null
           googleIntegrated?: boolean | null
-          id?: string
+          userId?: string
         }
         Relationships: []
       }
@@ -942,7 +942,7 @@ export type DatabaseCamel = {
             columns: ["user_id"]
             isOneToOne: true
             referencedRelation: "user_metadata"
-            referencedColumns: ["id"]
+            referencedColumns: ["user_id"]
           },
         ]
       }
