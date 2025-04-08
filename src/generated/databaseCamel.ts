@@ -926,23 +926,23 @@ export type DatabaseCamel = {
         Row: {
           createdAt: string
           crmId: string | null
+          email: string | null
           googleIntegrated: boolean | null
           id: string
-          name: string | null
         }
         Insert: {
           createdAt?: string
           crmId?: string | null
+          email?: string | null
           googleIntegrated?: boolean | null
           id: string
-          name?: string | null
         }
         Update: {
           createdAt?: string
           crmId?: string | null
+          email?: string | null
           googleIntegrated?: boolean | null
           id?: string
-          name?: string | null
         }
         Relationships: []
       }

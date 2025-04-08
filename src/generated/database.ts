@@ -931,23 +931,23 @@ export type Database = {
         Row: {
           created_at: string
           crm_id: string | null
+          email: string | null
           google_integrated: boolean | null
           id: string
-          name: string | null
         }
         Insert: {
           created_at?: string
           crm_id?: string | null
+          email?: string | null
           google_integrated?: boolean | null
           id: string
-          name?: string | null
         }
         Update: {
           created_at?: string
           crm_id?: string | null
+          email?: string | null
           google_integrated?: boolean | null
           id?: string
-          name?: string | null
         }
         Relationships: []
       }
