@@ -836,10 +836,34 @@ export type Database = {
             foreignKeyName: "user_client_types_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: false
-            referencedRelation: "users"
+            referencedRelation: "user_metadata"
             referencedColumns: ["id"]
           },
         ]
+      }
+      user_metadata: {
+        Row: {
+          created_at: string
+          crm_id: string | null
+          email: string | null
+          google_integrated: boolean | null
+          id: string
+        }
+        Insert: {
+          created_at?: string
+          crm_id?: string | null
+          email?: string | null
+          google_integrated?: boolean | null
+          id: string
+        }
+        Update: {
+          created_at?: string
+          crm_id?: string | null
+          email?: string | null
+          google_integrated?: boolean | null
+          id?: string
+        }
+        Relationships: []
       }
       user_rankings: {
         Row: {
@@ -922,34 +946,10 @@ export type Database = {
             foreignKeyName: "user_settings_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: true
-            referencedRelation: "users"
+            referencedRelation: "user_metadata"
             referencedColumns: ["id"]
           },
         ]
-      }
-      users: {
-        Row: {
-          created_at: string
-          crm_id: string | null
-          email: string | null
-          google_integrated: boolean | null
-          id: string
-        }
-        Insert: {
-          created_at?: string
-          crm_id?: string | null
-          email?: string | null
-          google_integrated?: boolean | null
-          id: string
-        }
-        Update: {
-          created_at?: string
-          crm_id?: string | null
-          email?: string | null
-          google_integrated?: boolean | null
-          id?: string
-        }
-        Relationships: []
       }
     }
     Views: {

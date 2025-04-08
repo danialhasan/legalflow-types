@@ -831,10 +831,34 @@ export type DatabaseCamel = {
             foreignKeyName: "user_client_types_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: false
-            referencedRelation: "users"
+            referencedRelation: "user_metadata"
             referencedColumns: ["id"]
           },
         ]
+      }
+      userMetadata: {
+        Row: {
+          createdAt: string
+          crmId: string | null
+          email: string | null
+          googleIntegrated: boolean | null
+          id: string
+        }
+        Insert: {
+          createdAt?: string
+          crmId?: string | null
+          email?: string | null
+          googleIntegrated?: boolean | null
+          id: string
+        }
+        Update: {
+          createdAt?: string
+          crmId?: string | null
+          email?: string | null
+          googleIntegrated?: boolean | null
+          id?: string
+        }
+        Relationships: []
       }
       userRankings: {
         Row: {
@@ -917,34 +941,10 @@ export type DatabaseCamel = {
             foreignKeyName: "user_settings_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: true
-            referencedRelation: "users"
+            referencedRelation: "user_metadata"
             referencedColumns: ["id"]
           },
         ]
-      }
-      users: {
-        Row: {
-          createdAt: string
-          crmId: string | null
-          email: string | null
-          googleIntegrated: boolean | null
-          id: string
-        }
-        Insert: {
-          createdAt?: string
-          crmId?: string | null
-          email?: string | null
-          googleIntegrated?: boolean | null
-          id: string
-        }
-        Update: {
-          createdAt?: string
-          crmId?: string | null
-          email?: string | null
-          googleIntegrated?: boolean | null
-          id?: string
-        }
-        Relationships: []
       }
     }
     Views: {
