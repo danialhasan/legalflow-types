@@ -1303,7 +1303,6 @@ export type Database = {
       google_emails: {
         Row: {
           bcc_emails: string[] | null
-          body_html: string | null
           body_text: string | null
           cc_emails: string[] | null
           created_at: string
@@ -1326,7 +1325,6 @@ export type Database = {
         }
         Insert: {
           bcc_emails?: string[] | null
-          body_html?: string | null
           body_text?: string | null
           cc_emails?: string[] | null
           created_at?: string
@@ -1349,7 +1347,6 @@ export type Database = {
         }
         Update: {
           bcc_emails?: string[] | null
-          body_html?: string | null
           body_text?: string | null
           cc_emails?: string[] | null
           created_at?: string

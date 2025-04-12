@@ -1298,7 +1298,6 @@ export type DatabaseCamel = {
       googleEmails: {
         Row: {
           bccEmails: string[] | null
-          bodyHtml: string | null
           bodyText: string | null
           ccEmails: string[] | null
           createdAt: string
@@ -1321,7 +1320,6 @@ export type DatabaseCamel = {
         }
         Insert: {
           bccEmails?: string[] | null
-          bodyHtml?: string | null
           bodyText?: string | null
           ccEmails?: string[] | null
           createdAt?: string
@@ -1344,7 +1342,6 @@ export type DatabaseCamel = {
         }
         Update: {
           bccEmails?: string[] | null
-          bodyHtml?: string | null
           bodyText?: string | null
           ccEmails?: string[] | null
           createdAt?: string
