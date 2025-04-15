@@ -13,7 +13,7 @@ export type Database = {
         Row: {
           created_at: string
           deal_context_graph_id: string | null
-          embedding: string
+          embedding: string | null
           extracted_input_id: string | null
           id: string
           source_id: string
@@ -24,7 +24,7 @@ export type Database = {
         Insert: {
           created_at?: string
           deal_context_graph_id?: string | null
-          embedding: string
+          embedding?: string | null
           extracted_input_id?: string | null
           id?: string
           source_id: string
@@ -35,7 +35,7 @@ export type Database = {
         Update: {
           created_at?: string
           deal_context_graph_id?: string | null
-          embedding?: string
+          embedding?: string | null
           extracted_input_id?: string | null
           id?: string
           source_id?: string
@@ -127,7 +127,6 @@ export type Database = {
         Row: {
           created_at: string
           deal_summary: string | null
-          deal_summary_embedding: string | null
           enriched_extracted_data: Json
           id: string
           source_input_ids: string[] | null
@@ -136,7 +135,6 @@ export type Database = {
         Insert: {
           created_at?: string
           deal_summary?: string | null
-          deal_summary_embedding?: string | null
           enriched_extracted_data: Json
           id?: string
           source_input_ids?: string[] | null
@@ -145,7 +143,6 @@ export type Database = {
         Update: {
           created_at?: string
           deal_summary?: string | null
-          deal_summary_embedding?: string | null
           enriched_extracted_data?: Json
           id?: string
           source_input_ids?: string[] | null
@@ -805,6 +802,54 @@ export type Database = {
           tags?: string[] | null
           type?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      ui_agents: {
+        Row: {
+          agent_name: string
+          created_at: string | null
+          description: string | null
+          id: string
+          last_action: string | null
+          last_action_at: string | null
+          linked_entity_id: string | null
+          linked_entity_type: string | null
+          metadata: Json | null
+          role: string
+          status: string
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          agent_name: string
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          last_action?: string | null
+          last_action_at?: string | null
+          linked_entity_id?: string | null
+          linked_entity_type?: string | null
+          metadata?: Json | null
+          role: string
+          status?: string
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          agent_name?: string
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          last_action?: string | null
+          last_action_at?: string | null
+          linked_entity_id?: string | null
+          linked_entity_type?: string | null
+          metadata?: Json | null
+          role?: string
+          status?: string
+          updated_at?: string | null
+          user_id?: string
         }
         Relationships: []
       }

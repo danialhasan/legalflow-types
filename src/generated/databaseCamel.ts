@@ -8,7 +8,7 @@ export type DatabaseCamel = {
         Row: {
           createdAt: string
           dealContextGraphId: string | null
-          embedding: string
+          embedding: string | null
           extractedInputId: string | null
           id: string
           sourceId: string
@@ -19,7 +19,7 @@ export type DatabaseCamel = {
         Insert: {
           createdAt?: string
           dealContextGraphId?: string | null
-          embedding: string
+          embedding?: string | null
           extractedInputId?: string | null
           id?: string
           sourceId: string
@@ -30,7 +30,7 @@ export type DatabaseCamel = {
         Update: {
           createdAt?: string
           dealContextGraphId?: string | null
-          embedding?: string
+          embedding?: string | null
           extractedInputId?: string | null
           id?: string
           sourceId?: string
@@ -122,7 +122,6 @@ export type DatabaseCamel = {
         Row: {
           createdAt: string
           dealSummary: string | null
-          dealSummaryEmbedding: string | null
           enrichedExtractedData: Json
           id: string
           sourceInputIds: string[] | null
@@ -131,7 +130,6 @@ export type DatabaseCamel = {
         Insert: {
           createdAt?: string
           dealSummary?: string | null
-          dealSummaryEmbedding?: string | null
           enrichedExtractedData: Json
           id?: string
           sourceInputIds?: string[] | null
@@ -140,7 +138,6 @@ export type DatabaseCamel = {
         Update: {
           createdAt?: string
           dealSummary?: string | null
-          dealSummaryEmbedding?: string | null
           enrichedExtractedData?: Json
           id?: string
           sourceInputIds?: string[] | null
@@ -800,6 +797,54 @@ export type DatabaseCamel = {
           tags?: string[] | null
           type?: string
           updatedAt?: string
+        }
+        Relationships: []
+      }
+      uiAgents: {
+        Row: {
+          agentName: string
+          createdAt: string | null
+          description: string | null
+          id: string
+          lastAction: string | null
+          lastActionAt: string | null
+          linkedEntityId: string | null
+          linkedEntityType: string | null
+          metadata: Json | null
+          role: string
+          status: string
+          updatedAt: string | null
+          userId: string
+        }
+        Insert: {
+          agentName: string
+          createdAt?: string | null
+          description?: string | null
+          id?: string
+          lastAction?: string | null
+          lastActionAt?: string | null
+          linkedEntityId?: string | null
+          linkedEntityType?: string | null
+          metadata?: Json | null
+          role: string
+          status?: string
+          updatedAt?: string | null
+          userId: string
+        }
+        Update: {
+          agentName?: string
+          createdAt?: string | null
+          description?: string | null
+          id?: string
+          lastAction?: string | null
+          lastActionAt?: string | null
+          linkedEntityId?: string | null
+          linkedEntityType?: string | null
+          metadata?: Json | null
+          role?: string
+          status?: string
+          updatedAt?: string | null
+          userId?: string
         }
         Relationships: []
       }
