@@ -60,6 +60,36 @@ export type Database = {
           },
         ]
       }
+      client_context_graph_canon_blocks: {
+        Row: {
+          canon_block_id: string
+          client_context_graph_id: string
+        }
+        Insert: {
+          canon_block_id: string
+          client_context_graph_id: string
+        }
+        Update: {
+          canon_block_id?: string
+          client_context_graph_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "client_context_graph_canon_blocks_canon_block_id_fkey"
+            columns: ["canon_block_id"]
+            isOneToOne: false
+            referencedRelation: "canon_blocks"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "client_context_graph_canon_blocks_client_context_graph_id_fkey"
+            columns: ["client_context_graph_id"]
+            isOneToOne: false
+            referencedRelation: "client_context_graphs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       client_context_graphs: {
         Row: {
           client_summary: string | null
@@ -127,6 +157,7 @@ export type Database = {
         Row: {
           created_at: string
           deal_summary: string | null
+          deal_summary_embedding: string | null
           enriched_extracted_data: Json
           id: string
           source_input_ids: string[] | null
@@ -135,6 +166,7 @@ export type Database = {
         Insert: {
           created_at?: string
           deal_summary?: string | null
+          deal_summary_embedding?: string | null
           enriched_extracted_data: Json
           id?: string
           source_input_ids?: string[] | null
@@ -143,6 +175,7 @@ export type Database = {
         Update: {
           created_at?: string
           deal_summary?: string | null
+          deal_summary_embedding?: string | null
           enriched_extracted_data?: Json
           id?: string
           source_input_ids?: string[] | null

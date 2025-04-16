@@ -55,6 +55,36 @@ export type DatabaseCamel = {
           },
         ]
       }
+      clientContextGraphCanonBlocks: {
+        Row: {
+          canonBlockId: string
+          clientContextGraphId: string
+        }
+        Insert: {
+          canonBlockId: string
+          clientContextGraphId: string
+        }
+        Update: {
+          canonBlockId?: string
+          clientContextGraphId?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "client_context_graph_canon_blocks_canon_block_id_fkey"
+            columns: ["canon_block_id"]
+            isOneToOne: false
+            referencedRelation: "canon_blocks"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "client_context_graph_canon_blocks_client_context_graph_id_fkey"
+            columns: ["client_context_graph_id"]
+            isOneToOne: false
+            referencedRelation: "client_context_graphs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       clientContextGraphs: {
         Row: {
           clientSummary: string | null
@@ -122,6 +152,7 @@ export type DatabaseCamel = {
         Row: {
           createdAt: string
           dealSummary: string | null
+          dealSummaryEmbedding: string | null
           enrichedExtractedData: Json
           id: string
           sourceInputIds: string[] | null
@@ -130,6 +161,7 @@ export type DatabaseCamel = {
         Insert: {
           createdAt?: string
           dealSummary?: string | null
+          dealSummaryEmbedding?: string | null
           enrichedExtractedData: Json
           id?: string
           sourceInputIds?: string[] | null
@@ -138,6 +170,7 @@ export type DatabaseCamel = {
         Update: {
           createdAt?: string
           dealSummary?: string | null
+          dealSummaryEmbedding?: string | null
           enrichedExtractedData?: Json
           id?: string
           sourceInputIds?: string[] | null
