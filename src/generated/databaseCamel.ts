@@ -866,6 +866,27 @@ export type DatabaseCamel = {
         }
         Relationships: []
       }
+      sources: {
+        Row: {
+          createdAt: string
+          id: string
+          kind: Database["core"]["Enums"]["source_kind"]
+          userId: string | null
+        }
+        Insert: {
+          createdAt?: string
+          id?: string
+          kind: Database["core"]["Enums"]["source_kind"]
+          userId?: string | null
+        }
+        Update: {
+          createdAt?: string
+          id?: string
+          kind?: Database["core"]["Enums"]["source_kind"]
+          userId?: string | null
+        }
+        Relationships: []
+      }
       uiAgents: {
         Row: {
           agentName: string
@@ -1073,6 +1094,7 @@ export type DatabaseCamel = {
         | "admin"
         | "other"
       communicationStyle: "friendly" | "professional" | "direct" | "casual"
+      sourceKind: "email" | "document" | "calendar_event"
       workSchedule:
         | "mornings"
         | "evenings"

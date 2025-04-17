@@ -871,6 +871,27 @@ export type Database = {
         }
         Relationships: []
       }
+      sources: {
+        Row: {
+          created_at: string
+          id: string
+          kind: Database["core"]["Enums"]["source_kind"]
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          kind: Database["core"]["Enums"]["source_kind"]
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          kind?: Database["core"]["Enums"]["source_kind"]
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       ui_agents: {
         Row: {
           agent_name: string
@@ -1078,6 +1099,7 @@ export type Database = {
         | "admin"
         | "other"
       communication_style: "friendly" | "professional" | "direct" | "casual"
+      source_kind: "email" | "document" | "calendar_event"
       work_schedule:
         | "mornings"
         | "evenings"
@@ -2578,6 +2600,7 @@ export const Constants = {
         "other",
       ],
       communication_style: ["friendly", "professional", "direct", "casual"],
+      source_kind: ["email", "document", "calendar_event"],
       work_schedule: [
         "mornings",
         "evenings",
