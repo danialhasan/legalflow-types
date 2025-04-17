@@ -216,36 +216,6 @@ export type Database = {
         }
         Relationships: []
       }
-      feedback_reports: {
-        Row: {
-          created_at: string | null
-          id: string
-          kind: string
-          payload: Json
-          resolved: boolean | null
-          resolved_at: string | null
-          user_id: string | null
-        }
-        Insert: {
-          created_at?: string | null
-          id?: string
-          kind?: string
-          payload: Json
-          resolved?: boolean | null
-          resolved_at?: string | null
-          user_id?: string | null
-        }
-        Update: {
-          created_at?: string | null
-          id?: string
-          kind?: string
-          payload?: Json
-          resolved?: boolean | null
-          resolved_at?: string | null
-          user_id?: string | null
-        }
-        Relationships: []
-      }
       processed_calendar_events: {
         Row: {
           created_at: string
@@ -808,6 +778,36 @@ export type Database = {
           status?: string | null
           updated_at?: string
           user_id?: string
+        }
+        Relationships: []
+      }
+      feedback_reports: {
+        Row: {
+          created_at: string
+          id: string
+          kind: string
+          payload: Json
+          resolved: boolean | null
+          resolved_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          kind?: string
+          payload: Json
+          resolved?: boolean | null
+          resolved_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          kind?: string
+          payload?: Json
+          resolved?: boolean | null
+          resolved_at?: string | null
+          user_id?: string | null
         }
         Relationships: []
       }

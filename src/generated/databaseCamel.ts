@@ -211,36 +211,6 @@ export type DatabaseCamel = {
         }
         Relationships: []
       }
-      feedbackReports: {
-        Row: {
-          createdAt: string | null
-          id: string
-          kind: string
-          payload: Json
-          resolved: boolean | null
-          resolvedAt: string | null
-          userId: string | null
-        }
-        Insert: {
-          createdAt?: string | null
-          id?: string
-          kind?: string
-          payload: Json
-          resolved?: boolean | null
-          resolvedAt?: string | null
-          userId?: string | null
-        }
-        Update: {
-          createdAt?: string | null
-          id?: string
-          kind?: string
-          payload?: Json
-          resolved?: boolean | null
-          resolvedAt?: string | null
-          userId?: string | null
-        }
-        Relationships: []
-      }
       processedCalendarEvents: {
         Row: {
           createdAt: string
@@ -803,6 +773,36 @@ export type DatabaseCamel = {
           status?: string | null
           updatedAt?: string
           userId?: string
+        }
+        Relationships: []
+      }
+      feedbackReports: {
+        Row: {
+          createdAt: string
+          id: string
+          kind: string
+          payload: Json
+          resolved: boolean | null
+          resolvedAt: string | null
+          userId: string | null
+        }
+        Insert: {
+          createdAt?: string
+          id?: string
+          kind?: string
+          payload: Json
+          resolved?: boolean | null
+          resolvedAt?: string | null
+          userId?: string | null
+        }
+        Update: {
+          createdAt?: string
+          id?: string
+          kind?: string
+          payload?: Json
+          resolved?: boolean | null
+          resolvedAt?: string | null
+          userId?: string | null
         }
         Relationships: []
       }
