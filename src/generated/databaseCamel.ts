@@ -784,6 +784,7 @@ export type DatabaseCamel = {
           payload: Json
           resolved: boolean | null
           resolvedAt: string | null
+          screenshotId: string | null
           userId: string | null
         }
         Insert: {
@@ -793,6 +794,7 @@ export type DatabaseCamel = {
           payload: Json
           resolved?: boolean | null
           resolvedAt?: string | null
+          screenshotId?: string | null
           userId?: string | null
         }
         Update: {
@@ -802,6 +804,7 @@ export type DatabaseCamel = {
           payload?: Json
           resolved?: boolean | null
           resolvedAt?: string | null
+          screenshotId?: string | null
           userId?: string | null
         }
         Relationships: []
