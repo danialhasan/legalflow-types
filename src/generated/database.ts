@@ -16,10 +16,10 @@ export type Database = {
           embedding: string | null
           extracted_input_id: string | null
           id: string
-          source_id: string
-          source_subtype: string | null
-          source_type: string
+          source_id: string | null
           summary: string
+          tags: string[] | null
+          type: Database["core"]["Enums"]["canon_block_type"] | null
         }
         Insert: {
           created_at?: string
@@ -27,10 +27,10 @@ export type Database = {
           embedding?: string | null
           extracted_input_id?: string | null
           id?: string
-          source_id: string
-          source_subtype?: string | null
-          source_type: string
+          source_id?: string | null
           summary: string
+          tags?: string[] | null
+          type?: Database["core"]["Enums"]["canon_block_type"] | null
         }
         Update: {
           created_at?: string
@@ -38,10 +38,10 @@ export type Database = {
           embedding?: string | null
           extracted_input_id?: string | null
           id?: string
-          source_id?: string
-          source_subtype?: string | null
-          source_type?: string
+          source_id?: string | null
           summary?: string
+          tags?: string[] | null
+          type?: Database["core"]["Enums"]["canon_block_type"] | null
         }
         Relationships: [
           {
@@ -54,7 +54,7 @@ export type Database = {
           {
             foreignKeyName: "canon_blocks_extracted_input_id_fkey"
             columns: ["extracted_input_id"]
-            isOneToOne: false
+            isOneToOne: true
             referencedRelation: "extracted_inputs"
             referencedColumns: ["id"]
           },
@@ -191,7 +191,6 @@ export type Database = {
           model_version: string | null
           processing_time_ms: number | null
           source_id: string
-          source_type: string | null
           updated_at: string
         }
         Insert: {
@@ -201,7 +200,6 @@ export type Database = {
           model_version?: string | null
           processing_time_ms?: number | null
           source_id: string
-          source_type?: string | null
           updated_at?: string
         }
         Update: {
@@ -211,7 +209,6 @@ export type Database = {
           model_version?: string | null
           processing_time_ms?: number | null
           source_id?: string
-          source_type?: string | null
           updated_at?: string
         }
         Relationships: []
@@ -875,19 +872,19 @@ export type Database = {
         Row: {
           created_at: string
           id: string
-          kind: Database["core"]["Enums"]["source_kind"]
+          type: Database["core"]["Enums"]["source_type"]
           user_id: string | null
         }
         Insert: {
           created_at?: string
           id?: string
-          kind: Database["core"]["Enums"]["source_kind"]
+          type: Database["core"]["Enums"]["source_type"]
           user_id?: string | null
         }
         Update: {
           created_at?: string
           id?: string
-          kind?: Database["core"]["Enums"]["source_kind"]
+          type?: Database["core"]["Enums"]["source_type"]
           user_id?: string | null
         }
         Relationships: []
@@ -1098,8 +1095,32 @@ export type Database = {
         | "listing_agent"
         | "admin"
         | "other"
+      canon_block_type:
+        | "client_message"
+        | "broker_message"
+        | "lead_introduction"
+        | "follow_up_required"
+        | "lease_application"
+        | "purchase_offer"
+        | "contract_addendum"
+        | "condition_removal"
+        | "deposit_confirmation"
+        | "inspection_report"
+        | "compliance_notice"
+        | "showing_schedule"
+        | "closing_schedule"
+        | "milestone_reminder"
+        | "deal_brief"
+        | "negotiation_advice"
+        | "risk_flag"
+        | "client_education"
+        | "network_insight"
+        | "drip_campaign_step"
+        | "voice_call_script"
+        | "referral_request"
+        | "other"
       communication_style: "friendly" | "professional" | "direct" | "casual"
-      source_kind: "email" | "document" | "calendar_event"
+      source_type: "email" | "document" | "calendar_event"
       work_schedule:
         | "mornings"
         | "evenings"
@@ -2599,8 +2620,33 @@ export const Constants = {
         "admin",
         "other",
       ],
+      canon_block_type: [
+        "client_message",
+        "broker_message",
+        "lead_introduction",
+        "follow_up_required",
+        "lease_application",
+        "purchase_offer",
+        "contract_addendum",
+        "condition_removal",
+        "deposit_confirmation",
+        "inspection_report",
+        "compliance_notice",
+        "showing_schedule",
+        "closing_schedule",
+        "milestone_reminder",
+        "deal_brief",
+        "negotiation_advice",
+        "risk_flag",
+        "client_education",
+        "network_insight",
+        "drip_campaign_step",
+        "voice_call_script",
+        "referral_request",
+        "other",
+      ],
       communication_style: ["friendly", "professional", "direct", "casual"],
-      source_kind: ["email", "document", "calendar_event"],
+      source_type: ["email", "document", "calendar_event"],
       work_schedule: [
         "mornings",
         "evenings",

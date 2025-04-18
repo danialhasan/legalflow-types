@@ -11,10 +11,10 @@ export type DatabaseCamel = {
           embedding: string | null
           extractedInputId: string | null
           id: string
-          sourceId: string
-          sourceSubtype: string | null
-          sourceType: string
+          sourceId: string | null
           summary: string
+          tags: string[] | null
+          type: Database["core"]["Enums"]["canon_block_type"] | null
         }
         Insert: {
           createdAt?: string
@@ -22,10 +22,10 @@ export type DatabaseCamel = {
           embedding?: string | null
           extractedInputId?: string | null
           id?: string
-          sourceId: string
-          sourceSubtype?: string | null
-          sourceType: string
+          sourceId?: string | null
           summary: string
+          tags?: string[] | null
+          type?: Database["core"]["Enums"]["canon_block_type"] | null
         }
         Update: {
           createdAt?: string
@@ -33,10 +33,10 @@ export type DatabaseCamel = {
           embedding?: string | null
           extractedInputId?: string | null
           id?: string
-          sourceId?: string
-          sourceSubtype?: string | null
-          sourceType?: string
+          sourceId?: string | null
           summary?: string
+          tags?: string[] | null
+          type?: Database["core"]["Enums"]["canon_block_type"] | null
         }
         Relationships: [
           {
@@ -49,7 +49,7 @@ export type DatabaseCamel = {
           {
             foreignKeyName: "canon_blocks_extracted_input_id_fkey"
             columns: ["extracted_input_id"]
-            isOneToOne: false
+            isOneToOne: true
             referencedRelation: "extracted_inputs"
             referencedColumns: ["id"]
           },
@@ -186,7 +186,6 @@ export type DatabaseCamel = {
           modelVersion: string | null
           processingTimeMs: number | null
           sourceId: string
-          sourceType: string | null
           updatedAt: string
         }
         Insert: {
@@ -196,7 +195,6 @@ export type DatabaseCamel = {
           modelVersion?: string | null
           processingTimeMs?: number | null
           sourceId: string
-          sourceType?: string | null
           updatedAt?: string
         }
         Update: {
@@ -206,7 +204,6 @@ export type DatabaseCamel = {
           modelVersion?: string | null
           processingTimeMs?: number | null
           sourceId?: string
-          sourceType?: string | null
           updatedAt?: string
         }
         Relationships: []
@@ -870,19 +867,19 @@ export type DatabaseCamel = {
         Row: {
           createdAt: string
           id: string
-          kind: Database["core"]["Enums"]["source_kind"]
+          type: Database["core"]["Enums"]["source_type"]
           userId: string | null
         }
         Insert: {
           createdAt?: string
           id?: string
-          kind: Database["core"]["Enums"]["source_kind"]
+          type: Database["core"]["Enums"]["source_type"]
           userId?: string | null
         }
         Update: {
           createdAt?: string
           id?: string
-          kind?: Database["core"]["Enums"]["source_kind"]
+          type?: Database["core"]["Enums"]["source_type"]
           userId?: string | null
         }
         Relationships: []
@@ -1093,8 +1090,32 @@ export type DatabaseCamel = {
         | "listing_agent"
         | "admin"
         | "other"
+      canonBlockType:
+        | "client_message"
+        | "broker_message"
+        | "lead_introduction"
+        | "follow_up_required"
+        | "lease_application"
+        | "purchase_offer"
+        | "contract_addendum"
+        | "condition_removal"
+        | "deposit_confirmation"
+        | "inspection_report"
+        | "compliance_notice"
+        | "showing_schedule"
+        | "closing_schedule"
+        | "milestone_reminder"
+        | "deal_brief"
+        | "negotiation_advice"
+        | "risk_flag"
+        | "client_education"
+        | "network_insight"
+        | "drip_campaign_step"
+        | "voice_call_script"
+        | "referral_request"
+        | "other"
       communicationStyle: "friendly" | "professional" | "direct" | "casual"
-      sourceKind: "email" | "document" | "calendar_event"
+      sourceType: "email" | "document" | "calendar_event"
       workSchedule:
         | "mornings"
         | "evenings"
