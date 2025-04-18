@@ -92,32 +92,29 @@ export type Database = {
       }
       client_context_graphs: {
         Row: {
-          client_summary: string | null
-          client_summary_embedding: string | null
           created_at: string | null
           enriched_extracted_data: Json
           id: string
-          source_input_ids: string[] | null
+          summary: string | null
+          summary_embedding: string | null
           updated_at: string | null
           user_id: string | null
         }
         Insert: {
-          client_summary?: string | null
-          client_summary_embedding?: string | null
           created_at?: string | null
           enriched_extracted_data: Json
           id?: string
-          source_input_ids?: string[] | null
+          summary?: string | null
+          summary_embedding?: string | null
           updated_at?: string | null
           user_id?: string | null
         }
         Update: {
-          client_summary?: string | null
-          client_summary_embedding?: string | null
           created_at?: string | null
           enriched_extracted_data?: Json
           id?: string
-          source_input_ids?: string[] | null
+          summary?: string | null
+          summary_embedding?: string | null
           updated_at?: string | null
           user_id?: string | null
         }
@@ -156,29 +153,26 @@ export type Database = {
       deal_context_graphs: {
         Row: {
           created_at: string
-          deal_summary: string | null
-          deal_summary_embedding: string | null
           enriched_extracted_data: Json
           id: string
-          source_input_ids: string[] | null
+          summary: string | null
+          summary_embedding: string | null
           updated_at: string
         }
         Insert: {
           created_at?: string
-          deal_summary?: string | null
-          deal_summary_embedding?: string | null
           enriched_extracted_data: Json
           id?: string
-          source_input_ids?: string[] | null
+          summary?: string | null
+          summary_embedding?: string | null
           updated_at?: string
         }
         Update: {
           created_at?: string
-          deal_summary?: string | null
-          deal_summary_embedding?: string | null
           enriched_extracted_data?: Json
           id?: string
-          source_input_ids?: string[] | null
+          summary?: string | null
+          summary_embedding?: string | null
           updated_at?: string
         }
         Relationships: []

@@ -87,32 +87,29 @@ export type DatabaseCamel = {
       }
       clientContextGraphs: {
         Row: {
-          clientSummary: string | null
-          clientSummaryEmbedding: string | null
           createdAt: string | null
           enrichedExtractedData: Json
           id: string
-          sourceInputIds: string[] | null
+          summary: string | null
+          summaryEmbedding: string | null
           updatedAt: string | null
           userId: string | null
         }
         Insert: {
-          clientSummary?: string | null
-          clientSummaryEmbedding?: string | null
           createdAt?: string | null
           enrichedExtractedData: Json
           id?: string
-          sourceInputIds?: string[] | null
+          summary?: string | null
+          summaryEmbedding?: string | null
           updatedAt?: string | null
           userId?: string | null
         }
         Update: {
-          clientSummary?: string | null
-          clientSummaryEmbedding?: string | null
           createdAt?: string | null
           enrichedExtractedData?: Json
           id?: string
-          sourceInputIds?: string[] | null
+          summary?: string | null
+          summaryEmbedding?: string | null
           updatedAt?: string | null
           userId?: string | null
         }
@@ -151,29 +148,26 @@ export type DatabaseCamel = {
       dealContextGraphs: {
         Row: {
           createdAt: string
-          dealSummary: string | null
-          dealSummaryEmbedding: string | null
           enrichedExtractedData: Json
           id: string
-          sourceInputIds: string[] | null
+          summary: string | null
+          summaryEmbedding: string | null
           updatedAt: string
         }
         Insert: {
           createdAt?: string
-          dealSummary?: string | null
-          dealSummaryEmbedding?: string | null
           enrichedExtractedData: Json
           id?: string
-          sourceInputIds?: string[] | null
+          summary?: string | null
+          summaryEmbedding?: string | null
           updatedAt?: string
         }
         Update: {
           createdAt?: string
-          dealSummary?: string | null
-          dealSummaryEmbedding?: string | null
           enrichedExtractedData?: Json
           id?: string
-          sourceInputIds?: string[] | null
+          summary?: string | null
+          summaryEmbedding?: string | null
           updatedAt?: string
         }
         Relationships: []
