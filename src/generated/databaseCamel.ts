@@ -153,6 +153,7 @@ export type DatabaseCamel = {
           summary: string | null
           summaryEmbedding: string | null
           updatedAt: string
+          userId: string | null
         }
         Insert: {
           createdAt?: string
@@ -161,6 +162,7 @@ export type DatabaseCamel = {
           summary?: string | null
           summaryEmbedding?: string | null
           updatedAt?: string
+          userId?: string | null
         }
         Update: {
           createdAt?: string
@@ -169,6 +171,7 @@ export type DatabaseCamel = {
           summary?: string | null
           summaryEmbedding?: string | null
           updatedAt?: string
+          userId?: string | null
         }
         Relationships: []
       }
