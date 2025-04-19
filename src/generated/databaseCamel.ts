@@ -13,8 +13,6 @@ export type DatabaseCamel = {
           id: string
           sourceId: string | null
           summary: string
-          tags: string[] | null
-          type: Database["core"]["Enums"]["canon_block_type"] | null
         }
         Insert: {
           createdAt?: string
@@ -24,8 +22,6 @@ export type DatabaseCamel = {
           id?: string
           sourceId?: string | null
           summary: string
-          tags?: string[] | null
-          type?: Database["core"]["Enums"]["canon_block_type"] | null
         }
         Update: {
           createdAt?: string
@@ -35,8 +31,6 @@ export type DatabaseCamel = {
           id?: string
           sourceId?: string | null
           summary?: string
-          tags?: string[] | null
-          type?: Database["core"]["Enums"]["canon_block_type"] | null
         }
         Relationships: [
           {
@@ -372,7 +366,30 @@ export type DatabaseCamel = {
       }
     }
     Enums: {
-      [_ in never]: never
+      canonBlockType:
+        | "client_message"
+        | "broker_message"
+        | "lead_introduction"
+        | "follow_up_required"
+        | "lease_application"
+        | "purchase_offer"
+        | "contract_addendum"
+        | "condition_removal"
+        | "deposit_confirmation"
+        | "inspection_report"
+        | "compliance_notice"
+        | "showing_schedule"
+        | "closing_schedule"
+        | "milestone_reminder"
+        | "deal_brief"
+        | "negotiation_advice"
+        | "risk_flag"
+        | "client_education"
+        | "network_insight"
+        | "drip_campaign_step"
+        | "voice_call_script"
+        | "referral_request"
+        | "other"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -1122,30 +1139,6 @@ export type DatabaseCamel = {
         | "buyer_agent"
         | "listing_agent"
         | "admin"
-        | "other"
-      canonBlockType:
-        | "client_message"
-        | "broker_message"
-        | "lead_introduction"
-        | "follow_up_required"
-        | "lease_application"
-        | "purchase_offer"
-        | "contract_addendum"
-        | "condition_removal"
-        | "deposit_confirmation"
-        | "inspection_report"
-        | "compliance_notice"
-        | "showing_schedule"
-        | "closing_schedule"
-        | "milestone_reminder"
-        | "deal_brief"
-        | "negotiation_advice"
-        | "risk_flag"
-        | "client_education"
-        | "network_insight"
-        | "drip_campaign_step"
-        | "voice_call_script"
-        | "referral_request"
         | "other"
       communicationStyle: "friendly" | "professional" | "direct" | "casual"
       sourceType: "email" | "document" | "calendar_event"

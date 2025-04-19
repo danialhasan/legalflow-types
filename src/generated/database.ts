@@ -18,8 +18,6 @@ export type Database = {
           id: string
           source_id: string | null
           summary: string
-          tags: string[] | null
-          type: Database["core"]["Enums"]["canon_block_type"] | null
         }
         Insert: {
           created_at?: string
@@ -29,8 +27,6 @@ export type Database = {
           id?: string
           source_id?: string | null
           summary: string
-          tags?: string[] | null
-          type?: Database["core"]["Enums"]["canon_block_type"] | null
         }
         Update: {
           created_at?: string
@@ -40,8 +36,6 @@ export type Database = {
           id?: string
           source_id?: string | null
           summary?: string
-          tags?: string[] | null
-          type?: Database["core"]["Enums"]["canon_block_type"] | null
         }
         Relationships: [
           {
@@ -377,7 +371,30 @@ export type Database = {
       }
     }
     Enums: {
-      [_ in never]: never
+      canon_block_type:
+        | "client_message"
+        | "broker_message"
+        | "lead_introduction"
+        | "follow_up_required"
+        | "lease_application"
+        | "purchase_offer"
+        | "contract_addendum"
+        | "condition_removal"
+        | "deposit_confirmation"
+        | "inspection_report"
+        | "compliance_notice"
+        | "showing_schedule"
+        | "closing_schedule"
+        | "milestone_reminder"
+        | "deal_brief"
+        | "negotiation_advice"
+        | "risk_flag"
+        | "client_education"
+        | "network_insight"
+        | "drip_campaign_step"
+        | "voice_call_script"
+        | "referral_request"
+        | "other"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -1127,30 +1144,6 @@ export type Database = {
         | "buyer_agent"
         | "listing_agent"
         | "admin"
-        | "other"
-      canon_block_type:
-        | "client_message"
-        | "broker_message"
-        | "lead_introduction"
-        | "follow_up_required"
-        | "lease_application"
-        | "purchase_offer"
-        | "contract_addendum"
-        | "condition_removal"
-        | "deposit_confirmation"
-        | "inspection_report"
-        | "compliance_notice"
-        | "showing_schedule"
-        | "closing_schedule"
-        | "milestone_reminder"
-        | "deal_brief"
-        | "negotiation_advice"
-        | "risk_flag"
-        | "client_education"
-        | "network_insight"
-        | "drip_campaign_step"
-        | "voice_call_script"
-        | "referral_request"
         | "other"
       communication_style: "friendly" | "professional" | "direct" | "casual"
       source_type: "email" | "document" | "calendar_event"
@@ -2635,24 +2628,7 @@ export type CompositeTypes<
 
 export const Constants = {
   analysis: {
-    Enums: {},
-  },
-  assistant: {
-    Enums: {},
-  },
-  compliance: {
-    Enums: {},
-  },
-  core: {
     Enums: {
-      agent_role: [
-        "realtor",
-        "leasing_agent",
-        "buyer_agent",
-        "listing_agent",
-        "admin",
-        "other",
-      ],
       canon_block_type: [
         "client_message",
         "broker_message",
@@ -2676,6 +2652,24 @@ export const Constants = {
         "drip_campaign_step",
         "voice_call_script",
         "referral_request",
+        "other",
+      ],
+    },
+  },
+  assistant: {
+    Enums: {},
+  },
+  compliance: {
+    Enums: {},
+  },
+  core: {
+    Enums: {
+      agent_role: [
+        "realtor",
+        "leasing_agent",
+        "buyer_agent",
+        "listing_agent",
+        "admin",
         "other",
       ],
       communication_style: ["friendly", "professional", "direct", "casual"],
