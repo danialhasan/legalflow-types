@@ -359,7 +359,22 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      match_similar_client_context_graphs: {
+        Args: { _query: string; _top_k?: number; _user_id?: string }
+        Returns: {
+          client_context_graph_id: string
+          summary: string
+          score: number
+        }[]
+      }
+      match_similar_deal_context_graphs: {
+        Args: { _query: string; _top_k?: number; _user_id?: string }
+        Returns: {
+          deal_context_graph_id: string
+          summary: string
+          score: number
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never
@@ -700,6 +715,27 @@ export type Database = {
   }
   core: {
     Tables: {
+      beta_signups: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          payload: Json | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          payload?: Json | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          payload?: Json | null
+        }
+        Relationships: []
+      }
       client_types: {
         Row: {
           created_at: string

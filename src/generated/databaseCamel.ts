@@ -354,7 +354,22 @@ export type DatabaseCamel = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      matchSimilarClientContextGraphs: {
+        Args: { Query: string; TopK?: number; UserId?: string }
+        Returns: {
+          clientContextGraphId: string
+          summary: string
+          score: number
+        }[]
+      }
+      matchSimilarDealContextGraphs: {
+        Args: { Query: string; TopK?: number; UserId?: string }
+        Returns: {
+          dealContextGraphId: string
+          summary: string
+          score: number
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never
@@ -695,6 +710,27 @@ export type DatabaseCamel = {
   }
   core: {
     Tables: {
+      betaSignups: {
+        Row: {
+          createdAt: string
+          email: string
+          id: string
+          payload: Json | null
+        }
+        Insert: {
+          createdAt?: string
+          email: string
+          id?: string
+          payload?: Json | null
+        }
+        Update: {
+          createdAt?: string
+          email?: string
+          id?: string
+          payload?: Json | null
+        }
+        Relationships: []
+      }
       clientTypes: {
         Row: {
           createdAt: string
