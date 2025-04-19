@@ -18,7 +18,7 @@ export type Database = {
           id: string
           source_id: string | null
           summary: string
-          tags: Database["analysis"]["Enums"]["canon_block_type"][] | null
+          tags: Database["analysis"]["Enums"]["canon_block_tag"][] | null
         }
         Insert: {
           created_at?: string
@@ -28,7 +28,7 @@ export type Database = {
           id?: string
           source_id?: string | null
           summary: string
-          tags?: Database["analysis"]["Enums"]["canon_block_type"][] | null
+          tags?: Database["analysis"]["Enums"]["canon_block_tag"][] | null
         }
         Update: {
           created_at?: string
@@ -38,7 +38,7 @@ export type Database = {
           id?: string
           source_id?: string | null
           summary?: string
-          tags?: Database["analysis"]["Enums"]["canon_block_type"][] | null
+          tags?: Database["analysis"]["Enums"]["canon_block_tag"][] | null
         }
         Relationships: [
           {
@@ -374,7 +374,7 @@ export type Database = {
       }
     }
     Enums: {
-      canon_block_type:
+      canon_block_tag:
         | "client_message"
         | "broker_message"
         | "lead_introduction"
@@ -2632,7 +2632,7 @@ export type CompositeTypes<
 export const Constants = {
   analysis: {
     Enums: {
-      canon_block_type: [
+      canon_block_tag: [
         "client_message",
         "broker_message",
         "lead_introduction",

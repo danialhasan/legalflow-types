@@ -13,7 +13,7 @@ export type DatabaseCamel = {
           id: string
           sourceId: string | null
           summary: string
-          tags: Database["analysis"]["Enums"]["canon_block_type"][] | null
+          tags: Database["analysis"]["Enums"]["canon_block_tag"][] | null
         }
         Insert: {
           createdAt?: string
@@ -23,7 +23,7 @@ export type DatabaseCamel = {
           id?: string
           sourceId?: string | null
           summary: string
-          tags?: Database["analysis"]["Enums"]["canon_block_type"][] | null
+          tags?: Database["analysis"]["Enums"]["canon_block_tag"][] | null
         }
         Update: {
           createdAt?: string
@@ -33,7 +33,7 @@ export type DatabaseCamel = {
           id?: string
           sourceId?: string | null
           summary?: string
-          tags?: Database["analysis"]["Enums"]["canon_block_type"][] | null
+          tags?: Database["analysis"]["Enums"]["canon_block_tag"][] | null
         }
         Relationships: [
           {
@@ -369,7 +369,7 @@ export type DatabaseCamel = {
       }
     }
     Enums: {
-      canonBlockType:
+      canonBlockTag:
         | "client_message"
         | "broker_message"
         | "lead_introduction"
