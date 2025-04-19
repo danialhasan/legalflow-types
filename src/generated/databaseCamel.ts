@@ -13,6 +13,7 @@ export type DatabaseCamel = {
           id: string
           sourceId: string | null
           summary: string
+          tags: Database["analysis"]["Enums"]["canon_block_type"][] | null
         }
         Insert: {
           createdAt?: string
@@ -22,6 +23,7 @@ export type DatabaseCamel = {
           id?: string
           sourceId?: string | null
           summary: string
+          tags?: Database["analysis"]["Enums"]["canon_block_type"][] | null
         }
         Update: {
           createdAt?: string
@@ -31,6 +33,7 @@ export type DatabaseCamel = {
           id?: string
           sourceId?: string | null
           summary?: string
+          tags?: Database["analysis"]["Enums"]["canon_block_type"][] | null
         }
         Relationships: [
           {

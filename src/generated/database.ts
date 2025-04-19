@@ -18,6 +18,7 @@ export type Database = {
           id: string
           source_id: string | null
           summary: string
+          tags: Database["analysis"]["Enums"]["canon_block_type"][] | null
         }
         Insert: {
           created_at?: string
@@ -27,6 +28,7 @@ export type Database = {
           id?: string
           source_id?: string | null
           summary: string
+          tags?: Database["analysis"]["Enums"]["canon_block_type"][] | null
         }
         Update: {
           created_at?: string
@@ -36,6 +38,7 @@ export type Database = {
           id?: string
           source_id?: string | null
           summary?: string
+          tags?: Database["analysis"]["Enums"]["canon_block_type"][] | null
         }
         Relationships: [
           {
