@@ -1330,8 +1330,11 @@ export type DatabaseCamel = {
           createdAt: string
           documentId: string
           emailId: string
+          fileName: string
           gmailAttachmentId: string
           id: string
+          mimeType: string
+          publicUrl: string
           updatedAt: string
           userId: string
         }
@@ -1339,8 +1342,11 @@ export type DatabaseCamel = {
           createdAt?: string
           documentId: string
           emailId: string
+          fileName: string
           gmailAttachmentId: string
           id?: string
+          mimeType: string
+          publicUrl: string
           updatedAt?: string
           userId: string
         }
@@ -1348,8 +1354,11 @@ export type DatabaseCamel = {
           createdAt?: string
           documentId?: string
           emailId?: string
+          fileName?: string
           gmailAttachmentId?: string
           id?: string
+          mimeType?: string
+          publicUrl?: string
           updatedAt?: string
           userId?: string
         }

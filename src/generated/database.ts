@@ -1335,8 +1335,11 @@ export type Database = {
           created_at: string
           document_id: string
           email_id: string
+          file_name: string
           gmail_attachment_id: string
           id: string
+          mime_type: string
+          public_url: string
           updated_at: string
           user_id: string
         }
@@ -1344,8 +1347,11 @@ export type Database = {
           created_at?: string
           document_id: string
           email_id: string
+          file_name: string
           gmail_attachment_id: string
           id?: string
+          mime_type: string
+          public_url: string
           updated_at?: string
           user_id: string
         }
@@ -1353,8 +1359,11 @@ export type Database = {
           created_at?: string
           document_id?: string
           email_id?: string
+          file_name?: string
           gmail_attachment_id?: string
           id?: string
+          mime_type?: string
+          public_url?: string
           updated_at?: string
           user_id?: string
         }
