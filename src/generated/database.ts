@@ -1323,60 +1323,41 @@ export type Database = {
     Tables: {
       email_attachments: {
         Row: {
-          chunkr_task_id: string | null
-          chunks_count: number | null
           created_at: string
-          document_id: string | null
+          document_id: string
           email_id: string
-          file_name: string
           gmail_attachment_id: string
           id: string
-          mime_type: string
-          processed_at: string | null
-          public_url: string | null
-          size: number
-          status: string | null
-          storage_path: string | null
           updated_at: string
           user_id: string
         }
         Insert: {
-          chunkr_task_id?: string | null
-          chunks_count?: number | null
           created_at?: string
-          document_id?: string | null
+          document_id: string
           email_id: string
-          file_name: string
           gmail_attachment_id: string
           id?: string
-          mime_type: string
-          processed_at?: string | null
-          public_url?: string | null
-          size: number
-          status?: string | null
-          storage_path?: string | null
           updated_at?: string
           user_id: string
         }
         Update: {
-          chunkr_task_id?: string | null
-          chunks_count?: number | null
           created_at?: string
-          document_id?: string | null
+          document_id?: string
           email_id?: string
-          file_name?: string
           gmail_attachment_id?: string
           id?: string
-          mime_type?: string
-          processed_at?: string | null
-          public_url?: string | null
-          size?: number
-          status?: string | null
-          storage_path?: string | null
           updated_at?: string
           user_id?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "email_attachments_email_id_fkey"
+            columns: ["email_id"]
+            isOneToOne: false
+            referencedRelation: "google_emails"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       google_calendar_events: {
         Row: {

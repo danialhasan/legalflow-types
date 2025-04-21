@@ -1318,60 +1318,41 @@ export type DatabaseCamel = {
     Tables: {
       emailAttachments: {
         Row: {
-          chunkrTaskId: string | null
-          chunksCount: number | null
           createdAt: string
-          documentId: string | null
+          documentId: string
           emailId: string
-          fileName: string
           gmailAttachmentId: string
           id: string
-          mimeType: string
-          processedAt: string | null
-          publicUrl: string | null
-          size: number
-          status: string | null
-          storagePath: string | null
           updatedAt: string
           userId: string
         }
         Insert: {
-          chunkrTaskId?: string | null
-          chunksCount?: number | null
           createdAt?: string
-          documentId?: string | null
+          documentId: string
           emailId: string
-          fileName: string
           gmailAttachmentId: string
           id?: string
-          mimeType: string
-          processedAt?: string | null
-          publicUrl?: string | null
-          size: number
-          status?: string | null
-          storagePath?: string | null
           updatedAt?: string
           userId: string
         }
         Update: {
-          chunkrTaskId?: string | null
-          chunksCount?: number | null
           createdAt?: string
-          documentId?: string | null
+          documentId?: string
           emailId?: string
-          fileName?: string
           gmailAttachmentId?: string
           id?: string
-          mimeType?: string
-          processedAt?: string | null
-          publicUrl?: string | null
-          size?: number
-          status?: string | null
-          storagePath?: string | null
           updatedAt?: string
           userId?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "email_attachments_email_id_fkey"
+            columns: ["email_id"]
+            isOneToOne: false
+            referencedRelation: "google_emails"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       googleCalendarEvents: {
         Row: {
