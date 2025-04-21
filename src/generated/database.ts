@@ -61,14 +61,17 @@ export type Database = {
         Row: {
           canon_block_id: string
           client_context_graph_id: string
+          id: string
         }
         Insert: {
           canon_block_id: string
           client_context_graph_id: string
+          id?: string
         }
         Update: {
           canon_block_id?: string
           client_context_graph_id?: string
+          id?: string
         }
         Relationships: [
           {
@@ -1169,16 +1172,19 @@ export type Database = {
           deal_id: string
           document_id: string
           document_type: string
+          id: string
         }
         Insert: {
           deal_id: string
           document_id: string
           document_type: string
+          id?: string
         }
         Update: {
           deal_id?: string
           document_id?: string
           document_type?: string
+          id?: string
         }
         Relationships: [
           {
@@ -1265,6 +1271,7 @@ export type Database = {
           group_id: string | null
           id: string
           metadata: Json | null
+          source_id: string | null
           status: string | null
           storage_object_id: string | null
           user_id: string | null
@@ -1278,6 +1285,7 @@ export type Database = {
           group_id?: string | null
           id?: string
           metadata?: Json | null
+          source_id?: string | null
           status?: string | null
           storage_object_id?: string | null
           user_id?: string | null
@@ -1291,6 +1299,7 @@ export type Database = {
           group_id?: string | null
           id?: string
           metadata?: Json | null
+          source_id?: string | null
           status?: string | null
           storage_object_id?: string | null
           user_id?: string | null
@@ -1349,15 +1358,7 @@ export type Database = {
           updated_at?: string
           user_id?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "email_attachments_email_id_fkey"
-            columns: ["email_id"]
-            isOneToOne: false
-            referencedRelation: "google_emails"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       google_calendar_events: {
         Row: {
@@ -1481,6 +1482,7 @@ export type Database = {
           received_at: string | null
           sent_at: string | null
           snippet: string | null
+          source_id: string | null
           subject: string | null
           thread_id: string
           to_emails: string[]
@@ -1503,6 +1505,7 @@ export type Database = {
           received_at?: string | null
           sent_at?: string | null
           snippet?: string | null
+          source_id?: string | null
           subject?: string | null
           thread_id: string
           to_emails: string[]
@@ -1525,6 +1528,7 @@ export type Database = {
           received_at?: string | null
           sent_at?: string | null
           snippet?: string | null
+          source_id?: string | null
           subject?: string | null
           thread_id?: string
           to_emails?: string[]

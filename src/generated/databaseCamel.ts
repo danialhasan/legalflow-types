@@ -56,14 +56,17 @@ export type DatabaseCamel = {
         Row: {
           canonBlockId: string
           clientContextGraphId: string
+          id: string
         }
         Insert: {
           canonBlockId: string
           clientContextGraphId: string
+          id?: string
         }
         Update: {
           canonBlockId?: string
           clientContextGraphId?: string
+          id?: string
         }
         Relationships: [
           {
@@ -1164,16 +1167,19 @@ export type DatabaseCamel = {
           dealId: string
           documentId: string
           documentType: string
+          id: string
         }
         Insert: {
           dealId: string
           documentId: string
           documentType: string
+          id?: string
         }
         Update: {
           dealId?: string
           documentId?: string
           documentType?: string
+          id?: string
         }
         Relationships: [
           {
@@ -1260,6 +1266,7 @@ export type DatabaseCamel = {
           groupId: string | null
           id: string
           metadata: Json | null
+          sourceId: string | null
           status: string | null
           storageObjectId: string | null
           userId: string | null
@@ -1273,6 +1280,7 @@ export type DatabaseCamel = {
           groupId?: string | null
           id?: string
           metadata?: Json | null
+          sourceId?: string | null
           status?: string | null
           storageObjectId?: string | null
           userId?: string | null
@@ -1286,6 +1294,7 @@ export type DatabaseCamel = {
           groupId?: string | null
           id?: string
           metadata?: Json | null
+          sourceId?: string | null
           status?: string | null
           storageObjectId?: string | null
           userId?: string | null
@@ -1344,15 +1353,7 @@ export type DatabaseCamel = {
           updatedAt?: string
           userId?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "email_attachments_email_id_fkey"
-            columns: ["email_id"]
-            isOneToOne: false
-            referencedRelation: "google_emails"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       googleCalendarEvents: {
         Row: {
@@ -1476,6 +1477,7 @@ export type DatabaseCamel = {
           receivedAt: string | null
           sentAt: string | null
           snippet: string | null
+          sourceId: string | null
           subject: string | null
           threadId: string
           toEmails: string[]
@@ -1498,6 +1500,7 @@ export type DatabaseCamel = {
           receivedAt?: string | null
           sentAt?: string | null
           snippet?: string | null
+          sourceId?: string | null
           subject?: string | null
           threadId: string
           toEmails: string[]
@@ -1520,6 +1523,7 @@ export type DatabaseCamel = {
           receivedAt?: string | null
           sentAt?: string | null
           snippet?: string | null
+          sourceId?: string | null
           subject?: string | null
           threadId?: string
           toEmails?: string[]
