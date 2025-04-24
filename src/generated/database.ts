@@ -421,6 +421,7 @@ export type Database = {
           priority: number
           reasoning: string
           recommended_action: string
+          status: string
           triggered_at: string
           user_id: string
         }
@@ -436,6 +437,7 @@ export type Database = {
           priority: number
           reasoning: string
           recommended_action: string
+          status?: string
           triggered_at?: string
           user_id: string
         }
@@ -451,6 +453,7 @@ export type Database = {
           priority?: number
           reasoning?: string
           recommended_action?: string
+          status?: string
           triggered_at?: string
           user_id?: string
         }

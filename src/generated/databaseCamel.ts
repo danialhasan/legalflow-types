@@ -416,6 +416,7 @@ export type DatabaseCamel = {
           priority: number
           reasoning: string
           recommendedAction: string
+          status: string
           triggeredAt: string
           userId: string
         }
@@ -431,6 +432,7 @@ export type DatabaseCamel = {
           priority: number
           reasoning: string
           recommendedAction: string
+          status?: string
           triggeredAt?: string
           userId: string
         }
@@ -446,6 +448,7 @@ export type DatabaseCamel = {
           priority?: number
           reasoning?: string
           recommendedAction?: string
+          status?: string
           triggeredAt?: string
           userId?: string
         }
