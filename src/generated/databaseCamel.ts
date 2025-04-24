@@ -413,9 +413,9 @@ export type DatabaseCamel = {
           executor: string
           id: string
           messageTemplate: string | null
+          params: Json
           priority: number
           reasoning: string
-          recommendedAction: string
           status: string
           triggeredAt: string
           userId: string
@@ -429,9 +429,9 @@ export type DatabaseCamel = {
           executor: string
           id?: string
           messageTemplate?: string | null
+          params: Json
           priority: number
           reasoning: string
-          recommendedAction: string
           status?: string
           triggeredAt?: string
           userId: string
@@ -445,9 +445,9 @@ export type DatabaseCamel = {
           executor?: string
           id?: string
           messageTemplate?: string | null
+          params?: Json
           priority?: number
           reasoning?: string
-          recommendedAction?: string
           status?: string
           triggeredAt?: string
           userId?: string

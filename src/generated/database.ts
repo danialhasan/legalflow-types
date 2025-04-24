@@ -418,9 +418,9 @@ export type Database = {
           executor: string
           id: string
           message_template: string | null
+          params: Json
           priority: number
           reasoning: string
-          recommended_action: string
           status: string
           triggered_at: string
           user_id: string
@@ -434,9 +434,9 @@ export type Database = {
           executor: string
           id?: string
           message_template?: string | null
+          params: Json
           priority: number
           reasoning: string
-          recommended_action: string
           status?: string
           triggered_at?: string
           user_id: string
@@ -450,9 +450,9 @@ export type Database = {
           executor?: string
           id?: string
           message_template?: string | null
+          params?: Json
           priority?: number
           reasoning?: string
-          recommended_action?: string
           status?: string
           triggered_at?: string
           user_id?: string
