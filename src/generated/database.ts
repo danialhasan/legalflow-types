@@ -1340,6 +1340,7 @@ export type Database = {
           id: string
           mime_type: string
           public_url: string
+          source_id: string | null
           updated_at: string
           user_id: string
         }
@@ -1352,6 +1353,7 @@ export type Database = {
           id?: string
           mime_type: string
           public_url: string
+          source_id?: string | null
           updated_at?: string
           user_id: string
         }
@@ -1364,10 +1366,19 @@ export type Database = {
           id?: string
           mime_type?: string
           public_url?: string
+          source_id?: string | null
           updated_at?: string
           user_id?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "email_attachments_email_id_fkey"
+            columns: ["email_id"]
+            isOneToOne: false
+            referencedRelation: "google_emails"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       google_calendar_events: {
         Row: {
@@ -1859,68 +1870,7 @@ export type Database = {
           updated_at?: string
           user_id?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "client_mappings_deal_id_fkey"
-            columns: ["deal_id"]
-            isOneToOne: false
-            referencedRelation: "deals"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      clients: {
-        Row: {
-          address: Json | null
-          contact_info: Json | null
-          created_at: string
-          crm_id: string
-          date_of_birth: string | null
-          group_ids: string[] | null
-          id: string
-          metadata: Json | null
-          name: string | null
-          notes: string | null
-          possession_date: string | null
-          updated_at: string
-        }
-        Insert: {
-          address?: Json | null
-          contact_info?: Json | null
-          created_at?: string
-          crm_id: string
-          date_of_birth?: string | null
-          group_ids?: string[] | null
-          id?: string
-          metadata?: Json | null
-          name?: string | null
-          notes?: string | null
-          possession_date?: string | null
-          updated_at?: string
-        }
-        Update: {
-          address?: Json | null
-          contact_info?: Json | null
-          created_at?: string
-          crm_id?: string
-          date_of_birth?: string | null
-          group_ids?: string[] | null
-          id?: string
-          metadata?: Json | null
-          name?: string | null
-          notes?: string | null
-          possession_date?: string | null
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "clients_crm_id_fkey"
-            columns: ["crm_id"]
-            isOneToOne: false
-            referencedRelation: "crms"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       crms: {
         Row: {
@@ -1943,36 +1893,6 @@ export type Database = {
         }
         Relationships: []
       }
-      deals: {
-        Row: {
-          created_at: string
-          deal_type: string
-          id: string
-          metadata: Json | null
-          name: string
-          status: string
-          user_id: string
-        }
-        Insert: {
-          created_at?: string
-          deal_type: string
-          id?: string
-          metadata?: Json | null
-          name: string
-          status: string
-          user_id: string
-        }
-        Update: {
-          created_at?: string
-          deal_type?: string
-          id?: string
-          metadata?: Json | null
-          name?: string
-          status?: string
-          user_id?: string
-        }
-        Relationships: []
-      }
       lead_deal_matches: {
         Row: {
           deal_id: string
@@ -1990,13 +1910,6 @@ export type Database = {
           match_score?: number
         }
         Relationships: [
-          {
-            foreignKeyName: "lead_deal_matches_deal_id_fkey"
-            columns: ["deal_id"]
-            isOneToOne: false
-            referencedRelation: "deals"
-            referencedColumns: ["id"]
-          },
           {
             foreignKeyName: "lead_deal_matches_lead_id_fkey"
             columns: ["lead_id"]

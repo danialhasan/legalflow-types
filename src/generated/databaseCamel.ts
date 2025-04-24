@@ -1335,6 +1335,7 @@ export type DatabaseCamel = {
           id: string
           mimeType: string
           publicUrl: string
+          sourceId: string | null
           updatedAt: string
           userId: string
         }
@@ -1347,6 +1348,7 @@ export type DatabaseCamel = {
           id?: string
           mimeType: string
           publicUrl: string
+          sourceId?: string | null
           updatedAt?: string
           userId: string
         }
@@ -1359,10 +1361,19 @@ export type DatabaseCamel = {
           id?: string
           mimeType?: string
           publicUrl?: string
+          sourceId?: string | null
           updatedAt?: string
           userId?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "email_attachments_email_id_fkey"
+            columns: ["email_id"]
+            isOneToOne: false
+            referencedRelation: "google_emails"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       googleCalendarEvents: {
         Row: {
@@ -1854,68 +1865,7 @@ export type DatabaseCamel = {
           updatedAt?: string
           userId?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "client_mappings_deal_id_fkey"
-            columns: ["deal_id"]
-            isOneToOne: false
-            referencedRelation: "deals"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      clients: {
-        Row: {
-          address: Json | null
-          contactInfo: Json | null
-          createdAt: string
-          crmId: string
-          dateOfBirth: string | null
-          groupIds: string[] | null
-          id: string
-          metadata: Json | null
-          name: string | null
-          notes: string | null
-          possessionDate: string | null
-          updatedAt: string
-        }
-        Insert: {
-          address?: Json | null
-          contactInfo?: Json | null
-          createdAt?: string
-          crmId: string
-          dateOfBirth?: string | null
-          groupIds?: string[] | null
-          id?: string
-          metadata?: Json | null
-          name?: string | null
-          notes?: string | null
-          possessionDate?: string | null
-          updatedAt?: string
-        }
-        Update: {
-          address?: Json | null
-          contactInfo?: Json | null
-          createdAt?: string
-          crmId?: string
-          dateOfBirth?: string | null
-          groupIds?: string[] | null
-          id?: string
-          metadata?: Json | null
-          name?: string | null
-          notes?: string | null
-          possessionDate?: string | null
-          updatedAt?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "clients_crm_id_fkey"
-            columns: ["crm_id"]
-            isOneToOne: false
-            referencedRelation: "crms"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       crms: {
         Row: {
@@ -1938,36 +1888,6 @@ export type DatabaseCamel = {
         }
         Relationships: []
       }
-      deals: {
-        Row: {
-          createdAt: string
-          dealType: string
-          id: string
-          metadata: Json | null
-          name: string
-          status: string
-          userId: string
-        }
-        Insert: {
-          createdAt?: string
-          dealType: string
-          id?: string
-          metadata?: Json | null
-          name: string
-          status: string
-          userId: string
-        }
-        Update: {
-          createdAt?: string
-          dealType?: string
-          id?: string
-          metadata?: Json | null
-          name?: string
-          status?: string
-          userId?: string
-        }
-        Relationships: []
-      }
       leadDealMatches: {
         Row: {
           dealId: string
@@ -1985,13 +1905,6 @@ export type DatabaseCamel = {
           matchScore?: number
         }
         Relationships: [
-          {
-            foreignKeyName: "lead_deal_matches_deal_id_fkey"
-            columns: ["deal_id"]
-            isOneToOne: false
-            referencedRelation: "deals"
-            referencedColumns: ["id"]
-          },
           {
             foreignKeyName: "lead_deal_matches_lead_id_fkey"
             columns: ["lead_id"]
