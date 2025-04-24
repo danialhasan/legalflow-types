@@ -415,13 +415,13 @@ export type Database = {
           deal_id: string | null
           executed_at: string | null
           execution_strategy: string
+          executor: string
           id: string
           message_template: string | null
           priority: number
           reasoning: string
           recommended_action: string
           triggered_at: string
-          type: string
           user_id: string
         }
         Insert: {
@@ -430,13 +430,13 @@ export type Database = {
           deal_id?: string | null
           executed_at?: string | null
           execution_strategy?: string
+          executor: string
           id?: string
           message_template?: string | null
           priority: number
           reasoning: string
           recommended_action: string
           triggered_at?: string
-          type: string
           user_id: string
         }
         Update: {
@@ -445,13 +445,13 @@ export type Database = {
           deal_id?: string | null
           executed_at?: string | null
           execution_strategy?: string
+          executor?: string
           id?: string
           message_template?: string | null
           priority?: number
           reasoning?: string
           recommended_action?: string
           triggered_at?: string
-          type?: string
           user_id?: string
         }
         Relationships: []

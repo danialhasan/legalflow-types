@@ -410,13 +410,13 @@ export type DatabaseCamel = {
           dealId: string | null
           executedAt: string | null
           executionStrategy: string
+          executor: string
           id: string
           messageTemplate: string | null
           priority: number
           reasoning: string
           recommendedAction: string
           triggeredAt: string
-          type: string
           userId: string
         }
         Insert: {
@@ -425,13 +425,13 @@ export type DatabaseCamel = {
           dealId?: string | null
           executedAt?: string | null
           executionStrategy?: string
+          executor: string
           id?: string
           messageTemplate?: string | null
           priority: number
           reasoning: string
           recommendedAction: string
           triggeredAt?: string
-          type: string
           userId: string
         }
         Update: {
@@ -440,13 +440,13 @@ export type DatabaseCamel = {
           dealId?: string | null
           executedAt?: string | null
           executionStrategy?: string
+          executor?: string
           id?: string
           messageTemplate?: string | null
           priority?: number
           reasoning?: string
           recommendedAction?: string
           triggeredAt?: string
-          type?: string
           userId?: string
         }
         Relationships: []
