@@ -634,7 +634,16 @@ export type DatabaseCamel = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      recommendationExecutionStrategy:
+        | "manual"
+        | "automatic"
+        | "informational"
+      recommendationExecutor:
+        | "send_email"
+        | "schedule_calendar"
+        | "create_task"
+        | "post_crm_note"
+      recommendationStatus: "pending" | "executing" | "executed" | "failed"
     }
     CompositeTypes: {
       [_ in never]: never

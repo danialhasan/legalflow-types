@@ -639,7 +639,16 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      recommendation_execution_strategy:
+        | "manual"
+        | "automatic"
+        | "informational"
+      recommendation_executor:
+        | "send_email"
+        | "schedule_calendar"
+        | "create_task"
+        | "post_crm_note"
+      recommendation_status: "pending" | "executing" | "executed" | "failed"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -2570,7 +2579,20 @@ export const Constants = {
     },
   },
   assistant: {
-    Enums: {},
+    Enums: {
+      recommendation_execution_strategy: [
+        "manual",
+        "automatic",
+        "informational",
+      ],
+      recommendation_executor: [
+        "send_email",
+        "schedule_calendar",
+        "create_task",
+        "post_crm_note",
+      ],
+      recommendation_status: ["pending", "executing", "executed", "failed"],
+    },
   },
   compliance: {
     Enums: {},
