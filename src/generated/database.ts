@@ -120,6 +120,45 @@ export type Database = {
         }
         Relationships: []
       }
+      deal_client_links: {
+        Row: {
+          client_context_graph_id: string
+          created_at: string
+          deal_context_graph_id: string
+          id: string
+          role: string
+        }
+        Insert: {
+          client_context_graph_id: string
+          created_at?: string
+          deal_context_graph_id: string
+          id?: string
+          role: string
+        }
+        Update: {
+          client_context_graph_id?: string
+          created_at?: string
+          deal_context_graph_id?: string
+          id?: string
+          role?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "deal_client_links_client_context_graph_id_fkey"
+            columns: ["client_context_graph_id"]
+            isOneToOne: false
+            referencedRelation: "client_context_graphs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "deal_client_links_deal_context_graph_id_fkey"
+            columns: ["deal_context_graph_id"]
+            isOneToOne: false
+            referencedRelation: "deal_context_graphs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       deal_context_graph_canon_blocks: {
         Row: {
           canon_block_id: string

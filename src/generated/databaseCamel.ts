@@ -115,6 +115,45 @@ export type DatabaseCamel = {
         }
         Relationships: []
       }
+      dealClientLinks: {
+        Row: {
+          clientContextGraphId: string
+          createdAt: string
+          dealContextGraphId: string
+          id: string
+          role: string
+        }
+        Insert: {
+          clientContextGraphId: string
+          createdAt?: string
+          dealContextGraphId: string
+          id?: string
+          role: string
+        }
+        Update: {
+          clientContextGraphId?: string
+          createdAt?: string
+          dealContextGraphId?: string
+          id?: string
+          role?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "deal_client_links_client_context_graph_id_fkey"
+            columns: ["client_context_graph_id"]
+            isOneToOne: false
+            referencedRelation: "client_context_graphs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "deal_client_links_deal_context_graph_id_fkey"
+            columns: ["deal_context_graph_id"]
+            isOneToOne: false
+            referencedRelation: "deal_context_graphs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       dealContextGraphCanonBlocks: {
         Row: {
           canonBlockId: string
