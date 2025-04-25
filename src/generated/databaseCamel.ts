@@ -409,14 +409,14 @@ export type DatabaseCamel = {
           createdAt: string
           dealId: string | null
           executedAt: string | null
-          executionStrategy: string
-          executor: string
+          executionStrategy: Database["assistant"]["Enums"]["recommendation_execution_strategy"]
+          executor: Database["assistant"]["Enums"]["recommendation_executor"]
           id: string
           messageTemplate: string | null
           params: Json
           priority: number
           reasoning: string
-          status: string
+          status: Database["assistant"]["Enums"]["recommendation_status"]
           triggeredAt: string
           userId: string
         }
@@ -425,14 +425,14 @@ export type DatabaseCamel = {
           createdAt?: string
           dealId?: string | null
           executedAt?: string | null
-          executionStrategy?: string
-          executor: string
+          executionStrategy?: Database["assistant"]["Enums"]["recommendation_execution_strategy"]
+          executor: Database["assistant"]["Enums"]["recommendation_executor"]
           id?: string
           messageTemplate?: string | null
           params: Json
           priority: number
           reasoning: string
-          status?: string
+          status?: Database["assistant"]["Enums"]["recommendation_status"]
           triggeredAt?: string
           userId: string
         }
@@ -441,14 +441,14 @@ export type DatabaseCamel = {
           createdAt?: string
           dealId?: string | null
           executedAt?: string | null
-          executionStrategy?: string
-          executor?: string
+          executionStrategy?: Database["assistant"]["Enums"]["recommendation_execution_strategy"]
+          executor?: Database["assistant"]["Enums"]["recommendation_executor"]
           id?: string
           messageTemplate?: string | null
           params?: Json
           priority?: number
           reasoning?: string
-          status?: string
+          status?: Database["assistant"]["Enums"]["recommendation_status"]
           triggeredAt?: string
           userId?: string
         }

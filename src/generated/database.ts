@@ -414,14 +414,14 @@ export type Database = {
           created_at: string
           deal_id: string | null
           executed_at: string | null
-          execution_strategy: string
-          executor: string
+          execution_strategy: Database["assistant"]["Enums"]["recommendation_execution_strategy"]
+          executor: Database["assistant"]["Enums"]["recommendation_executor"]
           id: string
           message_template: string | null
           params: Json
           priority: number
           reasoning: string
-          status: string
+          status: Database["assistant"]["Enums"]["recommendation_status"]
           triggered_at: string
           user_id: string
         }
@@ -430,14 +430,14 @@ export type Database = {
           created_at?: string
           deal_id?: string | null
           executed_at?: string | null
-          execution_strategy?: string
-          executor: string
+          execution_strategy?: Database["assistant"]["Enums"]["recommendation_execution_strategy"]
+          executor: Database["assistant"]["Enums"]["recommendation_executor"]
           id?: string
           message_template?: string | null
           params: Json
           priority: number
           reasoning: string
-          status?: string
+          status?: Database["assistant"]["Enums"]["recommendation_status"]
           triggered_at?: string
           user_id: string
         }
@@ -446,14 +446,14 @@ export type Database = {
           created_at?: string
           deal_id?: string | null
           executed_at?: string | null
-          execution_strategy?: string
-          executor?: string
+          execution_strategy?: Database["assistant"]["Enums"]["recommendation_execution_strategy"]
+          executor?: Database["assistant"]["Enums"]["recommendation_executor"]
           id?: string
           message_template?: string | null
           params?: Json
           priority?: number
           reasoning?: string
-          status?: string
+          status?: Database["assistant"]["Enums"]["recommendation_status"]
           triggered_at?: string
           user_id?: string
         }
