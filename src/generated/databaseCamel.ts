@@ -90,6 +90,13 @@ export type DatabaseCamel = {
             referencedRelation: "client_context_graphs"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "client_context_graph_canon_blocks_client_context_graph_id_fkey"
+            columns: ["client_context_graph_id"]
+            isOneToOne: false
+            referencedRelation: "v_clients_aggregated"
+            referencedColumns: ["id"]
+          },
         ]
       }
       clientContextGraphs: {
@@ -150,6 +157,13 @@ export type DatabaseCamel = {
             columns: ["client_context_graph_id"]
             isOneToOne: false
             referencedRelation: "client_context_graphs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "deal_client_links_client_context_graph_id_fkey"
+            columns: ["client_context_graph_id"]
+            isOneToOne: false
+            referencedRelation: "v_clients_aggregated"
             referencedColumns: ["id"]
           },
           {
@@ -411,6 +425,33 @@ export type DatabaseCamel = {
       }
     }
     Views: {
+      vClientsAggregated: {
+        Row: {
+          canonBlocks: Json | null
+          enrichedExtractedData: Json | null
+          id: string | null
+          recommendations: Json | null
+          summary: string | null
+          userId: string | null
+        }
+        Insert: {
+          canonBlocks?: never
+          enrichedExtractedData?: Json | null
+          id?: string | null
+          recommendations?: never
+          summary?: string | null
+          userId?: string | null
+        }
+        Update: {
+          canonBlocks?: never
+          enrichedExtractedData?: Json | null
+          id?: string | null
+          recommendations?: never
+          summary?: string | null
+          userId?: string | null
+        }
+        Relationships: []
+      }
       vDealsAggregated: {
         Row: {
           canonBlocks: Json | null

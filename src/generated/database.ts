@@ -95,6 +95,13 @@ export type Database = {
             referencedRelation: "client_context_graphs"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "client_context_graph_canon_blocks_client_context_graph_id_fkey"
+            columns: ["client_context_graph_id"]
+            isOneToOne: false
+            referencedRelation: "v_clients_aggregated"
+            referencedColumns: ["id"]
+          },
         ]
       }
       client_context_graphs: {
@@ -155,6 +162,13 @@ export type Database = {
             columns: ["client_context_graph_id"]
             isOneToOne: false
             referencedRelation: "client_context_graphs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "deal_client_links_client_context_graph_id_fkey"
+            columns: ["client_context_graph_id"]
+            isOneToOne: false
+            referencedRelation: "v_clients_aggregated"
             referencedColumns: ["id"]
           },
           {
@@ -416,6 +430,33 @@ export type Database = {
       }
     }
     Views: {
+      v_clients_aggregated: {
+        Row: {
+          canon_blocks: Json | null
+          enriched_extracted_data: Json | null
+          id: string | null
+          recommendations: Json | null
+          summary: string | null
+          user_id: string | null
+        }
+        Insert: {
+          canon_blocks?: never
+          enriched_extracted_data?: Json | null
+          id?: string | null
+          recommendations?: never
+          summary?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          canon_blocks?: never
+          enriched_extracted_data?: Json | null
+          id?: string | null
+          recommendations?: never
+          summary?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       v_deals_aggregated: {
         Row: {
           canon_blocks: Json | null
