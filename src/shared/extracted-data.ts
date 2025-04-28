@@ -211,3 +211,36 @@ export type ReferenceNumberEntity = z.infer<typeof ReferenceNumberEntitySchema>;
 export type RelationshipEntity = z.infer<typeof RelationshipEntitySchema>;
 export type ExtractedEntity = z.infer<typeof ExtractedEntitySchema>;
 export type ExtractedInputData = z.infer<typeof ExtractedInputDataSchema>;
+
+// --- Canon Block and Deal Context Graph Schemas ---
+
+export const CanonBlockSchema = z.object({
+  id: z.string(), // id of the canon block
+  sourceId: z.string().nullable(), // id of the source input (email, document, etc). Inherited from ExtractedInputData.
+  summary: z.string(), // Natural language canonical summary (LLM-generated)
+  embedding: z.string().nullable(), // Vector of the summary
+  createdAt: z.string(),
+  dealContextGraphId: z.string().nullable(), // Reference to parent DealContextGraph
+  tags: z.array(z.enum(CanonBlockTag)).nullable(), // Array of semantic tags for the canon block
+  extractedInputId: z.string().nullable() // id of the extracted input that this canon block is based on
+});
+
+/**
+ * DealContextGraph represents a persistent, evolving memory object for a single deal.
+ * It is composed of many CanonBlocks and enriched structured data over time.
+ * This serves as the semantic context for matching and understanding deal relationships.
+ */
+export const DealContextGraphSchema = z.object({
+  id: z.string(),
+  userId: z.string().nullable(),
+  canonBlocks: z.array(CanonBlockSchema),
+  extractedData: ExtractedInputDataSchema, // Most recent or merged structured data
+  summaryEmbedding: z.string().nullable(),
+  summary: z.string().nullable(),
+  createdAt: z.string(),
+  updatedAt: z.string()
+});
+
+// Export inferred types for CanonBlock and DealContextGraph
+export type CanonBlock = z.infer<typeof CanonBlockSchema>;
+export type DealContextGraph = z.infer<typeof DealContextGraphSchema>;
