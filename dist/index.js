@@ -45,7 +45,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Deals = exports.JobsService = exports.AIService = exports.Telephony = exports.Sales = exports.Integrations = exports.Documents = exports.Core = exports.Compliance = exports.Assistant = exports.Analysis = exports.getTableRef = exports.Table = exports.Schema = void 0;
+exports.JobsService = exports.AIService = exports.Telephony = exports.Sales = exports.Integrations = exports.Documents = exports.Core = exports.Compliance = exports.Assistant = exports.Analysis = exports.getTableRef = exports.Table = exports.Schema = void 0;
 var constants_1 = require("./generated/constants");
 Object.defineProperty(exports, "Schema", { enumerable: true, get: function () { return constants_1.Schema; } });
 Object.defineProperty(exports, "Table", { enumerable: true, get: function () { return constants_1.Table; } });
@@ -65,6 +65,7 @@ __exportStar(require("./shared/enums"), exports);
 __exportStar(require("./shared/primitives"), exports);
 exports.AIService = __importStar(require("./shared/ai-service"));
 exports.JobsService = __importStar(require("./shared/jobs-service"));
-exports.Deals = __importStar(require("./shared/deals"));
+__exportStar(require("./shared/extracted-data"), exports);
+__exportStar(require("./shared/recommendation"), exports);
 // Utilities
 __exportStar(require("./utils/schema-helpers"), exports);

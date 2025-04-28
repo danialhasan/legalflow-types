@@ -1,10 +1,10 @@
 /**
  * @legalflow/types
- * 
+ *
  * Unified database and domain types for LegalFlow services.
  * This package provides access to database types organized by domain
  * (schema), with snake_case preserved for database types.
- * 
+ *
  * Case conversion should be handled at the service level, not in this package.
  */
 
@@ -29,7 +29,8 @@ export * from './shared/enums';
 export * from './shared/primitives';
 export * as AIService from './shared/ai-service';
 export * as JobsService from './shared/jobs-service';
-export * as Deals from './shared/deals';
+export * from './shared/extracted-data';
+export * from './shared/recommendation';
 
 // Utilities
 export * from './utils/schema-helpers';
