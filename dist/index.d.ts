@@ -23,4 +23,5 @@ export * from './shared/enums';
 export * from './shared/primitives';
 export * as AIService from './shared/ai-service';
 export * as JobsService from './shared/jobs-service';
+export * as Deals from './shared/deals';
 export * from './utils/schema-helpers';
