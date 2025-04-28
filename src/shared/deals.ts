@@ -10,6 +10,24 @@ export type Json =
   | { [key: string]: Json | undefined }
   | Json[];
 
+// Interface for Agent Recommendations (based on assistant.agent_recommendations)
+export interface AgentRecommendation {
+  id: string;
+  clientId: string | null;
+  createdAt: string; // ISO timestamp
+  dealId: string | null;
+  executedAt: string | null; // ISO timestamp
+  executionStrategy: Database['assistant']['Enums']['recommendation_execution_strategy'];
+  executor: Database['assistant']['Enums']['recommendation_executor'];
+  messageTemplate: string | null;
+  params: Json; // Using Json for flexibility, can be typed further if needed
+  priority: number;
+  reasoning: string;
+  status: Database['assistant']['Enums']['recommendation_status'];
+  triggeredAt: string; // ISO timestamp
+  userId: string;
+}
+
 // Define the main aggregated structure for a single deal
 // This is the type that should be stored in the Pinia store's deals array.
 export interface AggregatedDealData {
@@ -18,6 +36,7 @@ export interface AggregatedDealData {
   summary: string | null; // From analysis.dealContextGraphs.summary
   user_id: string | null; // From analysis.dealContextGraphs.userId
   canon_blocks: CanonBlock[]; // Aggregated from analysis.canonBlocks and related source tables
+  recommendations: AgentRecommendation[]; // Added recommendations field
 }
 
 // Canonical summary blocks with resolved source information

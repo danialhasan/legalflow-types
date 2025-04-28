@@ -49,6 +49,13 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_context_graph_id"]
+            isOneToOne: false
+            referencedRelation: "v_deals_aggregated"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "canon_blocks_extracted_input_id_fkey"
             columns: ["extracted_input_id"]
             isOneToOne: true
@@ -157,6 +164,13 @@ export type Database = {
             referencedRelation: "deal_context_graphs"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "deal_client_links_deal_context_graph_id_fkey"
+            columns: ["deal_context_graph_id"]
+            isOneToOne: false
+            referencedRelation: "v_deals_aggregated"
+            referencedColumns: ["id"]
+          },
         ]
       }
       deal_context_graph_canon_blocks: {
@@ -185,6 +199,13 @@ export type Database = {
             columns: ["deal_context_graph_id"]
             isOneToOne: false
             referencedRelation: "deal_context_graphs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_context_graph_id"]
+            isOneToOne: false
+            referencedRelation: "v_deals_aggregated"
             referencedColumns: ["id"]
           },
         ]
@@ -395,7 +416,33 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      v_deals_aggregated: {
+        Row: {
+          canon_blocks: Json | null
+          enriched_extracted_data: Json | null
+          id: string | null
+          recommendations: Json | null
+          summary: string | null
+          user_id: string | null
+        }
+        Insert: {
+          canon_blocks?: never
+          enriched_extracted_data?: Json | null
+          id?: string | null
+          recommendations?: never
+          summary?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          canon_blocks?: never
+          enriched_extracted_data?: Json | null
+          id?: string | null
+          recommendations?: never
+          summary?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       match_similar_client_context_graphs: {
