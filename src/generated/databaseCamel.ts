@@ -1275,7 +1275,27 @@ export type DatabaseCamel = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      claimNextJob: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          backoffUntil: string | null
+          completedAt: string | null
+          createdAt: string
+          error: string | null
+          id: string
+          maxRetries: number
+          origin: string | null
+          params: Json
+          priority: string
+          result: Json | null
+          retryCount: number
+          startedAt: string | null
+          status: string
+          tags: string[] | null
+          type: string
+          updatedAt: string
+        }
+      }
     }
     Enums: {
       agentRole:

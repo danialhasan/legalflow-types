@@ -1280,7 +1280,27 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      claim_next_job: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          backoff_until: string | null
+          completed_at: string | null
+          created_at: string
+          error: string | null
+          id: string
+          max_retries: number
+          origin: string | null
+          params: Json
+          priority: string
+          result: Json | null
+          retry_count: number
+          started_at: string | null
+          status: string
+          tags: string[] | null
+          type: string
+          updated_at: string
+        }
+      }
     }
     Enums: {
       agent_role:
