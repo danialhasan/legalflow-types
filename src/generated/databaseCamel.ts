@@ -481,6 +481,10 @@ export type DatabaseCamel = {
       }
     }
     Functions: {
+      linkDealsToClientViaCanonBlock: {
+        Args: { ClientContextGraphId: string; CanonBlockId: string }
+        Returns: number
+      }
       matchSimilarClientContextGraphs: {
         Args: { Query: string; TopK?: number; UserId?: string }
         Returns: {

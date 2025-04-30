@@ -486,6 +486,10 @@ export type Database = {
       }
     }
     Functions: {
+      link_deals_to_client_via_canon_block: {
+        Args: { _client_context_graph_id: string; _canon_block_id: string }
+        Returns: number
+      }
       match_similar_client_context_graphs: {
         Args: { _query: string; _top_k?: number; _user_id?: string }
         Returns: {
