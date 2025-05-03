@@ -27,7 +27,7 @@ export const RecommendationInsertSchema = z.object({
   // Use z.literal with the specific pending status value from the enum
   status: z
     .custom<AgentRecommendationsStatusEnum>()
-    .refine((val) => val === 'pending', {
+    .refine((val: AgentRecommendationsStatusEnum) => val === 'pending', {
       // Refine to ensure it's 'pending'
       message: "Status must be 'pending' on insert"
     })

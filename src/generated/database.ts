@@ -1028,6 +1028,7 @@ export type Database = {
           tags: string[] | null
           type: string
           updated_at: string
+          worker_id: string | null
         }
         Insert: {
           backoff_until?: string | null
@@ -1046,6 +1047,7 @@ export type Database = {
           tags?: string[] | null
           type: string
           updated_at?: string
+          worker_id?: string | null
         }
         Update: {
           backoff_until?: string | null
@@ -1064,6 +1066,7 @@ export type Database = {
           tags?: string[] | null
           type?: string
           updated_at?: string
+          worker_id?: string | null
         }
         Relationships: []
       }
@@ -1285,7 +1288,7 @@ export type Database = {
     }
     Functions: {
       claim_next_job: {
-        Args: Record<PropertyKey, never>
+        Args: Record<PropertyKey, never> | { _worker_id: string }
         Returns: {
           backoff_until: string | null
           completed_at: string | null
@@ -1303,6 +1306,7 @@ export type Database = {
           tags: string[] | null
           type: string
           updated_at: string
+          worker_id: string | null
         }
       }
     }

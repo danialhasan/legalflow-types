@@ -1023,6 +1023,7 @@ export type DatabaseCamel = {
           tags: string[] | null
           type: string
           updatedAt: string
+          workerId: string | null
         }
         Insert: {
           backoffUntil?: string | null
@@ -1041,6 +1042,7 @@ export type DatabaseCamel = {
           tags?: string[] | null
           type: string
           updatedAt?: string
+          workerId?: string | null
         }
         Update: {
           backoffUntil?: string | null
@@ -1059,6 +1061,7 @@ export type DatabaseCamel = {
           tags?: string[] | null
           type?: string
           updatedAt?: string
+          workerId?: string | null
         }
         Relationships: []
       }
@@ -1280,7 +1283,7 @@ export type DatabaseCamel = {
     }
     Functions: {
       claimNextJob: {
-        Args: Record<PropertyKey, never>
+        Args: Record<PropertyKey, never> | { WorkerId: string }
         Returns: {
           backoffUntil: string | null
           completedAt: string | null
@@ -1298,6 +1301,7 @@ export type DatabaseCamel = {
           tags: string[] | null
           type: string
           updatedAt: string
+          workerId: string | null
         }
       }
     }
