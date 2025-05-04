@@ -49,13 +49,6 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "canon_blocks_deal_context_graph_id_fkey"
-            columns: ["deal_context_graph_id"]
-            isOneToOne: false
-            referencedRelation: "v_deals_aggregated"
-            referencedColumns: ["id"]
-          },
-          {
             foreignKeyName: "canon_blocks_extracted_input_id_fkey"
             columns: ["extracted_input_id"]
             isOneToOne: true
@@ -95,20 +88,16 @@ export type Database = {
             referencedRelation: "client_context_graphs"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "client_context_graph_canon_blocks_client_context_graph_id_fkey"
-            columns: ["client_context_graph_id"]
-            isOneToOne: false
-            referencedRelation: "v_clients_aggregated"
-            referencedColumns: ["id"]
-          },
         ]
       }
       client_context_graphs: {
         Row: {
           created_at: string | null
-          enriched_extracted_data: Json
+          enriched_extracted_data:
+            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
+            | null
           id: string
+          profile: Json | null
           summary: string | null
           summary_embedding: string | null
           updated_at: string | null
@@ -116,8 +105,11 @@ export type Database = {
         }
         Insert: {
           created_at?: string | null
-          enriched_extracted_data: Json
+          enriched_extracted_data?:
+            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
+            | null
           id?: string
+          profile?: Json | null
           summary?: string | null
           summary_embedding?: string | null
           updated_at?: string | null
@@ -125,8 +117,11 @@ export type Database = {
         }
         Update: {
           created_at?: string | null
-          enriched_extracted_data?: Json
+          enriched_extracted_data?:
+            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
+            | null
           id?: string
+          profile?: Json | null
           summary?: string | null
           summary_embedding?: string | null
           updated_at?: string | null
@@ -165,24 +160,10 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "deal_client_links_client_context_graph_id_fkey"
-            columns: ["client_context_graph_id"]
-            isOneToOne: false
-            referencedRelation: "v_clients_aggregated"
-            referencedColumns: ["id"]
-          },
-          {
             foreignKeyName: "deal_client_links_deal_context_graph_id_fkey"
             columns: ["deal_context_graph_id"]
             isOneToOne: false
             referencedRelation: "deal_context_graphs"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "deal_client_links_deal_context_graph_id_fkey"
-            columns: ["deal_context_graph_id"]
-            isOneToOne: false
-            referencedRelation: "v_deals_aggregated"
             referencedColumns: ["id"]
           },
         ]
@@ -191,14 +172,17 @@ export type Database = {
         Row: {
           canon_block_id: string
           deal_context_graph_id: string
+          id: string
         }
         Insert: {
           canon_block_id: string
           deal_context_graph_id: string
+          id: string
         }
         Update: {
           canon_block_id?: string
           deal_context_graph_id?: string
+          id?: string
         }
         Relationships: [
           {
@@ -215,19 +199,14 @@ export type Database = {
             referencedRelation: "deal_context_graphs"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
-            columns: ["deal_context_graph_id"]
-            isOneToOne: false
-            referencedRelation: "v_deals_aggregated"
-            referencedColumns: ["id"]
-          },
         ]
       }
       deal_context_graphs: {
         Row: {
           created_at: string
-          enriched_extracted_data: Json
+          enriched_extracted_data:
+            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
+            | null
           id: string
           summary: string | null
           summary_embedding: string | null
@@ -236,7 +215,9 @@ export type Database = {
         }
         Insert: {
           created_at?: string
-          enriched_extracted_data: Json
+          enriched_extracted_data?:
+            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
+            | null
           id?: string
           summary?: string | null
           summary_embedding?: string | null
@@ -245,7 +226,9 @@ export type Database = {
         }
         Update: {
           created_at?: string
-          enriched_extracted_data?: Json
+          enriched_extracted_data?:
+            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
+            | null
           id?: string
           summary?: string | null
           summary_embedding?: string | null
@@ -430,89 +413,7 @@ export type Database = {
       }
     }
     Views: {
-      v_clients_aggregated: {
-        Row: {
-          canon_blocks: Json | null
-          enriched_extracted_data: Json | null
-          id: string | null
-          recommendations: Json | null
-          summary: string | null
-          user_id: string | null
-        }
-        Insert: {
-          canon_blocks?: never
-          enriched_extracted_data?: Json | null
-          id?: string | null
-          recommendations?: never
-          summary?: string | null
-          user_id?: string | null
-        }
-        Update: {
-          canon_blocks?: never
-          enriched_extracted_data?: Json | null
-          id?: string | null
-          recommendations?: never
-          summary?: string | null
-          user_id?: string | null
-        }
-        Relationships: []
-      }
-      v_deals_aggregated: {
-        Row: {
-          canon_blocks: Json | null
-          enriched_extracted_data: Json | null
-          id: string | null
-          recommendations: Json | null
-          summary: string | null
-          user_id: string | null
-        }
-        Insert: {
-          canon_blocks?: never
-          enriched_extracted_data?: Json | null
-          id?: string | null
-          recommendations?: never
-          summary?: string | null
-          user_id?: string | null
-        }
-        Update: {
-          canon_blocks?: never
-          enriched_extracted_data?: Json | null
-          id?: string | null
-          recommendations?: never
-          summary?: string | null
-          user_id?: string | null
-        }
-        Relationships: []
-      }
-      v_inbox_items: {
-        Row: {
-          deal_id: string | null
-          deal_title: string | null
-          email_id: string | null
-          extracted_entities: Json | null
-          from_line: string | null
-          relevant: boolean | null
-          sent_at: string | null
-          status: string | null
-          subject: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "canon_blocks_deal_context_graph_id_fkey"
-            columns: ["deal_id"]
-            isOneToOne: false
-            referencedRelation: "deal_context_graphs"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "canon_blocks_deal_context_graph_id_fkey"
-            columns: ["deal_id"]
-            isOneToOne: false
-            referencedRelation: "v_deals_aggregated"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
+      [_ in never]: never
     }
     Functions: {
       link_deals_to_client_via_canon_block: {
@@ -563,7 +464,13 @@ export type Database = {
         | "other"
     }
     CompositeTypes: {
-      [_ in never]: never
+      extracted_input_data_type: {
+        entities: Json | null
+        relationships: Json | null
+        deal_context: Json | null
+        confidence: Json | null
+        metadata: Json | null
+      }
     }
   }
   assistant: {
@@ -2630,117 +2537,7 @@ export type Database = {
       [_ in never]: never
     }
     Views: {
-      v_client_cards: {
-        Row: {
-          client_id: string | null
-          client_type: string | null
-          deal_count: number | null
-          latest_deal: Json | null
-          name: string | null
-          since: string | null
-          status: string | null
-        }
-        Insert: {
-          client_id?: string | null
-          client_type?: never
-          deal_count?: never
-          latest_deal?: never
-          name?: string | null
-          since?: string | null
-          status?: never
-        }
-        Update: {
-          client_id?: string | null
-          client_type?: never
-          deal_count?: never
-          latest_deal?: never
-          name?: string | null
-          since?: string | null
-          status?: never
-        }
-        Relationships: []
-      }
-      v_client_detail: {
-        Row: {
-          client_id: string | null
-          deals: Json | null
-          enriched_extracted_data: Json | null
-          notes: Json | null
-          recommendations: Json | null
-          summary: string | null
-        }
-        Insert: {
-          client_id?: string | null
-          deals?: never
-          enriched_extracted_data?: Json | null
-          notes?: never
-          recommendations?: never
-          summary?: string | null
-        }
-        Update: {
-          client_id?: string | null
-          deals?: never
-          enriched_extracted_data?: Json | null
-          notes?: never
-          recommendations?: never
-          summary?: string | null
-        }
-        Relationships: []
-      }
-      v_deal_cards: {
-        Row: {
-          deal_id: string | null
-          primary_client: string | null
-          primary_property: string | null
-          recommended_actions: Json | null
-          status: string | null
-          title: string | null
-          updated_at: string | null
-        }
-        Insert: {
-          deal_id?: string | null
-          primary_client?: never
-          primary_property?: never
-          recommended_actions?: never
-          status?: never
-          title?: never
-          updated_at?: string | null
-        }
-        Update: {
-          deal_id?: string | null
-          primary_client?: never
-          primary_property?: never
-          recommended_actions?: never
-          status?: never
-          title?: never
-          updated_at?: string | null
-        }
-        Relationships: []
-      }
-      v_deal_detail: {
-        Row: {
-          canon_blocks: Json | null
-          deal_id: string | null
-          enriched_extracted_data: Json | null
-          recommendations: Json | null
-          summary: string | null
-        }
-        Insert: {
-          canon_blocks?: never
-          deal_id?: string | null
-          enriched_extracted_data?: Json | null
-          recommendations?: never
-          summary?: string | null
-        }
-        Update: {
-          canon_blocks?: never
-          deal_id?: string | null
-          enriched_extracted_data?: Json | null
-          recommendations?: never
-          summary?: string | null
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Functions: {
       [_ in never]: never

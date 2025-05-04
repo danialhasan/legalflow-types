@@ -44,13 +44,6 @@ export type DatabaseCamel = {
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "canon_blocks_deal_context_graph_id_fkey"
-            columns: ["deal_context_graph_id"]
-            isOneToOne: false
-            referencedRelation: "v_deals_aggregated"
-            referencedColumns: ["id"]
-          },
-          {
             foreignKeyName: "canon_blocks_extracted_input_id_fkey"
             columns: ["extracted_input_id"]
             isOneToOne: true
@@ -90,20 +83,16 @@ export type DatabaseCamel = {
             referencedRelation: "client_context_graphs"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "client_context_graph_canon_blocks_client_context_graph_id_fkey"
-            columns: ["client_context_graph_id"]
-            isOneToOne: false
-            referencedRelation: "v_clients_aggregated"
-            referencedColumns: ["id"]
-          },
         ]
       }
       clientContextGraphs: {
         Row: {
           createdAt: string | null
-          enrichedExtractedData: Json
+          enrichedExtractedData:
+            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
+            | null
           id: string
+          profile: Json | null
           summary: string | null
           summaryEmbedding: string | null
           updatedAt: string | null
@@ -111,8 +100,11 @@ export type DatabaseCamel = {
         }
         Insert: {
           createdAt?: string | null
-          enrichedExtractedData: Json
+          enrichedExtractedData?:
+            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
+            | null
           id?: string
+          profile?: Json | null
           summary?: string | null
           summaryEmbedding?: string | null
           updatedAt?: string | null
@@ -120,8 +112,11 @@ export type DatabaseCamel = {
         }
         Update: {
           createdAt?: string | null
-          enrichedExtractedData?: Json
+          enrichedExtractedData?:
+            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
+            | null
           id?: string
+          profile?: Json | null
           summary?: string | null
           summaryEmbedding?: string | null
           updatedAt?: string | null
@@ -160,24 +155,10 @@ export type DatabaseCamel = {
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "deal_client_links_client_context_graph_id_fkey"
-            columns: ["client_context_graph_id"]
-            isOneToOne: false
-            referencedRelation: "v_clients_aggregated"
-            referencedColumns: ["id"]
-          },
-          {
             foreignKeyName: "deal_client_links_deal_context_graph_id_fkey"
             columns: ["deal_context_graph_id"]
             isOneToOne: false
             referencedRelation: "deal_context_graphs"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "deal_client_links_deal_context_graph_id_fkey"
-            columns: ["deal_context_graph_id"]
-            isOneToOne: false
-            referencedRelation: "v_deals_aggregated"
             referencedColumns: ["id"]
           },
         ]
@@ -186,14 +167,17 @@ export type DatabaseCamel = {
         Row: {
           canonBlockId: string
           dealContextGraphId: string
+          id: string
         }
         Insert: {
           canonBlockId: string
           dealContextGraphId: string
+          id: string
         }
         Update: {
           canonBlockId?: string
           dealContextGraphId?: string
+          id?: string
         }
         Relationships: [
           {
@@ -210,19 +194,14 @@ export type DatabaseCamel = {
             referencedRelation: "deal_context_graphs"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
-            columns: ["deal_context_graph_id"]
-            isOneToOne: false
-            referencedRelation: "v_deals_aggregated"
-            referencedColumns: ["id"]
-          },
         ]
       }
       dealContextGraphs: {
         Row: {
           createdAt: string
-          enrichedExtractedData: Json
+          enrichedExtractedData:
+            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
+            | null
           id: string
           summary: string | null
           summaryEmbedding: string | null
@@ -231,7 +210,9 @@ export type DatabaseCamel = {
         }
         Insert: {
           createdAt?: string
-          enrichedExtractedData: Json
+          enrichedExtractedData?:
+            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
+            | null
           id?: string
           summary?: string | null
           summaryEmbedding?: string | null
@@ -240,7 +221,9 @@ export type DatabaseCamel = {
         }
         Update: {
           createdAt?: string
-          enrichedExtractedData?: Json
+          enrichedExtractedData?:
+            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
+            | null
           id?: string
           summary?: string | null
           summaryEmbedding?: string | null
@@ -425,89 +408,7 @@ export type DatabaseCamel = {
       }
     }
     Views: {
-      vClientsAggregated: {
-        Row: {
-          canonBlocks: Json | null
-          enrichedExtractedData: Json | null
-          id: string | null
-          recommendations: Json | null
-          summary: string | null
-          userId: string | null
-        }
-        Insert: {
-          canonBlocks?: never
-          enrichedExtractedData?: Json | null
-          id?: string | null
-          recommendations?: never
-          summary?: string | null
-          userId?: string | null
-        }
-        Update: {
-          canonBlocks?: never
-          enrichedExtractedData?: Json | null
-          id?: string | null
-          recommendations?: never
-          summary?: string | null
-          userId?: string | null
-        }
-        Relationships: []
-      }
-      vDealsAggregated: {
-        Row: {
-          canonBlocks: Json | null
-          enrichedExtractedData: Json | null
-          id: string | null
-          recommendations: Json | null
-          summary: string | null
-          userId: string | null
-        }
-        Insert: {
-          canonBlocks?: never
-          enrichedExtractedData?: Json | null
-          id?: string | null
-          recommendations?: never
-          summary?: string | null
-          userId?: string | null
-        }
-        Update: {
-          canonBlocks?: never
-          enrichedExtractedData?: Json | null
-          id?: string | null
-          recommendations?: never
-          summary?: string | null
-          userId?: string | null
-        }
-        Relationships: []
-      }
-      vInboxItems: {
-        Row: {
-          dealId: string | null
-          dealTitle: string | null
-          emailId: string | null
-          extractedEntities: Json | null
-          fromLine: string | null
-          relevant: boolean | null
-          sentAt: string | null
-          status: string | null
-          subject: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "canon_blocks_deal_context_graph_id_fkey"
-            columns: ["deal_id"]
-            isOneToOne: false
-            referencedRelation: "deal_context_graphs"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "canon_blocks_deal_context_graph_id_fkey"
-            columns: ["deal_id"]
-            isOneToOne: false
-            referencedRelation: "v_deals_aggregated"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
+      [_ in never]: never
     }
     Functions: {
       linkDealsToClientViaCanonBlock: {
@@ -558,7 +459,13 @@ export type DatabaseCamel = {
         | "other"
     }
     CompositeTypes: {
-      [_ in never]: never
+      extractedInputDataType: {
+        entities: Json | null
+        relationships: Json | null
+        dealContext: Json | null
+        confidence: Json | null
+        metadata: Json | null
+      }
     }
   }
   assistant: {
@@ -2625,117 +2532,7 @@ export type DatabaseCamel = {
       [_ in never]: never
     }
     Views: {
-      vClientCards: {
-        Row: {
-          clientId: string | null
-          clientType: string | null
-          dealCount: number | null
-          latestDeal: Json | null
-          name: string | null
-          since: string | null
-          status: string | null
-        }
-        Insert: {
-          clientId?: string | null
-          clientType?: never
-          dealCount?: never
-          latestDeal?: never
-          name?: string | null
-          since?: string | null
-          status?: never
-        }
-        Update: {
-          clientId?: string | null
-          clientType?: never
-          dealCount?: never
-          latestDeal?: never
-          name?: string | null
-          since?: string | null
-          status?: never
-        }
-        Relationships: []
-      }
-      vClientDetail: {
-        Row: {
-          clientId: string | null
-          deals: Json | null
-          enrichedExtractedData: Json | null
-          notes: Json | null
-          recommendations: Json | null
-          summary: string | null
-        }
-        Insert: {
-          clientId?: string | null
-          deals?: never
-          enrichedExtractedData?: Json | null
-          notes?: never
-          recommendations?: never
-          summary?: string | null
-        }
-        Update: {
-          clientId?: string | null
-          deals?: never
-          enrichedExtractedData?: Json | null
-          notes?: never
-          recommendations?: never
-          summary?: string | null
-        }
-        Relationships: []
-      }
-      vDealCards: {
-        Row: {
-          dealId: string | null
-          primaryClient: string | null
-          primaryProperty: string | null
-          recommendedActions: Json | null
-          status: string | null
-          title: string | null
-          updatedAt: string | null
-        }
-        Insert: {
-          dealId?: string | null
-          primaryClient?: never
-          primaryProperty?: never
-          recommendedActions?: never
-          status?: never
-          title?: never
-          updatedAt?: string | null
-        }
-        Update: {
-          dealId?: string | null
-          primaryClient?: never
-          primaryProperty?: never
-          recommendedActions?: never
-          status?: never
-          title?: never
-          updatedAt?: string | null
-        }
-        Relationships: []
-      }
-      vDealDetail: {
-        Row: {
-          canonBlocks: Json | null
-          dealId: string | null
-          enrichedExtractedData: Json | null
-          recommendations: Json | null
-          summary: string | null
-        }
-        Insert: {
-          canonBlocks?: never
-          dealId?: string | null
-          enrichedExtractedData?: Json | null
-          recommendations?: never
-          summary?: string | null
-        }
-        Update: {
-          canonBlocks?: never
-          dealId?: string | null
-          enrichedExtractedData?: Json | null
-          recommendations?: never
-          summary?: string | null
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Functions: {
       [_ in never]: never
