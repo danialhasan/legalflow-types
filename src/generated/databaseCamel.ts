@@ -104,6 +104,7 @@ export type DatabaseCamel = {
           createdAt: string | null
           enrichedExtractedData: Json
           id: string
+          profile: Json | null
           summary: string | null
           summaryEmbedding: string | null
           updatedAt: string | null
@@ -113,6 +114,7 @@ export type DatabaseCamel = {
           createdAt?: string | null
           enrichedExtractedData: Json
           id?: string
+          profile?: Json | null
           summary?: string | null
           summaryEmbedding?: string | null
           updatedAt?: string | null
@@ -122,6 +124,7 @@ export type DatabaseCamel = {
           createdAt?: string | null
           enrichedExtractedData?: Json
           id?: string
+          profile?: Json | null
           summary?: string | null
           summaryEmbedding?: string | null
           updatedAt?: string | null
