@@ -13,7 +13,7 @@ export type DatabaseCamel = {
           id: string
           sourceId: string | null
           summary: string
-          tags: Database["analysis"]["Enums"]["canon_block_tag"][] | null
+          tags: DatabaseCamel["analysis"]["Enums"]["canonBlockTag"][] | null
         }
         Insert: {
           createdAt?: string
@@ -23,7 +23,7 @@ export type DatabaseCamel = {
           id?: string
           sourceId?: string | null
           summary: string
-          tags?: Database["analysis"]["Enums"]["canon_block_tag"][] | null
+          tags?: DatabaseCamel["analysis"]["Enums"]["canonBlockTag"][] | null
         }
         Update: {
           createdAt?: string
@@ -33,7 +33,7 @@ export type DatabaseCamel = {
           id?: string
           sourceId?: string | null
           summary?: string
-          tags?: Database["analysis"]["Enums"]["canon_block_tag"][] | null
+          tags?: DatabaseCamel["analysis"]["Enums"]["canonBlockTag"][] | null
         }
         Relationships: [
           {
@@ -89,10 +89,10 @@ export type DatabaseCamel = {
         Row: {
           createdAt: string | null
           enrichedExtractedData:
-            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
+            | DatabaseCamel["analysis"]["CompositeTypes"]["extractedInputDataType"]
             | null
           id: string
-          profile: Database["analysis"]["CompositeTypes"]["profile_type"] | null
+          profile: DatabaseCamel["analysis"]["CompositeTypes"]["profileType"] | null
           summary: string | null
           summaryEmbedding: string | null
           updatedAt: string | null
@@ -101,11 +101,11 @@ export type DatabaseCamel = {
         Insert: {
           createdAt?: string | null
           enrichedExtractedData?:
-            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
+            | DatabaseCamel["analysis"]["CompositeTypes"]["extractedInputDataType"]
             | null
           id?: string
           profile?:
-            | Database["analysis"]["CompositeTypes"]["profile_type"]
+            | DatabaseCamel["analysis"]["CompositeTypes"]["profileType"]
             | null
           summary?: string | null
           summaryEmbedding?: string | null
@@ -115,11 +115,11 @@ export type DatabaseCamel = {
         Update: {
           createdAt?: string | null
           enrichedExtractedData?:
-            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
+            | DatabaseCamel["analysis"]["CompositeTypes"]["extractedInputDataType"]
             | null
           id?: string
           profile?:
-            | Database["analysis"]["CompositeTypes"]["profile_type"]
+            | DatabaseCamel["analysis"]["CompositeTypes"]["profileType"]
             | null
           summary?: string | null
           summaryEmbedding?: string | null
@@ -204,7 +204,7 @@ export type DatabaseCamel = {
         Row: {
           createdAt: string
           enrichedExtractedData:
-            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
+            | DatabaseCamel["analysis"]["CompositeTypes"]["extractedInputDataType"]
             | null
           id: string
           summary: string | null
@@ -215,7 +215,7 @@ export type DatabaseCamel = {
         Insert: {
           createdAt?: string
           enrichedExtractedData?:
-            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
+            | DatabaseCamel["analysis"]["CompositeTypes"]["extractedInputDataType"]
             | null
           id?: string
           summary?: string | null
@@ -226,7 +226,7 @@ export type DatabaseCamel = {
         Update: {
           createdAt?: string
           enrichedExtractedData?:
-            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
+            | DatabaseCamel["analysis"]["CompositeTypes"]["extractedInputDataType"]
             | null
           id?: string
           summary?: string | null
@@ -240,7 +240,7 @@ export type DatabaseCamel = {
         Row: {
           createdAt: string
           extractedData:
-            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
+            | DatabaseCamel["analysis"]["CompositeTypes"]["extractedInputDataType"]
             | null
           id: string
           modelVersion: string | null
@@ -251,7 +251,7 @@ export type DatabaseCamel = {
         Insert: {
           createdAt?: string
           extractedData?:
-            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
+            | DatabaseCamel["analysis"]["CompositeTypes"]["extractedInputDataType"]
             | null
           id?: string
           modelVersion?: string | null
@@ -262,7 +262,7 @@ export type DatabaseCamel = {
         Update: {
           createdAt?: string
           extractedData?:
-            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
+            | DatabaseCamel["analysis"]["CompositeTypes"]["extractedInputDataType"]
             | null
           id?: string
           modelVersion?: string | null
@@ -422,11 +422,11 @@ export type DatabaseCamel = {
     }
     Functions: {
       linkDealsToClientViaCanonBlock: {
-        Args: { ClientContextGraphId: string; CanonBlockId: string }
+        Args: { clientContextGraphId: string; canonBlockId: string }
         Returns: number
       }
       matchSimilarClientContextGraphs: {
-        Args: { Query: string; TopK?: number; UserId?: string }
+        Args: { query: string; topK?: number; userId?: string }
         Returns: {
           clientContextGraphId: string
           summary: string
@@ -434,7 +434,7 @@ export type DatabaseCamel = {
         }[]
       }
       matchSimilarDealContextGraphs: {
-        Args: { Query: string; TopK?: number; UserId?: string }
+        Args: { query: string; topK?: number; userId?: string }
         Returns: {
           dealContextGraphId: string
           summary: string
@@ -492,14 +492,14 @@ export type DatabaseCamel = {
           createdAt: string
           dealId: string | null
           executedAt: string | null
-          executionStrategy: Database["assistant"]["Enums"]["recommendation_execution_strategy"]
-          executor: Database["assistant"]["Enums"]["recommendation_executor"]
+          executionStrategy: DatabaseCamel["assistant"]["Enums"]["recommendationExecutionStrategy"]
+          executor: DatabaseCamel["assistant"]["Enums"]["recommendationExecutor"]
           id: string
           messageTemplate: string | null
           params: Json
           priority: number
           reasoning: string
-          status: Database["assistant"]["Enums"]["recommendation_status"]
+          status: DatabaseCamel["assistant"]["Enums"]["recommendationStatus"]
           triggeredAt: string
           userId: string
         }
@@ -508,14 +508,14 @@ export type DatabaseCamel = {
           createdAt?: string
           dealId?: string | null
           executedAt?: string | null
-          executionStrategy?: Database["assistant"]["Enums"]["recommendation_execution_strategy"]
-          executor: Database["assistant"]["Enums"]["recommendation_executor"]
+          executionStrategy?: DatabaseCamel["assistant"]["Enums"]["recommendationExecutionStrategy"]
+          executor: DatabaseCamel["assistant"]["Enums"]["recommendationExecutor"]
           id?: string
           messageTemplate?: string | null
           params: Json
           priority: number
           reasoning: string
-          status?: Database["assistant"]["Enums"]["recommendation_status"]
+          status?: DatabaseCamel["assistant"]["Enums"]["recommendationStatus"]
           triggeredAt?: string
           userId: string
         }
@@ -524,14 +524,14 @@ export type DatabaseCamel = {
           createdAt?: string
           dealId?: string | null
           executedAt?: string | null
-          executionStrategy?: Database["assistant"]["Enums"]["recommendation_execution_strategy"]
-          executor?: Database["assistant"]["Enums"]["recommendation_executor"]
+          executionStrategy?: DatabaseCamel["assistant"]["Enums"]["recommendationExecutionStrategy"]
+          executor?: DatabaseCamel["assistant"]["Enums"]["recommendationExecutor"]
           id?: string
           messageTemplate?: string | null
           params?: Json
           priority?: number
           reasoning?: string
-          status?: Database["assistant"]["Enums"]["recommendation_status"]
+          status?: DatabaseCamel["assistant"]["Enums"]["recommendationStatus"]
           triggeredAt?: string
           userId?: string
         }
@@ -1021,19 +1021,19 @@ export type DatabaseCamel = {
         Row: {
           createdAt: string
           id: string
-          type: Database["core"]["Enums"]["source_type"]
+          type: DatabaseCamel["core"]["Enums"]["sourceType"]
           userId: string | null
         }
         Insert: {
           createdAt?: string
           id?: string
-          type: Database["core"]["Enums"]["source_type"]
+          type: DatabaseCamel["core"]["Enums"]["sourceType"]
           userId?: string | null
         }
         Update: {
           createdAt?: string
           id?: string
-          type?: Database["core"]["Enums"]["source_type"]
+          type?: DatabaseCamel["core"]["Enums"]["sourceType"]
           userId?: string | null
         }
         Relationships: []
@@ -1176,48 +1176,48 @@ export type DatabaseCamel = {
       userSettings: {
         Row: {
           communicationStyle:
-            | Database["core"]["Enums"]["communication_style"]
+            | DatabaseCamel["core"]["Enums"]["communicationStyle"]
             | null
           createdAt: string
           googleEmail: string | null
           id: string
           location: string | null
-          role: Database["core"]["Enums"]["agent_role"] | null
+          role: DatabaseCamel["core"]["Enums"]["agentRole"] | null
           specialNotes: string | null
           timezone: string | null
           updatedAt: string
           userId: string
-          workSchedule: Database["core"]["Enums"]["work_schedule"] | null
+          workSchedule: DatabaseCamel["core"]["Enums"]["workSchedule"] | null
         }
         Insert: {
           communicationStyle?:
-            | Database["core"]["Enums"]["communication_style"]
+            | DatabaseCamel["core"]["Enums"]["communicationStyle"]
             | null
           createdAt?: string
           googleEmail?: string | null
           id?: string
           location?: string | null
-          role?: Database["core"]["Enums"]["agent_role"] | null
+          role?: DatabaseCamel["core"]["Enums"]["agentRole"] | null
           specialNotes?: string | null
           timezone?: string | null
           updatedAt?: string
           userId: string
-          workSchedule?: Database["core"]["Enums"]["work_schedule"] | null
+          workSchedule?: DatabaseCamel["core"]["Enums"]["workSchedule"] | null
         }
         Update: {
           communicationStyle?:
-            | Database["core"]["Enums"]["communication_style"]
+            | DatabaseCamel["core"]["Enums"]["communicationStyle"]
             | null
           createdAt?: string
           googleEmail?: string | null
           id?: string
           location?: string | null
-          role?: Database["core"]["Enums"]["agent_role"] | null
+          role?: DatabaseCamel["core"]["Enums"]["agentRole"] | null
           specialNotes?: string | null
           timezone?: string | null
           updatedAt?: string
           userId?: string
-          workSchedule?: Database["core"]["Enums"]["work_schedule"] | null
+          workSchedule?: DatabaseCamel["core"]["Enums"]["workSchedule"] | null
         }
         Relationships: [
           {
@@ -1235,7 +1235,7 @@ export type DatabaseCamel = {
     }
     Functions: {
       claimNextJob: {
-        Args: Record<PropertyKey, never> | { WorkerId: string }
+        Args: Record<PropertyKey, never> | { workerId: string }
         Returns: {
           backoffUntil: string | null
           completedAt: string | null
