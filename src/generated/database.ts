@@ -244,7 +244,9 @@ export type Database = {
       extracted_inputs: {
         Row: {
           created_at: string
-          extracted_data: Json
+          extracted_data:
+            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
+            | null
           id: string
           model_version: string | null
           processing_time_ms: number | null
@@ -253,7 +255,9 @@ export type Database = {
         }
         Insert: {
           created_at?: string
-          extracted_data: Json
+          extracted_data?:
+            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
+            | null
           id?: string
           model_version?: string | null
           processing_time_ms?: number | null
@@ -262,7 +266,9 @@ export type Database = {
         }
         Update: {
           created_at?: string
-          extracted_data?: Json
+          extracted_data?:
+            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
+            | null
           id?: string
           model_version?: string | null
           processing_time_ms?: number | null

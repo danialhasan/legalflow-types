@@ -239,7 +239,9 @@ export type DatabaseCamel = {
       extractedInputs: {
         Row: {
           createdAt: string
-          extractedData: Json
+          extractedData:
+            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
+            | null
           id: string
           modelVersion: string | null
           processingTimeMs: number | null
@@ -248,7 +250,9 @@ export type DatabaseCamel = {
         }
         Insert: {
           createdAt?: string
-          extractedData: Json
+          extractedData?:
+            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
+            | null
           id?: string
           modelVersion?: string | null
           processingTimeMs?: number | null
@@ -257,7 +261,9 @@ export type DatabaseCamel = {
         }
         Update: {
           createdAt?: string
-          extractedData?: Json
+          extractedData?:
+            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
+            | null
           id?: string
           modelVersion?: string | null
           processingTimeMs?: number | null
