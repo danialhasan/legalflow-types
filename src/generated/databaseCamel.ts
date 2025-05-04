@@ -88,9 +88,7 @@ export type DatabaseCamel = {
       clientContextGraphs: {
         Row: {
           createdAt: string | null
-          enrichedExtractedData:
-            | DatabaseCamel["analysis"]["CompositeTypes"]["extractedInputDataType"]
-            | null
+          enrichedExtractedData: Json | null
           id: string
           profile: DatabaseCamel["analysis"]["CompositeTypes"]["profileType"] | null
           summary: string | null
@@ -100,9 +98,7 @@ export type DatabaseCamel = {
         }
         Insert: {
           createdAt?: string | null
-          enrichedExtractedData?:
-            | DatabaseCamel["analysis"]["CompositeTypes"]["extractedInputDataType"]
-            | null
+          enrichedExtractedData?: Json | null
           id?: string
           profile?:
             | DatabaseCamel["analysis"]["CompositeTypes"]["profileType"]
@@ -114,9 +110,7 @@ export type DatabaseCamel = {
         }
         Update: {
           createdAt?: string | null
-          enrichedExtractedData?:
-            | DatabaseCamel["analysis"]["CompositeTypes"]["extractedInputDataType"]
-            | null
+          enrichedExtractedData?: Json | null
           id?: string
           profile?:
             | DatabaseCamel["analysis"]["CompositeTypes"]["profileType"]
@@ -203,9 +197,7 @@ export type DatabaseCamel = {
       dealContextGraphs: {
         Row: {
           createdAt: string
-          enrichedExtractedData:
-            | DatabaseCamel["analysis"]["CompositeTypes"]["extractedInputDataType"]
-            | null
+          enrichedExtractedData: Json | null
           id: string
           summary: string | null
           summaryEmbedding: string | null
@@ -214,9 +206,7 @@ export type DatabaseCamel = {
         }
         Insert: {
           createdAt?: string
-          enrichedExtractedData?:
-            | DatabaseCamel["analysis"]["CompositeTypes"]["extractedInputDataType"]
-            | null
+          enrichedExtractedData?: Json | null
           id?: string
           summary?: string | null
           summaryEmbedding?: string | null
@@ -225,9 +215,7 @@ export type DatabaseCamel = {
         }
         Update: {
           createdAt?: string
-          enrichedExtractedData?:
-            | DatabaseCamel["analysis"]["CompositeTypes"]["extractedInputDataType"]
-            | null
+          enrichedExtractedData?: Json | null
           id?: string
           summary?: string | null
           summaryEmbedding?: string | null
@@ -239,9 +227,7 @@ export type DatabaseCamel = {
       extractedInputs: {
         Row: {
           createdAt: string
-          extractedData:
-            | DatabaseCamel["analysis"]["CompositeTypes"]["extractedInputDataType"]
-            | null
+          extractedData: Json | null
           id: string
           modelVersion: string | null
           processingTimeMs: number | null
@@ -250,9 +236,7 @@ export type DatabaseCamel = {
         }
         Insert: {
           createdAt?: string
-          extractedData?:
-            | DatabaseCamel["analysis"]["CompositeTypes"]["extractedInputDataType"]
-            | null
+          extractedData?: Json | null
           id?: string
           modelVersion?: string | null
           processingTimeMs?: number | null
@@ -261,9 +245,7 @@ export type DatabaseCamel = {
         }
         Update: {
           createdAt?: string
-          extractedData?:
-            | DatabaseCamel["analysis"]["CompositeTypes"]["extractedInputDataType"]
-            | null
+          extractedData?: Json | null
           id?: string
           modelVersion?: string | null
           processingTimeMs?: number | null

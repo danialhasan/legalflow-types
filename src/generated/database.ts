@@ -93,9 +93,7 @@ export type Database = {
       client_context_graphs: {
         Row: {
           created_at: string | null
-          enriched_extracted_data:
-            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
-            | null
+          enriched_extracted_data: Json | null
           id: string
           profile: Database["analysis"]["CompositeTypes"]["profile_type"] | null
           summary: string | null
@@ -105,9 +103,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string | null
-          enriched_extracted_data?:
-            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
-            | null
+          enriched_extracted_data?: Json | null
           id?: string
           profile?:
             | Database["analysis"]["CompositeTypes"]["profile_type"]
@@ -119,9 +115,7 @@ export type Database = {
         }
         Update: {
           created_at?: string | null
-          enriched_extracted_data?:
-            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
-            | null
+          enriched_extracted_data?: Json | null
           id?: string
           profile?:
             | Database["analysis"]["CompositeTypes"]["profile_type"]
@@ -208,9 +202,7 @@ export type Database = {
       deal_context_graphs: {
         Row: {
           created_at: string
-          enriched_extracted_data:
-            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
-            | null
+          enriched_extracted_data: Json | null
           id: string
           summary: string | null
           summary_embedding: string | null
@@ -219,9 +211,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string
-          enriched_extracted_data?:
-            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
-            | null
+          enriched_extracted_data?: Json | null
           id?: string
           summary?: string | null
           summary_embedding?: string | null
@@ -230,9 +220,7 @@ export type Database = {
         }
         Update: {
           created_at?: string
-          enriched_extracted_data?:
-            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
-            | null
+          enriched_extracted_data?: Json | null
           id?: string
           summary?: string | null
           summary_embedding?: string | null
@@ -244,9 +232,7 @@ export type Database = {
       extracted_inputs: {
         Row: {
           created_at: string
-          extracted_data:
-            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
-            | null
+          extracted_data: Json | null
           id: string
           model_version: string | null
           processing_time_ms: number | null
@@ -255,9 +241,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string
-          extracted_data?:
-            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
-            | null
+          extracted_data?: Json | null
           id?: string
           model_version?: string | null
           processing_time_ms?: number | null
@@ -266,9 +250,7 @@ export type Database = {
         }
         Update: {
           created_at?: string
-          extracted_data?:
-            | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
-            | null
+          extracted_data?: Json | null
           id?: string
           model_version?: string | null
           processing_time_ms?: number | null
