@@ -92,7 +92,7 @@ export type DatabaseCamel = {
             | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
             | null
           id: string
-          profile: Json | null
+          profile: Database["analysis"]["CompositeTypes"]["profile_type"] | null
           summary: string | null
           summaryEmbedding: string | null
           updatedAt: string | null
@@ -104,7 +104,9 @@ export type DatabaseCamel = {
             | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
             | null
           id?: string
-          profile?: Json | null
+          profile?:
+            | Database["analysis"]["CompositeTypes"]["profile_type"]
+            | null
           summary?: string | null
           summaryEmbedding?: string | null
           updatedAt?: string | null
@@ -116,7 +118,9 @@ export type DatabaseCamel = {
             | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
             | null
           id?: string
-          profile?: Json | null
+          profile?:
+            | Database["analysis"]["CompositeTypes"]["profile_type"]
+            | null
           summary?: string | null
           summaryEmbedding?: string | null
           updatedAt?: string | null
@@ -465,6 +469,12 @@ export type DatabaseCamel = {
         dealContext: Json | null
         confidence: Json | null
         metadata: Json | null
+      }
+      profileType: {
+        fullName: string | null
+        primaryAddress: string | null
+        primaryPhoneNumber: string | null
+        primaryEmail: string | null
       }
     }
   }

@@ -97,7 +97,7 @@ export type Database = {
             | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
             | null
           id: string
-          profile: Json | null
+          profile: Database["analysis"]["CompositeTypes"]["profile_type"] | null
           summary: string | null
           summary_embedding: string | null
           updated_at: string | null
@@ -109,7 +109,9 @@ export type Database = {
             | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
             | null
           id?: string
-          profile?: Json | null
+          profile?:
+            | Database["analysis"]["CompositeTypes"]["profile_type"]
+            | null
           summary?: string | null
           summary_embedding?: string | null
           updated_at?: string | null
@@ -121,7 +123,9 @@ export type Database = {
             | Database["analysis"]["CompositeTypes"]["extracted_input_data_type"]
             | null
           id?: string
-          profile?: Json | null
+          profile?:
+            | Database["analysis"]["CompositeTypes"]["profile_type"]
+            | null
           summary?: string | null
           summary_embedding?: string | null
           updated_at?: string | null
@@ -470,6 +474,12 @@ export type Database = {
         deal_context: Json | null
         confidence: Json | null
         metadata: Json | null
+      }
+      profile_type: {
+        full_name: string | null
+        primary_address: string | null
+        primary_phone_number: string | null
+        primary_email: string | null
       }
     }
   }
