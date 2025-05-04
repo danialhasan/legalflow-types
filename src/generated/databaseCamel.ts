@@ -2620,5 +2620,132 @@ export type DatabaseCamel = {
       [_ in never]: never
     }
   }
+  ui: {
+    Tables: {
+      [_ in never]: never
+    }
+    Views: {
+      vClientCards: {
+        Row: {
+          clientId: string | null
+          clientType: string | null
+          dealCount: number | null
+          latestDeal: Json | null
+          name: string | null
+          since: string | null
+          status: string | null
+        }
+        Insert: {
+          clientId?: string | null
+          clientType?: never
+          dealCount?: never
+          latestDeal?: never
+          name?: string | null
+          since?: string | null
+          status?: never
+        }
+        Update: {
+          clientId?: string | null
+          clientType?: never
+          dealCount?: never
+          latestDeal?: never
+          name?: string | null
+          since?: string | null
+          status?: never
+        }
+        Relationships: []
+      }
+      vClientDetail: {
+        Row: {
+          clientId: string | null
+          deals: Json | null
+          enrichedExtractedData: Json | null
+          notes: Json | null
+          recommendations: Json | null
+          summary: string | null
+        }
+        Insert: {
+          clientId?: string | null
+          deals?: never
+          enrichedExtractedData?: Json | null
+          notes?: never
+          recommendations?: never
+          summary?: string | null
+        }
+        Update: {
+          clientId?: string | null
+          deals?: never
+          enrichedExtractedData?: Json | null
+          notes?: never
+          recommendations?: never
+          summary?: string | null
+        }
+        Relationships: []
+      }
+      vDealCards: {
+        Row: {
+          dealId: string | null
+          primaryClient: string | null
+          primaryProperty: string | null
+          recommendedActions: Json | null
+          status: string | null
+          title: string | null
+          updatedAt: string | null
+        }
+        Insert: {
+          dealId?: string | null
+          primaryClient?: never
+          primaryProperty?: never
+          recommendedActions?: never
+          status?: never
+          title?: never
+          updatedAt?: string | null
+        }
+        Update: {
+          dealId?: string | null
+          primaryClient?: never
+          primaryProperty?: never
+          recommendedActions?: never
+          status?: never
+          title?: never
+          updatedAt?: string | null
+        }
+        Relationships: []
+      }
+      vDealDetail: {
+        Row: {
+          canonBlocks: Json | null
+          dealId: string | null
+          enrichedExtractedData: Json | null
+          recommendations: Json | null
+          summary: string | null
+        }
+        Insert: {
+          canonBlocks?: never
+          dealId?: string | null
+          enrichedExtractedData?: Json | null
+          recommendations?: never
+          summary?: string | null
+        }
+        Update: {
+          canonBlocks?: never
+          dealId?: string | null
+          enrichedExtractedData?: Json | null
+          recommendations?: never
+          summary?: string | null
+        }
+        Relationships: []
+      }
+    }
+    Functions: {
+      [_ in never]: never
+    }
+    Enums: {
+      [_ in never]: never
+    }
+    CompositeTypes: {
+      [_ in never]: never
+    }
+  }
 }
 

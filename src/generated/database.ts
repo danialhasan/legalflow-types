@@ -2625,6 +2625,133 @@ export type Database = {
       [_ in never]: never
     }
   }
+  ui: {
+    Tables: {
+      [_ in never]: never
+    }
+    Views: {
+      v_client_cards: {
+        Row: {
+          client_id: string | null
+          client_type: string | null
+          deal_count: number | null
+          latest_deal: Json | null
+          name: string | null
+          since: string | null
+          status: string | null
+        }
+        Insert: {
+          client_id?: string | null
+          client_type?: never
+          deal_count?: never
+          latest_deal?: never
+          name?: string | null
+          since?: string | null
+          status?: never
+        }
+        Update: {
+          client_id?: string | null
+          client_type?: never
+          deal_count?: never
+          latest_deal?: never
+          name?: string | null
+          since?: string | null
+          status?: never
+        }
+        Relationships: []
+      }
+      v_client_detail: {
+        Row: {
+          client_id: string | null
+          deals: Json | null
+          enriched_extracted_data: Json | null
+          notes: Json | null
+          recommendations: Json | null
+          summary: string | null
+        }
+        Insert: {
+          client_id?: string | null
+          deals?: never
+          enriched_extracted_data?: Json | null
+          notes?: never
+          recommendations?: never
+          summary?: string | null
+        }
+        Update: {
+          client_id?: string | null
+          deals?: never
+          enriched_extracted_data?: Json | null
+          notes?: never
+          recommendations?: never
+          summary?: string | null
+        }
+        Relationships: []
+      }
+      v_deal_cards: {
+        Row: {
+          deal_id: string | null
+          primary_client: string | null
+          primary_property: string | null
+          recommended_actions: Json | null
+          status: string | null
+          title: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          deal_id?: string | null
+          primary_client?: never
+          primary_property?: never
+          recommended_actions?: never
+          status?: never
+          title?: never
+          updated_at?: string | null
+        }
+        Update: {
+          deal_id?: string | null
+          primary_client?: never
+          primary_property?: never
+          recommended_actions?: never
+          status?: never
+          title?: never
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      v_deal_detail: {
+        Row: {
+          canon_blocks: Json | null
+          deal_id: string | null
+          enriched_extracted_data: Json | null
+          recommendations: Json | null
+          summary: string | null
+        }
+        Insert: {
+          canon_blocks?: never
+          deal_id?: string | null
+          enriched_extracted_data?: Json | null
+          recommendations?: never
+          summary?: string | null
+        }
+        Update: {
+          canon_blocks?: never
+          deal_id?: string | null
+          enriched_extracted_data?: Json | null
+          recommendations?: never
+          summary?: string | null
+        }
+        Relationships: []
+      }
+    }
+    Functions: {
+      [_ in never]: never
+    }
+    Enums: {
+      [_ in never]: never
+    }
+    CompositeTypes: {
+      [_ in never]: never
+    }
+  }
 }
 
 type DefaultSchema = Database[Extract<keyof Database, "public">]
@@ -2816,6 +2943,9 @@ export const Constants = {
     Enums: {},
   },
   telephony: {
+    Enums: {},
+  },
+  ui: {
     Enums: {},
   },
 } as const
