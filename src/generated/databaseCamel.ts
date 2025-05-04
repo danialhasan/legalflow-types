@@ -479,6 +479,35 @@ export type DatabaseCamel = {
         }
         Relationships: []
       }
+      vInboxItems: {
+        Row: {
+          dealId: string | null
+          dealTitle: string | null
+          emailId: string | null
+          extractedEntities: Json | null
+          fromLine: string | null
+          relevant: boolean | null
+          sentAt: string | null
+          status: string | null
+          subject: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deal_context_graphs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "v_deals_aggregated"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Functions: {
       linkDealsToClientViaCanonBlock: {

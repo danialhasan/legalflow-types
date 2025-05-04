@@ -484,6 +484,35 @@ export type Database = {
         }
         Relationships: []
       }
+      v_inbox_items: {
+        Row: {
+          deal_id: string | null
+          deal_title: string | null
+          email_id: string | null
+          extracted_entities: Json | null
+          from_line: string | null
+          relevant: boolean | null
+          sent_at: string | null
+          status: string | null
+          subject: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deal_context_graphs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "v_deals_aggregated"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Functions: {
       link_deals_to_client_via_canon_block: {
