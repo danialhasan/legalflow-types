@@ -109,7 +109,6 @@ export type Database = {
           created_at: string | null
           enriched_extracted_data: Json
           id: string
-          profile: Json | null
           summary: string | null
           summary_embedding: string | null
           updated_at: string | null
@@ -119,7 +118,6 @@ export type Database = {
           created_at?: string | null
           enriched_extracted_data: Json
           id?: string
-          profile?: Json | null
           summary?: string | null
           summary_embedding?: string | null
           updated_at?: string | null
@@ -129,7 +127,6 @@ export type Database = {
           created_at?: string | null
           enriched_extracted_data?: Json
           id?: string
-          profile?: Json | null
           summary?: string | null
           summary_embedding?: string | null
           updated_at?: string | null
