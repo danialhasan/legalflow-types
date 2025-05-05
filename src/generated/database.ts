@@ -45,6 +45,13 @@ export type Database = {
             foreignKeyName: "canon_blocks_deal_context_graph_id_fkey"
             columns: ["deal_context_graph_id"]
             isOneToOne: false
+            referencedRelation: "deal_client_context_graphs_view"
+            referencedColumns: ["deal_context_graph_id"]
+          },
+          {
+            foreignKeyName: "canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_context_graph_id"]
+            isOneToOne: false
             referencedRelation: "deal_context_graphs"
             referencedColumns: ["id"]
           },
@@ -82,11 +89,25 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "client_context_graph_canon_blocks_canon_block_id_fkey"
+            columns: ["canon_block_id"]
+            isOneToOne: false
+            referencedRelation: "deal_client_context_graphs_view"
+            referencedColumns: ["canon_block_id"]
+          },
+          {
             foreignKeyName: "client_context_graph_canon_blocks_client_context_graph_id_fkey"
             columns: ["client_context_graph_id"]
             isOneToOne: false
             referencedRelation: "client_context_graphs"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "client_context_graph_canon_blocks_client_context_graph_id_fkey"
+            columns: ["client_context_graph_id"]
+            isOneToOne: false
+            referencedRelation: "deal_client_context_graphs_view"
+            referencedColumns: ["client_context_graph_id"]
           },
         ]
       }
@@ -95,7 +116,6 @@ export type Database = {
           created_at: string | null
           enriched_extracted_data: Json | null
           id: string
-          profile: Database["analysis"]["CompositeTypes"]["profile_type"] | null
           summary: string | null
           summary_embedding: string | null
           updated_at: string | null
@@ -105,9 +125,6 @@ export type Database = {
           created_at?: string | null
           enriched_extracted_data?: Json | null
           id?: string
-          profile?:
-            | Database["analysis"]["CompositeTypes"]["profile_type"]
-            | null
           summary?: string | null
           summary_embedding?: string | null
           updated_at?: string | null
@@ -117,54 +134,12 @@ export type Database = {
           created_at?: string | null
           enriched_extracted_data?: Json | null
           id?: string
-          profile?:
-            | Database["analysis"]["CompositeTypes"]["profile_type"]
-            | null
           summary?: string | null
           summary_embedding?: string | null
           updated_at?: string | null
           user_id?: string | null
         }
         Relationships: []
-      }
-      deal_client_links: {
-        Row: {
-          client_context_graph_id: string
-          created_at: string
-          deal_context_graph_id: string
-          id: string
-          role: string
-        }
-        Insert: {
-          client_context_graph_id: string
-          created_at?: string
-          deal_context_graph_id: string
-          id?: string
-          role: string
-        }
-        Update: {
-          client_context_graph_id?: string
-          created_at?: string
-          deal_context_graph_id?: string
-          id?: string
-          role?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "deal_client_links_client_context_graph_id_fkey"
-            columns: ["client_context_graph_id"]
-            isOneToOne: false
-            referencedRelation: "client_context_graphs"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "deal_client_links_deal_context_graph_id_fkey"
-            columns: ["deal_context_graph_id"]
-            isOneToOne: false
-            referencedRelation: "deal_context_graphs"
-            referencedColumns: ["id"]
-          },
-        ]
       }
       deal_context_graph_canon_blocks: {
         Row: {
@@ -189,6 +164,20 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "canon_blocks"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_canon_block_id_fkey"
+            columns: ["canon_block_id"]
+            isOneToOne: false
+            referencedRelation: "deal_client_context_graphs_view"
+            referencedColumns: ["canon_block_id"]
+          },
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_context_graph_id"]
+            isOneToOne: false
+            referencedRelation: "deal_client_context_graphs_view"
+            referencedColumns: ["deal_context_graph_id"]
           },
           {
             foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
@@ -405,7 +394,17 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      deal_client_context_graphs_view: {
+        Row: {
+          canon_block_id: string | null
+          canon_block_summary: string | null
+          client_context_graph_id: string | null
+          client_summary: string | null
+          deal_context_graph_id: string | null
+          deal_summary: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       link_deals_to_client_via_canon_block: {

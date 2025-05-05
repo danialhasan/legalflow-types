@@ -40,6 +40,13 @@ export type DatabaseCamel = {
             foreignKeyName: "canon_blocks_deal_context_graph_id_fkey"
             columns: ["deal_context_graph_id"]
             isOneToOne: false
+            referencedRelation: "deal_client_context_graphs_view"
+            referencedColumns: ["deal_context_graph_id"]
+          },
+          {
+            foreignKeyName: "canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_context_graph_id"]
+            isOneToOne: false
             referencedRelation: "deal_context_graphs"
             referencedColumns: ["id"]
           },
@@ -77,11 +84,25 @@ export type DatabaseCamel = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "client_context_graph_canon_blocks_canon_block_id_fkey"
+            columns: ["canon_block_id"]
+            isOneToOne: false
+            referencedRelation: "deal_client_context_graphs_view"
+            referencedColumns: ["canon_block_id"]
+          },
+          {
             foreignKeyName: "client_context_graph_canon_blocks_client_context_graph_id_fkey"
             columns: ["client_context_graph_id"]
             isOneToOne: false
             referencedRelation: "client_context_graphs"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "client_context_graph_canon_blocks_client_context_graph_id_fkey"
+            columns: ["client_context_graph_id"]
+            isOneToOne: false
+            referencedRelation: "deal_client_context_graphs_view"
+            referencedColumns: ["client_context_graph_id"]
           },
         ]
       }
@@ -90,7 +111,6 @@ export type DatabaseCamel = {
           createdAt: string | null
           enrichedExtractedData: Json | null
           id: string
-          profile: DatabaseCamel["analysis"]["CompositeTypes"]["profileType"] | null
           summary: string | null
           summaryEmbedding: string | null
           updatedAt: string | null
@@ -100,9 +120,6 @@ export type DatabaseCamel = {
           createdAt?: string | null
           enrichedExtractedData?: Json | null
           id?: string
-          profile?:
-            | DatabaseCamel["analysis"]["CompositeTypes"]["profileType"]
-            | null
           summary?: string | null
           summaryEmbedding?: string | null
           updatedAt?: string | null
@@ -112,54 +129,12 @@ export type DatabaseCamel = {
           createdAt?: string | null
           enrichedExtractedData?: Json | null
           id?: string
-          profile?:
-            | DatabaseCamel["analysis"]["CompositeTypes"]["profileType"]
-            | null
           summary?: string | null
           summaryEmbedding?: string | null
           updatedAt?: string | null
           userId?: string | null
         }
         Relationships: []
-      }
-      dealClientLinks: {
-        Row: {
-          clientContextGraphId: string
-          createdAt: string
-          dealContextGraphId: string
-          id: string
-          role: string
-        }
-        Insert: {
-          clientContextGraphId: string
-          createdAt?: string
-          dealContextGraphId: string
-          id?: string
-          role: string
-        }
-        Update: {
-          clientContextGraphId?: string
-          createdAt?: string
-          dealContextGraphId?: string
-          id?: string
-          role?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "deal_client_links_client_context_graph_id_fkey"
-            columns: ["client_context_graph_id"]
-            isOneToOne: false
-            referencedRelation: "client_context_graphs"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "deal_client_links_deal_context_graph_id_fkey"
-            columns: ["deal_context_graph_id"]
-            isOneToOne: false
-            referencedRelation: "deal_context_graphs"
-            referencedColumns: ["id"]
-          },
-        ]
       }
       dealContextGraphCanonBlocks: {
         Row: {
@@ -184,6 +159,20 @@ export type DatabaseCamel = {
             isOneToOne: false
             referencedRelation: "canon_blocks"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_canon_block_id_fkey"
+            columns: ["canon_block_id"]
+            isOneToOne: false
+            referencedRelation: "deal_client_context_graphs_view"
+            referencedColumns: ["canon_block_id"]
+          },
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_context_graph_id"]
+            isOneToOne: false
+            referencedRelation: "deal_client_context_graphs_view"
+            referencedColumns: ["deal_context_graph_id"]
           },
           {
             foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
@@ -400,7 +389,17 @@ export type DatabaseCamel = {
       }
     }
     Views: {
-      [_ in never]: never
+      dealClientContextGraphsView: {
+        Row: {
+          canonBlockId: string | null
+          canonBlockSummary: string | null
+          clientContextGraphId: string | null
+          clientSummary: string | null
+          dealContextGraphId: string | null
+          dealSummary: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       linkDealsToClientViaCanonBlock: {
