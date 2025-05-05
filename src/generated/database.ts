@@ -2534,10 +2534,135 @@ export type Database = {
       [_ in never]: never
     }
     Views: {
-      [_ in never]: never
+      client_card_view: {
+        Row: {
+          client_id: string | null
+          client_summary: string | null
+          last_touch: string | null
+          linked_deal_count: number | null
+        }
+        Insert: {
+          client_id?: string | null
+          client_summary?: string | null
+          last_touch?: string | null
+          linked_deal_count?: never
+        }
+        Update: {
+          client_id?: string | null
+          client_summary?: string | null
+          last_touch?: string | null
+          linked_deal_count?: never
+        }
+        Relationships: []
+      }
+      client_detail_mv: {
+        Row: {
+          client_data_json: Json | null
+          client_id: string | null
+          client_summary: string | null
+          deals: Json | null
+          recommendations: Json | null
+        }
+        Relationships: []
+      }
+      deal_activity_view: {
+        Row: {
+          deal_id: string | null
+          event_summary: string | null
+          event_ts: string | null
+          tags: Database["analysis"]["Enums"]["canon_block_tag"][] | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deal_card_view"
+            referencedColumns: ["deal_id"]
+          },
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deal_detail_mv"
+            referencedColumns: ["deal_id"]
+          },
+        ]
+      }
+      deal_card_view: {
+        Row: {
+          deal_id: string | null
+          deal_summary: string | null
+          last_touch: string | null
+          primary_client_summary: string | null
+        }
+        Insert: {
+          deal_id?: string | null
+          deal_summary?: string | null
+          last_touch?: never
+          primary_client_summary?: never
+        }
+        Update: {
+          deal_id?: string | null
+          deal_summary?: string | null
+          last_touch?: never
+          primary_client_summary?: never
+        }
+        Relationships: []
+      }
+      deal_detail_mv: {
+        Row: {
+          clients: Json | null
+          deal_data_json: Json | null
+          deal_id: string | null
+          deal_summary: string | null
+          recommendations: Json | null
+        }
+        Relationships: []
+      }
+      deal_documents_view: {
+        Row: {
+          created_at: string | null
+          deal_id: string | null
+          display_name: string | null
+          document_id: string | null
+          file_name: string | null
+          file_size: string | null
+          status: string | null
+        }
+        Relationships: []
+      }
+      deal_notes_view: {
+        Row: {
+          created_at: string | null
+          deal_id: string | null
+          note_body: string | null
+          note_id: string | null
+          source_id: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deal_card_view"
+            referencedColumns: ["deal_id"]
+          },
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deal_detail_mv"
+            referencedColumns: ["deal_id"]
+          },
+        ]
+      }
     }
     Functions: {
-      [_ in never]: never
+      refresh_detail_views: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never

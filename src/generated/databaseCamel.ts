@@ -2529,10 +2529,135 @@ export type DatabaseCamel = {
       [_ in never]: never
     }
     Views: {
-      [_ in never]: never
+      clientCardView: {
+        Row: {
+          clientId: string | null
+          clientSummary: string | null
+          lastTouch: string | null
+          linkedDealCount: number | null
+        }
+        Insert: {
+          clientId?: string | null
+          clientSummary?: string | null
+          lastTouch?: string | null
+          linkedDealCount?: never
+        }
+        Update: {
+          clientId?: string | null
+          clientSummary?: string | null
+          lastTouch?: string | null
+          linkedDealCount?: never
+        }
+        Relationships: []
+      }
+      clientDetailMv: {
+        Row: {
+          clientDataJson: Json | null
+          clientId: string | null
+          clientSummary: string | null
+          deals: Json | null
+          recommendations: Json | null
+        }
+        Relationships: []
+      }
+      dealActivityView: {
+        Row: {
+          dealId: string | null
+          eventSummary: string | null
+          eventTs: string | null
+          tags: DatabaseCamel["analysis"]["Enums"]["canonBlockTag"][] | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deal_card_view"
+            referencedColumns: ["deal_id"]
+          },
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deal_detail_mv"
+            referencedColumns: ["deal_id"]
+          },
+        ]
+      }
+      dealCardView: {
+        Row: {
+          dealId: string | null
+          dealSummary: string | null
+          lastTouch: string | null
+          primaryClientSummary: string | null
+        }
+        Insert: {
+          dealId?: string | null
+          dealSummary?: string | null
+          lastTouch?: never
+          primaryClientSummary?: never
+        }
+        Update: {
+          dealId?: string | null
+          dealSummary?: string | null
+          lastTouch?: never
+          primaryClientSummary?: never
+        }
+        Relationships: []
+      }
+      dealDetailMv: {
+        Row: {
+          clients: Json | null
+          dealDataJson: Json | null
+          dealId: string | null
+          dealSummary: string | null
+          recommendations: Json | null
+        }
+        Relationships: []
+      }
+      dealDocumentsView: {
+        Row: {
+          createdAt: string | null
+          dealId: string | null
+          displayName: string | null
+          documentId: string | null
+          fileName: string | null
+          fileSize: string | null
+          status: string | null
+        }
+        Relationships: []
+      }
+      dealNotesView: {
+        Row: {
+          createdAt: string | null
+          dealId: string | null
+          noteBody: string | null
+          noteId: string | null
+          sourceId: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deal_card_view"
+            referencedColumns: ["deal_id"]
+          },
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deal_detail_mv"
+            referencedColumns: ["deal_id"]
+          },
+        ]
+      }
     }
     Functions: {
-      [_ in never]: never
+      refreshDetailViews: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never
