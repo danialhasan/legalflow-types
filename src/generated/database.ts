@@ -2531,7 +2531,90 @@ export type Database = {
   }
   ui: {
     Tables: {
-      [_ in never]: never
+      client_cards_ready: {
+        Row: {
+          client_id: string
+          payload: Json
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          client_id: string
+          payload: Json
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          client_id?: string
+          payload?: Json
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      client_detail_ready: {
+        Row: {
+          client_id: string
+          payload: Json
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          client_id: string
+          payload: Json
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          client_id?: string
+          payload?: Json
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      deal_cards_ready: {
+        Row: {
+          deal_id: string
+          payload: Json
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          deal_id: string
+          payload: Json
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          deal_id?: string
+          payload?: Json
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      deal_detail_ready: {
+        Row: {
+          deal_id: string
+          payload: Json
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          deal_id: string
+          payload: Json
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          deal_id?: string
+          payload?: Json
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       client_card_view: {
@@ -2540,18 +2623,31 @@ export type Database = {
           client_summary: string | null
           last_touch: string | null
           linked_deal_count: number | null
+          user_id: string | null
         }
         Insert: {
           client_id?: string | null
           client_summary?: string | null
           last_touch?: string | null
           linked_deal_count?: never
+          user_id?: string | null
         }
         Update: {
           client_id?: string | null
           client_summary?: string | null
           last_touch?: string | null
           linked_deal_count?: never
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      client_cards_raw: {
+        Row: {
+          client_id: string | null
+          client_summary: string | null
+          last_touch: string | null
+          linked_deal_count: number | null
+          recommended_actions_json: Json | null
         }
         Relationships: []
       }
@@ -2562,6 +2658,13 @@ export type Database = {
           client_summary: string | null
           deals: Json | null
           recommendations: Json | null
+        }
+        Relationships: []
+      }
+      client_detail_raw: {
+        Row: {
+          client_id: string | null
+          payload: Json | null
         }
         Relationships: []
       }
@@ -2584,7 +2687,21 @@ export type Database = {
             foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
             columns: ["deal_id"]
             isOneToOne: false
+            referencedRelation: "deal_cards_raw"
+            referencedColumns: ["deal_id"]
+          },
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
             referencedRelation: "deal_detail_mv"
+            referencedColumns: ["deal_id"]
+          },
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deal_detail_raw"
             referencedColumns: ["deal_id"]
           },
         ]
@@ -2595,18 +2712,31 @@ export type Database = {
           deal_summary: string | null
           last_touch: string | null
           primary_client_summary: string | null
+          user_id: string | null
         }
         Insert: {
           deal_id?: string | null
           deal_summary?: string | null
           last_touch?: never
           primary_client_summary?: never
+          user_id?: string | null
         }
         Update: {
           deal_id?: string | null
           deal_summary?: string | null
           last_touch?: never
           primary_client_summary?: never
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      deal_cards_raw: {
+        Row: {
+          deal_id: string | null
+          deal_summary: string | null
+          last_touch: string | null
+          primary_client_summary: string | null
+          recommended_actions_json: Json | null
         }
         Relationships: []
       }
@@ -2617,6 +2747,13 @@ export type Database = {
           deal_id: string | null
           deal_summary: string | null
           recommendations: Json | null
+        }
+        Relationships: []
+      }
+      deal_detail_raw: {
+        Row: {
+          deal_id: string | null
+          payload: Json | null
         }
         Relationships: []
       }
@@ -2652,7 +2789,21 @@ export type Database = {
             foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
             columns: ["deal_id"]
             isOneToOne: false
+            referencedRelation: "deal_cards_raw"
+            referencedColumns: ["deal_id"]
+          },
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
             referencedRelation: "deal_detail_mv"
+            referencedColumns: ["deal_id"]
+          },
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deal_detail_raw"
             referencedColumns: ["deal_id"]
           },
         ]
@@ -2662,6 +2813,13 @@ export type Database = {
       refresh_detail_views: {
         Args: Record<PropertyKey, never>
         Returns: undefined
+      }
+      refresh_raw_and_get_changes: {
+        Args: { _mode: string }
+        Returns: {
+          id: string
+          payload: Json
+        }[]
       }
     }
     Enums: {

@@ -2526,7 +2526,90 @@ export type DatabaseCamel = {
   }
   ui: {
     Tables: {
-      [_ in never]: never
+      clientCardsReady: {
+        Row: {
+          clientId: string
+          payload: Json
+          updatedAt: string | null
+          userId: string | null
+        }
+        Insert: {
+          clientId: string
+          payload: Json
+          updatedAt?: string | null
+          userId?: string | null
+        }
+        Update: {
+          clientId?: string
+          payload?: Json
+          updatedAt?: string | null
+          userId?: string | null
+        }
+        Relationships: []
+      }
+      clientDetailReady: {
+        Row: {
+          clientId: string
+          payload: Json
+          updatedAt: string | null
+          userId: string | null
+        }
+        Insert: {
+          clientId: string
+          payload: Json
+          updatedAt?: string | null
+          userId?: string | null
+        }
+        Update: {
+          clientId?: string
+          payload?: Json
+          updatedAt?: string | null
+          userId?: string | null
+        }
+        Relationships: []
+      }
+      dealCardsReady: {
+        Row: {
+          dealId: string
+          payload: Json
+          updatedAt: string | null
+          userId: string | null
+        }
+        Insert: {
+          dealId: string
+          payload: Json
+          updatedAt?: string | null
+          userId?: string | null
+        }
+        Update: {
+          dealId?: string
+          payload?: Json
+          updatedAt?: string | null
+          userId?: string | null
+        }
+        Relationships: []
+      }
+      dealDetailReady: {
+        Row: {
+          dealId: string
+          payload: Json
+          updatedAt: string | null
+          userId: string | null
+        }
+        Insert: {
+          dealId: string
+          payload: Json
+          updatedAt?: string | null
+          userId?: string | null
+        }
+        Update: {
+          dealId?: string
+          payload?: Json
+          updatedAt?: string | null
+          userId?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       clientCardView: {
@@ -2535,18 +2618,31 @@ export type DatabaseCamel = {
           clientSummary: string | null
           lastTouch: string | null
           linkedDealCount: number | null
+          userId: string | null
         }
         Insert: {
           clientId?: string | null
           clientSummary?: string | null
           lastTouch?: string | null
           linkedDealCount?: never
+          userId?: string | null
         }
         Update: {
           clientId?: string | null
           clientSummary?: string | null
           lastTouch?: string | null
           linkedDealCount?: never
+          userId?: string | null
+        }
+        Relationships: []
+      }
+      clientCardsRaw: {
+        Row: {
+          clientId: string | null
+          clientSummary: string | null
+          lastTouch: string | null
+          linkedDealCount: number | null
+          recommendedActionsJson: Json | null
         }
         Relationships: []
       }
@@ -2557,6 +2653,13 @@ export type DatabaseCamel = {
           clientSummary: string | null
           deals: Json | null
           recommendations: Json | null
+        }
+        Relationships: []
+      }
+      clientDetailRaw: {
+        Row: {
+          clientId: string | null
+          payload: Json | null
         }
         Relationships: []
       }
@@ -2579,7 +2682,21 @@ export type DatabaseCamel = {
             foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
             columns: ["deal_id"]
             isOneToOne: false
+            referencedRelation: "deal_cards_raw"
+            referencedColumns: ["deal_id"]
+          },
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
             referencedRelation: "deal_detail_mv"
+            referencedColumns: ["deal_id"]
+          },
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deal_detail_raw"
             referencedColumns: ["deal_id"]
           },
         ]
@@ -2590,18 +2707,31 @@ export type DatabaseCamel = {
           dealSummary: string | null
           lastTouch: string | null
           primaryClientSummary: string | null
+          userId: string | null
         }
         Insert: {
           dealId?: string | null
           dealSummary?: string | null
           lastTouch?: never
           primaryClientSummary?: never
+          userId?: string | null
         }
         Update: {
           dealId?: string | null
           dealSummary?: string | null
           lastTouch?: never
           primaryClientSummary?: never
+          userId?: string | null
+        }
+        Relationships: []
+      }
+      dealCardsRaw: {
+        Row: {
+          dealId: string | null
+          dealSummary: string | null
+          lastTouch: string | null
+          primaryClientSummary: string | null
+          recommendedActionsJson: Json | null
         }
         Relationships: []
       }
@@ -2612,6 +2742,13 @@ export type DatabaseCamel = {
           dealId: string | null
           dealSummary: string | null
           recommendations: Json | null
+        }
+        Relationships: []
+      }
+      dealDetailRaw: {
+        Row: {
+          dealId: string | null
+          payload: Json | null
         }
         Relationships: []
       }
@@ -2647,7 +2784,21 @@ export type DatabaseCamel = {
             foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
             columns: ["deal_id"]
             isOneToOne: false
+            referencedRelation: "deal_cards_raw"
+            referencedColumns: ["deal_id"]
+          },
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
             referencedRelation: "deal_detail_mv"
+            referencedColumns: ["deal_id"]
+          },
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deal_detail_raw"
             referencedColumns: ["deal_id"]
           },
         ]
@@ -2657,6 +2808,13 @@ export type DatabaseCamel = {
       refreshDetailViews: {
         Args: Record<PropertyKey, never>
         Returns: undefined
+      }
+      refreshRawAndGetChanges: {
+        Args: { mode: string }
+        Returns: {
+          id: string
+          payload: Json
+        }[]
       }
     }
     Enums: {
