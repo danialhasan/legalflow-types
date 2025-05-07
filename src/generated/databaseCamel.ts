@@ -2642,6 +2642,8 @@ export type DatabaseCamel = {
           clientSummary: string | null
           lastTouch: string | null
           linkedDealCount: number | null
+          needsSync: boolean | null
+          readyUpdatedAt: string | null
           recommendedActionsJson: Json | null
         }
         Relationships: []
@@ -2659,7 +2661,9 @@ export type DatabaseCamel = {
       clientDetailRaw: {
         Row: {
           clientId: string | null
+          needsSync: boolean | null
           payload: Json | null
+          readyUpdatedAt: string | null
         }
         Relationships: []
       }
@@ -2730,7 +2734,9 @@ export type DatabaseCamel = {
           dealId: string | null
           dealSummary: string | null
           lastTouch: string | null
+          needsSync: boolean | null
           primaryClientSummary: string | null
+          readyUpdatedAt: string | null
           recommendedActionsJson: Json | null
         }
         Relationships: []
@@ -2748,7 +2754,9 @@ export type DatabaseCamel = {
       dealDetailRaw: {
         Row: {
           dealId: string | null
+          needsSync: boolean | null
           payload: Json | null
+          readyUpdatedAt: string | null
         }
         Relationships: []
       }

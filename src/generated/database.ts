@@ -2647,6 +2647,8 @@ export type Database = {
           client_summary: string | null
           last_touch: string | null
           linked_deal_count: number | null
+          needs_sync: boolean | null
+          ready_updated_at: string | null
           recommended_actions_json: Json | null
         }
         Relationships: []
@@ -2664,7 +2666,9 @@ export type Database = {
       client_detail_raw: {
         Row: {
           client_id: string | null
+          needs_sync: boolean | null
           payload: Json | null
+          ready_updated_at: string | null
         }
         Relationships: []
       }
@@ -2735,7 +2739,9 @@ export type Database = {
           deal_id: string | null
           deal_summary: string | null
           last_touch: string | null
+          needs_sync: boolean | null
           primary_client_summary: string | null
+          ready_updated_at: string | null
           recommended_actions_json: Json | null
         }
         Relationships: []
@@ -2753,7 +2759,9 @@ export type Database = {
       deal_detail_raw: {
         Row: {
           deal_id: string | null
+          needs_sync: boolean | null
           payload: Json | null
+          ready_updated_at: string | null
         }
         Relationships: []
       }
