@@ -192,6 +192,7 @@ export type Database = {
         Row: {
           created_at: string
           enriched_extracted_data: Json | null
+          entity_ledger: Json | null
           id: string
           summary: string | null
           summary_embedding: string | null
@@ -201,6 +202,7 @@ export type Database = {
         Insert: {
           created_at?: string
           enriched_extracted_data?: Json | null
+          entity_ledger?: Json | null
           id?: string
           summary?: string | null
           summary_embedding?: string | null
@@ -210,6 +212,7 @@ export type Database = {
         Update: {
           created_at?: string
           enriched_extracted_data?: Json | null
+          entity_ledger?: Json | null
           id?: string
           summary?: string | null
           summary_embedding?: string | null

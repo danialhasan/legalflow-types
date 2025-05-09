@@ -187,6 +187,7 @@ export type DatabaseCamel = {
         Row: {
           createdAt: string
           enrichedExtractedData: Json | null
+          entityLedger: Json | null
           id: string
           summary: string | null
           summaryEmbedding: string | null
@@ -196,6 +197,7 @@ export type DatabaseCamel = {
         Insert: {
           createdAt?: string
           enrichedExtractedData?: Json | null
+          entityLedger?: Json | null
           id?: string
           summary?: string | null
           summaryEmbedding?: string | null
@@ -205,6 +207,7 @@ export type DatabaseCamel = {
         Update: {
           createdAt?: string
           enrichedExtractedData?: Json | null
+          entityLedger?: Json | null
           id?: string
           summary?: string | null
           summaryEmbedding?: string | null
