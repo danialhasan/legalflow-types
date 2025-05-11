@@ -214,6 +214,29 @@ export type ExtractedInputData = z.infer<typeof ExtractedInputDataSchema>;
 
 // --- Canon Block and Deal Context Graph Schemas ---
 
+// Define LedgerEntrySchema, similar to how it's in finalizeDealUpdateTask.ts
+// Ensure all nested schemas like contact are also defined or use z.any() for simplicity if shared types are an issue.
+export const LedgerEntrySchema = z.object({
+  canonicalId: z.string(),
+  aliases: z.array(z.string()).nullable(),
+  value: z.string(),
+  type: z.string(),
+  role: z.string().nullable(),
+  roleHistory: z.array(z.string()).nullable(),
+  title: z.string().nullable(),
+  organization: z.string().nullable(),
+  contact: z
+    .object({
+      email: z.string().nullable(),
+      phone: z.string().nullable()
+    })
+    .nullable(),
+  lastSeen: z.string().datetime({ offset: true }).nullable(),
+  sources: z.array(z.string()).nullable(),
+  reasoning: z.string().nullable()
+});
+export type LedgerEntry = z.infer<typeof LedgerEntrySchema>;
+
 export const CanonBlockSchema = z.object({
   id: z.string(), // id of the canon block
   sourceId: z.string().nullable(), // id of the source input (email, document, etc). Inherited from ExtractedInputData.
@@ -237,6 +260,7 @@ export const DealContextGraphSchema = z.object({
   extractedData: ExtractedInputDataSchema, // Most recent or merged structured data
   summaryEmbedding: z.string().nullable(),
   summary: z.string().nullable(),
+  entityLedger: z.array(LedgerEntrySchema).nullable(), // UPDATED to be an array of LedgerEntry
   createdAt: z.string(),
   updatedAt: z.string()
 });

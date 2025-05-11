@@ -480,7 +480,7 @@ export type DatabaseCamel = {
           executor: DatabaseCamel["assistant"]["Enums"]["recommendationExecutor"]
           id: string
           messageTemplate: string | null
-          params: Json
+          params: Json | null
           priority: number
           reasoning: string
           status: DatabaseCamel["assistant"]["Enums"]["recommendationStatus"]
@@ -496,7 +496,7 @@ export type DatabaseCamel = {
           executor: DatabaseCamel["assistant"]["Enums"]["recommendationExecutor"]
           id?: string
           messageTemplate?: string | null
-          params: Json
+          params?: Json | null
           priority: number
           reasoning: string
           status?: DatabaseCamel["assistant"]["Enums"]["recommendationStatus"]
@@ -512,7 +512,7 @@ export type DatabaseCamel = {
           executor?: DatabaseCamel["assistant"]["Enums"]["recommendationExecutor"]
           id?: string
           messageTemplate?: string | null
-          params?: Json
+          params?: Json | null
           priority?: number
           reasoning?: string
           status?: DatabaseCamel["assistant"]["Enums"]["recommendationStatus"]

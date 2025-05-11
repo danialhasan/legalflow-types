@@ -485,7 +485,7 @@ export type Database = {
           executor: Database["assistant"]["Enums"]["recommendation_executor"]
           id: string
           message_template: string | null
-          params: Json
+          params: Json | null
           priority: number
           reasoning: string
           status: Database["assistant"]["Enums"]["recommendation_status"]
@@ -501,7 +501,7 @@ export type Database = {
           executor: Database["assistant"]["Enums"]["recommendation_executor"]
           id?: string
           message_template?: string | null
-          params: Json
+          params?: Json | null
           priority: number
           reasoning: string
           status?: Database["assistant"]["Enums"]["recommendation_status"]
@@ -517,7 +517,7 @@ export type Database = {
           executor?: Database["assistant"]["Enums"]["recommendation_executor"]
           id?: string
           message_template?: string | null
-          params?: Json
+          params?: Json | null
           priority?: number
           reasoning?: string
           status?: Database["assistant"]["Enums"]["recommendation_status"]
