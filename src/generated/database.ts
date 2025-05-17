@@ -194,6 +194,8 @@ export type Database = {
           enriched_extracted_data: Json | null
           entity_ledger: Json | null
           id: string
+          ledger_update_in_progress: boolean | null
+          ledger_update_started_at: string | null
           summary: string | null
           summary_embedding: string | null
           updated_at: string
@@ -204,6 +206,8 @@ export type Database = {
           enriched_extracted_data?: Json | null
           entity_ledger?: Json | null
           id?: string
+          ledger_update_in_progress?: boolean | null
+          ledger_update_started_at?: string | null
           summary?: string | null
           summary_embedding?: string | null
           updated_at?: string
@@ -214,6 +218,8 @@ export type Database = {
           enriched_extracted_data?: Json | null
           entity_ledger?: Json | null
           id?: string
+          ledger_update_in_progress?: boolean | null
+          ledger_update_started_at?: string | null
           summary?: string | null
           summary_embedding?: string | null
           updated_at?: string

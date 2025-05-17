@@ -189,6 +189,8 @@ export type DatabaseCamel = {
           enrichedExtractedData: Json | null
           entityLedger: Json | null
           id: string
+          ledgerUpdateInProgress: boolean | null
+          ledgerUpdateStartedAt: string | null
           summary: string | null
           summaryEmbedding: string | null
           updatedAt: string
@@ -199,6 +201,8 @@ export type DatabaseCamel = {
           enrichedExtractedData?: Json | null
           entityLedger?: Json | null
           id?: string
+          ledgerUpdateInProgress?: boolean | null
+          ledgerUpdateStartedAt?: string | null
           summary?: string | null
           summaryEmbedding?: string | null
           updatedAt?: string
@@ -209,6 +213,8 @@ export type DatabaseCamel = {
           enrichedExtractedData?: Json | null
           entityLedger?: Json | null
           id?: string
+          ledgerUpdateInProgress?: boolean | null
+          ledgerUpdateStartedAt?: string | null
           summary?: string | null
           summaryEmbedding?: string | null
           updatedAt?: string
