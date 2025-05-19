@@ -64,16 +64,19 @@ export type DatabaseCamel = {
           canonBlockId: string
           clientContextGraphId: string
           id: string
+          role: string | null
         }
         Insert: {
           canonBlockId: string
           clientContextGraphId: string
           id?: string
+          role?: string | null
         }
         Update: {
           canonBlockId?: string
           clientContextGraphId?: string
           id?: string
+          role?: string | null
         }
         Relationships: [
           {

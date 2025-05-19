@@ -69,16 +69,19 @@ export type Database = {
           canon_block_id: string
           client_context_graph_id: string
           id: string
+          role: string | null
         }
         Insert: {
           canon_block_id: string
           client_context_graph_id: string
           id?: string
+          role?: string | null
         }
         Update: {
           canon_block_id?: string
           client_context_graph_id?: string
           id?: string
+          role?: string | null
         }
         Relationships: [
           {
