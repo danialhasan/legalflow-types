@@ -201,6 +201,7 @@ export type Database = {
           ledger_update_started_at: string | null
           summary: string | null
           summary_embedding: string | null
+          superseded_by: string | null
           updated_at: string
           user_id: string | null
         }
@@ -213,6 +214,7 @@ export type Database = {
           ledger_update_started_at?: string | null
           summary?: string | null
           summary_embedding?: string | null
+          superseded_by?: string | null
           updated_at?: string
           user_id?: string | null
         }
@@ -225,6 +227,7 @@ export type Database = {
           ledger_update_started_at?: string | null
           summary?: string | null
           summary_embedding?: string | null
+          superseded_by?: string | null
           updated_at?: string
           user_id?: string | null
         }
@@ -257,6 +260,36 @@ export type Database = {
           processing_time_ms?: number | null
           source_id?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      merge_logs: {
+        Row: {
+          created_at: string | null
+          decision: string | null
+          id: string
+          loser_id: string | null
+          rationale: string | null
+          score: number | null
+          survivor_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          decision?: string | null
+          id?: string
+          loser_id?: string | null
+          rationale?: string | null
+          score?: number | null
+          survivor_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          decision?: string | null
+          id?: string
+          loser_id?: string | null
+          rationale?: string | null
+          score?: number | null
+          survivor_id?: string | null
         }
         Relationships: []
       }

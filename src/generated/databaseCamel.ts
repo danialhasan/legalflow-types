@@ -196,6 +196,7 @@ export type DatabaseCamel = {
           ledgerUpdateStartedAt: string | null
           summary: string | null
           summaryEmbedding: string | null
+          supersededBy: string | null
           updatedAt: string
           userId: string | null
         }
@@ -208,6 +209,7 @@ export type DatabaseCamel = {
           ledgerUpdateStartedAt?: string | null
           summary?: string | null
           summaryEmbedding?: string | null
+          supersededBy?: string | null
           updatedAt?: string
           userId?: string | null
         }
@@ -220,6 +222,7 @@ export type DatabaseCamel = {
           ledgerUpdateStartedAt?: string | null
           summary?: string | null
           summaryEmbedding?: string | null
+          supersededBy?: string | null
           updatedAt?: string
           userId?: string | null
         }
@@ -252,6 +255,36 @@ export type DatabaseCamel = {
           processingTimeMs?: number | null
           sourceId?: string
           updatedAt?: string
+        }
+        Relationships: []
+      }
+      mergeLogs: {
+        Row: {
+          createdAt: string | null
+          decision: string | null
+          id: string
+          loserId: string | null
+          rationale: string | null
+          score: number | null
+          survivorId: string | null
+        }
+        Insert: {
+          createdAt?: string | null
+          decision?: string | null
+          id?: string
+          loserId?: string | null
+          rationale?: string | null
+          score?: number | null
+          survivorId?: string | null
+        }
+        Update: {
+          createdAt?: string | null
+          decision?: string | null
+          id?: string
+          loserId?: string | null
+          rationale?: string | null
+          score?: number | null
+          survivorId?: string | null
         }
         Relationships: []
       }

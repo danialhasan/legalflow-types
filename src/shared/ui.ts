@@ -108,7 +108,7 @@ export const DealFilterSchema = z.object({
 });
 
 export const MiniDealTagSchema = z.object({
-  dealId: z.string(),
+  dealId: z.string().uuid(),
   label: z.string(),
   status: DealStatusSchema
 });
