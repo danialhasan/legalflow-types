@@ -2664,30 +2664,18 @@ export type Database = {
     Views: {
       client_card_view: {
         Row: {
+          associated_deals_json: Json | null
           client_id: string | null
           client_summary: string | null
           last_touch: string | null
           linked_deal_count: number | null
           user_id: string | null
         }
-        Insert: {
-          client_id?: string | null
-          client_summary?: string | null
-          last_touch?: string | null
-          linked_deal_count?: never
-          user_id?: string | null
-        }
-        Update: {
-          client_id?: string | null
-          client_summary?: string | null
-          last_touch?: string | null
-          linked_deal_count?: never
-          user_id?: string | null
-        }
         Relationships: []
       }
       client_cards_raw: {
         Row: {
+          associated_deals_json: Json | null
           client_id: string | null
           client_summary: string | null
           last_touch: string | null
@@ -2695,6 +2683,7 @@ export type Database = {
           needs_sync: boolean | null
           ready_updated_at: string | null
           recommended_actions_json: Json | null
+          user_id: string | null
         }
         Relationships: []
       }
@@ -2710,10 +2699,26 @@ export type Database = {
       }
       client_detail_raw: {
         Row: {
+          associated_deals_json: Json | null
           client_id: string | null
+          client_summary: string | null
+          last_touch: string | null
+          linked_deal_count: number | null
           needs_sync: boolean | null
-          payload: Json | null
           ready_updated_at: string | null
+          recommended_actions_json: Json | null
+          user_id: string | null
+        }
+        Relationships: []
+      }
+      client_detail_view: {
+        Row: {
+          associated_deals_json: Json | null
+          client_id: string | null
+          client_summary: string | null
+          last_touch: string | null
+          linked_deal_count: number | null
+          user_id: string | null
         }
         Relationships: []
       }

@@ -2659,30 +2659,18 @@ export type DatabaseCamel = {
     Views: {
       clientCardView: {
         Row: {
+          associatedDealsJson: Json | null
           clientId: string | null
           clientSummary: string | null
           lastTouch: string | null
           linkedDealCount: number | null
           userId: string | null
         }
-        Insert: {
-          clientId?: string | null
-          clientSummary?: string | null
-          lastTouch?: string | null
-          linkedDealCount?: never
-          userId?: string | null
-        }
-        Update: {
-          clientId?: string | null
-          clientSummary?: string | null
-          lastTouch?: string | null
-          linkedDealCount?: never
-          userId?: string | null
-        }
         Relationships: []
       }
       clientCardsRaw: {
         Row: {
+          associatedDealsJson: Json | null
           clientId: string | null
           clientSummary: string | null
           lastTouch: string | null
@@ -2690,6 +2678,7 @@ export type DatabaseCamel = {
           needsSync: boolean | null
           readyUpdatedAt: string | null
           recommendedActionsJson: Json | null
+          userId: string | null
         }
         Relationships: []
       }
@@ -2705,10 +2694,26 @@ export type DatabaseCamel = {
       }
       clientDetailRaw: {
         Row: {
+          associatedDealsJson: Json | null
           clientId: string | null
+          clientSummary: string | null
+          lastTouch: string | null
+          linkedDealCount: number | null
           needsSync: boolean | null
-          payload: Json | null
           readyUpdatedAt: string | null
+          recommendedActionsJson: Json | null
+          userId: string | null
+        }
+        Relationships: []
+      }
+      clientDetailView: {
+        Row: {
+          associatedDealsJson: Json | null
+          clientId: string | null
+          clientSummary: string | null
+          lastTouch: string | null
+          linkedDealCount: number | null
+          userId: string | null
         }
         Relationships: []
       }
