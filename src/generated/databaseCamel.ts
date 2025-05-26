@@ -2662,8 +2662,10 @@ export type DatabaseCamel = {
           associatedDealsJson: Json | null
           clientId: string | null
           clientSummary: string | null
+          enrichedExtractedData: Json | null
           lastTouch: string | null
           linkedDealCount: number | null
+          recommendedActionsJson: Json | null
           userId: string | null
         }
         Relationships: []
@@ -2673,6 +2675,7 @@ export type DatabaseCamel = {
           associatedDealsJson: Json | null
           clientId: string | null
           clientSummary: string | null
+          enrichedExtractedData: Json | null
           lastTouch: string | null
           linkedDealCount: number | null
           needsSync: boolean | null
@@ -2697,11 +2700,12 @@ export type DatabaseCamel = {
           associatedDealsJson: Json | null
           clientId: string | null
           clientSummary: string | null
+          enrichedExtractedData: Json | null
           lastTouch: string | null
           linkedDealCount: number | null
           needsSync: boolean | null
           readyUpdatedAt: string | null
-          recommendedActionsJson: Json | null
+          recommendationsJson: Json | null
           userId: string | null
         }
         Relationships: []
@@ -2711,8 +2715,10 @@ export type DatabaseCamel = {
           associatedDealsJson: Json | null
           clientId: string | null
           clientSummary: string | null
+          enrichedExtractedData: Json | null
           lastTouch: string | null
           linkedDealCount: number | null
+          recommendationsJson: Json | null
           userId: string | null
         }
         Relationships: []

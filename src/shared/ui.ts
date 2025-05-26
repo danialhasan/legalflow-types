@@ -127,7 +127,8 @@ export const PartySchema = z.object({
   roleLabel: z.string(),
   name: z.string(),
   avatarLabel: z.string(),
-  subText: z.string().nullable()
+  subText: z.string().nullable(),
+  clientId: z.string().nullable()
 });
 
 export const MoneyItemSchema = z.object({

@@ -2667,8 +2667,10 @@ export type Database = {
           associated_deals_json: Json | null
           client_id: string | null
           client_summary: string | null
+          enriched_extracted_data: Json | null
           last_touch: string | null
           linked_deal_count: number | null
+          recommended_actions_json: Json | null
           user_id: string | null
         }
         Relationships: []
@@ -2678,6 +2680,7 @@ export type Database = {
           associated_deals_json: Json | null
           client_id: string | null
           client_summary: string | null
+          enriched_extracted_data: Json | null
           last_touch: string | null
           linked_deal_count: number | null
           needs_sync: boolean | null
@@ -2702,11 +2705,12 @@ export type Database = {
           associated_deals_json: Json | null
           client_id: string | null
           client_summary: string | null
+          enriched_extracted_data: Json | null
           last_touch: string | null
           linked_deal_count: number | null
           needs_sync: boolean | null
           ready_updated_at: string | null
-          recommended_actions_json: Json | null
+          recommendations_json: Json | null
           user_id: string | null
         }
         Relationships: []
@@ -2716,8 +2720,10 @@ export type Database = {
           associated_deals_json: Json | null
           client_id: string | null
           client_summary: string | null
+          enriched_extracted_data: Json | null
           last_touch: string | null
           linked_deal_count: number | null
+          recommendations_json: Json | null
           user_id: string | null
         }
         Relationships: []
