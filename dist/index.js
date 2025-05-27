@@ -67,5 +67,6 @@ exports.AIService = __importStar(require("./shared/ai-service"));
 exports.JobsService = __importStar(require("./shared/jobs-service"));
 __exportStar(require("./shared/extracted-data"), exports);
 __exportStar(require("./shared/recommendation"), exports);
+__exportStar(require("./shared/emailPayload"), exports);
 // Utilities
 __exportStar(require("./utils/schema-helpers"), exports);

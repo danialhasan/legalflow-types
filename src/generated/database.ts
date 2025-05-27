@@ -528,6 +528,7 @@ export type Database = {
           id: string
           message_template: string | null
           params: Json | null
+          payload: Json | null
           priority: number
           reasoning: string
           status: Database["assistant"]["Enums"]["recommendation_status"]
@@ -544,6 +545,7 @@ export type Database = {
           id?: string
           message_template?: string | null
           params?: Json | null
+          payload?: Json | null
           priority: number
           reasoning: string
           status?: Database["assistant"]["Enums"]["recommendation_status"]
@@ -560,6 +562,7 @@ export type Database = {
           id?: string
           message_template?: string | null
           params?: Json | null
+          payload?: Json | null
           priority?: number
           reasoning?: string
           status?: Database["assistant"]["Enums"]["recommendation_status"]
@@ -2764,6 +2767,13 @@ export type Database = {
             referencedRelation: "deal_detail_raw"
             referencedColumns: ["deal_id"]
           },
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deal_detail_view"
+            referencedColumns: ["deal_id"]
+          },
         ]
       }
       deal_card_view: {
@@ -2818,6 +2828,20 @@ export type Database = {
           needs_sync: boolean | null
           payload: Json | null
           ready_updated_at: string | null
+          updated_at: string | null
+          user_id: string | null
+        }
+        Relationships: []
+      }
+      deal_detail_view: {
+        Row: {
+          associated_clients_json: Json | null
+          deal_data_json: Json | null
+          deal_id: string | null
+          deal_summary: string | null
+          last_touch: string | null
+          linked_client_count: number | null
+          user_id: string | null
         }
         Relationships: []
       }
@@ -2868,6 +2892,13 @@ export type Database = {
             columns: ["deal_id"]
             isOneToOne: false
             referencedRelation: "deal_detail_raw"
+            referencedColumns: ["deal_id"]
+          },
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deal_detail_view"
             referencedColumns: ["deal_id"]
           },
         ]

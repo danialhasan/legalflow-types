@@ -523,6 +523,7 @@ export type DatabaseCamel = {
           id: string
           messageTemplate: string | null
           params: Json | null
+          payload: Json | null
           priority: number
           reasoning: string
           status: DatabaseCamel["assistant"]["Enums"]["recommendationStatus"]
@@ -539,6 +540,7 @@ export type DatabaseCamel = {
           id?: string
           messageTemplate?: string | null
           params?: Json | null
+          payload?: Json | null
           priority: number
           reasoning: string
           status?: DatabaseCamel["assistant"]["Enums"]["recommendationStatus"]
@@ -555,6 +557,7 @@ export type DatabaseCamel = {
           id?: string
           messageTemplate?: string | null
           params?: Json | null
+          payload?: Json | null
           priority?: number
           reasoning?: string
           status?: DatabaseCamel["assistant"]["Enums"]["recommendationStatus"]
@@ -2759,6 +2762,13 @@ export type DatabaseCamel = {
             referencedRelation: "deal_detail_raw"
             referencedColumns: ["deal_id"]
           },
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deal_detail_view"
+            referencedColumns: ["deal_id"]
+          },
         ]
       }
       dealCardView: {
@@ -2813,6 +2823,20 @@ export type DatabaseCamel = {
           needsSync: boolean | null
           payload: Json | null
           readyUpdatedAt: string | null
+          updatedAt: string | null
+          userId: string | null
+        }
+        Relationships: []
+      }
+      dealDetailView: {
+        Row: {
+          associatedClientsJson: Json | null
+          dealDataJson: Json | null
+          dealId: string | null
+          dealSummary: string | null
+          lastTouch: string | null
+          linkedClientCount: number | null
+          userId: string | null
         }
         Relationships: []
       }
@@ -2863,6 +2887,13 @@ export type DatabaseCamel = {
             columns: ["deal_id"]
             isOneToOne: false
             referencedRelation: "deal_detail_raw"
+            referencedColumns: ["deal_id"]
+          },
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deal_detail_view"
             referencedColumns: ["deal_id"]
           },
         ]

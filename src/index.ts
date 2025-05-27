@@ -31,6 +31,7 @@ export * as AIService from './shared/ai-service';
 export * as JobsService from './shared/jobs-service';
 export * from './shared/extracted-data';
 export * from './shared/recommendation';
+export * from './shared/emailPayload';
 
 // Utilities
 export * from './utils/schema-helpers';
