@@ -9,6 +9,7 @@ import { z } from 'zod';
 
 /* Action/Recommendation Types */
 export const ActionChipSchema = z.object({
+  recommendationId: z.string().optional(),
   label: z.string(),
   dueIso: z.string().nullable(),
   urgency: z.enum(['required', 'soon', 'optional']),

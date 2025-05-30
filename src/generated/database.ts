@@ -760,7 +760,12 @@ export type Database = {
         | "schedule_calendar"
         | "create_task"
         | "post_crm_note"
-      recommendation_status: "pending" | "executing" | "executed" | "failed"
+      recommendation_status:
+        | "pending"
+        | "executing"
+        | "executed"
+        | "failed"
+        | "dismissed"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -3074,7 +3079,13 @@ export const Constants = {
         "create_task",
         "post_crm_note",
       ],
-      recommendation_status: ["pending", "executing", "executed", "failed"],
+      recommendation_status: [
+        "pending",
+        "executing",
+        "executed",
+        "failed",
+        "dismissed",
+      ],
     },
   },
   compliance: {

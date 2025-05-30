@@ -755,7 +755,12 @@ export type DatabaseCamel = {
         | "schedule_calendar"
         | "create_task"
         | "post_crm_note"
-      recommendationStatus: "pending" | "executing" | "executed" | "failed"
+      recommendationStatus:
+        | "pending"
+        | "executing"
+        | "executed"
+        | "failed"
+        | "dismissed"
     }
     CompositeTypes: {
       [_ in never]: never
