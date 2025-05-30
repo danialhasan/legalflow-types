@@ -517,51 +517,63 @@ export type DatabaseCamel = {
           clientId: string | null
           createdAt: string
           dealId: string | null
+          editDelta: Json | null
           executedAt: string | null
           executionStrategy: DatabaseCamel["assistant"]["Enums"]["recommendationExecutionStrategy"]
           executor: DatabaseCamel["assistant"]["Enums"]["recommendationExecutor"]
           id: string
           messageTemplate: string | null
+          originalPayload: Json | null
           params: Json | null
           payload: Json | null
           priority: number
+          promptVersion: string | null
           reasoning: string
           status: DatabaseCamel["assistant"]["Enums"]["recommendationStatus"]
           triggeredAt: string
+          userFeedback: DatabaseCamel["assistant"]["Enums"]["userFeedback"] | null
           userId: string
         }
         Insert: {
           clientId?: string | null
           createdAt?: string
           dealId?: string | null
+          editDelta?: Json | null
           executedAt?: string | null
           executionStrategy?: DatabaseCamel["assistant"]["Enums"]["recommendationExecutionStrategy"]
           executor: DatabaseCamel["assistant"]["Enums"]["recommendationExecutor"]
           id?: string
           messageTemplate?: string | null
+          originalPayload?: Json | null
           params?: Json | null
           payload?: Json | null
           priority: number
+          promptVersion?: string | null
           reasoning: string
           status?: DatabaseCamel["assistant"]["Enums"]["recommendationStatus"]
           triggeredAt?: string
+          userFeedback?: DatabaseCamel["assistant"]["Enums"]["userFeedback"] | null
           userId: string
         }
         Update: {
           clientId?: string | null
           createdAt?: string
           dealId?: string | null
+          editDelta?: Json | null
           executedAt?: string | null
           executionStrategy?: DatabaseCamel["assistant"]["Enums"]["recommendationExecutionStrategy"]
           executor?: DatabaseCamel["assistant"]["Enums"]["recommendationExecutor"]
           id?: string
           messageTemplate?: string | null
+          originalPayload?: Json | null
           params?: Json | null
           payload?: Json | null
           priority?: number
+          promptVersion?: string | null
           reasoning?: string
           status?: DatabaseCamel["assistant"]["Enums"]["recommendationStatus"]
           triggeredAt?: string
+          userFeedback?: DatabaseCamel["assistant"]["Enums"]["userFeedback"] | null
           userId?: string
         }
         Relationships: []
@@ -761,6 +773,7 @@ export type DatabaseCamel = {
         | "executed"
         | "failed"
         | "dismissed"
+      userFeedback: "accepted" | "edited" | "dismissed" | "flagged"
     }
     CompositeTypes: {
       [_ in never]: never

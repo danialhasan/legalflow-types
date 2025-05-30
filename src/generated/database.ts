@@ -522,51 +522,63 @@ export type Database = {
           client_id: string | null
           created_at: string
           deal_id: string | null
+          edit_delta: Json | null
           executed_at: string | null
           execution_strategy: Database["assistant"]["Enums"]["recommendation_execution_strategy"]
           executor: Database["assistant"]["Enums"]["recommendation_executor"]
           id: string
           message_template: string | null
+          original_payload: Json | null
           params: Json | null
           payload: Json | null
           priority: number
+          prompt_version: string | null
           reasoning: string
           status: Database["assistant"]["Enums"]["recommendation_status"]
           triggered_at: string
+          user_feedback: Database["assistant"]["Enums"]["user_feedback"] | null
           user_id: string
         }
         Insert: {
           client_id?: string | null
           created_at?: string
           deal_id?: string | null
+          edit_delta?: Json | null
           executed_at?: string | null
           execution_strategy?: Database["assistant"]["Enums"]["recommendation_execution_strategy"]
           executor: Database["assistant"]["Enums"]["recommendation_executor"]
           id?: string
           message_template?: string | null
+          original_payload?: Json | null
           params?: Json | null
           payload?: Json | null
           priority: number
+          prompt_version?: string | null
           reasoning: string
           status?: Database["assistant"]["Enums"]["recommendation_status"]
           triggered_at?: string
+          user_feedback?: Database["assistant"]["Enums"]["user_feedback"] | null
           user_id: string
         }
         Update: {
           client_id?: string | null
           created_at?: string
           deal_id?: string | null
+          edit_delta?: Json | null
           executed_at?: string | null
           execution_strategy?: Database["assistant"]["Enums"]["recommendation_execution_strategy"]
           executor?: Database["assistant"]["Enums"]["recommendation_executor"]
           id?: string
           message_template?: string | null
+          original_payload?: Json | null
           params?: Json | null
           payload?: Json | null
           priority?: number
+          prompt_version?: string | null
           reasoning?: string
           status?: Database["assistant"]["Enums"]["recommendation_status"]
           triggered_at?: string
+          user_feedback?: Database["assistant"]["Enums"]["user_feedback"] | null
           user_id?: string
         }
         Relationships: []
@@ -766,6 +778,7 @@ export type Database = {
         | "executed"
         | "failed"
         | "dismissed"
+      user_feedback: "accepted" | "edited" | "dismissed" | "flagged"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -3086,6 +3099,7 @@ export const Constants = {
         "failed",
         "dismissed",
       ],
+      user_feedback: ["accepted", "edited", "dismissed", "flagged"],
     },
   },
   compliance: {
