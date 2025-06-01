@@ -10,13 +10,13 @@ export const EmailPayloadSchema = z.object({
       .describe('Array of recipient email addresses'),
     cc: z
       .array(z.string().email())
-      .optional()
+      .nullable()
       .describe('Array of CC email addresses'),
     bcc: z
       .array(z.string().email())
-      .optional()
+      .nullable()
       .describe('Array of BCC email addresses'),
-    replyTo: z.string().email().optional().describe('Reply-to email address')
+    replyTo: z.string().email().nullable().describe('Reply-to email address')
   }),
   template: z.object({
     subject: z.string().describe('Email subject line'),

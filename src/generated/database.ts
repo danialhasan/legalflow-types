@@ -193,6 +193,7 @@ export type Database = {
       }
       deal_context_graphs: {
         Row: {
+          building_address_id: string | null
           created_at: string
           enriched_extracted_data: Json | null
           entity_ledger: Json | null
@@ -202,10 +203,12 @@ export type Database = {
           summary: string | null
           summary_embedding: string | null
           superseded_by: string | null
+          unit_address_id: string | null
           updated_at: string
           user_id: string | null
         }
         Insert: {
+          building_address_id?: string | null
           created_at?: string
           enriched_extracted_data?: Json | null
           entity_ledger?: Json | null
@@ -215,10 +218,12 @@ export type Database = {
           summary?: string | null
           summary_embedding?: string | null
           superseded_by?: string | null
+          unit_address_id?: string | null
           updated_at?: string
           user_id?: string | null
         }
         Update: {
+          building_address_id?: string | null
           created_at?: string
           enriched_extracted_data?: Json | null
           entity_ledger?: Json | null
@@ -228,6 +233,7 @@ export type Database = {
           summary?: string | null
           summary_embedding?: string | null
           superseded_by?: string | null
+          unit_address_id?: string | null
           updated_at?: string
           user_id?: string | null
         }

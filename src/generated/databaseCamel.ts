@@ -188,6 +188,7 @@ export type DatabaseCamel = {
       }
       dealContextGraphs: {
         Row: {
+          buildingAddressId: string | null
           createdAt: string
           enrichedExtractedData: Json | null
           entityLedger: Json | null
@@ -197,10 +198,12 @@ export type DatabaseCamel = {
           summary: string | null
           summaryEmbedding: string | null
           supersededBy: string | null
+          unitAddressId: string | null
           updatedAt: string
           userId: string | null
         }
         Insert: {
+          buildingAddressId?: string | null
           createdAt?: string
           enrichedExtractedData?: Json | null
           entityLedger?: Json | null
@@ -210,10 +213,12 @@ export type DatabaseCamel = {
           summary?: string | null
           summaryEmbedding?: string | null
           supersededBy?: string | null
+          unitAddressId?: string | null
           updatedAt?: string
           userId?: string | null
         }
         Update: {
+          buildingAddressId?: string | null
           createdAt?: string
           enrichedExtractedData?: Json | null
           entityLedger?: Json | null
@@ -223,6 +228,7 @@ export type DatabaseCamel = {
           summary?: string | null
           summaryEmbedding?: string | null
           supersededBy?: string | null
+          unitAddressId?: string | null
           updatedAt?: string
           userId?: string | null
         }
