@@ -11,6 +11,7 @@ export type Database = {
     Tables: {
       canon_blocks: {
         Row: {
+          address_tag: string | null
           created_at: string
           deal_context_graph_id: string | null
           embedding: string | null
@@ -21,6 +22,7 @@ export type Database = {
           tags: Database["analysis"]["Enums"]["canon_block_tag"][] | null
         }
         Insert: {
+          address_tag?: string | null
           created_at?: string
           deal_context_graph_id?: string | null
           embedding?: string | null
@@ -31,6 +33,7 @@ export type Database = {
           tags?: Database["analysis"]["Enums"]["canon_block_tag"][] | null
         }
         Update: {
+          address_tag?: string | null
           created_at?: string
           deal_context_graph_id?: string | null
           embedding?: string | null
@@ -525,6 +528,7 @@ export type Database = {
     Tables: {
       agent_recommendations: {
         Row: {
+          alternatives: Json | null
           client_id: string | null
           created_at: string
           deal_id: string | null
@@ -532,6 +536,7 @@ export type Database = {
           executed_at: string | null
           execution_strategy: Database["assistant"]["Enums"]["recommendation_execution_strategy"]
           executor: Database["assistant"]["Enums"]["recommendation_executor"]
+          fallback_used: boolean | null
           id: string
           message_template: string | null
           original_payload: Json | null
@@ -539,13 +544,16 @@ export type Database = {
           payload: Json | null
           priority: number
           prompt_version: string | null
+          quality_scores: Json | null
           reasoning: string
+          selection_reason: string | null
           status: Database["assistant"]["Enums"]["recommendation_status"]
           triggered_at: string
           user_feedback: Database["assistant"]["Enums"]["user_feedback"] | null
           user_id: string
         }
         Insert: {
+          alternatives?: Json | null
           client_id?: string | null
           created_at?: string
           deal_id?: string | null
@@ -553,6 +561,7 @@ export type Database = {
           executed_at?: string | null
           execution_strategy?: Database["assistant"]["Enums"]["recommendation_execution_strategy"]
           executor: Database["assistant"]["Enums"]["recommendation_executor"]
+          fallback_used?: boolean | null
           id?: string
           message_template?: string | null
           original_payload?: Json | null
@@ -560,13 +569,16 @@ export type Database = {
           payload?: Json | null
           priority: number
           prompt_version?: string | null
+          quality_scores?: Json | null
           reasoning: string
+          selection_reason?: string | null
           status?: Database["assistant"]["Enums"]["recommendation_status"]
           triggered_at?: string
           user_feedback?: Database["assistant"]["Enums"]["user_feedback"] | null
           user_id: string
         }
         Update: {
+          alternatives?: Json | null
           client_id?: string | null
           created_at?: string
           deal_id?: string | null
@@ -574,6 +586,7 @@ export type Database = {
           executed_at?: string | null
           execution_strategy?: Database["assistant"]["Enums"]["recommendation_execution_strategy"]
           executor?: Database["assistant"]["Enums"]["recommendation_executor"]
+          fallback_used?: boolean | null
           id?: string
           message_template?: string | null
           original_payload?: Json | null
@@ -581,7 +594,9 @@ export type Database = {
           payload?: Json | null
           priority?: number
           prompt_version?: string | null
+          quality_scores?: Json | null
           reasoning?: string
+          selection_reason?: string | null
           status?: Database["assistant"]["Enums"]["recommendation_status"]
           triggered_at?: string
           user_feedback?: Database["assistant"]["Enums"]["user_feedback"] | null
@@ -760,6 +775,57 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      recommendation_analytics: {
+        Row: {
+          candidates_generated: number
+          client_id: string | null
+          created_at: string | null
+          deal_id: string | null
+          effectiveness_score: number | null
+          id: string
+          quality_scores: Json
+          selected_candidate_rank: number
+          selection_criteria: Json
+          session_id: string
+          time_to_action_ms: number | null
+          updated_at: string | null
+          user_action: string | null
+          user_id: string
+        }
+        Insert: {
+          candidates_generated: number
+          client_id?: string | null
+          created_at?: string | null
+          deal_id?: string | null
+          effectiveness_score?: number | null
+          id?: string
+          quality_scores: Json
+          selected_candidate_rank: number
+          selection_criteria: Json
+          session_id: string
+          time_to_action_ms?: number | null
+          updated_at?: string | null
+          user_action?: string | null
+          user_id: string
+        }
+        Update: {
+          candidates_generated?: number
+          client_id?: string | null
+          created_at?: string | null
+          deal_id?: string | null
+          effectiveness_score?: number | null
+          id?: string
+          quality_scores?: Json
+          selected_candidate_rank?: number
+          selection_criteria?: Json
+          session_id?: string
+          time_to_action_ms?: number | null
+          updated_at?: string | null
+          user_action?: string | null
+          user_id?: string
+        }
+        Relationships: []
       }
     }
     Views: {
@@ -1227,6 +1293,45 @@ export type Database = {
           id?: string
           is_pinned?: boolean | null
           updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_recommendation_preferences: {
+        Row: {
+          always_show_alternatives: boolean | null
+          created_at: string | null
+          experience_level: string | null
+          fatigue_pause_until: string | null
+          preferred_display_limit: number | null
+          quality_weight_actionability: number | null
+          quality_weight_relevance: number | null
+          quality_weight_urgency: number | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          always_show_alternatives?: boolean | null
+          created_at?: string | null
+          experience_level?: string | null
+          fatigue_pause_until?: string | null
+          preferred_display_limit?: number | null
+          quality_weight_actionability?: number | null
+          quality_weight_relevance?: number | null
+          quality_weight_urgency?: number | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          always_show_alternatives?: boolean | null
+          created_at?: string | null
+          experience_level?: string | null
+          fatigue_pause_until?: string | null
+          preferred_display_limit?: number | null
+          quality_weight_actionability?: number | null
+          quality_weight_relevance?: number | null
+          quality_weight_urgency?: number | null
+          updated_at?: string | null
           user_id?: string
         }
         Relationships: []

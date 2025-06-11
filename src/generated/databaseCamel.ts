@@ -6,6 +6,7 @@ export type DatabaseCamel = {
     Tables: {
       canonBlocks: {
         Row: {
+          addressTag: string | null
           createdAt: string
           dealContextGraphId: string | null
           embedding: string | null
@@ -16,6 +17,7 @@ export type DatabaseCamel = {
           tags: DatabaseCamel["analysis"]["Enums"]["canonBlockTag"][] | null
         }
         Insert: {
+          addressTag?: string | null
           createdAt?: string
           dealContextGraphId?: string | null
           embedding?: string | null
@@ -26,6 +28,7 @@ export type DatabaseCamel = {
           tags?: DatabaseCamel["analysis"]["Enums"]["canonBlockTag"][] | null
         }
         Update: {
+          addressTag?: string | null
           createdAt?: string
           dealContextGraphId?: string | null
           embedding?: string | null
@@ -520,6 +523,7 @@ export type DatabaseCamel = {
     Tables: {
       agentRecommendations: {
         Row: {
+          alternatives: Json | null
           clientId: string | null
           createdAt: string
           dealId: string | null
@@ -527,6 +531,7 @@ export type DatabaseCamel = {
           executedAt: string | null
           executionStrategy: DatabaseCamel["assistant"]["Enums"]["recommendationExecutionStrategy"]
           executor: DatabaseCamel["assistant"]["Enums"]["recommendationExecutor"]
+          fallbackUsed: boolean | null
           id: string
           messageTemplate: string | null
           originalPayload: Json | null
@@ -534,13 +539,16 @@ export type DatabaseCamel = {
           payload: Json | null
           priority: number
           promptVersion: string | null
+          qualityScores: Json | null
           reasoning: string
+          selectionReason: string | null
           status: DatabaseCamel["assistant"]["Enums"]["recommendationStatus"]
           triggeredAt: string
           userFeedback: DatabaseCamel["assistant"]["Enums"]["userFeedback"] | null
           userId: string
         }
         Insert: {
+          alternatives?: Json | null
           clientId?: string | null
           createdAt?: string
           dealId?: string | null
@@ -548,6 +556,7 @@ export type DatabaseCamel = {
           executedAt?: string | null
           executionStrategy?: DatabaseCamel["assistant"]["Enums"]["recommendationExecutionStrategy"]
           executor: DatabaseCamel["assistant"]["Enums"]["recommendationExecutor"]
+          fallbackUsed?: boolean | null
           id?: string
           messageTemplate?: string | null
           originalPayload?: Json | null
@@ -555,13 +564,16 @@ export type DatabaseCamel = {
           payload?: Json | null
           priority: number
           promptVersion?: string | null
+          qualityScores?: Json | null
           reasoning: string
+          selectionReason?: string | null
           status?: DatabaseCamel["assistant"]["Enums"]["recommendationStatus"]
           triggeredAt?: string
           userFeedback?: DatabaseCamel["assistant"]["Enums"]["userFeedback"] | null
           userId: string
         }
         Update: {
+          alternatives?: Json | null
           clientId?: string | null
           createdAt?: string
           dealId?: string | null
@@ -569,6 +581,7 @@ export type DatabaseCamel = {
           executedAt?: string | null
           executionStrategy?: DatabaseCamel["assistant"]["Enums"]["recommendationExecutionStrategy"]
           executor?: DatabaseCamel["assistant"]["Enums"]["recommendationExecutor"]
+          fallbackUsed?: boolean | null
           id?: string
           messageTemplate?: string | null
           originalPayload?: Json | null
@@ -576,7 +589,9 @@ export type DatabaseCamel = {
           payload?: Json | null
           priority?: number
           promptVersion?: string | null
+          qualityScores?: Json | null
           reasoning?: string
+          selectionReason?: string | null
           status?: DatabaseCamel["assistant"]["Enums"]["recommendationStatus"]
           triggeredAt?: string
           userFeedback?: DatabaseCamel["assistant"]["Enums"]["userFeedback"] | null
@@ -755,6 +770,57 @@ export type DatabaseCamel = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      recommendationAnalytics: {
+        Row: {
+          candidatesGenerated: number
+          clientId: string | null
+          createdAt: string | null
+          dealId: string | null
+          effectivenessScore: number | null
+          id: string
+          qualityScores: Json
+          selectedCandidateRank: number
+          selectionCriteria: Json
+          sessionId: string
+          timeToActionMs: number | null
+          updatedAt: string | null
+          userAction: string | null
+          userId: string
+        }
+        Insert: {
+          candidatesGenerated: number
+          clientId?: string | null
+          createdAt?: string | null
+          dealId?: string | null
+          effectivenessScore?: number | null
+          id?: string
+          qualityScores: Json
+          selectedCandidateRank: number
+          selectionCriteria: Json
+          sessionId: string
+          timeToActionMs?: number | null
+          updatedAt?: string | null
+          userAction?: string | null
+          userId: string
+        }
+        Update: {
+          candidatesGenerated?: number
+          clientId?: string | null
+          createdAt?: string | null
+          dealId?: string | null
+          effectivenessScore?: number | null
+          id?: string
+          qualityScores?: Json
+          selectedCandidateRank?: number
+          selectionCriteria?: Json
+          sessionId?: string
+          timeToActionMs?: number | null
+          updatedAt?: string | null
+          userAction?: string | null
+          userId?: string
+        }
+        Relationships: []
       }
     }
     Views: {
@@ -1222,6 +1288,45 @@ export type DatabaseCamel = {
           id?: string
           isPinned?: boolean | null
           updatedAt?: string
+          userId?: string
+        }
+        Relationships: []
+      }
+      userRecommendationPreferences: {
+        Row: {
+          alwaysShowAlternatives: boolean | null
+          createdAt: string | null
+          experienceLevel: string | null
+          fatiguePauseUntil: string | null
+          preferredDisplayLimit: number | null
+          qualityWeightActionability: number | null
+          qualityWeightRelevance: number | null
+          qualityWeightUrgency: number | null
+          updatedAt: string | null
+          userId: string
+        }
+        Insert: {
+          alwaysShowAlternatives?: boolean | null
+          createdAt?: string | null
+          experienceLevel?: string | null
+          fatiguePauseUntil?: string | null
+          preferredDisplayLimit?: number | null
+          qualityWeightActionability?: number | null
+          qualityWeightRelevance?: number | null
+          qualityWeightUrgency?: number | null
+          updatedAt?: string | null
+          userId: string
+        }
+        Update: {
+          alwaysShowAlternatives?: boolean | null
+          createdAt?: string | null
+          experienceLevel?: string | null
+          fatiguePauseUntil?: string | null
+          preferredDisplayLimit?: number | null
+          qualityWeightActionability?: number | null
+          qualityWeightRelevance?: number | null
+          qualityWeightUrgency?: number | null
+          updatedAt?: string | null
           userId?: string
         }
         Relationships: []
