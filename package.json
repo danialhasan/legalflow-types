@@ -1,13 +1,13 @@
 {
   "name": "@legalflow/types",
-  "version": "2.75.0",
+  "version": "2.76.0",
   "description": "Domain-driven TypeScript types for LegalFlow services",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "clean": "rm -rf dist/*.js dist/*.d.ts && rm -f *.js *.js.map",
     "generate-constants": "ts-node scripts/generate-db-constants.ts",
-    "generate-database": "supabase gen types typescript --project-id rzwbkmmsmwnihicmnszq --schema analysis,assistant,compliance,core,documents,integrations,sales,telephony,storage,ui > src/generated/database.ts",
+    "generate-database": "supabase gen types typescript --project-id rzwbkmmsmwnihicmnszq --schema analysis,assistant,compliance,core,documents,integrations,sales,telephony,storage,ui,usage_lens > src/generated/database.ts",
     "generate-camel-db": "ts-node scripts/generate-camel-db.ts",
     "generate": "npm run generate-database && npm run generate-constants && npm run generate-camel-db && tsc",
     "finish": "npm run generate && git add . && git commit -m 'update types' && gp && npm publish",

@@ -827,6 +827,44 @@ export type Database = {
         }
         Relationships: []
       }
+      recommendation_context_links: {
+        Row: {
+          created_at: string | null
+          id: string
+          notes: string | null
+          recommendation_id: string
+          source_id: string
+          source_type: Database["assistant"]["Enums"]["context_source_type"]
+          weight: number | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          notes?: string | null
+          recommendation_id: string
+          source_id: string
+          source_type: Database["assistant"]["Enums"]["context_source_type"]
+          weight?: number | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          notes?: string | null
+          recommendation_id?: string
+          source_id?: string
+          source_type?: Database["assistant"]["Enums"]["context_source_type"]
+          weight?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "recommendation_context_links_recommendation_id_fkey"
+            columns: ["recommendation_id"]
+            isOneToOne: false
+            referencedRelation: "agent_recommendations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
@@ -835,6 +873,13 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
+      context_source_type:
+        | "canon_block"
+        | "extracted_input"
+        | "email"
+        | "calendar_event"
+        | "document"
+        | "other"
       recommendation_execution_strategy:
         | "manual"
         | "automatic"
@@ -3053,6 +3098,151 @@ export type Database = {
       [_ in never]: never
     }
   }
+  usage_lens: {
+    Tables: {
+      usage_raw: {
+        Row: {
+          completion_text: string | null
+          completion_tokens: number
+          cost_cents: number | null
+          created_at: string
+          created_by: string | null
+          external_id: string | null
+          id: string
+          metadata: Json | null
+          model: string
+          prompt_text: string | null
+          prompt_tokens: number
+          provider: string
+          source: string | null
+          tag: string | null
+          total_tokens: number
+          updated_at: string
+        }
+        Insert: {
+          completion_text?: string | null
+          completion_tokens?: number
+          cost_cents?: number | null
+          created_at?: string
+          created_by?: string | null
+          external_id?: string | null
+          id?: string
+          metadata?: Json | null
+          model: string
+          prompt_text?: string | null
+          prompt_tokens?: number
+          provider?: string
+          source?: string | null
+          tag?: string | null
+          total_tokens?: number
+          updated_at?: string
+        }
+        Update: {
+          completion_text?: string | null
+          completion_tokens?: number
+          cost_cents?: number | null
+          created_at?: string
+          created_by?: string | null
+          external_id?: string | null
+          id?: string
+          metadata?: Json | null
+          model?: string
+          prompt_text?: string | null
+          prompt_tokens?: number
+          provider?: string
+          source?: string | null
+          tag?: string | null
+          total_tokens?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      usage_summaries: {
+        Row: {
+          avg_cost_per_call: number | null
+          avg_tokens_per_call: number | null
+          created_at: string
+          created_by: string | null
+          date_period: string
+          id: string
+          model: string | null
+          provider: string | null
+          summary_type: string
+          tag: string | null
+          total_calls: number
+          total_cost_cents: number
+          total_tokens_sum: number
+          updated_at: string
+        }
+        Insert: {
+          avg_cost_per_call?: number | null
+          avg_tokens_per_call?: number | null
+          created_at?: string
+          created_by?: string | null
+          date_period: string
+          id?: string
+          model?: string | null
+          provider?: string | null
+          summary_type: string
+          tag?: string | null
+          total_calls?: number
+          total_cost_cents?: number
+          total_tokens_sum?: number
+          updated_at?: string
+        }
+        Update: {
+          avg_cost_per_call?: number | null
+          avg_tokens_per_call?: number | null
+          created_at?: string
+          created_by?: string | null
+          date_period?: string
+          id?: string
+          model?: string | null
+          provider?: string | null
+          summary_type?: string
+          tag?: string | null
+          total_calls?: number
+          total_cost_cents?: number
+          total_tokens_sum?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+    }
+    Views: {
+      usage_metrics: {
+        Row: {
+          avg_completion_tokens: number | null
+          avg_cost_cents: number | null
+          avg_prompt_tokens: number | null
+          avg_total_tokens: number | null
+          calls: number | null
+          created_by: string | null
+          date: string | null
+          first_call: string | null
+          last_call: string | null
+          model: string | null
+          provider: string | null
+          tag: string | null
+          total_cost_cents: number | null
+          total_tokens_sum: number | null
+        }
+        Relationships: []
+      }
+    }
+    Functions: {
+      refresh_usage_metrics: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
+      }
+    }
+    Enums: {
+      [_ in never]: never
+    }
+    CompositeTypes: {
+      [_ in never]: never
+    }
+  }
 }
 
 type DefaultSchema = Database[Extract<keyof Database, "public">]
@@ -3192,6 +3382,14 @@ export const Constants = {
   },
   assistant: {
     Enums: {
+      context_source_type: [
+        "canon_block",
+        "extracted_input",
+        "email",
+        "calendar_event",
+        "document",
+        "other",
+      ],
       recommendation_execution_strategy: [
         "manual",
         "automatic",
@@ -3254,6 +3452,9 @@ export const Constants = {
     Enums: {},
   },
   ui: {
+    Enums: {},
+  },
+  usage_lens: {
     Enums: {},
   },
 } as const

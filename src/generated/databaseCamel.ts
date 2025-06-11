@@ -822,6 +822,44 @@ export type DatabaseCamel = {
         }
         Relationships: []
       }
+      recommendationContextLinks: {
+        Row: {
+          createdAt: string | null
+          id: string
+          notes: string | null
+          recommendationId: string
+          sourceId: string
+          sourceType: DatabaseCamel["assistant"]["Enums"]["contextSourceType"]
+          weight: number | null
+        }
+        Insert: {
+          createdAt?: string | null
+          id?: string
+          notes?: string | null
+          recommendationId: string
+          sourceId: string
+          sourceType: DatabaseCamel["assistant"]["Enums"]["contextSourceType"]
+          weight?: number | null
+        }
+        Update: {
+          createdAt?: string | null
+          id?: string
+          notes?: string | null
+          recommendationId?: string
+          sourceId?: string
+          sourceType?: DatabaseCamel["assistant"]["Enums"]["contextSourceType"]
+          weight?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "recommendation_context_links_recommendation_id_fkey"
+            columns: ["recommendation_id"]
+            isOneToOne: false
+            referencedRelation: "agent_recommendations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
@@ -830,6 +868,13 @@ export type DatabaseCamel = {
       [_ in never]: never
     }
     Enums: {
+      contextSourceType:
+        | "canon_block"
+        | "extracted_input"
+        | "email"
+        | "calendar_event"
+        | "document"
+        | "other"
       recommendationExecutionStrategy:
         | "manual"
         | "automatic"
@@ -3039,6 +3084,151 @@ export type DatabaseCamel = {
           id: string
           payload: Json
         }[]
+      }
+    }
+    Enums: {
+      [_ in never]: never
+    }
+    CompositeTypes: {
+      [_ in never]: never
+    }
+  }
+  usageLens: {
+    Tables: {
+      usageRaw: {
+        Row: {
+          completionText: string | null
+          completionTokens: number
+          costCents: number | null
+          createdAt: string
+          createdBy: string | null
+          externalId: string | null
+          id: string
+          metadata: Json | null
+          model: string
+          promptText: string | null
+          promptTokens: number
+          provider: string
+          source: string | null
+          tag: string | null
+          totalTokens: number
+          updatedAt: string
+        }
+        Insert: {
+          completionText?: string | null
+          completionTokens?: number
+          costCents?: number | null
+          createdAt?: string
+          createdBy?: string | null
+          externalId?: string | null
+          id?: string
+          metadata?: Json | null
+          model: string
+          promptText?: string | null
+          promptTokens?: number
+          provider?: string
+          source?: string | null
+          tag?: string | null
+          totalTokens?: number
+          updatedAt?: string
+        }
+        Update: {
+          completionText?: string | null
+          completionTokens?: number
+          costCents?: number | null
+          createdAt?: string
+          createdBy?: string | null
+          externalId?: string | null
+          id?: string
+          metadata?: Json | null
+          model?: string
+          promptText?: string | null
+          promptTokens?: number
+          provider?: string
+          source?: string | null
+          tag?: string | null
+          totalTokens?: number
+          updatedAt?: string
+        }
+        Relationships: []
+      }
+      usageSummaries: {
+        Row: {
+          avgCostPerCall: number | null
+          avgTokensPerCall: number | null
+          createdAt: string
+          createdBy: string | null
+          datePeriod: string
+          id: string
+          model: string | null
+          provider: string | null
+          summaryType: string
+          tag: string | null
+          totalCalls: number
+          totalCostCents: number
+          totalTokensSum: number
+          updatedAt: string
+        }
+        Insert: {
+          avgCostPerCall?: number | null
+          avgTokensPerCall?: number | null
+          createdAt?: string
+          createdBy?: string | null
+          datePeriod: string
+          id?: string
+          model?: string | null
+          provider?: string | null
+          summaryType: string
+          tag?: string | null
+          totalCalls?: number
+          totalCostCents?: number
+          totalTokensSum?: number
+          updatedAt?: string
+        }
+        Update: {
+          avgCostPerCall?: number | null
+          avgTokensPerCall?: number | null
+          createdAt?: string
+          createdBy?: string | null
+          datePeriod?: string
+          id?: string
+          model?: string | null
+          provider?: string | null
+          summaryType?: string
+          tag?: string | null
+          totalCalls?: number
+          totalCostCents?: number
+          totalTokensSum?: number
+          updatedAt?: string
+        }
+        Relationships: []
+      }
+    }
+    Views: {
+      usageMetrics: {
+        Row: {
+          avgCompletionTokens: number | null
+          avgCostCents: number | null
+          avgPromptTokens: number | null
+          avgTotalTokens: number | null
+          calls: number | null
+          createdBy: string | null
+          date: string | null
+          firstCall: string | null
+          lastCall: string | null
+          model: string | null
+          provider: string | null
+          tag: string | null
+          totalCostCents: number | null
+          totalTokensSum: number | null
+        }
+        Relationships: []
+      }
+    }
+    Functions: {
+      refreshUsageMetrics: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
       }
     }
     Enums: {
