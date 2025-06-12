@@ -1,6 +1,8 @@
 import { z } from 'zod';
 // Import DatabaseCamel from the correct file
 import { DatabaseCamel } from '../generated/databaseCamel';
+// Import Database for enums
+import { Database } from '../generated/database';
 
 // Access Enums via the DatabaseCamel type
 type AgentRecommendationsExecutorEnum =
@@ -35,3 +37,15 @@ export const RecommendationInsertSchema = z.object({
 
 // TypeScript type derived from the Zod schema
 export type RecommendationInsert = z.infer<typeof RecommendationInsertSchema>;
+
+// Context Source Types
+export type ContextSourceType = Database['assistant']['Enums']['context_source_type'];
+
+// RecContextLink interface for recommendation context tracking
+export interface RecContextLink {
+  recommendation_id: string;
+  source_type: ContextSourceType;
+  source_id: string;
+  weight?: number;
+  notes?: string;
+}

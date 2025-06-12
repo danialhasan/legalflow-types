@@ -3074,6 +3074,10 @@ export type DatabaseCamel = {
       }
     }
     Functions: {
+      hasEnrichedDataChanged: {
+        Args: { dealContextGraphId: string; lastReadySync: string }
+        Returns: boolean
+      }
       refreshDetailViews: {
         Args: Record<PropertyKey, never>
         Returns: undefined

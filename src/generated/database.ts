@@ -3079,6 +3079,10 @@ export type Database = {
       }
     }
     Functions: {
+      has_enriched_data_changed: {
+        Args: { deal_context_graph_id: string; last_ready_sync: string }
+        Returns: boolean
+      }
       refresh_detail_views: {
         Args: Record<PropertyKey, never>
         Returns: undefined
