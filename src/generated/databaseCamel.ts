@@ -2055,6 +2055,117 @@ export type DatabaseCamel = {
       [_ in never]: never
     }
   }
+  logs: {
+    Tables: {
+      llmCompletionDetails: {
+        Row: {
+          completionId: string | null
+          createdAt: string | null
+          id: string
+          inputData: Json | null
+          promptSystem: string | null
+          promptUser: string | null
+          responseParsed: Json | null
+          responseRaw: Json | null
+          tokenUsage: Json | null
+        }
+        Insert: {
+          completionId?: string | null
+          createdAt?: string | null
+          id?: string
+          inputData?: Json | null
+          promptSystem?: string | null
+          promptUser?: string | null
+          responseParsed?: Json | null
+          responseRaw?: Json | null
+          tokenUsage?: Json | null
+        }
+        Update: {
+          completionId?: string | null
+          createdAt?: string | null
+          id?: string
+          inputData?: Json | null
+          promptSystem?: string | null
+          promptUser?: string | null
+          responseParsed?: Json | null
+          responseRaw?: Json | null
+          tokenUsage?: Json | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "llm_completion_details_completion_id_fkey"
+            columns: ["completion_id"]
+            isOneToOne: false
+            referencedRelation: "llm_completions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      llmCompletions: {
+        Row: {
+          completionTokens: number | null
+          createdAt: string | null
+          durationMs: number | null
+          entityId: string | null
+          entityType: string | null
+          errorMessage: string | null
+          id: string
+          model: string
+          pipelineName: string
+          promptTokens: number | null
+          success: boolean
+          taskName: string
+          totalTokens: number | null
+          userId: string | null
+        }
+        Insert: {
+          completionTokens?: number | null
+          createdAt?: string | null
+          durationMs?: number | null
+          entityId?: string | null
+          entityType?: string | null
+          errorMessage?: string | null
+          id?: string
+          model: string
+          pipelineName: string
+          promptTokens?: number | null
+          success: boolean
+          taskName: string
+          totalTokens?: number | null
+          userId?: string | null
+        }
+        Update: {
+          completionTokens?: number | null
+          createdAt?: string | null
+          durationMs?: number | null
+          entityId?: string | null
+          entityType?: string | null
+          errorMessage?: string | null
+          id?: string
+          model?: string
+          pipelineName?: string
+          promptTokens?: number | null
+          success?: boolean
+          taskName?: string
+          totalTokens?: number | null
+          userId?: string | null
+        }
+        Relationships: []
+      }
+    }
+    Views: {
+      [_ in never]: never
+    }
+    Functions: {
+      [_ in never]: never
+    }
+    Enums: {
+      [_ in never]: never
+    }
+    CompositeTypes: {
+      [_ in never]: never
+    }
+  }
   sales: {
     Tables: {
       campaignLeads: {
@@ -3075,9 +3186,7 @@ export type DatabaseCamel = {
     }
     Functions: {
       hasEnrichedDataChanged: {
-        Args:
-          | { dealContextGraphId: string; lastReadySync: string }
-          | { dealContextGraphId: string; lastReadySync: string }
+        Args: { dealContextGraphId: string; lastReadySync: string }
         Returns: boolean
       }
       refreshDetailViews: {

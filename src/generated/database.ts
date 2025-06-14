@@ -2060,6 +2060,117 @@ export type Database = {
       [_ in never]: never
     }
   }
+  logs: {
+    Tables: {
+      llm_completion_details: {
+        Row: {
+          completion_id: string | null
+          created_at: string | null
+          id: string
+          input_data: Json | null
+          prompt_system: string | null
+          prompt_user: string | null
+          response_parsed: Json | null
+          response_raw: Json | null
+          token_usage: Json | null
+        }
+        Insert: {
+          completion_id?: string | null
+          created_at?: string | null
+          id?: string
+          input_data?: Json | null
+          prompt_system?: string | null
+          prompt_user?: string | null
+          response_parsed?: Json | null
+          response_raw?: Json | null
+          token_usage?: Json | null
+        }
+        Update: {
+          completion_id?: string | null
+          created_at?: string | null
+          id?: string
+          input_data?: Json | null
+          prompt_system?: string | null
+          prompt_user?: string | null
+          response_parsed?: Json | null
+          response_raw?: Json | null
+          token_usage?: Json | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "llm_completion_details_completion_id_fkey"
+            columns: ["completion_id"]
+            isOneToOne: false
+            referencedRelation: "llm_completions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      llm_completions: {
+        Row: {
+          completion_tokens: number | null
+          created_at: string | null
+          duration_ms: number | null
+          entity_id: string | null
+          entity_type: string | null
+          error_message: string | null
+          id: string
+          model: string
+          pipeline_name: string
+          prompt_tokens: number | null
+          success: boolean
+          task_name: string
+          total_tokens: number | null
+          user_id: string | null
+        }
+        Insert: {
+          completion_tokens?: number | null
+          created_at?: string | null
+          duration_ms?: number | null
+          entity_id?: string | null
+          entity_type?: string | null
+          error_message?: string | null
+          id?: string
+          model: string
+          pipeline_name: string
+          prompt_tokens?: number | null
+          success: boolean
+          task_name: string
+          total_tokens?: number | null
+          user_id?: string | null
+        }
+        Update: {
+          completion_tokens?: number | null
+          created_at?: string | null
+          duration_ms?: number | null
+          entity_id?: string | null
+          entity_type?: string | null
+          error_message?: string | null
+          id?: string
+          model?: string
+          pipeline_name?: string
+          prompt_tokens?: number | null
+          success?: boolean
+          task_name?: string
+          total_tokens?: number | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+    }
+    Views: {
+      [_ in never]: never
+    }
+    Functions: {
+      [_ in never]: never
+    }
+    Enums: {
+      [_ in never]: never
+    }
+    CompositeTypes: {
+      [_ in never]: never
+    }
+  }
   sales: {
     Tables: {
       campaign_leads: {
@@ -3080,9 +3191,7 @@ export type Database = {
     }
     Functions: {
       has_enriched_data_changed: {
-        Args:
-          | { deal_context_graph_id: string; last_ready_sync: string }
-          | { deal_context_graph_id: string; last_ready_sync: string }
+        Args: { deal_context_graph_id: string; last_ready_sync: string }
         Returns: boolean
       }
       refresh_detail_views: {
@@ -3446,6 +3555,9 @@ export const Constants = {
     Enums: {},
   },
   integrations: {
+    Enums: {},
+  },
+  logs: {
     Enums: {},
   },
   sales: {
