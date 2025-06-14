@@ -2099,6 +2099,13 @@ export type DatabaseCamel = {
             referencedRelation: "llm_completions"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "llm_completion_details_completion_id_fkey"
+            columns: ["completion_id"]
+            isOneToOne: false
+            referencedRelation: "v_llm_calls"
+            referencedColumns: ["completion_id"]
+          },
         ]
       }
       llmCompletions: {
@@ -2154,7 +2161,27 @@ export type DatabaseCamel = {
       }
     }
     Views: {
-      [_ in never]: never
+      vLlmCalls: {
+        Row: {
+          completionId: string | null
+          completionTokens: number | null
+          createdAt: string | null
+          durationMs: number | null
+          errorMessage: string | null
+          model: string | null
+          pipelineName: string | null
+          promptSystem: string | null
+          promptTokens: number | null
+          promptUser: string | null
+          responseParsed: Json | null
+          responseRaw: Json | null
+          success: boolean | null
+          taskName: string | null
+          tokenUsage: Json | null
+          totalTokens: number | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       [_ in never]: never
@@ -3104,6 +3131,7 @@ export type DatabaseCamel = {
       }
       dealDetailRaw: {
         Row: {
+          dealDataJson: Json | null
           dealId: string | null
           needsSync: boolean | null
           payload: Json | null

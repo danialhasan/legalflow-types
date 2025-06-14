@@ -2104,6 +2104,13 @@ export type Database = {
             referencedRelation: "llm_completions"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "llm_completion_details_completion_id_fkey"
+            columns: ["completion_id"]
+            isOneToOne: false
+            referencedRelation: "v_llm_calls"
+            referencedColumns: ["completion_id"]
+          },
         ]
       }
       llm_completions: {
@@ -2159,7 +2166,27 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      v_llm_calls: {
+        Row: {
+          completion_id: string | null
+          completion_tokens: number | null
+          created_at: string | null
+          duration_ms: number | null
+          error_message: string | null
+          model: string | null
+          pipeline_name: string | null
+          prompt_system: string | null
+          prompt_tokens: number | null
+          prompt_user: string | null
+          response_parsed: Json | null
+          response_raw: Json | null
+          success: boolean | null
+          task_name: string | null
+          token_usage: Json | null
+          total_tokens: number | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       [_ in never]: never
@@ -3109,6 +3136,7 @@ export type Database = {
       }
       deal_detail_raw: {
         Row: {
+          deal_data_json: Json | null
           deal_id: string | null
           needs_sync: boolean | null
           payload: Json | null
