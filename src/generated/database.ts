@@ -732,6 +732,107 @@ export type Database = {
         }
         Relationships: []
       }
+      interaction_tracking_events: {
+        Row: {
+          competing_recommendations: number | null
+          confidence_score: number | null
+          created_at: string
+          dwell_time: number | null
+          edit_depth: Database["assistant"]["Enums"]["edit_depth"] | null
+          entity_id: string
+          entity_type: Database["assistant"]["Enums"]["entity_type"]
+          event_id: string
+          fields_modified: string[] | null
+          id: string
+          interaction_type: Database["assistant"]["Enums"]["interaction_type"]
+          metadata: Json | null
+          previous_action: string | null
+          priority: number | null
+          recommendation_id: string | null
+          recommendation_type:
+            | Database["assistant"]["Enums"]["recommendation_type"]
+            | null
+          scroll_depth: number | null
+          session_activity: string | null
+          session_id: string
+          subsequent_action: string | null
+          surface: Database["assistant"]["Enums"]["ui_surface"]
+          time_in_view: number | null
+          time_to_action: number | null
+          timestamp: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          competing_recommendations?: number | null
+          confidence_score?: number | null
+          created_at?: string
+          dwell_time?: number | null
+          edit_depth?: Database["assistant"]["Enums"]["edit_depth"] | null
+          entity_id: string
+          entity_type: Database["assistant"]["Enums"]["entity_type"]
+          event_id?: string
+          fields_modified?: string[] | null
+          id?: string
+          interaction_type: Database["assistant"]["Enums"]["interaction_type"]
+          metadata?: Json | null
+          previous_action?: string | null
+          priority?: number | null
+          recommendation_id?: string | null
+          recommendation_type?:
+            | Database["assistant"]["Enums"]["recommendation_type"]
+            | null
+          scroll_depth?: number | null
+          session_activity?: string | null
+          session_id: string
+          subsequent_action?: string | null
+          surface: Database["assistant"]["Enums"]["ui_surface"]
+          time_in_view?: number | null
+          time_to_action?: number | null
+          timestamp?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          competing_recommendations?: number | null
+          confidence_score?: number | null
+          created_at?: string
+          dwell_time?: number | null
+          edit_depth?: Database["assistant"]["Enums"]["edit_depth"] | null
+          entity_id?: string
+          entity_type?: Database["assistant"]["Enums"]["entity_type"]
+          event_id?: string
+          fields_modified?: string[] | null
+          id?: string
+          interaction_type?: Database["assistant"]["Enums"]["interaction_type"]
+          metadata?: Json | null
+          previous_action?: string | null
+          priority?: number | null
+          recommendation_id?: string | null
+          recommendation_type?:
+            | Database["assistant"]["Enums"]["recommendation_type"]
+            | null
+          scroll_depth?: number | null
+          session_activity?: string | null
+          session_id?: string
+          subsequent_action?: string | null
+          surface?: Database["assistant"]["Enums"]["ui_surface"]
+          time_in_view?: number | null
+          time_to_action?: number | null
+          timestamp?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "interaction_tracking_events_recommendation_id_fkey"
+            columns: ["recommendation_id"]
+            isOneToOne: false
+            referencedRelation: "agent_recommendations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       messages: {
         Row: {
           content: string | null
@@ -880,6 +981,25 @@ export type Database = {
         | "calendar_event"
         | "document"
         | "other"
+      edit_depth: "minor" | "major" | "complete_rewrite"
+      entity_type: "deal" | "client" | "document"
+      interaction_type:
+        | "accepted"
+        | "edited_then_accepted"
+        | "dismissed"
+        | "flagged"
+        | "deferred"
+        | "viewed_from_card"
+        | "viewed_from_list"
+        | "viewed_no_action"
+        | "hovered"
+        | "edit_in_progress"
+        | "edit_abandoned"
+        | "manual_action_before_rec"
+        | "status_changed_vs_ai"
+        | "recommendations_ignored"
+        | "alternative_path_taken"
+        | "recommendations_displayed"
       recommendation_execution_strategy:
         | "manual"
         | "automatic"
@@ -895,6 +1015,8 @@ export type Database = {
         | "executed"
         | "failed"
         | "dismissed"
+      recommendation_type: "email" | "call" | "document" | "status_change"
+      ui_surface: "modal" | "card" | "list" | "focus_view" | "manual"
       user_feedback: "accepted" | "edited" | "dismissed" | "flagged"
     }
     CompositeTypes: {
@@ -3533,6 +3655,26 @@ export const Constants = {
         "document",
         "other",
       ],
+      edit_depth: ["minor", "major", "complete_rewrite"],
+      entity_type: ["deal", "client", "document"],
+      interaction_type: [
+        "accepted",
+        "edited_then_accepted",
+        "dismissed",
+        "flagged",
+        "deferred",
+        "viewed_from_card",
+        "viewed_from_list",
+        "viewed_no_action",
+        "hovered",
+        "edit_in_progress",
+        "edit_abandoned",
+        "manual_action_before_rec",
+        "status_changed_vs_ai",
+        "recommendations_ignored",
+        "alternative_path_taken",
+        "recommendations_displayed",
+      ],
       recommendation_execution_strategy: [
         "manual",
         "automatic",
@@ -3551,6 +3693,8 @@ export const Constants = {
         "failed",
         "dismissed",
       ],
+      recommendation_type: ["email", "call", "document", "status_change"],
+      ui_surface: ["modal", "card", "list", "focus_view", "manual"],
       user_feedback: ["accepted", "edited", "dismissed", "flagged"],
     },
   },

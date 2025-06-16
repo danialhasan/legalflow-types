@@ -727,6 +727,107 @@ export type DatabaseCamel = {
         }
         Relationships: []
       }
+      interactionTrackingEvents: {
+        Row: {
+          competingRecommendations: number | null
+          confidenceScore: number | null
+          createdAt: string
+          dwellTime: number | null
+          editDepth: DatabaseCamel["assistant"]["Enums"]["editDepth"] | null
+          entityId: string
+          entityType: DatabaseCamel["assistant"]["Enums"]["entityType"]
+          eventId: string
+          fieldsModified: string[] | null
+          id: string
+          interactionType: DatabaseCamel["assistant"]["Enums"]["interactionType"]
+          metadata: Json | null
+          previousAction: string | null
+          priority: number | null
+          recommendationId: string | null
+          recommendationType:
+            | DatabaseCamel["assistant"]["Enums"]["recommendationType"]
+            | null
+          scrollDepth: number | null
+          sessionActivity: string | null
+          sessionId: string
+          subsequentAction: string | null
+          surface: DatabaseCamel["assistant"]["Enums"]["uiSurface"]
+          timeInView: number | null
+          timeToAction: number | null
+          timestamp: string
+          updatedAt: string
+          userId: string
+        }
+        Insert: {
+          competingRecommendations?: number | null
+          confidenceScore?: number | null
+          createdAt?: string
+          dwellTime?: number | null
+          editDepth?: DatabaseCamel["assistant"]["Enums"]["editDepth"] | null
+          entityId: string
+          entityType: DatabaseCamel["assistant"]["Enums"]["entityType"]
+          eventId?: string
+          fieldsModified?: string[] | null
+          id?: string
+          interactionType: DatabaseCamel["assistant"]["Enums"]["interactionType"]
+          metadata?: Json | null
+          previousAction?: string | null
+          priority?: number | null
+          recommendationId?: string | null
+          recommendationType?:
+            | DatabaseCamel["assistant"]["Enums"]["recommendationType"]
+            | null
+          scrollDepth?: number | null
+          sessionActivity?: string | null
+          sessionId: string
+          subsequentAction?: string | null
+          surface: DatabaseCamel["assistant"]["Enums"]["uiSurface"]
+          timeInView?: number | null
+          timeToAction?: number | null
+          timestamp?: string
+          updatedAt?: string
+          userId: string
+        }
+        Update: {
+          competingRecommendations?: number | null
+          confidenceScore?: number | null
+          createdAt?: string
+          dwellTime?: number | null
+          editDepth?: DatabaseCamel["assistant"]["Enums"]["editDepth"] | null
+          entityId?: string
+          entityType?: DatabaseCamel["assistant"]["Enums"]["entityType"]
+          eventId?: string
+          fieldsModified?: string[] | null
+          id?: string
+          interactionType?: DatabaseCamel["assistant"]["Enums"]["interactionType"]
+          metadata?: Json | null
+          previousAction?: string | null
+          priority?: number | null
+          recommendationId?: string | null
+          recommendationType?:
+            | DatabaseCamel["assistant"]["Enums"]["recommendationType"]
+            | null
+          scrollDepth?: number | null
+          sessionActivity?: string | null
+          sessionId?: string
+          subsequentAction?: string | null
+          surface?: DatabaseCamel["assistant"]["Enums"]["uiSurface"]
+          timeInView?: number | null
+          timeToAction?: number | null
+          timestamp?: string
+          updatedAt?: string
+          userId?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "interaction_tracking_events_recommendation_id_fkey"
+            columns: ["recommendation_id"]
+            isOneToOne: false
+            referencedRelation: "agent_recommendations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       messages: {
         Row: {
           content: string | null
@@ -875,6 +976,25 @@ export type DatabaseCamel = {
         | "calendar_event"
         | "document"
         | "other"
+      editDepth: "minor" | "major" | "complete_rewrite"
+      entityType: "deal" | "client" | "document"
+      interactionType:
+        | "accepted"
+        | "edited_then_accepted"
+        | "dismissed"
+        | "flagged"
+        | "deferred"
+        | "viewed_from_card"
+        | "viewed_from_list"
+        | "viewed_no_action"
+        | "hovered"
+        | "edit_in_progress"
+        | "edit_abandoned"
+        | "manual_action_before_rec"
+        | "status_changed_vs_ai"
+        | "recommendations_ignored"
+        | "alternative_path_taken"
+        | "recommendations_displayed"
       recommendationExecutionStrategy:
         | "manual"
         | "automatic"
@@ -890,6 +1010,8 @@ export type DatabaseCamel = {
         | "executed"
         | "failed"
         | "dismissed"
+      recommendationType: "email" | "call" | "document" | "status_change"
+      uiSurface: "modal" | "card" | "list" | "focus_view" | "manual"
       userFeedback: "accepted" | "edited" | "dismissed" | "flagged"
     }
     CompositeTypes: {
