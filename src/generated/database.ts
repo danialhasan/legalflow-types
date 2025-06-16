@@ -971,7 +971,34 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      insert_interaction_tracking_event: {
+        Args: {
+          p_event_id: string
+          p_session_id: string
+          p_timestamp: string
+          p_user_id: string
+          p_entity_type: Database["assistant"]["Enums"]["entity_type"]
+          p_entity_id: string
+          p_interaction_type: Database["assistant"]["Enums"]["interaction_type"]
+          p_surface: Database["assistant"]["Enums"]["ui_surface"]
+          p_recommendation_id: string
+          p_recommendation_type: Database["assistant"]["Enums"]["recommendation_type"]
+          p_priority: number
+          p_confidence_score: number
+          p_fields_modified: string[]
+          p_edit_depth: Database["assistant"]["Enums"]["edit_depth"]
+          p_time_in_view: number
+          p_time_to_action: number
+          p_scroll_depth: number
+          p_dwell_time: number
+          p_competing_recommendations: number
+          p_previous_action: string
+          p_subsequent_action: string
+          p_session_activity: string
+          p_metadata: Json
+        }
+        Returns: string
+      }
     }
     Enums: {
       context_source_type:

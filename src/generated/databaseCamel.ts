@@ -966,7 +966,34 @@ export type DatabaseCamel = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      insertInteractionTrackingEvent: {
+        Args: {
+          pEventId: string
+          pSessionId: string
+          pTimestamp: string
+          pUserId: string
+          pEntityType: DatabaseCamel["assistant"]["Enums"]["entityType"]
+          pEntityId: string
+          pInteractionType: DatabaseCamel["assistant"]["Enums"]["interactionType"]
+          pSurface: DatabaseCamel["assistant"]["Enums"]["uiSurface"]
+          pRecommendationId: string
+          pRecommendationType: DatabaseCamel["assistant"]["Enums"]["recommendationType"]
+          pPriority: number
+          pConfidenceScore: number
+          pFieldsModified: string[]
+          pEditDepth: DatabaseCamel["assistant"]["Enums"]["editDepth"]
+          pTimeInView: number
+          pTimeToAction: number
+          pScrollDepth: number
+          pDwellTime: number
+          pCompetingRecommendations: number
+          pPreviousAction: string
+          pSubsequentAction: string
+          pSessionActivity: string
+          pMetadata: Json
+        }
+        Returns: string
+      }
     }
     Enums: {
       contextSourceType:
