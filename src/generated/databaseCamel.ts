@@ -1330,6 +1330,30 @@ export type DatabaseCamel = {
         }
         Relationships: []
       }
+      onboardingResumeTokens: {
+        Row: {
+          createdAt: string | null
+          expiresAt: string
+          id: string
+          token: string
+          userId: string | null
+        }
+        Insert: {
+          createdAt?: string | null
+          expiresAt: string
+          id?: string
+          token: string
+          userId?: string | null
+        }
+        Update: {
+          createdAt?: string | null
+          expiresAt?: string
+          id?: string
+          token?: string
+          userId?: string | null
+        }
+        Relationships: []
+      }
       sources: {
         Row: {
           createdAt: string
@@ -1438,6 +1462,9 @@ export type DatabaseCamel = {
           crmId: string | null
           email: string | null
           googleIntegrated: boolean | null
+          onboardingCompletedAt: string | null
+          onboardingStep: string | null
+          simulationCompleted: boolean | null
           userId: string
         }
         Insert: {
@@ -1445,6 +1472,9 @@ export type DatabaseCamel = {
           crmId?: string | null
           email?: string | null
           googleIntegrated?: boolean | null
+          onboardingCompletedAt?: string | null
+          onboardingStep?: string | null
+          simulationCompleted?: boolean | null
           userId: string
         }
         Update: {
@@ -1452,6 +1482,9 @@ export type DatabaseCamel = {
           crmId?: string | null
           email?: string | null
           googleIntegrated?: boolean | null
+          onboardingCompletedAt?: string | null
+          onboardingStep?: string | null
+          simulationCompleted?: boolean | null
           userId?: string
         }
         Relationships: []
@@ -2252,6 +2285,20 @@ export type DatabaseCamel = {
             foreignKeyName: "llm_completion_details_completion_id_fkey"
             columns: ["completion_id"]
             isOneToOne: false
+            referencedRelation: "recommendation_candidate_generation_full"
+            referencedColumns: ["generation_log_id"]
+          },
+          {
+            foreignKeyName: "llm_completion_details_completion_id_fkey"
+            columns: ["completion_id"]
+            isOneToOne: false
+            referencedRelation: "recommendation_candidate_selection_full"
+            referencedColumns: ["generation_log_id"]
+          },
+          {
+            foreignKeyName: "llm_completion_details_completion_id_fkey"
+            columns: ["completion_id"]
+            isOneToOne: false
             referencedRelation: "v_llm_calls"
             referencedColumns: ["completion_id"]
           },
@@ -2310,6 +2357,59 @@ export type DatabaseCamel = {
       }
     }
     Views: {
+      recommendationCandidateGenerationFull: {
+        Row: {
+          candidateCount: number | null
+          candidateData: Json | null
+          candidateIndex: number | null
+          candidatePriority: number | null
+          candidateReasoning: string | null
+          candidateSubject: string | null
+          clientContextGraphId: string | null
+          durationMs: number | null
+          generationInputData: Json | null
+          generationLogId: string | null
+          generationPromptSystem: string | null
+          generationPromptUser: string | null
+          generationResponseParsed: Json | null
+          generationResponseRaw: Json | null
+          generationTime: string | null
+          generationTokenUsage: Json | null
+          model: string | null
+          totalTokens: number | null
+        }
+        Relationships: []
+      }
+      recommendationCandidateSelectionFull: {
+        Row: {
+          candidateCount: number | null
+          candidateData: Json | null
+          candidateIndex: number | null
+          candidatePriority: number | null
+          candidateReasoning: string | null
+          candidateSubject: string | null
+          clientContextGraphId: string | null
+          durationMs: number | null
+          finalReasoning: string | null
+          finalSubject: string | null
+          generationInputData: Json | null
+          generationLogId: string | null
+          generationPromptSystem: string | null
+          generationPromptUser: string | null
+          generationResponseParsed: Json | null
+          generationResponseRaw: Json | null
+          generationTime: string | null
+          generationTokenUsage: Json | null
+          isSelected: boolean | null
+          model: string | null
+          recommendationCreatedAt: string | null
+          recommendationId: string | null
+          subjectSimilarity: number | null
+          timeDiffSeconds: number | null
+          totalTokens: number | null
+        }
+        Relationships: []
+      }
       vLlmCalls: {
         Row: {
           completionId: string | null

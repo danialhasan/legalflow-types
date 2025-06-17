@@ -1335,6 +1335,30 @@ export type Database = {
         }
         Relationships: []
       }
+      onboarding_resume_tokens: {
+        Row: {
+          created_at: string | null
+          expires_at: string
+          id: string
+          token: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          expires_at: string
+          id?: string
+          token: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          expires_at?: string
+          id?: string
+          token?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       sources: {
         Row: {
           created_at: string
@@ -1443,6 +1467,9 @@ export type Database = {
           crm_id: string | null
           email: string | null
           google_integrated: boolean | null
+          onboarding_completed_at: string | null
+          onboarding_step: string | null
+          simulation_completed: boolean | null
           user_id: string
         }
         Insert: {
@@ -1450,6 +1477,9 @@ export type Database = {
           crm_id?: string | null
           email?: string | null
           google_integrated?: boolean | null
+          onboarding_completed_at?: string | null
+          onboarding_step?: string | null
+          simulation_completed?: boolean | null
           user_id: string
         }
         Update: {
@@ -1457,6 +1487,9 @@ export type Database = {
           crm_id?: string | null
           email?: string | null
           google_integrated?: boolean | null
+          onboarding_completed_at?: string | null
+          onboarding_step?: string | null
+          simulation_completed?: boolean | null
           user_id?: string
         }
         Relationships: []
@@ -2257,6 +2290,20 @@ export type Database = {
             foreignKeyName: "llm_completion_details_completion_id_fkey"
             columns: ["completion_id"]
             isOneToOne: false
+            referencedRelation: "recommendation_candidate_generation_full"
+            referencedColumns: ["generation_log_id"]
+          },
+          {
+            foreignKeyName: "llm_completion_details_completion_id_fkey"
+            columns: ["completion_id"]
+            isOneToOne: false
+            referencedRelation: "recommendation_candidate_selection_full"
+            referencedColumns: ["generation_log_id"]
+          },
+          {
+            foreignKeyName: "llm_completion_details_completion_id_fkey"
+            columns: ["completion_id"]
+            isOneToOne: false
             referencedRelation: "v_llm_calls"
             referencedColumns: ["completion_id"]
           },
@@ -2315,6 +2362,59 @@ export type Database = {
       }
     }
     Views: {
+      recommendation_candidate_generation_full: {
+        Row: {
+          candidate_count: number | null
+          candidate_data: Json | null
+          candidate_index: number | null
+          candidate_priority: number | null
+          candidate_reasoning: string | null
+          candidate_subject: string | null
+          client_context_graph_id: string | null
+          duration_ms: number | null
+          generation_input_data: Json | null
+          generation_log_id: string | null
+          generation_prompt_system: string | null
+          generation_prompt_user: string | null
+          generation_response_parsed: Json | null
+          generation_response_raw: Json | null
+          generation_time: string | null
+          generation_token_usage: Json | null
+          model: string | null
+          total_tokens: number | null
+        }
+        Relationships: []
+      }
+      recommendation_candidate_selection_full: {
+        Row: {
+          candidate_count: number | null
+          candidate_data: Json | null
+          candidate_index: number | null
+          candidate_priority: number | null
+          candidate_reasoning: string | null
+          candidate_subject: string | null
+          client_context_graph_id: string | null
+          duration_ms: number | null
+          final_reasoning: string | null
+          final_subject: string | null
+          generation_input_data: Json | null
+          generation_log_id: string | null
+          generation_prompt_system: string | null
+          generation_prompt_user: string | null
+          generation_response_parsed: Json | null
+          generation_response_raw: Json | null
+          generation_time: string | null
+          generation_token_usage: Json | null
+          is_selected: boolean | null
+          model: string | null
+          recommendation_created_at: string | null
+          recommendation_id: string | null
+          subject_similarity: number | null
+          time_diff_seconds: number | null
+          total_tokens: number | null
+        }
+        Relationships: []
+      }
       v_llm_calls: {
         Row: {
           completion_id: string | null
