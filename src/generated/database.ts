@@ -699,6 +699,95 @@ export type Database = {
         }
         Relationships: []
       }
+      assistant_sessions: {
+        Row: {
+          assistant_mode: string
+          completed_at: string | null
+          created_at: string | null
+          id: string
+          is_completed: boolean | null
+          openai_response_id: string | null
+          session_metadata: Json | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          assistant_mode?: string
+          completed_at?: string | null
+          created_at?: string | null
+          id?: string
+          is_completed?: boolean | null
+          openai_response_id?: string | null
+          session_metadata?: Json | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          assistant_mode?: string
+          completed_at?: string | null
+          created_at?: string | null
+          id?: string
+          is_completed?: boolean | null
+          openai_response_id?: string | null
+          session_metadata?: Json | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      conversation_turns: {
+        Row: {
+          assistant_output: string
+          created_at: string | null
+          id: string
+          openai_response_id: string | null
+          previous_response_id: string | null
+          processing_time_ms: number | null
+          session_id: string
+          token_usage: Json | null
+          tool_results: Json | null
+          tools_called: Json | null
+          turn_number: number
+          user_input: string
+        }
+        Insert: {
+          assistant_output: string
+          created_at?: string | null
+          id?: string
+          openai_response_id?: string | null
+          previous_response_id?: string | null
+          processing_time_ms?: number | null
+          session_id: string
+          token_usage?: Json | null
+          tool_results?: Json | null
+          tools_called?: Json | null
+          turn_number: number
+          user_input: string
+        }
+        Update: {
+          assistant_output?: string
+          created_at?: string | null
+          id?: string
+          openai_response_id?: string | null
+          previous_response_id?: string | null
+          processing_time_ms?: number | null
+          session_id?: string
+          token_usage?: Json | null
+          tool_results?: Json | null
+          tools_called?: Json | null
+          turn_number?: number
+          user_input?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "conversation_turns_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "assistant_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       conversations: {
         Row: {
           created_at: string
@@ -965,6 +1054,111 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      tool_executions: {
+        Row: {
+          created_at: string | null
+          error_message: string | null
+          execution_time_ms: number | null
+          id: string
+          session_id: string
+          status: string
+          tool_name: string
+          tool_parameters: Json
+          tool_result: Json | null
+          turn_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          error_message?: string | null
+          execution_time_ms?: number | null
+          id?: string
+          session_id: string
+          status: string
+          tool_name: string
+          tool_parameters: Json
+          tool_result?: Json | null
+          turn_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          error_message?: string | null
+          execution_time_ms?: number | null
+          id?: string
+          session_id?: string
+          status?: string
+          tool_name?: string
+          tool_parameters?: Json
+          tool_result?: Json | null
+          turn_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tool_executions_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "assistant_sessions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tool_executions_turn_id_fkey"
+            columns: ["turn_id"]
+            isOneToOne: false
+            referencedRelation: "conversation_turns"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_assistant_profiles: {
+        Row: {
+          conversation_summary: string | null
+          created_at: string | null
+          display_name: string | null
+          enabled_tools: string[] | null
+          id: string
+          onboarding_completed: boolean | null
+          onboarding_data: Json | null
+          onboarding_stage: string | null
+          personality_preferences: Json | null
+          tool_permissions: Json | null
+          updated_at: string | null
+          user_id: string
+          user_preferences: Json | null
+          workflow_context: Json | null
+        }
+        Insert: {
+          conversation_summary?: string | null
+          created_at?: string | null
+          display_name?: string | null
+          enabled_tools?: string[] | null
+          id?: string
+          onboarding_completed?: boolean | null
+          onboarding_data?: Json | null
+          onboarding_stage?: string | null
+          personality_preferences?: Json | null
+          tool_permissions?: Json | null
+          updated_at?: string | null
+          user_id: string
+          user_preferences?: Json | null
+          workflow_context?: Json | null
+        }
+        Update: {
+          conversation_summary?: string | null
+          created_at?: string | null
+          display_name?: string | null
+          enabled_tools?: string[] | null
+          id?: string
+          onboarding_completed?: boolean | null
+          onboarding_data?: Json | null
+          onboarding_stage?: string | null
+          personality_preferences?: Json | null
+          tool_permissions?: Json | null
+          updated_at?: string | null
+          user_id?: string
+          user_preferences?: Json | null
+          workflow_context?: Json | null
+        }
+        Relationships: []
       }
     }
     Views: {

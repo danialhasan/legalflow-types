@@ -694,6 +694,95 @@ export type DatabaseCamel = {
         }
         Relationships: []
       }
+      assistantSessions: {
+        Row: {
+          assistantMode: string
+          completedAt: string | null
+          createdAt: string | null
+          id: string
+          isCompleted: boolean | null
+          openaiResponseId: string | null
+          sessionMetadata: Json | null
+          updatedAt: string | null
+          userId: string
+        }
+        Insert: {
+          assistantMode?: string
+          completedAt?: string | null
+          createdAt?: string | null
+          id?: string
+          isCompleted?: boolean | null
+          openaiResponseId?: string | null
+          sessionMetadata?: Json | null
+          updatedAt?: string | null
+          userId: string
+        }
+        Update: {
+          assistantMode?: string
+          completedAt?: string | null
+          createdAt?: string | null
+          id?: string
+          isCompleted?: boolean | null
+          openaiResponseId?: string | null
+          sessionMetadata?: Json | null
+          updatedAt?: string | null
+          userId?: string
+        }
+        Relationships: []
+      }
+      conversationTurns: {
+        Row: {
+          assistantOutput: string
+          createdAt: string | null
+          id: string
+          openaiResponseId: string | null
+          previousResponseId: string | null
+          processingTimeMs: number | null
+          sessionId: string
+          tokenUsage: Json | null
+          toolResults: Json | null
+          toolsCalled: Json | null
+          turnNumber: number
+          userInput: string
+        }
+        Insert: {
+          assistantOutput: string
+          createdAt?: string | null
+          id?: string
+          openaiResponseId?: string | null
+          previousResponseId?: string | null
+          processingTimeMs?: number | null
+          sessionId: string
+          tokenUsage?: Json | null
+          toolResults?: Json | null
+          toolsCalled?: Json | null
+          turnNumber: number
+          userInput: string
+        }
+        Update: {
+          assistantOutput?: string
+          createdAt?: string | null
+          id?: string
+          openaiResponseId?: string | null
+          previousResponseId?: string | null
+          processingTimeMs?: number | null
+          sessionId?: string
+          tokenUsage?: Json | null
+          toolResults?: Json | null
+          toolsCalled?: Json | null
+          turnNumber?: number
+          userInput?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "conversation_turns_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "assistant_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       conversations: {
         Row: {
           createdAt: string
@@ -960,6 +1049,111 @@ export type DatabaseCamel = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      toolExecutions: {
+        Row: {
+          createdAt: string | null
+          errorMessage: string | null
+          executionTimeMs: number | null
+          id: string
+          sessionId: string
+          status: string
+          toolName: string
+          toolParameters: Json
+          toolResult: Json | null
+          turnId: string | null
+        }
+        Insert: {
+          createdAt?: string | null
+          errorMessage?: string | null
+          executionTimeMs?: number | null
+          id?: string
+          sessionId: string
+          status: string
+          toolName: string
+          toolParameters: Json
+          toolResult?: Json | null
+          turnId?: string | null
+        }
+        Update: {
+          createdAt?: string | null
+          errorMessage?: string | null
+          executionTimeMs?: number | null
+          id?: string
+          sessionId?: string
+          status?: string
+          toolName?: string
+          toolParameters?: Json
+          toolResult?: Json | null
+          turnId?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tool_executions_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "assistant_sessions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tool_executions_turn_id_fkey"
+            columns: ["turn_id"]
+            isOneToOne: false
+            referencedRelation: "conversation_turns"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      userAssistantProfiles: {
+        Row: {
+          conversationSummary: string | null
+          createdAt: string | null
+          displayName: string | null
+          enabledTools: string[] | null
+          id: string
+          onboardingCompleted: boolean | null
+          onboardingData: Json | null
+          onboardingStage: string | null
+          personalityPreferences: Json | null
+          toolPermissions: Json | null
+          updatedAt: string | null
+          userId: string
+          userPreferences: Json | null
+          workflowContext: Json | null
+        }
+        Insert: {
+          conversationSummary?: string | null
+          createdAt?: string | null
+          displayName?: string | null
+          enabledTools?: string[] | null
+          id?: string
+          onboardingCompleted?: boolean | null
+          onboardingData?: Json | null
+          onboardingStage?: string | null
+          personalityPreferences?: Json | null
+          toolPermissions?: Json | null
+          updatedAt?: string | null
+          userId: string
+          userPreferences?: Json | null
+          workflowContext?: Json | null
+        }
+        Update: {
+          conversationSummary?: string | null
+          createdAt?: string | null
+          displayName?: string | null
+          enabledTools?: string[] | null
+          id?: string
+          onboardingCompleted?: boolean | null
+          onboardingData?: Json | null
+          onboardingStage?: string | null
+          personalityPreferences?: Json | null
+          toolPermissions?: Json | null
+          updatedAt?: string | null
+          userId?: string
+          userPreferences?: Json | null
+          workflowContext?: Json | null
+        }
+        Relationships: []
       }
     }
     Views: {
