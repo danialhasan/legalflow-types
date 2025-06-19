@@ -701,8 +701,13 @@ export type DatabaseCamel = {
           createdAt: string | null
           id: string
           isCompleted: boolean | null
+          lastResponseId: string | null
+          onboardingCompleted: boolean | null
+          onboardingData: Json | null
+          onboardingStage: string | null
           openaiResponseId: string | null
           sessionMetadata: Json | null
+          shouldTransitionToGeneral: boolean | null
           updatedAt: string | null
           userId: string
         }
@@ -712,8 +717,13 @@ export type DatabaseCamel = {
           createdAt?: string | null
           id?: string
           isCompleted?: boolean | null
+          lastResponseId?: string | null
+          onboardingCompleted?: boolean | null
+          onboardingData?: Json | null
+          onboardingStage?: string | null
           openaiResponseId?: string | null
           sessionMetadata?: Json | null
+          shouldTransitionToGeneral?: boolean | null
           updatedAt?: string | null
           userId: string
         }
@@ -723,8 +733,13 @@ export type DatabaseCamel = {
           createdAt?: string | null
           id?: string
           isCompleted?: boolean | null
+          lastResponseId?: string | null
+          onboardingCompleted?: boolean | null
+          onboardingData?: Json | null
+          onboardingStage?: string | null
           openaiResponseId?: string | null
           sessionMetadata?: Json | null
+          shouldTransitionToGeneral?: boolean | null
           updatedAt?: string | null
           userId?: string
         }
@@ -733,45 +748,54 @@ export type DatabaseCamel = {
       conversationTurns: {
         Row: {
           assistantOutput: string
+          assistantResponse: string | null
           createdAt: string | null
           id: string
           openaiResponseId: string | null
           previousResponseId: string | null
           processingTimeMs: number | null
+          responseMetadata: Json | null
           sessionId: string
           tokenUsage: Json | null
           toolResults: Json | null
           toolsCalled: Json | null
           turnNumber: number
           userInput: string
+          userMessage: string | null
         }
         Insert: {
           assistantOutput: string
+          assistantResponse?: string | null
           createdAt?: string | null
           id?: string
           openaiResponseId?: string | null
           previousResponseId?: string | null
           processingTimeMs?: number | null
+          responseMetadata?: Json | null
           sessionId: string
           tokenUsage?: Json | null
           toolResults?: Json | null
           toolsCalled?: Json | null
           turnNumber: number
           userInput: string
+          userMessage?: string | null
         }
         Update: {
           assistantOutput?: string
+          assistantResponse?: string | null
           createdAt?: string | null
           id?: string
           openaiResponseId?: string | null
           previousResponseId?: string | null
           processingTimeMs?: number | null
+          responseMetadata?: Json | null
           sessionId?: string
           tokenUsage?: Json | null
           toolResults?: Json | null
           toolsCalled?: Json | null
           turnNumber?: number
           userInput?: string
+          userMessage?: string | null
         }
         Relationships: [
           {
@@ -1115,6 +1139,8 @@ export type DatabaseCamel = {
           onboardingData: Json | null
           onboardingStage: string | null
           personalityPreferences: Json | null
+          preferences: Json | null
+          profileData: Json | null
           toolPermissions: Json | null
           updatedAt: string | null
           userId: string
@@ -1131,6 +1157,8 @@ export type DatabaseCamel = {
           onboardingData?: Json | null
           onboardingStage?: string | null
           personalityPreferences?: Json | null
+          preferences?: Json | null
+          profileData?: Json | null
           toolPermissions?: Json | null
           updatedAt?: string | null
           userId: string
@@ -1147,6 +1175,8 @@ export type DatabaseCamel = {
           onboardingData?: Json | null
           onboardingStage?: string | null
           personalityPreferences?: Json | null
+          preferences?: Json | null
+          profileData?: Json | null
           toolPermissions?: Json | null
           updatedAt?: string | null
           userId?: string
@@ -1530,21 +1560,21 @@ export type DatabaseCamel = {
           expiresAt: string
           id: string
           token: string
-          userId: string | null
+          userId: string
         }
         Insert: {
           createdAt?: string | null
           expiresAt: string
           id?: string
           token: string
-          userId?: string | null
+          userId: string
         }
         Update: {
           createdAt?: string | null
           expiresAt?: string
           id?: string
           token?: string
-          userId?: string | null
+          userId?: string
         }
         Relationships: []
       }
@@ -1658,6 +1688,8 @@ export type DatabaseCamel = {
           googleIntegrated: boolean | null
           onboardingCompletedAt: string | null
           onboardingStep: string | null
+          phoneNumber: string | null
+          phoneVerified: boolean | null
           simulationCompleted: boolean | null
           userId: string
         }
@@ -1668,6 +1700,8 @@ export type DatabaseCamel = {
           googleIntegrated?: boolean | null
           onboardingCompletedAt?: string | null
           onboardingStep?: string | null
+          phoneNumber?: string | null
+          phoneVerified?: boolean | null
           simulationCompleted?: boolean | null
           userId: string
         }
@@ -1678,6 +1712,8 @@ export type DatabaseCamel = {
           googleIntegrated?: boolean | null
           onboardingCompletedAt?: string | null
           onboardingStep?: string | null
+          phoneNumber?: string | null
+          phoneVerified?: boolean | null
           simulationCompleted?: boolean | null
           userId?: string
         }
@@ -1758,8 +1794,10 @@ export type DatabaseCamel = {
             | DatabaseCamel["core"]["Enums"]["communicationStyle"]
             | null
           createdAt: string
+          firstName: string | null
           googleEmail: string | null
           id: string
+          lastName: string | null
           location: string | null
           role: DatabaseCamel["core"]["Enums"]["agentRole"] | null
           specialNotes: string | null
@@ -1773,8 +1811,10 @@ export type DatabaseCamel = {
             | DatabaseCamel["core"]["Enums"]["communicationStyle"]
             | null
           createdAt?: string
+          firstName?: string | null
           googleEmail?: string | null
           id?: string
+          lastName?: string | null
           location?: string | null
           role?: DatabaseCamel["core"]["Enums"]["agentRole"] | null
           specialNotes?: string | null
@@ -1788,8 +1828,10 @@ export type DatabaseCamel = {
             | DatabaseCamel["core"]["Enums"]["communicationStyle"]
             | null
           createdAt?: string
+          firstName?: string | null
           googleEmail?: string | null
           id?: string
+          lastName?: string | null
           location?: string | null
           role?: DatabaseCamel["core"]["Enums"]["agentRole"] | null
           specialNotes?: string | null
@@ -2479,20 +2521,6 @@ export type DatabaseCamel = {
             foreignKeyName: "llm_completion_details_completion_id_fkey"
             columns: ["completion_id"]
             isOneToOne: false
-            referencedRelation: "recommendation_candidate_generation_full"
-            referencedColumns: ["generation_log_id"]
-          },
-          {
-            foreignKeyName: "llm_completion_details_completion_id_fkey"
-            columns: ["completion_id"]
-            isOneToOne: false
-            referencedRelation: "recommendation_candidate_selection_full"
-            referencedColumns: ["generation_log_id"]
-          },
-          {
-            foreignKeyName: "llm_completion_details_completion_id_fkey"
-            columns: ["completion_id"]
-            isOneToOne: false
             referencedRelation: "v_llm_calls"
             referencedColumns: ["completion_id"]
           },
@@ -2551,59 +2579,6 @@ export type DatabaseCamel = {
       }
     }
     Views: {
-      recommendationCandidateGenerationFull: {
-        Row: {
-          candidateCount: number | null
-          candidateData: Json | null
-          candidateIndex: number | null
-          candidatePriority: number | null
-          candidateReasoning: string | null
-          candidateSubject: string | null
-          clientContextGraphId: string | null
-          durationMs: number | null
-          generationInputData: Json | null
-          generationLogId: string | null
-          generationPromptSystem: string | null
-          generationPromptUser: string | null
-          generationResponseParsed: Json | null
-          generationResponseRaw: Json | null
-          generationTime: string | null
-          generationTokenUsage: Json | null
-          model: string | null
-          totalTokens: number | null
-        }
-        Relationships: []
-      }
-      recommendationCandidateSelectionFull: {
-        Row: {
-          candidateCount: number | null
-          candidateData: Json | null
-          candidateIndex: number | null
-          candidatePriority: number | null
-          candidateReasoning: string | null
-          candidateSubject: string | null
-          clientContextGraphId: string | null
-          durationMs: number | null
-          finalReasoning: string | null
-          finalSubject: string | null
-          generationInputData: Json | null
-          generationLogId: string | null
-          generationPromptSystem: string | null
-          generationPromptUser: string | null
-          generationResponseParsed: Json | null
-          generationResponseRaw: Json | null
-          generationTime: string | null
-          generationTokenUsage: Json | null
-          isSelected: boolean | null
-          model: string | null
-          recommendationCreatedAt: string | null
-          recommendationId: string | null
-          subjectSimilarity: number | null
-          timeDiffSeconds: number | null
-          totalTokens: number | null
-        }
-        Relationships: []
-      }
       vLlmCalls: {
         Row: {
           completionId: string | null

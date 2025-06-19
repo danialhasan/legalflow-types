@@ -706,8 +706,13 @@ export type Database = {
           created_at: string | null
           id: string
           is_completed: boolean | null
+          last_response_id: string | null
+          onboarding_completed: boolean | null
+          onboarding_data: Json | null
+          onboarding_stage: string | null
           openai_response_id: string | null
           session_metadata: Json | null
+          should_transition_to_general: boolean | null
           updated_at: string | null
           user_id: string
         }
@@ -717,8 +722,13 @@ export type Database = {
           created_at?: string | null
           id?: string
           is_completed?: boolean | null
+          last_response_id?: string | null
+          onboarding_completed?: boolean | null
+          onboarding_data?: Json | null
+          onboarding_stage?: string | null
           openai_response_id?: string | null
           session_metadata?: Json | null
+          should_transition_to_general?: boolean | null
           updated_at?: string | null
           user_id: string
         }
@@ -728,8 +738,13 @@ export type Database = {
           created_at?: string | null
           id?: string
           is_completed?: boolean | null
+          last_response_id?: string | null
+          onboarding_completed?: boolean | null
+          onboarding_data?: Json | null
+          onboarding_stage?: string | null
           openai_response_id?: string | null
           session_metadata?: Json | null
+          should_transition_to_general?: boolean | null
           updated_at?: string | null
           user_id?: string
         }
@@ -738,45 +753,54 @@ export type Database = {
       conversation_turns: {
         Row: {
           assistant_output: string
+          assistant_response: string | null
           created_at: string | null
           id: string
           openai_response_id: string | null
           previous_response_id: string | null
           processing_time_ms: number | null
+          response_metadata: Json | null
           session_id: string
           token_usage: Json | null
           tool_results: Json | null
           tools_called: Json | null
           turn_number: number
           user_input: string
+          user_message: string | null
         }
         Insert: {
           assistant_output: string
+          assistant_response?: string | null
           created_at?: string | null
           id?: string
           openai_response_id?: string | null
           previous_response_id?: string | null
           processing_time_ms?: number | null
+          response_metadata?: Json | null
           session_id: string
           token_usage?: Json | null
           tool_results?: Json | null
           tools_called?: Json | null
           turn_number: number
           user_input: string
+          user_message?: string | null
         }
         Update: {
           assistant_output?: string
+          assistant_response?: string | null
           created_at?: string | null
           id?: string
           openai_response_id?: string | null
           previous_response_id?: string | null
           processing_time_ms?: number | null
+          response_metadata?: Json | null
           session_id?: string
           token_usage?: Json | null
           tool_results?: Json | null
           tools_called?: Json | null
           turn_number?: number
           user_input?: string
+          user_message?: string | null
         }
         Relationships: [
           {
@@ -1120,6 +1144,8 @@ export type Database = {
           onboarding_data: Json | null
           onboarding_stage: string | null
           personality_preferences: Json | null
+          preferences: Json | null
+          profile_data: Json | null
           tool_permissions: Json | null
           updated_at: string | null
           user_id: string
@@ -1136,6 +1162,8 @@ export type Database = {
           onboarding_data?: Json | null
           onboarding_stage?: string | null
           personality_preferences?: Json | null
+          preferences?: Json | null
+          profile_data?: Json | null
           tool_permissions?: Json | null
           updated_at?: string | null
           user_id: string
@@ -1152,6 +1180,8 @@ export type Database = {
           onboarding_data?: Json | null
           onboarding_stage?: string | null
           personality_preferences?: Json | null
+          preferences?: Json | null
+          profile_data?: Json | null
           tool_permissions?: Json | null
           updated_at?: string | null
           user_id?: string
@@ -1535,21 +1565,21 @@ export type Database = {
           expires_at: string
           id: string
           token: string
-          user_id: string | null
+          user_id: string
         }
         Insert: {
           created_at?: string | null
           expires_at: string
           id?: string
           token: string
-          user_id?: string | null
+          user_id: string
         }
         Update: {
           created_at?: string | null
           expires_at?: string
           id?: string
           token?: string
-          user_id?: string | null
+          user_id?: string
         }
         Relationships: []
       }
@@ -1663,6 +1693,8 @@ export type Database = {
           google_integrated: boolean | null
           onboarding_completed_at: string | null
           onboarding_step: string | null
+          phone_number: string | null
+          phone_verified: boolean | null
           simulation_completed: boolean | null
           user_id: string
         }
@@ -1673,6 +1705,8 @@ export type Database = {
           google_integrated?: boolean | null
           onboarding_completed_at?: string | null
           onboarding_step?: string | null
+          phone_number?: string | null
+          phone_verified?: boolean | null
           simulation_completed?: boolean | null
           user_id: string
         }
@@ -1683,6 +1717,8 @@ export type Database = {
           google_integrated?: boolean | null
           onboarding_completed_at?: string | null
           onboarding_step?: string | null
+          phone_number?: string | null
+          phone_verified?: boolean | null
           simulation_completed?: boolean | null
           user_id?: string
         }
@@ -1763,8 +1799,10 @@ export type Database = {
             | Database["core"]["Enums"]["communication_style"]
             | null
           created_at: string
+          first_name: string | null
           google_email: string | null
           id: string
+          last_name: string | null
           location: string | null
           role: Database["core"]["Enums"]["agent_role"] | null
           special_notes: string | null
@@ -1778,8 +1816,10 @@ export type Database = {
             | Database["core"]["Enums"]["communication_style"]
             | null
           created_at?: string
+          first_name?: string | null
           google_email?: string | null
           id?: string
+          last_name?: string | null
           location?: string | null
           role?: Database["core"]["Enums"]["agent_role"] | null
           special_notes?: string | null
@@ -1793,8 +1833,10 @@ export type Database = {
             | Database["core"]["Enums"]["communication_style"]
             | null
           created_at?: string
+          first_name?: string | null
           google_email?: string | null
           id?: string
+          last_name?: string | null
           location?: string | null
           role?: Database["core"]["Enums"]["agent_role"] | null
           special_notes?: string | null
@@ -2484,20 +2526,6 @@ export type Database = {
             foreignKeyName: "llm_completion_details_completion_id_fkey"
             columns: ["completion_id"]
             isOneToOne: false
-            referencedRelation: "recommendation_candidate_generation_full"
-            referencedColumns: ["generation_log_id"]
-          },
-          {
-            foreignKeyName: "llm_completion_details_completion_id_fkey"
-            columns: ["completion_id"]
-            isOneToOne: false
-            referencedRelation: "recommendation_candidate_selection_full"
-            referencedColumns: ["generation_log_id"]
-          },
-          {
-            foreignKeyName: "llm_completion_details_completion_id_fkey"
-            columns: ["completion_id"]
-            isOneToOne: false
             referencedRelation: "v_llm_calls"
             referencedColumns: ["completion_id"]
           },
@@ -2556,59 +2584,6 @@ export type Database = {
       }
     }
     Views: {
-      recommendation_candidate_generation_full: {
-        Row: {
-          candidate_count: number | null
-          candidate_data: Json | null
-          candidate_index: number | null
-          candidate_priority: number | null
-          candidate_reasoning: string | null
-          candidate_subject: string | null
-          client_context_graph_id: string | null
-          duration_ms: number | null
-          generation_input_data: Json | null
-          generation_log_id: string | null
-          generation_prompt_system: string | null
-          generation_prompt_user: string | null
-          generation_response_parsed: Json | null
-          generation_response_raw: Json | null
-          generation_time: string | null
-          generation_token_usage: Json | null
-          model: string | null
-          total_tokens: number | null
-        }
-        Relationships: []
-      }
-      recommendation_candidate_selection_full: {
-        Row: {
-          candidate_count: number | null
-          candidate_data: Json | null
-          candidate_index: number | null
-          candidate_priority: number | null
-          candidate_reasoning: string | null
-          candidate_subject: string | null
-          client_context_graph_id: string | null
-          duration_ms: number | null
-          final_reasoning: string | null
-          final_subject: string | null
-          generation_input_data: Json | null
-          generation_log_id: string | null
-          generation_prompt_system: string | null
-          generation_prompt_user: string | null
-          generation_response_parsed: Json | null
-          generation_response_raw: Json | null
-          generation_time: string | null
-          generation_token_usage: Json | null
-          is_selected: boolean | null
-          model: string | null
-          recommendation_created_at: string | null
-          recommendation_id: string | null
-          subject_similarity: number | null
-          time_diff_seconds: number | null
-          total_tokens: number | null
-        }
-        Relationships: []
-      }
       v_llm_calls: {
         Row: {
           completion_id: string | null
