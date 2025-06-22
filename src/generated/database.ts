@@ -122,6 +122,7 @@ export type Database = {
           created_at: string | null
           enriched_extracted_data: Json | null
           id: string
+          status: string | null
           summary: string | null
           summary_embedding: string | null
           updated_at: string | null
@@ -131,6 +132,7 @@ export type Database = {
           created_at?: string | null
           enriched_extracted_data?: Json | null
           id?: string
+          status?: string | null
           summary?: string | null
           summary_embedding?: string | null
           updated_at?: string | null
@@ -140,6 +142,7 @@ export type Database = {
           created_at?: string | null
           enriched_extracted_data?: Json | null
           id?: string
+          status?: string | null
           summary?: string | null
           summary_embedding?: string | null
           updated_at?: string | null
@@ -203,6 +206,7 @@ export type Database = {
           id: string
           ledger_update_in_progress: boolean | null
           ledger_update_started_at: string | null
+          status: string | null
           summary: string | null
           summary_embedding: string | null
           superseded_by: string | null
@@ -218,6 +222,7 @@ export type Database = {
           id?: string
           ledger_update_in_progress?: boolean | null
           ledger_update_started_at?: string | null
+          status?: string | null
           summary?: string | null
           summary_embedding?: string | null
           superseded_by?: string | null
@@ -233,6 +238,7 @@ export type Database = {
           id?: string
           ledger_update_in_progress?: boolean | null
           ledger_update_started_at?: string | null
+          status?: string | null
           summary?: string | null
           summary_embedding?: string | null
           superseded_by?: string | null

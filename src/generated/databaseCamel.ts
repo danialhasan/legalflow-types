@@ -117,6 +117,7 @@ export type DatabaseCamel = {
           createdAt: string | null
           enrichedExtractedData: Json | null
           id: string
+          status: string | null
           summary: string | null
           summaryEmbedding: string | null
           updatedAt: string | null
@@ -126,6 +127,7 @@ export type DatabaseCamel = {
           createdAt?: string | null
           enrichedExtractedData?: Json | null
           id?: string
+          status?: string | null
           summary?: string | null
           summaryEmbedding?: string | null
           updatedAt?: string | null
@@ -135,6 +137,7 @@ export type DatabaseCamel = {
           createdAt?: string | null
           enrichedExtractedData?: Json | null
           id?: string
+          status?: string | null
           summary?: string | null
           summaryEmbedding?: string | null
           updatedAt?: string | null
@@ -198,6 +201,7 @@ export type DatabaseCamel = {
           id: string
           ledgerUpdateInProgress: boolean | null
           ledgerUpdateStartedAt: string | null
+          status: string | null
           summary: string | null
           summaryEmbedding: string | null
           supersededBy: string | null
@@ -213,6 +217,7 @@ export type DatabaseCamel = {
           id?: string
           ledgerUpdateInProgress?: boolean | null
           ledgerUpdateStartedAt?: string | null
+          status?: string | null
           summary?: string | null
           summaryEmbedding?: string | null
           supersededBy?: string | null
@@ -228,6 +233,7 @@ export type DatabaseCamel = {
           id?: string
           ledgerUpdateInProgress?: boolean | null
           ledgerUpdateStartedAt?: string | null
+          status?: string | null
           summary?: string | null
           summaryEmbedding?: string | null
           supersededBy?: string | null

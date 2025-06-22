@@ -32,6 +32,8 @@ export * as JobsService from './shared/jobs-service';
 export * from './shared/extracted-data';
 export * from './shared/recommendation';
 export * from './shared/emailPayload';
+export * from './shared/ui';
+export * from './shared/textDraft';
 
 // Utilities
 export * from './utils/schema-helpers';
