@@ -415,6 +415,7 @@ export type Database = {
         Row: {
           building_address_id: string | null
           consolidation_in_progress: boolean | null
+          consolidation_lock_id: string | null
           consolidation_session_id: string | null
           consolidation_started_at: string | null
           created_at: string
@@ -434,6 +435,7 @@ export type Database = {
         Insert: {
           building_address_id?: string | null
           consolidation_in_progress?: boolean | null
+          consolidation_lock_id?: string | null
           consolidation_session_id?: string | null
           consolidation_started_at?: string | null
           created_at?: string
@@ -453,6 +455,7 @@ export type Database = {
         Update: {
           building_address_id?: string | null
           consolidation_in_progress?: boolean | null
+          consolidation_lock_id?: string | null
           consolidation_session_id?: string | null
           consolidation_started_at?: string | null
           created_at?: string
@@ -685,6 +688,16 @@ export type Database = {
       }
     }
     Views: {
+      consolidation_summary: {
+        Row: {
+          consolidation_count: number | null
+          consolidation_date: string | null
+          detection_count: number | null
+          total_operations: number | null
+          unique_sessions: number | null
+        }
+        Relationships: []
+      }
       deal_client_context_graphs_view: {
         Row: {
           canon_block_id: string | null
@@ -1713,6 +1726,36 @@ export type Database = {
         }
         Relationships: []
       }
+      consolidation_recovery_log: {
+        Row: {
+          created_at: string
+          graph_ids: string[]
+          id: string
+          lock_id: string
+          metadata: Json | null
+          recovery_action: string
+          recovery_reason: string
+        }
+        Insert: {
+          created_at?: string
+          graph_ids?: string[]
+          id?: string
+          lock_id: string
+          metadata?: Json | null
+          recovery_action: string
+          recovery_reason: string
+        }
+        Update: {
+          created_at?: string
+          graph_ids?: string[]
+          id?: string
+          lock_id?: string
+          metadata?: Json | null
+          recovery_action?: string
+          recovery_reason?: string
+        }
+        Relationships: []
+      }
       error_logs: {
         Row: {
           created_at: string
@@ -1794,6 +1837,45 @@ export type Database = {
           resolved_at?: string | null
           screenshot_id?: string | null
           user_id?: string | null
+        }
+        Relationships: []
+      }
+      graph_locks: {
+        Row: {
+          acquired_at: string
+          created_at: string
+          expires_at: string
+          graph_ids: string[]
+          id: string
+          lock_id: string
+          lock_type: string
+          metadata: Json | null
+          status: string
+          worker_id: string | null
+        }
+        Insert: {
+          acquired_at?: string
+          created_at?: string
+          expires_at: string
+          graph_ids?: string[]
+          id?: string
+          lock_id: string
+          lock_type: string
+          metadata?: Json | null
+          status?: string
+          worker_id?: string | null
+        }
+        Update: {
+          acquired_at?: string
+          created_at?: string
+          expires_at?: string
+          graph_ids?: string[]
+          id?: string
+          lock_id?: string
+          lock_type?: string
+          metadata?: Json | null
+          status?: string
+          worker_id?: string | null
         }
         Relationships: []
       }
@@ -2155,7 +2237,54 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      active_graph_locks: {
+        Row: {
+          acquired_at: string | null
+          created_at: string | null
+          expires_at: string | null
+          expiry_status: string | null
+          graph_count: number | null
+          graph_ids: string[] | null
+          id: string | null
+          lock_id: string | null
+          lock_type: string | null
+          metadata: Json | null
+          seconds_until_expiry: number | null
+          status: string | null
+          worker_id: string | null
+        }
+        Insert: {
+          acquired_at?: string | null
+          created_at?: string | null
+          expires_at?: string | null
+          expiry_status?: never
+          graph_count?: never
+          graph_ids?: string[] | null
+          id?: string | null
+          lock_id?: string | null
+          lock_type?: string | null
+          metadata?: Json | null
+          seconds_until_expiry?: never
+          status?: string | null
+          worker_id?: string | null
+        }
+        Update: {
+          acquired_at?: string | null
+          created_at?: string | null
+          expires_at?: string | null
+          expiry_status?: never
+          graph_count?: never
+          graph_ids?: string[] | null
+          id?: string | null
+          lock_id?: string | null
+          lock_type?: string | null
+          metadata?: Json | null
+          seconds_until_expiry?: never
+          status?: string | null
+          worker_id?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       acquire_multi_graph_lock: {

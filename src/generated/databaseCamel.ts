@@ -410,6 +410,7 @@ export type DatabaseCamel = {
         Row: {
           buildingAddressId: string | null
           consolidationInProgress: boolean | null
+          consolidationLockId: string | null
           consolidationSessionId: string | null
           consolidationStartedAt: string | null
           createdAt: string
@@ -429,6 +430,7 @@ export type DatabaseCamel = {
         Insert: {
           buildingAddressId?: string | null
           consolidationInProgress?: boolean | null
+          consolidationLockId?: string | null
           consolidationSessionId?: string | null
           consolidationStartedAt?: string | null
           createdAt?: string
@@ -448,6 +450,7 @@ export type DatabaseCamel = {
         Update: {
           buildingAddressId?: string | null
           consolidationInProgress?: boolean | null
+          consolidationLockId?: string | null
           consolidationSessionId?: string | null
           consolidationStartedAt?: string | null
           createdAt?: string
@@ -680,6 +683,16 @@ export type DatabaseCamel = {
       }
     }
     Views: {
+      consolidationSummary: {
+        Row: {
+          consolidationCount: number | null
+          consolidationDate: string | null
+          detectionCount: number | null
+          totalOperations: number | null
+          uniqueSessions: number | null
+        }
+        Relationships: []
+      }
       dealClientContextGraphsView: {
         Row: {
           canonBlockId: string | null
@@ -1708,6 +1721,36 @@ export type DatabaseCamel = {
         }
         Relationships: []
       }
+      consolidationRecoveryLog: {
+        Row: {
+          createdAt: string
+          graphIds: string[]
+          id: string
+          lockId: string
+          metadata: Json | null
+          recoveryAction: string
+          recoveryReason: string
+        }
+        Insert: {
+          createdAt?: string
+          graphIds?: string[]
+          id?: string
+          lockId: string
+          metadata?: Json | null
+          recoveryAction: string
+          recoveryReason: string
+        }
+        Update: {
+          createdAt?: string
+          graphIds?: string[]
+          id?: string
+          lockId?: string
+          metadata?: Json | null
+          recoveryAction?: string
+          recoveryReason?: string
+        }
+        Relationships: []
+      }
       errorLogs: {
         Row: {
           createdAt: string
@@ -1789,6 +1832,45 @@ export type DatabaseCamel = {
           resolvedAt?: string | null
           screenshotId?: string | null
           userId?: string | null
+        }
+        Relationships: []
+      }
+      graphLocks: {
+        Row: {
+          acquiredAt: string
+          createdAt: string
+          expiresAt: string
+          graphIds: string[]
+          id: string
+          lockId: string
+          lockType: string
+          metadata: Json | null
+          status: string
+          workerId: string | null
+        }
+        Insert: {
+          acquiredAt?: string
+          createdAt?: string
+          expiresAt: string
+          graphIds?: string[]
+          id?: string
+          lockId: string
+          lockType: string
+          metadata?: Json | null
+          status?: string
+          workerId?: string | null
+        }
+        Update: {
+          acquiredAt?: string
+          createdAt?: string
+          expiresAt?: string
+          graphIds?: string[]
+          id?: string
+          lockId?: string
+          lockType?: string
+          metadata?: Json | null
+          status?: string
+          workerId?: string | null
         }
         Relationships: []
       }
@@ -2150,7 +2232,54 @@ export type DatabaseCamel = {
       }
     }
     Views: {
-      [_ in never]: never
+      activeGraphLocks: {
+        Row: {
+          acquiredAt: string | null
+          createdAt: string | null
+          expiresAt: string | null
+          expiryStatus: string | null
+          graphCount: number | null
+          graphIds: string[] | null
+          id: string | null
+          lockId: string | null
+          lockType: string | null
+          metadata: Json | null
+          secondsUntilExpiry: number | null
+          status: string | null
+          workerId: string | null
+        }
+        Insert: {
+          acquiredAt?: string | null
+          createdAt?: string | null
+          expiresAt?: string | null
+          expiryStatus?: never
+          graphCount?: never
+          graphIds?: string[] | null
+          id?: string | null
+          lockId?: string | null
+          lockType?: string | null
+          metadata?: Json | null
+          secondsUntilExpiry?: never
+          status?: string | null
+          workerId?: string | null
+        }
+        Update: {
+          acquiredAt?: string | null
+          createdAt?: string | null
+          expiresAt?: string | null
+          expiryStatus?: never
+          graphCount?: never
+          graphIds?: string[] | null
+          id?: string | null
+          lockId?: string | null
+          lockType?: string | null
+          metadata?: Json | null
+          secondsUntilExpiry?: never
+          status?: string | null
+          workerId?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       acquireMultiGraphLock: {
