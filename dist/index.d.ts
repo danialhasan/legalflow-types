@@ -7,8 +7,8 @@
  *
  * Case conversion should be handled at the service level, not in this package.
  */
-export { DatabaseCamel } from './generated/databaseCamel';
-export { Database } from './generated/database';
+export type { DatabaseCamel } from './generated/databaseCamel';
+export type { Database } from './generated/database';
 export { Schema, Table, getTableRef } from './generated/constants';
 export * as Analysis from './domains/analysis';
 export * as Assistant from './domains/assistant';
@@ -26,6 +26,4 @@ export * as JobsService from './shared/jobs-service';
 export * from './shared/extracted-data';
 export * from './shared/recommendation';
 export * from './shared/emailPayload';
-export * from './shared/ui';
-export * from './shared/textDraft';
 export * from './utils/schema-helpers';

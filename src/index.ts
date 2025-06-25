@@ -9,8 +9,8 @@
  */
 
 // Database types
-export { DatabaseCamel } from './generated/databaseCamel';
-export { Database } from './generated/database';
+export type { DatabaseCamel } from './generated/databaseCamel';
+export type { Database } from './generated/database';
 export { Schema, Table, getTableRef } from './generated/constants';
 
 // Domain exports with namespace organization
@@ -32,8 +32,6 @@ export * as JobsService from './shared/jobs-service';
 export * from './shared/extracted-data';
 export * from './shared/recommendation';
 export * from './shared/emailPayload';
-export * from './shared/ui';
-export * from './shared/textDraft';
 
 // Utilities
 export * from './utils/schema-helpers';

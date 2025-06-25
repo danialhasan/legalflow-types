@@ -150,6 +150,220 @@ export type Database = {
         }
         Relationships: []
       }
+      consolidation_audit_trail: {
+        Row: {
+          action: string
+          created_at: string
+          details: Json | null
+          entity_id: string | null
+          entity_type: string
+          id: string
+          session_id: string
+          timestamp: string
+        }
+        Insert: {
+          action: string
+          created_at?: string
+          details?: Json | null
+          entity_id?: string | null
+          entity_type: string
+          id?: string
+          session_id: string
+          timestamp?: string
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          details?: Json | null
+          entity_id?: string | null
+          entity_type?: string
+          id?: string
+          session_id?: string
+          timestamp?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "consolidation_audit_trail_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "consolidation_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      consolidation_graph_relationships: {
+        Row: {
+          created_at: string
+          id: string
+          merge_strategy: string | null
+          metadata: Json | null
+          relationship_type: string
+          session_id: string
+          similarity_score: number | null
+          source_graph_id: string
+          target_graph_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          merge_strategy?: string | null
+          metadata?: Json | null
+          relationship_type: string
+          session_id: string
+          similarity_score?: number | null
+          source_graph_id: string
+          target_graph_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          merge_strategy?: string | null
+          metadata?: Json | null
+          relationship_type?: string
+          session_id?: string
+          similarity_score?: number | null
+          source_graph_id?: string
+          target_graph_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "consolidation_graph_relationships_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "consolidation_sessions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "consolidation_graph_relationships_source_graph_id_fkey"
+            columns: ["source_graph_id"]
+            isOneToOne: false
+            referencedRelation: "deal_client_context_graphs_view"
+            referencedColumns: ["deal_context_graph_id"]
+          },
+          {
+            foreignKeyName: "consolidation_graph_relationships_source_graph_id_fkey"
+            columns: ["source_graph_id"]
+            isOneToOne: false
+            referencedRelation: "deal_context_graphs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "consolidation_graph_relationships_target_graph_id_fkey"
+            columns: ["target_graph_id"]
+            isOneToOne: false
+            referencedRelation: "deal_client_context_graphs_view"
+            referencedColumns: ["deal_context_graph_id"]
+          },
+          {
+            foreignKeyName: "consolidation_graph_relationships_target_graph_id_fkey"
+            columns: ["target_graph_id"]
+            isOneToOne: false
+            referencedRelation: "deal_context_graphs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      consolidation_performance_metrics: {
+        Row: {
+          created_at: string
+          duration_ms: number
+          error_count: number | null
+          id: string
+          memory_usage_mb: number | null
+          metadata: Json | null
+          operation: string
+          phase: string
+          records_processed: number | null
+          session_id: string
+          timestamp: string
+        }
+        Insert: {
+          created_at?: string
+          duration_ms: number
+          error_count?: number | null
+          id?: string
+          memory_usage_mb?: number | null
+          metadata?: Json | null
+          operation: string
+          phase: string
+          records_processed?: number | null
+          session_id: string
+          timestamp?: string
+        }
+        Update: {
+          created_at?: string
+          duration_ms?: number
+          error_count?: number | null
+          id?: string
+          memory_usage_mb?: number | null
+          metadata?: Json | null
+          operation?: string
+          phase?: string
+          records_processed?: number | null
+          session_id?: string
+          timestamp?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "consolidation_performance_metrics_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "consolidation_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      consolidation_sessions: {
+        Row: {
+          building_address_ids: string[]
+          completed_at: string | null
+          context_graph_ids: string[]
+          created_at: string
+          error_message: string | null
+          id: string
+          initiated_at: string
+          initiated_by: string
+          performance_metrics: Json | null
+          started_at: string | null
+          status: string
+          unit_address_ids: string[]
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          building_address_ids?: string[]
+          completed_at?: string | null
+          context_graph_ids?: string[]
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          initiated_at?: string
+          initiated_by: string
+          performance_metrics?: Json | null
+          started_at?: string | null
+          status: string
+          unit_address_ids?: string[]
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          building_address_ids?: string[]
+          completed_at?: string | null
+          context_graph_ids?: string[]
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          initiated_at?: string
+          initiated_by?: string
+          performance_metrics?: Json | null
+          started_at?: string | null
+          status?: string
+          unit_address_ids?: string[]
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       deal_context_graph_canon_blocks: {
         Row: {
           canon_block_id: string
@@ -200,6 +414,9 @@ export type Database = {
       deal_context_graphs: {
         Row: {
           building_address_id: string | null
+          consolidation_in_progress: boolean | null
+          consolidation_session_id: string | null
+          consolidation_started_at: string | null
           created_at: string
           enriched_extracted_data: Json | null
           entity_ledger: Json | null
@@ -216,6 +433,9 @@ export type Database = {
         }
         Insert: {
           building_address_id?: string | null
+          consolidation_in_progress?: boolean | null
+          consolidation_session_id?: string | null
+          consolidation_started_at?: string | null
           created_at?: string
           enriched_extracted_data?: Json | null
           entity_ledger?: Json | null
@@ -232,6 +452,9 @@ export type Database = {
         }
         Update: {
           building_address_id?: string | null
+          consolidation_in_progress?: boolean | null
+          consolidation_session_id?: string | null
+          consolidation_started_at?: string | null
           created_at?: string
           enriched_extracted_data?: Json | null
           entity_ledger?: Json | null
@@ -246,7 +469,15 @@ export type Database = {
           updated_at?: string
           user_id?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "deal_context_graphs_consolidation_session_id_fkey"
+            columns: ["consolidation_session_id"]
+            isOneToOne: false
+            referencedRelation: "consolidation_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       extracted_inputs: {
         Row: {
@@ -467,6 +698,24 @@ export type Database = {
       }
     }
     Functions: {
+      calculate_graph_overlap: {
+        Args: { p_graph_id_1: string; p_graph_id_2: string }
+        Returns: Json
+      }
+      find_graphs_by_address_ids: {
+        Args: {
+          p_building_address_ids: string[]
+          p_unit_address_ids?: string[]
+        }
+        Returns: {
+          graph_id: string
+          building_address_id: string
+          unit_address_id: string
+          user_id: string
+          created_at: string
+          updated_at: string
+        }[]
+      }
       link_deals_to_client_via_canon_block: {
         Args: { _client_context_graph_id: string; _canon_block_id: string }
         Returns: number
@@ -486,6 +735,13 @@ export type Database = {
           summary: string
           score: number
         }[]
+      }
+      supersede_graphs: {
+        Args: {
+          p_superseding_graph_id: string
+          p_superseded_graph_ids: string[]
+        }
+        Returns: boolean
       }
     }
     Enums: {
@@ -1421,6 +1677,42 @@ export type Database = {
         }
         Relationships: []
       }
+      consolidation_locks: {
+        Row: {
+          acquired_at: string
+          created_at: string
+          expires_at: string
+          graph_ids: string[]
+          id: string
+          lock_key: string
+          metadata: Json | null
+          session_id: string
+          worker_id: string | null
+        }
+        Insert: {
+          acquired_at?: string
+          created_at?: string
+          expires_at: string
+          graph_ids?: string[]
+          id?: string
+          lock_key: string
+          metadata?: Json | null
+          session_id: string
+          worker_id?: string | null
+        }
+        Update: {
+          acquired_at?: string
+          created_at?: string
+          expires_at?: string
+          graph_ids?: string[]
+          id?: string
+          lock_key?: string
+          metadata?: Json | null
+          session_id?: string
+          worker_id?: string | null
+        }
+        Relationships: []
+      }
       error_logs: {
         Row: {
           created_at: string
@@ -1866,6 +2158,14 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      acquire_multi_graph_lock: {
+        Args: {
+          p_session_id: string
+          p_graph_ids: string[]
+          p_lock_timeout_seconds?: number
+        }
+        Returns: Json
+      }
       claim_next_job: {
         Args: Record<PropertyKey, never> | { _worker_id: string }
         Returns: {
@@ -1887,6 +2187,18 @@ export type Database = {
           updated_at: string
           worker_id: string | null
         }
+      }
+      cleanup_expired_consolidation_locks: {
+        Args: Record<PropertyKey, never>
+        Returns: number
+      }
+      release_multi_graph_lock: {
+        Args: { p_session_id: string; p_graph_ids: string[] }
+        Returns: boolean
+      }
+      schedule_consolidation_cleanup: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
       }
     }
     Enums: {

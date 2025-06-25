@@ -145,6 +145,220 @@ export type DatabaseCamel = {
         }
         Relationships: []
       }
+      consolidationAuditTrail: {
+        Row: {
+          action: string
+          createdAt: string
+          details: Json | null
+          entityId: string | null
+          entityType: string
+          id: string
+          sessionId: string
+          timestamp: string
+        }
+        Insert: {
+          action: string
+          createdAt?: string
+          details?: Json | null
+          entityId?: string | null
+          entityType: string
+          id?: string
+          sessionId: string
+          timestamp?: string
+        }
+        Update: {
+          action?: string
+          createdAt?: string
+          details?: Json | null
+          entityId?: string | null
+          entityType?: string
+          id?: string
+          sessionId?: string
+          timestamp?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "consolidation_audit_trail_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "consolidation_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      consolidationGraphRelationships: {
+        Row: {
+          createdAt: string
+          id: string
+          mergeStrategy: string | null
+          metadata: Json | null
+          relationshipType: string
+          sessionId: string
+          similarityScore: number | null
+          sourceGraphId: string
+          targetGraphId: string | null
+        }
+        Insert: {
+          createdAt?: string
+          id?: string
+          mergeStrategy?: string | null
+          metadata?: Json | null
+          relationshipType: string
+          sessionId: string
+          similarityScore?: number | null
+          sourceGraphId: string
+          targetGraphId?: string | null
+        }
+        Update: {
+          createdAt?: string
+          id?: string
+          mergeStrategy?: string | null
+          metadata?: Json | null
+          relationshipType?: string
+          sessionId?: string
+          similarityScore?: number | null
+          sourceGraphId?: string
+          targetGraphId?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "consolidation_graph_relationships_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "consolidation_sessions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "consolidation_graph_relationships_source_graph_id_fkey"
+            columns: ["source_graph_id"]
+            isOneToOne: false
+            referencedRelation: "deal_client_context_graphs_view"
+            referencedColumns: ["deal_context_graph_id"]
+          },
+          {
+            foreignKeyName: "consolidation_graph_relationships_source_graph_id_fkey"
+            columns: ["source_graph_id"]
+            isOneToOne: false
+            referencedRelation: "deal_context_graphs"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "consolidation_graph_relationships_target_graph_id_fkey"
+            columns: ["target_graph_id"]
+            isOneToOne: false
+            referencedRelation: "deal_client_context_graphs_view"
+            referencedColumns: ["deal_context_graph_id"]
+          },
+          {
+            foreignKeyName: "consolidation_graph_relationships_target_graph_id_fkey"
+            columns: ["target_graph_id"]
+            isOneToOne: false
+            referencedRelation: "deal_context_graphs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      consolidationPerformanceMetrics: {
+        Row: {
+          createdAt: string
+          durationMs: number
+          errorCount: number | null
+          id: string
+          memoryUsageMb: number | null
+          metadata: Json | null
+          operation: string
+          phase: string
+          recordsProcessed: number | null
+          sessionId: string
+          timestamp: string
+        }
+        Insert: {
+          createdAt?: string
+          durationMs: number
+          errorCount?: number | null
+          id?: string
+          memoryUsageMb?: number | null
+          metadata?: Json | null
+          operation: string
+          phase: string
+          recordsProcessed?: number | null
+          sessionId: string
+          timestamp?: string
+        }
+        Update: {
+          createdAt?: string
+          durationMs?: number
+          errorCount?: number | null
+          id?: string
+          memoryUsageMb?: number | null
+          metadata?: Json | null
+          operation?: string
+          phase?: string
+          recordsProcessed?: number | null
+          sessionId?: string
+          timestamp?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "consolidation_performance_metrics_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "consolidation_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      consolidationSessions: {
+        Row: {
+          buildingAddressIds: string[]
+          completedAt: string | null
+          contextGraphIds: string[]
+          createdAt: string
+          errorMessage: string | null
+          id: string
+          initiatedAt: string
+          initiatedBy: string
+          performanceMetrics: Json | null
+          startedAt: string | null
+          status: string
+          unitAddressIds: string[]
+          updatedAt: string
+          userId: string
+        }
+        Insert: {
+          buildingAddressIds?: string[]
+          completedAt?: string | null
+          contextGraphIds?: string[]
+          createdAt?: string
+          errorMessage?: string | null
+          id?: string
+          initiatedAt?: string
+          initiatedBy: string
+          performanceMetrics?: Json | null
+          startedAt?: string | null
+          status: string
+          unitAddressIds?: string[]
+          updatedAt?: string
+          userId: string
+        }
+        Update: {
+          buildingAddressIds?: string[]
+          completedAt?: string | null
+          contextGraphIds?: string[]
+          createdAt?: string
+          errorMessage?: string | null
+          id?: string
+          initiatedAt?: string
+          initiatedBy?: string
+          performanceMetrics?: Json | null
+          startedAt?: string | null
+          status?: string
+          unitAddressIds?: string[]
+          updatedAt?: string
+          userId?: string
+        }
+        Relationships: []
+      }
       dealContextGraphCanonBlocks: {
         Row: {
           canonBlockId: string
@@ -195,6 +409,9 @@ export type DatabaseCamel = {
       dealContextGraphs: {
         Row: {
           buildingAddressId: string | null
+          consolidationInProgress: boolean | null
+          consolidationSessionId: string | null
+          consolidationStartedAt: string | null
           createdAt: string
           enrichedExtractedData: Json | null
           entityLedger: Json | null
@@ -211,6 +428,9 @@ export type DatabaseCamel = {
         }
         Insert: {
           buildingAddressId?: string | null
+          consolidationInProgress?: boolean | null
+          consolidationSessionId?: string | null
+          consolidationStartedAt?: string | null
           createdAt?: string
           enrichedExtractedData?: Json | null
           entityLedger?: Json | null
@@ -227,6 +447,9 @@ export type DatabaseCamel = {
         }
         Update: {
           buildingAddressId?: string | null
+          consolidationInProgress?: boolean | null
+          consolidationSessionId?: string | null
+          consolidationStartedAt?: string | null
           createdAt?: string
           enrichedExtractedData?: Json | null
           entityLedger?: Json | null
@@ -241,7 +464,15 @@ export type DatabaseCamel = {
           updatedAt?: string
           userId?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "deal_context_graphs_consolidation_session_id_fkey"
+            columns: ["consolidation_session_id"]
+            isOneToOne: false
+            referencedRelation: "consolidation_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       extractedInputs: {
         Row: {
@@ -462,6 +693,24 @@ export type DatabaseCamel = {
       }
     }
     Functions: {
+      calculateGraphOverlap: {
+        Args: { pGraphId1: string; pGraphId2: string }
+        Returns: Json
+      }
+      findGraphsByAddressIds: {
+        Args: {
+          pBuildingAddressIds: string[]
+          pUnitAddressIds?: string[]
+        }
+        Returns: {
+          graphId: string
+          buildingAddressId: string
+          unitAddressId: string
+          userId: string
+          createdAt: string
+          updatedAt: string
+        }[]
+      }
       linkDealsToClientViaCanonBlock: {
         Args: { clientContextGraphId: string; canonBlockId: string }
         Returns: number
@@ -481,6 +730,13 @@ export type DatabaseCamel = {
           summary: string
           score: number
         }[]
+      }
+      supersedeGraphs: {
+        Args: {
+          pSupersedingGraphId: string
+          pSupersededGraphIds: string[]
+        }
+        Returns: boolean
       }
     }
     Enums: {
@@ -1416,6 +1672,42 @@ export type DatabaseCamel = {
         }
         Relationships: []
       }
+      consolidationLocks: {
+        Row: {
+          acquiredAt: string
+          createdAt: string
+          expiresAt: string
+          graphIds: string[]
+          id: string
+          lockKey: string
+          metadata: Json | null
+          sessionId: string
+          workerId: string | null
+        }
+        Insert: {
+          acquiredAt?: string
+          createdAt?: string
+          expiresAt: string
+          graphIds?: string[]
+          id?: string
+          lockKey: string
+          metadata?: Json | null
+          sessionId: string
+          workerId?: string | null
+        }
+        Update: {
+          acquiredAt?: string
+          createdAt?: string
+          expiresAt?: string
+          graphIds?: string[]
+          id?: string
+          lockKey?: string
+          metadata?: Json | null
+          sessionId?: string
+          workerId?: string | null
+        }
+        Relationships: []
+      }
       errorLogs: {
         Row: {
           createdAt: string
@@ -1861,6 +2153,14 @@ export type DatabaseCamel = {
       [_ in never]: never
     }
     Functions: {
+      acquireMultiGraphLock: {
+        Args: {
+          pSessionId: string
+          pGraphIds: string[]
+          pLockTimeoutSeconds?: number
+        }
+        Returns: Json
+      }
       claimNextJob: {
         Args: Record<PropertyKey, never> | { workerId: string }
         Returns: {
@@ -1882,6 +2182,18 @@ export type DatabaseCamel = {
           updatedAt: string
           workerId: string | null
         }
+      }
+      cleanupExpiredConsolidationLocks: {
+        Args: Record<PropertyKey, never>
+        Returns: number
+      }
+      releaseMultiGraphLock: {
+        Args: { pSessionId: string; pGraphIds: string[] }
+        Returns: boolean
+      }
+      scheduleConsolidationCleanup: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
       }
     }
     Enums: {
