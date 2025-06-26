@@ -25,6 +25,7 @@ src/
 │   ├── core/
 │   ├── documents/
 │   ├── integrations/
+│   ├── logs/
 │   ├── sales/
 │   └── telephony/
 ├── shared/             # Truly shared types
@@ -49,12 +50,13 @@ npm install @legalflow/types
 Import types from specific domains:
 
 ```typescript
-import { Sales, Documents, Core } from '@legalflow/types';
+import { Sales, Documents, Core, Logs } from '@legalflow/types';
 
 // Access types from specific domains
 const deal: Sales.Deal = { /* ... */ };
 const user: Core.User = { /* ... */ };
 const doc: Documents.DocumentMetadata = { /* ... */ };
+const error: Logs.ErrorLog = { /* ... */ };
 ```
 
 ### Schema & Table References
