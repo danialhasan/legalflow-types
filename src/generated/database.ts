@@ -1756,57 +1756,6 @@ export type Database = {
         }
         Relationships: []
       }
-      error_logs: {
-        Row: {
-          created_at: string
-          environment: string | null
-          error_code: string | null
-          error_message: string
-          id: string
-          metadata: Json | null
-          processing_duration: number | null
-          record_id: string
-          severity: string | null
-          source: string
-          stack_trace: string | null
-          status: string | null
-          updated_at: string
-          user_id: string
-        }
-        Insert: {
-          created_at?: string
-          environment?: string | null
-          error_code?: string | null
-          error_message: string
-          id?: string
-          metadata?: Json | null
-          processing_duration?: number | null
-          record_id: string
-          severity?: string | null
-          source: string
-          stack_trace?: string | null
-          status?: string | null
-          updated_at?: string
-          user_id: string
-        }
-        Update: {
-          created_at?: string
-          environment?: string | null
-          error_code?: string | null
-          error_message?: string
-          id?: string
-          metadata?: Json | null
-          processing_duration?: number | null
-          record_id?: string
-          severity?: string | null
-          source?: string
-          stack_trace?: string | null
-          status?: string | null
-          updated_at?: string
-          user_id?: string
-        }
-        Relationships: []
-      }
       feedback_reports: {
         Row: {
           created_at: string
@@ -2927,6 +2876,57 @@ export type Database = {
   }
   logs: {
     Tables: {
+      error_logs: {
+        Row: {
+          created_at: string
+          environment: string | null
+          error_code: string | null
+          error_message: string
+          id: string
+          metadata: Json | null
+          processing_duration: number | null
+          record_id: string
+          severity: string | null
+          source: string
+          stack_trace: string | null
+          status: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          environment?: string | null
+          error_code?: string | null
+          error_message: string
+          id?: string
+          metadata?: Json | null
+          processing_duration?: number | null
+          record_id: string
+          severity?: string | null
+          source: string
+          stack_trace?: string | null
+          status?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          environment?: string | null
+          error_code?: string | null
+          error_message?: string
+          id?: string
+          metadata?: Json | null
+          processing_duration?: number | null
+          record_id?: string
+          severity?: string | null
+          source?: string
+          stack_trace?: string | null
+          status?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       llm_completion_details: {
         Row: {
           completion_id: string | null
@@ -3031,6 +3031,98 @@ export type Database = {
       }
     }
     Views: {
+      error_stats_hourly: {
+        Row: {
+          affected_users: number | null
+          avg_duration: number | null
+          error_count: number | null
+          hour: string | null
+          p95_duration: number | null
+          severity: string | null
+          source: string | null
+        }
+        Relationships: []
+      }
+      error_summary_by_source: {
+        Row: {
+          affected_users: number | null
+          error_count: number | null
+          first_occurrence: string | null
+          last_occurrence: string | null
+          severity: string | null
+          source: string | null
+          status: string | null
+        }
+        Relationships: []
+      }
+      error_trends_daily: {
+        Row: {
+          affected_users: number | null
+          avg_processing_duration: number | null
+          error_count: number | null
+          error_date: string | null
+          severity: string | null
+          source: string | null
+        }
+        Relationships: []
+      }
+      most_common_errors: {
+        Row: {
+          affected_users: number | null
+          error_code: string | null
+          error_message: string | null
+          first_seen: string | null
+          last_seen: string | null
+          occurrence_count: number | null
+          severities: string[] | null
+          source: string | null
+        }
+        Relationships: []
+      }
+      pipeline_error_rates: {
+        Row: {
+          affected_users: number | null
+          avg_duration: number | null
+          failed_jobs: number | null
+          last_error: string | null
+          pipeline_name: string | null
+          total_errors: number | null
+        }
+        Relationships: []
+      }
+      recent_errors_with_users: {
+        Row: {
+          created_at: string | null
+          error_code: string | null
+          error_message: string | null
+          id: string | null
+          job_id: string | null
+          pipeline_name: string | null
+          processing_duration: number | null
+          severity: string | null
+          source: string | null
+          status: string | null
+          task_name: string | null
+          user_email: string | null
+          user_id: string | null
+        }
+        Relationships: []
+      }
+      user_error_profiles: {
+        Row: {
+          critical_errors: number | null
+          distinct_errors: number | null
+          distinct_sources: number | null
+          first_error: string | null
+          last_error: string | null
+          standard_errors: number | null
+          total_errors: number | null
+          unresolved_errors: number | null
+          user_id: string | null
+          warnings: number | null
+        }
+        Relationships: []
+      }
       v_llm_calls: {
         Row: {
           completion_id: string | null
@@ -3054,7 +3146,14 @@ export type Database = {
       }
     }
     Functions: {
-      [_ in never]: never
+      check_user_error_access: {
+        Args: { user_uuid: string }
+        Returns: boolean
+      }
+      refresh_error_stats: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never

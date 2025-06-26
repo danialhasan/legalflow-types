@@ -1751,57 +1751,6 @@ export type DatabaseCamel = {
         }
         Relationships: []
       }
-      errorLogs: {
-        Row: {
-          createdAt: string
-          environment: string | null
-          errorCode: string | null
-          errorMessage: string
-          id: string
-          metadata: Json | null
-          processingDuration: number | null
-          recordId: string
-          severity: string | null
-          source: string
-          stackTrace: string | null
-          status: string | null
-          updatedAt: string
-          userId: string
-        }
-        Insert: {
-          createdAt?: string
-          environment?: string | null
-          errorCode?: string | null
-          errorMessage: string
-          id?: string
-          metadata?: Json | null
-          processingDuration?: number | null
-          recordId: string
-          severity?: string | null
-          source: string
-          stackTrace?: string | null
-          status?: string | null
-          updatedAt?: string
-          userId: string
-        }
-        Update: {
-          createdAt?: string
-          environment?: string | null
-          errorCode?: string | null
-          errorMessage?: string
-          id?: string
-          metadata?: Json | null
-          processingDuration?: number | null
-          recordId?: string
-          severity?: string | null
-          source?: string
-          stackTrace?: string | null
-          status?: string | null
-          updatedAt?: string
-          userId?: string
-        }
-        Relationships: []
-      }
       feedbackReports: {
         Row: {
           createdAt: string
@@ -2922,6 +2871,57 @@ export type DatabaseCamel = {
   }
   logs: {
     Tables: {
+      errorLogs: {
+        Row: {
+          createdAt: string
+          environment: string | null
+          errorCode: string | null
+          errorMessage: string
+          id: string
+          metadata: Json | null
+          processingDuration: number | null
+          recordId: string
+          severity: string | null
+          source: string
+          stackTrace: string | null
+          status: string | null
+          updatedAt: string
+          userId: string
+        }
+        Insert: {
+          createdAt?: string
+          environment?: string | null
+          errorCode?: string | null
+          errorMessage: string
+          id?: string
+          metadata?: Json | null
+          processingDuration?: number | null
+          recordId: string
+          severity?: string | null
+          source: string
+          stackTrace?: string | null
+          status?: string | null
+          updatedAt?: string
+          userId: string
+        }
+        Update: {
+          createdAt?: string
+          environment?: string | null
+          errorCode?: string | null
+          errorMessage?: string
+          id?: string
+          metadata?: Json | null
+          processingDuration?: number | null
+          recordId?: string
+          severity?: string | null
+          source?: string
+          stackTrace?: string | null
+          status?: string | null
+          updatedAt?: string
+          userId?: string
+        }
+        Relationships: []
+      }
       llmCompletionDetails: {
         Row: {
           completionId: string | null
@@ -3026,6 +3026,98 @@ export type DatabaseCamel = {
       }
     }
     Views: {
+      errorStatsHourly: {
+        Row: {
+          affectedUsers: number | null
+          avgDuration: number | null
+          errorCount: number | null
+          hour: string | null
+          p95Duration: number | null
+          severity: string | null
+          source: string | null
+        }
+        Relationships: []
+      }
+      errorSummaryBySource: {
+        Row: {
+          affectedUsers: number | null
+          errorCount: number | null
+          firstOccurrence: string | null
+          lastOccurrence: string | null
+          severity: string | null
+          source: string | null
+          status: string | null
+        }
+        Relationships: []
+      }
+      errorTrendsDaily: {
+        Row: {
+          affectedUsers: number | null
+          avgProcessingDuration: number | null
+          errorCount: number | null
+          errorDate: string | null
+          severity: string | null
+          source: string | null
+        }
+        Relationships: []
+      }
+      mostCommonErrors: {
+        Row: {
+          affectedUsers: number | null
+          errorCode: string | null
+          errorMessage: string | null
+          firstSeen: string | null
+          lastSeen: string | null
+          occurrenceCount: number | null
+          severities: string[] | null
+          source: string | null
+        }
+        Relationships: []
+      }
+      pipelineErrorRates: {
+        Row: {
+          affectedUsers: number | null
+          avgDuration: number | null
+          failedJobs: number | null
+          lastError: string | null
+          pipelineName: string | null
+          totalErrors: number | null
+        }
+        Relationships: []
+      }
+      recentErrorsWithUsers: {
+        Row: {
+          createdAt: string | null
+          errorCode: string | null
+          errorMessage: string | null
+          id: string | null
+          jobId: string | null
+          pipelineName: string | null
+          processingDuration: number | null
+          severity: string | null
+          source: string | null
+          status: string | null
+          taskName: string | null
+          userEmail: string | null
+          userId: string | null
+        }
+        Relationships: []
+      }
+      userErrorProfiles: {
+        Row: {
+          criticalErrors: number | null
+          distinctErrors: number | null
+          distinctSources: number | null
+          firstError: string | null
+          lastError: string | null
+          standardErrors: number | null
+          totalErrors: number | null
+          unresolvedErrors: number | null
+          userId: string | null
+          warnings: number | null
+        }
+        Relationships: []
+      }
       vLlmCalls: {
         Row: {
           completionId: string | null
@@ -3049,7 +3141,14 @@ export type DatabaseCamel = {
       }
     }
     Functions: {
-      [_ in never]: never
+      checkUserErrorAccess: {
+        Args: { userUuid: string }
+        Returns: boolean
+      }
+      refreshErrorStats: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never

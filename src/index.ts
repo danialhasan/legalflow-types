@@ -20,6 +20,7 @@ export * as Compliance from './domains/compliance';
 export * as Core from './domains/core';
 export * as Documents from './domains/documents';
 export * as Integrations from './domains/integrations';
+export * as Logs from './domains/logs';
 export * as Sales from './domains/sales';
 export * as Telephony from './domains/telephony';
 

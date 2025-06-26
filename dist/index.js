@@ -45,7 +45,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UI = exports.JobsService = exports.AIService = exports.Telephony = exports.Sales = exports.Integrations = exports.Documents = exports.Core = exports.Compliance = exports.Assistant = exports.Analysis = exports.getTableRef = exports.Table = exports.Schema = void 0;
+exports.UI = exports.JobsService = exports.AIService = exports.Telephony = exports.Sales = exports.Logs = exports.Integrations = exports.Documents = exports.Core = exports.Compliance = exports.Assistant = exports.Analysis = exports.getTableRef = exports.Table = exports.Schema = void 0;
 var constants_1 = require("./generated/constants");
 Object.defineProperty(exports, "Schema", { enumerable: true, get: function () { return constants_1.Schema; } });
 Object.defineProperty(exports, "Table", { enumerable: true, get: function () { return constants_1.Table; } });
@@ -57,6 +57,7 @@ exports.Compliance = __importStar(require("./domains/compliance"));
 exports.Core = __importStar(require("./domains/core"));
 exports.Documents = __importStar(require("./domains/documents"));
 exports.Integrations = __importStar(require("./domains/integrations"));
+exports.Logs = __importStar(require("./domains/logs"));
 exports.Sales = __importStar(require("./domains/sales"));
 exports.Telephony = __importStar(require("./domains/telephony"));
 // Shared types
