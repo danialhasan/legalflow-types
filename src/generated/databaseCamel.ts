@@ -802,12 +802,20 @@ export type DatabaseCamel = {
           clientId: string | null
           createdAt: string
           dealId: string | null
+          dismissedAt: string | null
+          dismissedByUserId: string | null
+          dismissedReason: string | null
           editDelta: Json | null
           executedAt: string | null
+          executedByUserId: string | null
+          executionAttempts: number | null
+          executionError: Json | null
+          executionMetadata: Json | null
           executionStrategy: DatabaseCamel["assistant"]["Enums"]["recommendationExecutionStrategy"]
           executor: DatabaseCamel["assistant"]["Enums"]["recommendationExecutor"]
           fallbackUsed: boolean | null
           id: string
+          lastExecutionAttemptAt: string | null
           messageTemplate: string | null
           originalPayload: Json | null
           params: Json | null
@@ -827,12 +835,20 @@ export type DatabaseCamel = {
           clientId?: string | null
           createdAt?: string
           dealId?: string | null
+          dismissedAt?: string | null
+          dismissedByUserId?: string | null
+          dismissedReason?: string | null
           editDelta?: Json | null
           executedAt?: string | null
+          executedByUserId?: string | null
+          executionAttempts?: number | null
+          executionError?: Json | null
+          executionMetadata?: Json | null
           executionStrategy?: DatabaseCamel["assistant"]["Enums"]["recommendationExecutionStrategy"]
           executor: DatabaseCamel["assistant"]["Enums"]["recommendationExecutor"]
           fallbackUsed?: boolean | null
           id?: string
+          lastExecutionAttemptAt?: string | null
           messageTemplate?: string | null
           originalPayload?: Json | null
           params?: Json | null
@@ -852,12 +868,20 @@ export type DatabaseCamel = {
           clientId?: string | null
           createdAt?: string
           dealId?: string | null
+          dismissedAt?: string | null
+          dismissedByUserId?: string | null
+          dismissedReason?: string | null
           editDelta?: Json | null
           executedAt?: string | null
+          executedByUserId?: string | null
+          executionAttempts?: number | null
+          executionError?: Json | null
+          executionMetadata?: Json | null
           executionStrategy?: DatabaseCamel["assistant"]["Enums"]["recommendationExecutionStrategy"]
           executor?: DatabaseCamel["assistant"]["Enums"]["recommendationExecutor"]
           fallbackUsed?: boolean | null
           id?: string
+          lastExecutionAttemptAt?: string | null
           messageTemplate?: string | null
           originalPayload?: Json | null
           params?: Json | null
@@ -1342,6 +1366,59 @@ export type DatabaseCamel = {
         Relationships: [
           {
             foreignKeyName: "recommendation_context_links_recommendation_id_fkey"
+            columns: ["recommendation_id"]
+            isOneToOne: false
+            referencedRelation: "agent_recommendations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      recommendationExecutionHistory: {
+        Row: {
+          actionType: string
+          createdAt: string
+          errorDetails: Json | null
+          executionDurationMs: number | null
+          executionMetadata: Json | null
+          executorId: string | null
+          executorType: string | null
+          id: string
+          recommendationId: string
+          statusFrom: DatabaseCamel["assistant"]["Enums"]["recommendationStatus"]
+          statusTo: DatabaseCamel["assistant"]["Enums"]["recommendationStatus"]
+          userId: string
+        }
+        Insert: {
+          actionType: string
+          createdAt?: string
+          errorDetails?: Json | null
+          executionDurationMs?: number | null
+          executionMetadata?: Json | null
+          executorId?: string | null
+          executorType?: string | null
+          id?: string
+          recommendationId: string
+          statusFrom: DatabaseCamel["assistant"]["Enums"]["recommendationStatus"]
+          statusTo: DatabaseCamel["assistant"]["Enums"]["recommendationStatus"]
+          userId: string
+        }
+        Update: {
+          actionType?: string
+          createdAt?: string
+          errorDetails?: Json | null
+          executionDurationMs?: number | null
+          executionMetadata?: Json | null
+          executorId?: string | null
+          executorType?: string | null
+          id?: string
+          recommendationId?: string
+          statusFrom?: DatabaseCamel["assistant"]["Enums"]["recommendationStatus"]
+          statusTo?: DatabaseCamel["assistant"]["Enums"]["recommendationStatus"]
+          userId?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "recommendation_execution_history_recommendation_id_fkey"
             columns: ["recommendation_id"]
             isOneToOne: false
             referencedRelation: "agent_recommendations"

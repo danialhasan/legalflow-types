@@ -807,12 +807,20 @@ export type Database = {
           client_id: string | null
           created_at: string
           deal_id: string | null
+          dismissed_at: string | null
+          dismissed_by_user_id: string | null
+          dismissed_reason: string | null
           edit_delta: Json | null
           executed_at: string | null
+          executed_by_user_id: string | null
+          execution_attempts: number | null
+          execution_error: Json | null
+          execution_metadata: Json | null
           execution_strategy: Database["assistant"]["Enums"]["recommendation_execution_strategy"]
           executor: Database["assistant"]["Enums"]["recommendation_executor"]
           fallback_used: boolean | null
           id: string
+          last_execution_attempt_at: string | null
           message_template: string | null
           original_payload: Json | null
           params: Json | null
@@ -832,12 +840,20 @@ export type Database = {
           client_id?: string | null
           created_at?: string
           deal_id?: string | null
+          dismissed_at?: string | null
+          dismissed_by_user_id?: string | null
+          dismissed_reason?: string | null
           edit_delta?: Json | null
           executed_at?: string | null
+          executed_by_user_id?: string | null
+          execution_attempts?: number | null
+          execution_error?: Json | null
+          execution_metadata?: Json | null
           execution_strategy?: Database["assistant"]["Enums"]["recommendation_execution_strategy"]
           executor: Database["assistant"]["Enums"]["recommendation_executor"]
           fallback_used?: boolean | null
           id?: string
+          last_execution_attempt_at?: string | null
           message_template?: string | null
           original_payload?: Json | null
           params?: Json | null
@@ -857,12 +873,20 @@ export type Database = {
           client_id?: string | null
           created_at?: string
           deal_id?: string | null
+          dismissed_at?: string | null
+          dismissed_by_user_id?: string | null
+          dismissed_reason?: string | null
           edit_delta?: Json | null
           executed_at?: string | null
+          executed_by_user_id?: string | null
+          execution_attempts?: number | null
+          execution_error?: Json | null
+          execution_metadata?: Json | null
           execution_strategy?: Database["assistant"]["Enums"]["recommendation_execution_strategy"]
           executor?: Database["assistant"]["Enums"]["recommendation_executor"]
           fallback_used?: boolean | null
           id?: string
+          last_execution_attempt_at?: string | null
           message_template?: string | null
           original_payload?: Json | null
           params?: Json | null
@@ -1347,6 +1371,59 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "recommendation_context_links_recommendation_id_fkey"
+            columns: ["recommendation_id"]
+            isOneToOne: false
+            referencedRelation: "agent_recommendations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      recommendation_execution_history: {
+        Row: {
+          action_type: string
+          created_at: string
+          error_details: Json | null
+          execution_duration_ms: number | null
+          execution_metadata: Json | null
+          executor_id: string | null
+          executor_type: string | null
+          id: string
+          recommendation_id: string
+          status_from: Database["assistant"]["Enums"]["recommendation_status"]
+          status_to: Database["assistant"]["Enums"]["recommendation_status"]
+          user_id: string
+        }
+        Insert: {
+          action_type: string
+          created_at?: string
+          error_details?: Json | null
+          execution_duration_ms?: number | null
+          execution_metadata?: Json | null
+          executor_id?: string | null
+          executor_type?: string | null
+          id?: string
+          recommendation_id: string
+          status_from: Database["assistant"]["Enums"]["recommendation_status"]
+          status_to: Database["assistant"]["Enums"]["recommendation_status"]
+          user_id: string
+        }
+        Update: {
+          action_type?: string
+          created_at?: string
+          error_details?: Json | null
+          execution_duration_ms?: number | null
+          execution_metadata?: Json | null
+          executor_id?: string | null
+          executor_type?: string | null
+          id?: string
+          recommendation_id?: string
+          status_from?: Database["assistant"]["Enums"]["recommendation_status"]
+          status_to?: Database["assistant"]["Enums"]["recommendation_status"]
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "recommendation_execution_history_recommendation_id_fkey"
             columns: ["recommendation_id"]
             isOneToOne: false
             referencedRelation: "agent_recommendations"
