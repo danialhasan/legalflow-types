@@ -2856,27 +2856,51 @@ export type Database = {
       }
       google_webhook_channels: {
         Row: {
+          active: boolean | null
           channel_id: string
           created_at: string | null
           expiration: string | null
+          failure_count: number | null
+          failure_reason: string | null
+          google_resource_id: string | null
+          last_health_check: string | null
+          metadata: Json | null
           resource_id: string | null
           resource_type: string | null
+          state: string | null
+          state_changed_at: string | null
           user_id: string
         }
         Insert: {
+          active?: boolean | null
           channel_id: string
           created_at?: string | null
           expiration?: string | null
+          failure_count?: number | null
+          failure_reason?: string | null
+          google_resource_id?: string | null
+          last_health_check?: string | null
+          metadata?: Json | null
           resource_id?: string | null
           resource_type?: string | null
+          state?: string | null
+          state_changed_at?: string | null
           user_id: string
         }
         Update: {
+          active?: boolean | null
           channel_id?: string
           created_at?: string | null
           expiration?: string | null
+          failure_count?: number | null
+          failure_reason?: string | null
+          google_resource_id?: string | null
+          last_health_check?: string | null
+          metadata?: Json | null
           resource_id?: string | null
           resource_type?: string | null
+          state?: string | null
+          state_changed_at?: string | null
           user_id?: string
         }
         Relationships: []
@@ -2888,13 +2912,18 @@ export type Database = {
           created_at: string | null
           data: Json | null
           id: string
+          last_retry_at: string | null
           message_number: number | null
           processed: boolean | null
           processed_at: string | null
+          processing_attempts: number | null
+          processing_error: string | null
+          processing_started_at: string | null
           resource_id: string | null
           resource_state: string | null
           resource_type: string | null
           resource_uri: string | null
+          retry_count: number | null
           user_id: string | null
         }
         Insert: {
@@ -2903,13 +2932,18 @@ export type Database = {
           created_at?: string | null
           data?: Json | null
           id?: string
+          last_retry_at?: string | null
           message_number?: number | null
           processed?: boolean | null
           processed_at?: string | null
+          processing_attempts?: number | null
+          processing_error?: string | null
+          processing_started_at?: string | null
           resource_id?: string | null
           resource_state?: string | null
           resource_type?: string | null
           resource_uri?: string | null
+          retry_count?: number | null
           user_id?: string | null
         }
         Update: {
@@ -2918,13 +2952,18 @@ export type Database = {
           created_at?: string | null
           data?: Json | null
           id?: string
+          last_retry_at?: string | null
           message_number?: number | null
           processed?: boolean | null
           processed_at?: string | null
+          processing_attempts?: number | null
+          processing_error?: string | null
+          processing_started_at?: string | null
           resource_id?: string | null
           resource_state?: string | null
           resource_type?: string | null
           resource_uri?: string | null
+          retry_count?: number | null
           user_id?: string | null
         }
         Relationships: [
@@ -2935,11 +2974,33 @@ export type Database = {
             referencedRelation: "google_webhook_channels"
             referencedColumns: ["user_id", "channel_id"]
           },
+          {
+            foreignKeyName: "fk_channel"
+            columns: ["user_id", "channel_id"]
+            isOneToOne: false
+            referencedRelation: "webhook_channel_health"
+            referencedColumns: ["user_id", "channel_id"]
+          },
         ]
       }
     }
     Views: {
-      [_ in never]: never
+      webhook_channel_health: {
+        Row: {
+          channel_id: string | null
+          expiration: string | null
+          failure_count: number | null
+          health_status: string | null
+          last_health_check: string | null
+          last_notification_at: string | null
+          resource_type: string | null
+          state: string | null
+          state_changed_at: string | null
+          unprocessed_notifications: number | null
+          user_id: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       [_ in never]: never

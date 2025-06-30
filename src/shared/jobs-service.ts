@@ -28,7 +28,7 @@ export type JobStatus = 'pending' | 'in_progress' | 'completed' | 'failed' | 'ca
 /**
  * Job Priority Type
  */
-export type JobPriority = 'high' | 'default' | 'low';
+export type JobPriority = 'low' | 'default' | 'medium' | 'high' | 'critical';
 
 /**
  * Job Entity
