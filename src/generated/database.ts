@@ -9,6 +9,68 @@ export type Json =
 export type Database = {
   analysis: {
     Tables: {
+      calendar_event_canon_blocks: {
+        Row: {
+          canon_block_id: string
+          confidence_score: number | null
+          created_at: string
+          deal_context_graph_id: string | null
+          event_type: string
+          google_calendar_event_id: string
+          id: string
+          updated_at: string
+        }
+        Insert: {
+          canon_block_id: string
+          confidence_score?: number | null
+          created_at?: string
+          deal_context_graph_id?: string | null
+          event_type: string
+          google_calendar_event_id: string
+          id?: string
+          updated_at?: string
+        }
+        Update: {
+          canon_block_id?: string
+          confidence_score?: number | null
+          created_at?: string
+          deal_context_graph_id?: string | null
+          event_type?: string
+          google_calendar_event_id?: string
+          id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "calendar_event_canon_blocks_canon_block_id_fkey"
+            columns: ["canon_block_id"]
+            isOneToOne: false
+            referencedRelation: "canon_blocks"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "calendar_event_canon_blocks_canon_block_id_fkey"
+            columns: ["canon_block_id"]
+            isOneToOne: false
+            referencedRelation: "deal_client_context_graphs_view"
+            referencedColumns: ["canon_block_id"]
+          },
+          {
+            foreignKeyName: "calendar_event_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_context_graph_id"]
+            isOneToOne: false
+            referencedRelation: "deal_client_context_graphs_view"
+            referencedColumns: ["deal_context_graph_id"]
+          },
+          {
+            foreignKeyName: "calendar_event_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_context_graph_id"]
+            isOneToOne: false
+            referencedRelation: "deal_context_graphs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       canon_blocks: {
         Row: {
           address_tag: string | null
@@ -414,6 +476,7 @@ export type Database = {
       deal_context_graphs: {
         Row: {
           building_address_id: string | null
+          calendar_intelligence: Json | null
           consolidation_in_progress: boolean | null
           consolidation_lock_id: string | null
           consolidation_session_id: string | null
@@ -434,6 +497,7 @@ export type Database = {
         }
         Insert: {
           building_address_id?: string | null
+          calendar_intelligence?: Json | null
           consolidation_in_progress?: boolean | null
           consolidation_lock_id?: string | null
           consolidation_session_id?: string | null
@@ -454,6 +518,7 @@ export type Database = {
         }
         Update: {
           building_address_id?: string | null
+          calendar_intelligence?: Json | null
           consolidation_in_progress?: boolean | null
           consolidation_lock_id?: string | null
           consolidation_session_id?: string | null
@@ -709,8 +774,34 @@ export type Database = {
         }
         Relationships: []
       }
+      deal_timeline_view: {
+        Row: {
+          attendees: Json | null
+          confidence_score: number | null
+          deal_context_graph_id: string | null
+          description: string | null
+          event_id: string | null
+          event_time: string | null
+          event_title: string | null
+          event_type: string | null
+          linked_at: string | null
+          location: string | null
+          timeline_type: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
+      calculate_deal_velocity: {
+        Args: { p_deal_id: string }
+        Returns: {
+          days_since_first_event: number
+          total_events: number
+          showing_count: number
+          average_days_between_events: number
+          momentum_score: number
+        }[]
+      }
       calculate_graph_overlap: {
         Args: { p_graph_id_1: string; p_graph_id_2: string }
         Returns: Json
@@ -782,6 +873,11 @@ export type Database = {
         | "voice_call_script"
         | "referral_request"
         | "other"
+        | "calendar_showing"
+        | "calendar_inspection"
+        | "calendar_closing"
+        | "calendar_client_meeting"
+        | "calendar_deadline"
     }
     CompositeTypes: {
       extracted_input_data_type: {
@@ -4622,6 +4718,11 @@ export const Constants = {
         "voice_call_script",
         "referral_request",
         "other",
+        "calendar_showing",
+        "calendar_inspection",
+        "calendar_closing",
+        "calendar_client_meeting",
+        "calendar_deadline",
       ],
     },
   },

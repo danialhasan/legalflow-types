@@ -4,6 +4,68 @@ import type { Database, Json } from '../index';
 export type DatabaseCamel = {
   analysis: {
     Tables: {
+      calendarEventCanonBlocks: {
+        Row: {
+          canonBlockId: string
+          confidenceScore: number | null
+          createdAt: string
+          dealContextGraphId: string | null
+          eventType: string
+          googleCalendarEventId: string
+          id: string
+          updatedAt: string
+        }
+        Insert: {
+          canonBlockId: string
+          confidenceScore?: number | null
+          createdAt?: string
+          dealContextGraphId?: string | null
+          eventType: string
+          googleCalendarEventId: string
+          id?: string
+          updatedAt?: string
+        }
+        Update: {
+          canonBlockId?: string
+          confidenceScore?: number | null
+          createdAt?: string
+          dealContextGraphId?: string | null
+          eventType?: string
+          googleCalendarEventId?: string
+          id?: string
+          updatedAt?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "calendar_event_canon_blocks_canon_block_id_fkey"
+            columns: ["canon_block_id"]
+            isOneToOne: false
+            referencedRelation: "canon_blocks"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "calendar_event_canon_blocks_canon_block_id_fkey"
+            columns: ["canon_block_id"]
+            isOneToOne: false
+            referencedRelation: "deal_client_context_graphs_view"
+            referencedColumns: ["canon_block_id"]
+          },
+          {
+            foreignKeyName: "calendar_event_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_context_graph_id"]
+            isOneToOne: false
+            referencedRelation: "deal_client_context_graphs_view"
+            referencedColumns: ["deal_context_graph_id"]
+          },
+          {
+            foreignKeyName: "calendar_event_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_context_graph_id"]
+            isOneToOne: false
+            referencedRelation: "deal_context_graphs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       canonBlocks: {
         Row: {
           addressTag: string | null
@@ -409,6 +471,7 @@ export type DatabaseCamel = {
       dealContextGraphs: {
         Row: {
           buildingAddressId: string | null
+          calendarIntelligence: Json | null
           consolidationInProgress: boolean | null
           consolidationLockId: string | null
           consolidationSessionId: string | null
@@ -429,6 +492,7 @@ export type DatabaseCamel = {
         }
         Insert: {
           buildingAddressId?: string | null
+          calendarIntelligence?: Json | null
           consolidationInProgress?: boolean | null
           consolidationLockId?: string | null
           consolidationSessionId?: string | null
@@ -449,6 +513,7 @@ export type DatabaseCamel = {
         }
         Update: {
           buildingAddressId?: string | null
+          calendarIntelligence?: Json | null
           consolidationInProgress?: boolean | null
           consolidationLockId?: string | null
           consolidationSessionId?: string | null
@@ -704,8 +769,34 @@ export type DatabaseCamel = {
         }
         Relationships: []
       }
+      dealTimelineView: {
+        Row: {
+          attendees: Json | null
+          confidenceScore: number | null
+          dealContextGraphId: string | null
+          description: string | null
+          eventId: string | null
+          eventTime: string | null
+          eventTitle: string | null
+          eventType: string | null
+          linkedAt: string | null
+          location: string | null
+          timelineType: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
+      calculateDealVelocity: {
+        Args: { pDealId: string }
+        Returns: {
+          daysSinceFirstEvent: number
+          totalEvents: number
+          showingCount: number
+          averageDaysBetweenEvents: number
+          momentumScore: number
+        }[]
+      }
       calculateGraphOverlap: {
         Args: { pGraphId1: string; pGraphId2: string }
         Returns: Json
@@ -777,6 +868,11 @@ export type DatabaseCamel = {
         | "voice_call_script"
         | "referral_request"
         | "other"
+        | "calendar_showing"
+        | "calendar_inspection"
+        | "calendar_closing"
+        | "calendar_client_meeting"
+        | "calendar_deadline"
     }
     CompositeTypes: {
       extractedInputDataType: {
