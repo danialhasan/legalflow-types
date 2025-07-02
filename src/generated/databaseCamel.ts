@@ -3195,6 +3195,13 @@ export type DatabaseCamel = {
             foreignKeyName: "llm_completion_details_completion_id_fkey"
             columns: ["completion_id"]
             isOneToOne: false
+            referencedRelation: "ai_processing_steps"
+            referencedColumns: ["request_id"]
+          },
+          {
+            foreignKeyName: "llm_completion_details_completion_id_fkey"
+            columns: ["completion_id"]
+            isOneToOne: false
             referencedRelation: "llm_completions"
             referencedColumns: ["id"]
           },
@@ -3260,6 +3267,56 @@ export type DatabaseCamel = {
       }
     }
     Views: {
+      aiActivityTimeline: {
+        Row: {
+          action: string | null
+          activityType: string | null
+          confidenceScore: number | null
+          createdAt: string | null
+          details: Json | null
+          durationMs: number | null
+          rowNum: number | null
+          source: string | null
+          sourceId: string | null
+          status: string | null
+          userId: string | null
+        }
+        Relationships: []
+      }
+      aiDashboardMetrics: {
+        Row: {
+          activeDealsCount: number | null
+          aiProcessings: number | null
+          avgConfidence: number | null
+          backgroundJobs: number | null
+          calculatedAt: string | null
+          failedActivities: number | null
+          lastActivityAt: string | null
+          recommendationsGenerated: number | null
+          successRate: number | null
+          successfulActivities: number | null
+          totalActivities: number | null
+          totalProcessingTime: number | null
+          userId: string | null
+        }
+        Relationships: []
+      }
+      aiProcessingSteps: {
+        Row: {
+          completedSteps: number | null
+          createdAt: string | null
+          cumulativeDurationMs: number | null
+          durationMs: number | null
+          pipelineName: string | null
+          requestId: string | null
+          stepOrder: number | null
+          stepStatus: string | null
+          taskName: string | null
+          totalSteps: number | null
+          userId: string | null
+        }
+        Relationships: []
+      }
       errorStatsHourly: {
         Row: {
           affectedUsers: number | null
@@ -3378,6 +3435,10 @@ export type DatabaseCamel = {
       checkUserErrorAccess: {
         Args: { userUuid: string }
         Returns: boolean
+      }
+      refreshAiActivityTimeline: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
       }
       refreshErrorStats: {
         Args: Record<PropertyKey, never>

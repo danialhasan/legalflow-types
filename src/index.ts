@@ -31,6 +31,7 @@ export * from './shared/primitives';
 export * as AIService from './shared/ai-service';
 export * as JobsService from './shared/jobs-service';
 export * as UI from './shared/ui';
+export * as Activity from './shared/activity';
 export * from './shared/extracted-data';
 export * from './shared/recommendation';
 export * from './shared/emailPayload';

@@ -3200,6 +3200,13 @@ export type Database = {
             foreignKeyName: "llm_completion_details_completion_id_fkey"
             columns: ["completion_id"]
             isOneToOne: false
+            referencedRelation: "ai_processing_steps"
+            referencedColumns: ["request_id"]
+          },
+          {
+            foreignKeyName: "llm_completion_details_completion_id_fkey"
+            columns: ["completion_id"]
+            isOneToOne: false
             referencedRelation: "llm_completions"
             referencedColumns: ["id"]
           },
@@ -3265,6 +3272,56 @@ export type Database = {
       }
     }
     Views: {
+      ai_activity_timeline: {
+        Row: {
+          action: string | null
+          activity_type: string | null
+          confidence_score: number | null
+          created_at: string | null
+          details: Json | null
+          duration_ms: number | null
+          row_num: number | null
+          source: string | null
+          source_id: string | null
+          status: string | null
+          user_id: string | null
+        }
+        Relationships: []
+      }
+      ai_dashboard_metrics: {
+        Row: {
+          active_deals_count: number | null
+          ai_processings: number | null
+          avg_confidence: number | null
+          background_jobs: number | null
+          calculated_at: string | null
+          failed_activities: number | null
+          last_activity_at: string | null
+          recommendations_generated: number | null
+          success_rate: number | null
+          successful_activities: number | null
+          total_activities: number | null
+          total_processing_time: number | null
+          user_id: string | null
+        }
+        Relationships: []
+      }
+      ai_processing_steps: {
+        Row: {
+          completed_steps: number | null
+          created_at: string | null
+          cumulative_duration_ms: number | null
+          duration_ms: number | null
+          pipeline_name: string | null
+          request_id: string | null
+          step_order: number | null
+          step_status: string | null
+          task_name: string | null
+          total_steps: number | null
+          user_id: string | null
+        }
+        Relationships: []
+      }
       error_stats_hourly: {
         Row: {
           affected_users: number | null
@@ -3383,6 +3440,10 @@ export type Database = {
       check_user_error_access: {
         Args: { user_uuid: string }
         Returns: boolean
+      }
+      refresh_ai_activity_timeline: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
       }
       refresh_error_stats: {
         Args: Record<PropertyKey, never>
