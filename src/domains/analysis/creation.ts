@@ -20,6 +20,7 @@ export interface TextDraftOutput {
 export interface DocumentUploadResult {
   documentId: string;
   publicUrl: string;
+  jobId?: string;
 }
 
 export interface JobProgressUpdate {

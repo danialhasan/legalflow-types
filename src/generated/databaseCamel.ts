@@ -2,6 +2,11 @@
 
 import type { Database, Json } from '../index';
 export type DatabaseCamel = {
+  // Allows to automatically instanciate createClient with right options
+  // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
+  _InternalSupabase: {
+    PostgrestVersion: "12.2.3 (519615d)"
+  }
   analysis: {
     Tables: {
       calendarEventCanonBlocks: {
@@ -4420,6 +4425,7 @@ export type DatabaseCamel = {
           documentId: string | null
           fileName: string | null
           fileSize: string | null
+          fileUrl: string | null
           status: string | null
         }
         Relationships: []
