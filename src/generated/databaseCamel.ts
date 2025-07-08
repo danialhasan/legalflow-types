@@ -2461,7 +2461,7 @@ export type DatabaseCamel = {
         | "admin"
         | "other"
       communicationStyle: "friendly" | "professional" | "direct" | "casual"
-      sourceType: "email" | "document" | "calendar_event"
+      sourceType: "email" | "document" | "calendar_event" | "sms"
       workSchedule:
         | "mornings"
         | "evenings"
@@ -2639,6 +2639,48 @@ export type DatabaseCamel = {
   }
   integrations: {
     Tables: {
+      conversationMetadata: {
+        Row: {
+          conversationKey: string
+          createdAt: string
+          firstMessageAt: string
+          id: string
+          lastMessageAt: string
+          messageCount: number | null
+          metadata: Json | null
+          platform: string
+          unreadCount: number | null
+          updatedAt: string
+          userId: string
+        }
+        Insert: {
+          conversationKey: string
+          createdAt?: string
+          firstMessageAt: string
+          id?: string
+          lastMessageAt: string
+          messageCount?: number | null
+          metadata?: Json | null
+          platform?: string
+          unreadCount?: number | null
+          updatedAt?: string
+          userId: string
+        }
+        Update: {
+          conversationKey?: string
+          createdAt?: string
+          firstMessageAt?: string
+          id?: string
+          lastMessageAt?: string
+          messageCount?: number | null
+          metadata?: Json | null
+          platform?: string
+          unreadCount?: number | null
+          updatedAt?: string
+          userId?: string
+        }
+        Relationships: []
+      }
       emailAttachments: {
         Row: {
           createdAt: string
@@ -3076,6 +3118,219 @@ export type DatabaseCamel = {
             isOneToOne: false
             referencedRelation: "webhook_channel_health"
             referencedColumns: ["user_id", "channel_id"]
+          },
+        ]
+      }
+      messageDeliveryReceipts: {
+        Row: {
+          createdAt: string
+          id: string
+          messageId: string
+          messageType: string
+          providerMetadata: Json | null
+          status: string
+          statusTimestamp: string
+        }
+        Insert: {
+          createdAt?: string
+          id?: string
+          messageId: string
+          messageType?: string
+          providerMetadata?: Json | null
+          status: string
+          statusTimestamp: string
+        }
+        Update: {
+          createdAt?: string
+          id?: string
+          messageId?: string
+          messageType?: string
+          providerMetadata?: Json | null
+          status?: string
+          statusTimestamp?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "message_delivery_receipts_message_id_fkey"
+            columns: ["message_id"]
+            isOneToOne: false
+            referencedRelation: "sms_messages"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      messageMedia: {
+        Row: {
+          createdAt: string
+          fileSize: number | null
+          id: string
+          mediaType: string
+          mediaUrl: string
+          messageId: string
+          messageType: string
+          metadata: Json | null
+          storagePath: string | null
+          transcription: string | null
+        }
+        Insert: {
+          createdAt?: string
+          fileSize?: number | null
+          id?: string
+          mediaType: string
+          mediaUrl: string
+          messageId: string
+          messageType?: string
+          metadata?: Json | null
+          storagePath?: string | null
+          transcription?: string | null
+        }
+        Update: {
+          createdAt?: string
+          fileSize?: number | null
+          id?: string
+          mediaType?: string
+          mediaUrl?: string
+          messageId?: string
+          messageType?: string
+          metadata?: Json | null
+          storagePath?: string | null
+          transcription?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "message_media_message_id_fkey"
+            columns: ["message_id"]
+            isOneToOne: false
+            referencedRelation: "sms_messages"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      phoneNumberMappings: {
+        Row: {
+          createdAt: string
+          id: string
+          isActive: boolean | null
+          phoneNumber: string
+          phoneType: string
+          provider: string
+          providerMetadata: Json | null
+          updatedAt: string
+          userId: string
+        }
+        Insert: {
+          createdAt?: string
+          id?: string
+          isActive?: boolean | null
+          phoneNumber: string
+          phoneType?: string
+          provider?: string
+          providerMetadata?: Json | null
+          updatedAt?: string
+          userId: string
+        }
+        Update: {
+          createdAt?: string
+          id?: string
+          isActive?: boolean | null
+          phoneNumber?: string
+          phoneType?: string
+          provider?: string
+          providerMetadata?: Json | null
+          updatedAt?: string
+          userId?: string
+        }
+        Relationships: []
+      }
+      smsMessages: {
+        Row: {
+          aiServiceResponseId: string | null
+          body: string
+          conversationKey: string
+          createdAt: string
+          deletedAt: string | null
+          deletedBy: string | null
+          direction: string
+          errorCode: string | null
+          errorLogId: string | null
+          errorMessage: string | null
+          id: string
+          mediaUrls: string[] | null
+          metadata: Json | null
+          parentMessageId: string | null
+          phoneNumber: string
+          rateLimitMetadata: Json | null
+          receivedAt: string | null
+          responseType: string | null
+          sentAt: string | null
+          sourceId: string | null
+          status: string
+          threadId: string | null
+          twilioSid: string
+          updatedAt: string
+          userId: string
+        }
+        Insert: {
+          aiServiceResponseId?: string | null
+          body: string
+          conversationKey: string
+          createdAt?: string
+          deletedAt?: string | null
+          deletedBy?: string | null
+          direction: string
+          errorCode?: string | null
+          errorLogId?: string | null
+          errorMessage?: string | null
+          id?: string
+          mediaUrls?: string[] | null
+          metadata?: Json | null
+          parentMessageId?: string | null
+          phoneNumber: string
+          rateLimitMetadata?: Json | null
+          receivedAt?: string | null
+          responseType?: string | null
+          sentAt?: string | null
+          sourceId?: string | null
+          status: string
+          threadId?: string | null
+          twilioSid: string
+          updatedAt?: string
+          userId: string
+        }
+        Update: {
+          aiServiceResponseId?: string | null
+          body?: string
+          conversationKey?: string
+          createdAt?: string
+          deletedAt?: string | null
+          deletedBy?: string | null
+          direction?: string
+          errorCode?: string | null
+          errorLogId?: string | null
+          errorMessage?: string | null
+          id?: string
+          mediaUrls?: string[] | null
+          metadata?: Json | null
+          parentMessageId?: string | null
+          phoneNumber?: string
+          rateLimitMetadata?: Json | null
+          receivedAt?: string | null
+          responseType?: string | null
+          sentAt?: string | null
+          sourceId?: string | null
+          status?: string
+          threadId?: string | null
+          twilioSid?: string
+          updatedAt?: string
+          userId?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sms_messages_parent_message_id_fkey"
+            columns: ["parent_message_id"]
+            isOneToOne: false
+            referencedRelation: "sms_messages"
+            referencedColumns: ["id"]
           },
         ]
       }
