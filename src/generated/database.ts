@@ -3424,6 +3424,36 @@ export type Database = {
         }
         Relationships: []
       }
+      internal_system_logs: {
+        Row: {
+          created_at: string | null
+          id: string
+          log_type: string
+          metadata: Json
+          record_id: string | null
+          source: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          log_type: string
+          metadata?: Json
+          record_id?: string | null
+          source: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          log_type?: string
+          metadata?: Json
+          record_id?: string | null
+          source?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       llm_completion_details: {
         Row: {
           completion_id: string | null

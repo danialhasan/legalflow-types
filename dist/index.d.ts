@@ -29,4 +29,5 @@ export * as Activity from './shared/activity';
 export * from './shared/extracted-data';
 export * from './shared/recommendation';
 export * from './shared/emailPayload';
+export * from './memory';
 export * from './utils/schema-helpers';

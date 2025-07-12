@@ -3419,6 +3419,36 @@ export type DatabaseCamel = {
         }
         Relationships: []
       }
+      internalSystemLogs: {
+        Row: {
+          createdAt: string | null
+          id: string
+          logType: string
+          metadata: Json
+          recordId: string | null
+          source: string
+          userId: string | null
+        }
+        Insert: {
+          createdAt?: string | null
+          id?: string
+          logType: string
+          metadata?: Json
+          recordId?: string | null
+          source: string
+          userId?: string | null
+        }
+        Update: {
+          createdAt?: string | null
+          id?: string
+          logType?: string
+          metadata?: Json
+          recordId?: string | null
+          source?: string
+          userId?: string | null
+        }
+        Relationships: []
+      }
       llmCompletionDetails: {
         Row: {
           completionId: string | null

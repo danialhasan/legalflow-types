@@ -71,5 +71,6 @@ exports.Activity = __importStar(require("./shared/activity"));
 __exportStar(require("./shared/extracted-data"), exports);
 __exportStar(require("./shared/recommendation"), exports);
 __exportStar(require("./shared/emailPayload"), exports);
+__exportStar(require("./memory"), exports);
 // Utilities
 __exportStar(require("./utils/schema-helpers"), exports);
