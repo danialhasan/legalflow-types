@@ -1603,6 +1603,7 @@ export type Database = {
           updated_at: string | null
           user_id: string
           user_preferences: Json | null
+          version: number | null
           workflow_context: Json | null
         }
         Insert: {
@@ -1621,6 +1622,7 @@ export type Database = {
           updated_at?: string | null
           user_id: string
           user_preferences?: Json | null
+          version?: number | null
           workflow_context?: Json | null
         }
         Update: {
@@ -1639,6 +1641,7 @@ export type Database = {
           updated_at?: string | null
           user_id?: string
           user_preferences?: Json | null
+          version?: number | null
           workflow_context?: Json | null
         }
         Relationships: []
@@ -4509,6 +4512,32 @@ export type Database = {
         }
         Relationships: []
       }
+      client_card_view_rls: {
+        Row: {
+          associated_deals_json: Json | null
+          client_id: string | null
+          client_summary: string | null
+          enriched_extracted_data: Json | null
+          last_touch: string | null
+          linked_deal_count: number | null
+          recommended_actions_json: Json | null
+          user_id: string | null
+        }
+        Relationships: []
+      }
+      client_card_view_secure: {
+        Row: {
+          associated_deals_json: Json | null
+          client_id: string | null
+          client_summary: string | null
+          enriched_extracted_data: Json | null
+          last_touch: string | null
+          linked_deal_count: number | null
+          recommended_actions_json: Json | null
+          user_id: string | null
+        }
+        Relationships: []
+      }
       client_cards_raw: {
         Row: {
           associated_deals_json: Json | null
@@ -4581,6 +4610,20 @@ export type Database = {
             foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
             columns: ["deal_id"]
             isOneToOne: false
+            referencedRelation: "deal_card_view_rls"
+            referencedColumns: ["deal_id"]
+          },
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deal_card_view_secure"
+            referencedColumns: ["deal_id"]
+          },
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
             referencedRelation: "deal_cards_raw"
             referencedColumns: ["deal_id"]
           },
@@ -4608,6 +4651,54 @@ export type Database = {
         ]
       }
       deal_card_view: {
+        Row: {
+          deal_id: string | null
+          deal_summary: string | null
+          last_touch: string | null
+          primary_client_summary: string | null
+          user_id: string | null
+        }
+        Insert: {
+          deal_id?: string | null
+          deal_summary?: string | null
+          last_touch?: never
+          primary_client_summary?: never
+          user_id?: string | null
+        }
+        Update: {
+          deal_id?: string | null
+          deal_summary?: string | null
+          last_touch?: never
+          primary_client_summary?: never
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      deal_card_view_rls: {
+        Row: {
+          deal_id: string | null
+          deal_summary: string | null
+          last_touch: string | null
+          primary_client_summary: string | null
+          user_id: string | null
+        }
+        Insert: {
+          deal_id?: string | null
+          deal_summary?: string | null
+          last_touch?: never
+          primary_client_summary?: never
+          user_id?: string | null
+        }
+        Update: {
+          deal_id?: string | null
+          deal_summary?: string | null
+          last_touch?: never
+          primary_client_summary?: never
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      deal_card_view_secure: {
         Row: {
           deal_id: string | null
           deal_summary: string | null
@@ -4704,6 +4795,20 @@ export type Database = {
             columns: ["deal_id"]
             isOneToOne: false
             referencedRelation: "deal_card_view"
+            referencedColumns: ["deal_id"]
+          },
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deal_card_view_rls"
+            referencedColumns: ["deal_id"]
+          },
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deal_card_view_secure"
             referencedColumns: ["deal_id"]
           },
           {

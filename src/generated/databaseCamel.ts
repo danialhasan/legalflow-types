@@ -1598,6 +1598,7 @@ export type DatabaseCamel = {
           updatedAt: string | null
           userId: string
           userPreferences: Json | null
+          version: number | null
           workflowContext: Json | null
         }
         Insert: {
@@ -1616,6 +1617,7 @@ export type DatabaseCamel = {
           updatedAt?: string | null
           userId: string
           userPreferences?: Json | null
+          version?: number | null
           workflowContext?: Json | null
         }
         Update: {
@@ -1634,6 +1636,7 @@ export type DatabaseCamel = {
           updatedAt?: string | null
           userId?: string
           userPreferences?: Json | null
+          version?: number | null
           workflowContext?: Json | null
         }
         Relationships: []
@@ -4504,6 +4507,32 @@ export type DatabaseCamel = {
         }
         Relationships: []
       }
+      clientCardViewRls: {
+        Row: {
+          associatedDealsJson: Json | null
+          clientId: string | null
+          clientSummary: string | null
+          enrichedExtractedData: Json | null
+          lastTouch: string | null
+          linkedDealCount: number | null
+          recommendedActionsJson: Json | null
+          userId: string | null
+        }
+        Relationships: []
+      }
+      clientCardViewSecure: {
+        Row: {
+          associatedDealsJson: Json | null
+          clientId: string | null
+          clientSummary: string | null
+          enrichedExtractedData: Json | null
+          lastTouch: string | null
+          linkedDealCount: number | null
+          recommendedActionsJson: Json | null
+          userId: string | null
+        }
+        Relationships: []
+      }
       clientCardsRaw: {
         Row: {
           associatedDealsJson: Json | null
@@ -4576,6 +4605,20 @@ export type DatabaseCamel = {
             foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
             columns: ["deal_id"]
             isOneToOne: false
+            referencedRelation: "deal_card_view_rls"
+            referencedColumns: ["deal_id"]
+          },
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deal_card_view_secure"
+            referencedColumns: ["deal_id"]
+          },
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
             referencedRelation: "deal_cards_raw"
             referencedColumns: ["deal_id"]
           },
@@ -4603,6 +4646,54 @@ export type DatabaseCamel = {
         ]
       }
       dealCardView: {
+        Row: {
+          dealId: string | null
+          dealSummary: string | null
+          lastTouch: string | null
+          primaryClientSummary: string | null
+          userId: string | null
+        }
+        Insert: {
+          dealId?: string | null
+          dealSummary?: string | null
+          lastTouch?: never
+          primaryClientSummary?: never
+          userId?: string | null
+        }
+        Update: {
+          dealId?: string | null
+          dealSummary?: string | null
+          lastTouch?: never
+          primaryClientSummary?: never
+          userId?: string | null
+        }
+        Relationships: []
+      }
+      dealCardViewRls: {
+        Row: {
+          dealId: string | null
+          dealSummary: string | null
+          lastTouch: string | null
+          primaryClientSummary: string | null
+          userId: string | null
+        }
+        Insert: {
+          dealId?: string | null
+          dealSummary?: string | null
+          lastTouch?: never
+          primaryClientSummary?: never
+          userId?: string | null
+        }
+        Update: {
+          dealId?: string | null
+          dealSummary?: string | null
+          lastTouch?: never
+          primaryClientSummary?: never
+          userId?: string | null
+        }
+        Relationships: []
+      }
+      dealCardViewSecure: {
         Row: {
           dealId: string | null
           dealSummary: string | null
@@ -4699,6 +4790,20 @@ export type DatabaseCamel = {
             columns: ["deal_id"]
             isOneToOne: false
             referencedRelation: "deal_card_view"
+            referencedColumns: ["deal_id"]
+          },
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deal_card_view_rls"
+            referencedColumns: ["deal_id"]
+          },
+          {
+            foreignKeyName: "deal_context_graph_canon_blocks_deal_context_graph_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deal_card_view_secure"
             referencedColumns: ["deal_id"]
           },
           {
