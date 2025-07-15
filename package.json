@@ -1,6 +1,6 @@
 {
   "name": "@legalflow/types",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Domain-driven TypeScript types for LegalFlow services",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

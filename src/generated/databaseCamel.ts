@@ -79,6 +79,7 @@ export type DatabaseCamel = {
           embedding: string | null
           extractedInputId: string | null
           id: string
+          sourceContext: Json | null
           sourceId: string | null
           summary: string
           tags: DatabaseCamel["analysis"]["Enums"]["canonBlockTag"][] | null
@@ -90,6 +91,7 @@ export type DatabaseCamel = {
           embedding?: string | null
           extractedInputId?: string | null
           id?: string
+          sourceContext?: Json | null
           sourceId?: string | null
           summary: string
           tags?: DatabaseCamel["analysis"]["Enums"]["canonBlockTag"][] | null
@@ -101,6 +103,7 @@ export type DatabaseCamel = {
           embedding?: string | null
           extractedInputId?: string | null
           id?: string
+          sourceContext?: Json | null
           sourceId?: string | null
           summary?: string
           tags?: DatabaseCamel["analysis"]["Enums"]["canonBlockTag"][] | null
@@ -547,6 +550,42 @@ export type DatabaseCamel = {
           },
         ]
       }
+      entitySourceMapping: {
+        Row: {
+          createdAt: string | null
+          entityType: string
+          entityValue: string
+          extractionConfidence: number | null
+          id: string
+          semanticEntityId: string
+          sourceContext: Json | null
+          sourceId: string
+          updatedAt: string | null
+        }
+        Insert: {
+          createdAt?: string | null
+          entityType: string
+          entityValue: string
+          extractionConfidence?: number | null
+          id?: string
+          semanticEntityId: string
+          sourceContext?: Json | null
+          sourceId: string
+          updatedAt?: string | null
+        }
+        Update: {
+          createdAt?: string | null
+          entityType?: string
+          entityValue?: string
+          extractionConfidence?: number | null
+          id?: string
+          semanticEntityId?: string
+          sourceContext?: Json | null
+          sourceId?: string
+          updatedAt?: string | null
+        }
+        Relationships: []
+      }
       extractedInputs: {
         Row: {
           createdAt: string
@@ -554,6 +593,7 @@ export type DatabaseCamel = {
           id: string
           modelVersion: string | null
           processingTimeMs: number | null
+          sourceContext: Json | null
           sourceId: string
           updatedAt: string
         }
@@ -563,6 +603,7 @@ export type DatabaseCamel = {
           id?: string
           modelVersion?: string | null
           processingTimeMs?: number | null
+          sourceContext?: Json | null
           sourceId: string
           updatedAt?: string
         }
@@ -572,6 +613,7 @@ export type DatabaseCamel = {
           id?: string
           modelVersion?: string | null
           processingTimeMs?: number | null
+          sourceContext?: Json | null
           sourceId?: string
           updatedAt?: string
         }
@@ -2099,6 +2141,168 @@ export type DatabaseCamel = {
         }
         Relationships: []
       }
+      sourceContextAudit: {
+        Row: {
+          createdAt: string | null
+          errorDetails: Json | null
+          id: string
+          jobId: string | null
+          operationContext: Json
+          operationType: string
+          pipelineName: string | null
+          processingTimeMs: number | null
+          serviceName: string
+          sourceId: string
+          userId: string | null
+        }
+        Insert: {
+          createdAt?: string | null
+          errorDetails?: Json | null
+          id?: string
+          jobId?: string | null
+          operationContext: Json
+          operationType: string
+          pipelineName?: string | null
+          processingTimeMs?: number | null
+          serviceName: string
+          sourceId: string
+          userId?: string | null
+        }
+        Update: {
+          createdAt?: string | null
+          errorDetails?: Json | null
+          id?: string
+          jobId?: string | null
+          operationContext?: Json
+          operationType?: string
+          pipelineName?: string | null
+          processingTimeMs?: number | null
+          serviceName?: string
+          sourceId?: string
+          userId?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "source_context_audit_source_id_fkey"
+            columns: ["source_id"]
+            isOneToOne: false
+            referencedRelation: "source_context_complete"
+            referencedColumns: ["source_id"]
+          },
+          {
+            foreignKeyName: "source_context_audit_source_id_fkey"
+            columns: ["source_id"]
+            isOneToOne: false
+            referencedRelation: "sources"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      sourceProcessingStatus: {
+        Row: {
+          completedAt: string | null
+          createdAt: string | null
+          errorDetails: Json | null
+          id: string
+          processingStage: string
+          retryCount: number | null
+          sourceId: string
+          stageMetadata: Json | null
+          stageStatus: string
+          startedAt: string | null
+          updatedAt: string | null
+        }
+        Insert: {
+          completedAt?: string | null
+          createdAt?: string | null
+          errorDetails?: Json | null
+          id?: string
+          processingStage: string
+          retryCount?: number | null
+          sourceId: string
+          stageMetadata?: Json | null
+          stageStatus: string
+          startedAt?: string | null
+          updatedAt?: string | null
+        }
+        Update: {
+          completedAt?: string | null
+          createdAt?: string | null
+          errorDetails?: Json | null
+          id?: string
+          processingStage?: string
+          retryCount?: number | null
+          sourceId?: string
+          stageMetadata?: Json | null
+          stageStatus?: string
+          startedAt?: string | null
+          updatedAt?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "source_processing_status_source_id_fkey"
+            columns: ["source_id"]
+            isOneToOne: false
+            referencedRelation: "source_context_complete"
+            referencedColumns: ["source_id"]
+          },
+          {
+            foreignKeyName: "source_processing_status_source_id_fkey"
+            columns: ["source_id"]
+            isOneToOne: false
+            referencedRelation: "sources"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      sourceTypeDefinitions: {
+        Row: {
+          colorCode: string | null
+          createdAt: string | null
+          defaultProcessingPipeline: string | null
+          description: string | null
+          displayName: string
+          iconName: string | null
+          id: string
+          isActive: boolean | null
+          requiresExternalId: boolean | null
+          sourceType: DatabaseCamel["core"]["Enums"]["sourceType"]
+          supportsRealTime: boolean | null
+          updatedAt: string | null
+          validationSchema: Json | null
+        }
+        Insert: {
+          colorCode?: string | null
+          createdAt?: string | null
+          defaultProcessingPipeline?: string | null
+          description?: string | null
+          displayName: string
+          iconName?: string | null
+          id?: string
+          isActive?: boolean | null
+          requiresExternalId?: boolean | null
+          sourceType: DatabaseCamel["core"]["Enums"]["sourceType"]
+          supportsRealTime?: boolean | null
+          updatedAt?: string | null
+          validationSchema?: Json | null
+        }
+        Update: {
+          colorCode?: string | null
+          createdAt?: string | null
+          defaultProcessingPipeline?: string | null
+          description?: string | null
+          displayName?: string
+          iconName?: string | null
+          id?: string
+          isActive?: boolean | null
+          requiresExternalId?: boolean | null
+          sourceType?: DatabaseCamel["core"]["Enums"]["sourceType"]
+          supportsRealTime?: boolean | null
+          updatedAt?: string | null
+          validationSchema?: Json | null
+        }
+        Relationships: []
+      }
       sources: {
         Row: {
           createdAt: string
@@ -2421,6 +2625,51 @@ export type DatabaseCamel = {
         }
         Relationships: []
       }
+      sourceContextComplete: {
+        Row: {
+          completedStages: number | null
+          errorOperations: number | null
+          failedStages: number | null
+          latestCompletedStage: string | null
+          latestOperation: string | null
+          mappedEntities: number | null
+          sourceCreatedAt: string | null
+          sourceId: string | null
+          sourceType: DatabaseCamel["core"]["Enums"]["sourceType"] | null
+          totalOperations: number | null
+          totalStages: number | null
+          userId: string | null
+        }
+        Insert: {
+          completedStages?: never
+          errorOperations?: never
+          failedStages?: never
+          latestCompletedStage?: never
+          latestOperation?: never
+          mappedEntities?: never
+          sourceCreatedAt?: string | null
+          sourceId?: string | null
+          sourceType?: DatabaseCamel["core"]["Enums"]["sourceType"] | null
+          totalOperations?: never
+          totalStages?: never
+          userId?: string | null
+        }
+        Update: {
+          completedStages?: never
+          errorOperations?: never
+          failedStages?: never
+          latestCompletedStage?: never
+          latestOperation?: never
+          mappedEntities?: never
+          sourceCreatedAt?: string | null
+          sourceId?: string | null
+          sourceType?: DatabaseCamel["core"]["Enums"]["sourceType"] | null
+          totalOperations?: never
+          totalStages?: never
+          userId?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       acquireMultiGraphLock: {
@@ -2458,6 +2707,57 @@ export type DatabaseCamel = {
         Args: Record<PropertyKey, never>
         Returns: number
       }
+      getActiveSourceTypes: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          sourceType: DatabaseCamel["core"]["Enums"]["sourceType"]
+          displayName: string
+          description: string
+          iconName: string
+          colorCode: string
+          supportsRealTime: boolean
+          defaultProcessingPipeline: string
+        }[]
+      }
+      getSourceProcessingPipelineStatus: {
+        Args: { pSourceId: string }
+        Returns: {
+          sourceId: string
+          processingStage: string
+          stageStatus: string
+          stageMetadata: Json
+          startedAt: string
+          completedAt: string
+          errorDetails: Json
+          retryCount: number
+        }[]
+      }
+      getSourceTypeInfo: {
+        Args: { pSourceType: DatabaseCamel["core"]["Enums"]["sourceType"] }
+        Returns: {
+          sourceType: DatabaseCamel["core"]["Enums"]["sourceType"]
+          displayName: string
+          description: string
+          iconName: string
+          colorCode: string
+          isActive: boolean
+          supportsRealTime: boolean
+        }[]
+      }
+      logSourceContextAudit: {
+        Args: {
+          pSourceId: string
+          pOperationType: string
+          pOperationContext: Json
+          pServiceName: string
+          pPipelineName?: string
+          pJobId?: string
+          pUserId?: string
+          pErrorDetails?: Json
+          pProcessingTimeMs?: number
+        }
+        Returns: string
+      }
       releaseMultiGraphLock: {
         Args: { pSessionId: string; pGraphIds: string[] }
         Returns: boolean
@@ -2465,6 +2765,23 @@ export type DatabaseCamel = {
       scheduleConsolidationCleanup: {
         Args: Record<PropertyKey, never>
         Returns: undefined
+      }
+      updateSourceProcessingStatus: {
+        Args: {
+          pSourceId: string
+          pProcessingStage: string
+          pStageStatus: string
+          pStageMetadata?: Json
+          pErrorDetails?: Json
+        }
+        Returns: string
+      }
+      validateSourceType: {
+        Args: {
+          pSourceType: DatabaseCamel["core"]["Enums"]["sourceType"]
+          pSourceData: Json
+        }
+        Returns: boolean
       }
     }
     Enums: {
@@ -2476,7 +2793,15 @@ export type DatabaseCamel = {
         | "admin"
         | "other"
       communicationStyle: "friendly" | "professional" | "direct" | "casual"
-      sourceType: "email" | "document" | "calendar_event" | "sms"
+      sourceType:
+        | "email"
+        | "document"
+        | "calendar_event"
+        | "sms"
+        | "webhook"
+        | "manual"
+        | "phone_call"
+        | "api"
       workSchedule:
         | "mornings"
         | "evenings"
@@ -2595,6 +2920,7 @@ export type DatabaseCamel = {
           groupId: string | null
           id: string
           metadata: Json | null
+          sourceContext: Json | null
           sourceId: string | null
           status: string | null
           storageObjectId: string | null
@@ -2609,6 +2935,7 @@ export type DatabaseCamel = {
           groupId?: string | null
           id?: string
           metadata?: Json | null
+          sourceContext?: Json | null
           sourceId?: string | null
           status?: string | null
           storageObjectId?: string | null
@@ -2623,6 +2950,7 @@ export type DatabaseCamel = {
           groupId?: string | null
           id?: string
           metadata?: Json | null
+          sourceContext?: Json | null
           sourceId?: string | null
           status?: string | null
           storageObjectId?: string | null
@@ -2760,6 +3088,7 @@ export type DatabaseCamel = {
           location: string | null
           metadata: Json | null
           recurringRule: string | null
+          sourceId: string
           startTime: string
           status: string | null
           summary: string
@@ -2779,6 +3108,7 @@ export type DatabaseCamel = {
           location?: string | null
           metadata?: Json | null
           recurringRule?: string | null
+          sourceId: string
           startTime: string
           status?: string | null
           summary: string
@@ -2798,6 +3128,7 @@ export type DatabaseCamel = {
           location?: string | null
           metadata?: Json | null
           recurringRule?: string | null
+          sourceId?: string
           startTime?: string
           status?: string | null
           summary?: string
@@ -3121,14 +3452,14 @@ export type DatabaseCamel = {
         }
         Relationships: [
           {
-            foreignKeyName: "fk_channel"
+            foreignKeyName: "google_webhook_notifications_channel_fkey"
             columns: ["user_id", "channel_id"]
             isOneToOne: false
             referencedRelation: "google_webhook_channels"
             referencedColumns: ["user_id", "channel_id"]
           },
           {
-            foreignKeyName: "fk_channel"
+            foreignKeyName: "google_webhook_notifications_channel_fkey"
             columns: ["user_id", "channel_id"]
             isOneToOne: false
             referencedRelation: "webhook_channel_health"
@@ -4454,18 +4785,24 @@ export type DatabaseCamel = {
         Row: {
           clientId: string
           payload: Json
+          sourceContextDetails: Json | null
+          sourceIds: Json | null
           updatedAt: string | null
           userId: string | null
         }
         Insert: {
           clientId: string
           payload: Json
+          sourceContextDetails?: Json | null
+          sourceIds?: Json | null
           updatedAt?: string | null
           userId?: string | null
         }
         Update: {
           clientId?: string
           payload?: Json
+          sourceContextDetails?: Json | null
+          sourceIds?: Json | null
           updatedAt?: string | null
           userId?: string | null
         }
@@ -4475,18 +4812,24 @@ export type DatabaseCamel = {
         Row: {
           clientId: string
           payload: Json
+          sourceContextDetails: Json | null
+          sourceIds: Json | null
           updatedAt: string | null
           userId: string | null
         }
         Insert: {
           clientId: string
           payload: Json
+          sourceContextDetails?: Json | null
+          sourceIds?: Json | null
           updatedAt?: string | null
           userId?: string | null
         }
         Update: {
           clientId?: string
           payload?: Json
+          sourceContextDetails?: Json | null
+          sourceIds?: Json | null
           updatedAt?: string | null
           userId?: string | null
         }
@@ -4496,18 +4839,24 @@ export type DatabaseCamel = {
         Row: {
           dealId: string
           payload: Json
+          sourceContextDetails: Json | null
+          sourceIds: Json | null
           updatedAt: string | null
           userId: string | null
         }
         Insert: {
           dealId: string
           payload: Json
+          sourceContextDetails?: Json | null
+          sourceIds?: Json | null
           updatedAt?: string | null
           userId?: string | null
         }
         Update: {
           dealId?: string
           payload?: Json
+          sourceContextDetails?: Json | null
+          sourceIds?: Json | null
           updatedAt?: string | null
           userId?: string | null
         }
@@ -4517,18 +4866,24 @@ export type DatabaseCamel = {
         Row: {
           dealId: string
           payload: Json
+          sourceContextDetails: Json | null
+          sourceIds: Json | null
           updatedAt: string | null
           userId: string | null
         }
         Insert: {
           dealId: string
           payload: Json
+          sourceContextDetails?: Json | null
+          sourceIds?: Json | null
           updatedAt?: string | null
           userId?: string | null
         }
         Update: {
           dealId?: string
           payload?: Json
+          sourceContextDetails?: Json | null
+          sourceIds?: Json | null
           updatedAt?: string | null
           userId?: string | null
         }
@@ -4545,7 +4900,33 @@ export type DatabaseCamel = {
           lastTouch: string | null
           linkedDealCount: number | null
           recommendedActionsJson: Json | null
+          sourceContextDetails: Json | null
+          sourceIds: Json | null
           userId: string | null
+        }
+        Insert: {
+          associatedDealsJson?: never
+          clientId?: string | null
+          clientSummary?: string | null
+          enrichedExtractedData?: Json | null
+          lastTouch?: never
+          linkedDealCount?: never
+          recommendedActionsJson?: never
+          sourceContextDetails?: never
+          sourceIds?: never
+          userId?: string | null
+        }
+        Update: {
+          associatedDealsJson?: never
+          clientId?: string | null
+          clientSummary?: string | null
+          enrichedExtractedData?: Json | null
+          lastTouch?: never
+          linkedDealCount?: never
+          recommendedActionsJson?: never
+          sourceContextDetails?: never
+          sourceIds?: never
+          userId?: string | null
         }
         Relationships: []
       }
@@ -4693,6 +5074,8 @@ export type DatabaseCamel = {
           dealSummary: string | null
           lastTouch: string | null
           primaryClientSummary: string | null
+          sourceContextDetails: Json | null
+          sourceIds: Json | null
           userId: string | null
         }
         Insert: {
@@ -4700,6 +5083,8 @@ export type DatabaseCamel = {
           dealSummary?: string | null
           lastTouch?: never
           primaryClientSummary?: never
+          sourceContextDetails?: never
+          sourceIds?: never
           userId?: string | null
         }
         Update: {
@@ -4707,6 +5092,8 @@ export type DatabaseCamel = {
           dealSummary?: string | null
           lastTouch?: never
           primaryClientSummary?: never
+          sourceContextDetails?: never
+          sourceIds?: never
           userId?: string | null
         }
         Relationships: []
@@ -4801,7 +5188,31 @@ export type DatabaseCamel = {
           dealSummary: string | null
           lastTouch: string | null
           linkedClientCount: number | null
+          sourceContextDetails: Json | null
+          sourceIds: Json | null
           userId: string | null
+        }
+        Insert: {
+          associatedClientsJson?: never
+          dealDataJson?: never
+          dealId?: string | null
+          dealSummary?: string | null
+          lastTouch?: never
+          linkedClientCount?: never
+          sourceContextDetails?: never
+          sourceIds?: never
+          userId?: string | null
+        }
+        Update: {
+          associatedClientsJson?: never
+          dealDataJson?: never
+          dealId?: string | null
+          dealSummary?: string | null
+          lastTouch?: never
+          linkedClientCount?: never
+          sourceContextDetails?: never
+          sourceIds?: never
+          userId?: string | null
         }
         Relationships: []
       }

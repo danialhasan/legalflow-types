@@ -84,6 +84,7 @@ export type Database = {
           embedding: string | null
           extracted_input_id: string | null
           id: string
+          source_context: Json | null
           source_id: string | null
           summary: string
           tags: Database["analysis"]["Enums"]["canon_block_tag"][] | null
@@ -95,6 +96,7 @@ export type Database = {
           embedding?: string | null
           extracted_input_id?: string | null
           id?: string
+          source_context?: Json | null
           source_id?: string | null
           summary: string
           tags?: Database["analysis"]["Enums"]["canon_block_tag"][] | null
@@ -106,6 +108,7 @@ export type Database = {
           embedding?: string | null
           extracted_input_id?: string | null
           id?: string
+          source_context?: Json | null
           source_id?: string | null
           summary?: string
           tags?: Database["analysis"]["Enums"]["canon_block_tag"][] | null
@@ -552,6 +555,42 @@ export type Database = {
           },
         ]
       }
+      entity_source_mapping: {
+        Row: {
+          created_at: string | null
+          entity_type: string
+          entity_value: string
+          extraction_confidence: number | null
+          id: string
+          semantic_entity_id: string
+          source_context: Json | null
+          source_id: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          entity_type: string
+          entity_value: string
+          extraction_confidence?: number | null
+          id?: string
+          semantic_entity_id: string
+          source_context?: Json | null
+          source_id: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          entity_type?: string
+          entity_value?: string
+          extraction_confidence?: number | null
+          id?: string
+          semantic_entity_id?: string
+          source_context?: Json | null
+          source_id?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       extracted_inputs: {
         Row: {
           created_at: string
@@ -559,6 +598,7 @@ export type Database = {
           id: string
           model_version: string | null
           processing_time_ms: number | null
+          source_context: Json | null
           source_id: string
           updated_at: string
         }
@@ -568,6 +608,7 @@ export type Database = {
           id?: string
           model_version?: string | null
           processing_time_ms?: number | null
+          source_context?: Json | null
           source_id: string
           updated_at?: string
         }
@@ -577,6 +618,7 @@ export type Database = {
           id?: string
           model_version?: string | null
           processing_time_ms?: number | null
+          source_context?: Json | null
           source_id?: string
           updated_at?: string
         }
@@ -2104,6 +2146,168 @@ export type Database = {
         }
         Relationships: []
       }
+      source_context_audit: {
+        Row: {
+          created_at: string | null
+          error_details: Json | null
+          id: string
+          job_id: string | null
+          operation_context: Json
+          operation_type: string
+          pipeline_name: string | null
+          processing_time_ms: number | null
+          service_name: string
+          source_id: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          error_details?: Json | null
+          id?: string
+          job_id?: string | null
+          operation_context: Json
+          operation_type: string
+          pipeline_name?: string | null
+          processing_time_ms?: number | null
+          service_name: string
+          source_id: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          error_details?: Json | null
+          id?: string
+          job_id?: string | null
+          operation_context?: Json
+          operation_type?: string
+          pipeline_name?: string | null
+          processing_time_ms?: number | null
+          service_name?: string
+          source_id?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "source_context_audit_source_id_fkey"
+            columns: ["source_id"]
+            isOneToOne: false
+            referencedRelation: "source_context_complete"
+            referencedColumns: ["source_id"]
+          },
+          {
+            foreignKeyName: "source_context_audit_source_id_fkey"
+            columns: ["source_id"]
+            isOneToOne: false
+            referencedRelation: "sources"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      source_processing_status: {
+        Row: {
+          completed_at: string | null
+          created_at: string | null
+          error_details: Json | null
+          id: string
+          processing_stage: string
+          retry_count: number | null
+          source_id: string
+          stage_metadata: Json | null
+          stage_status: string
+          started_at: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          completed_at?: string | null
+          created_at?: string | null
+          error_details?: Json | null
+          id?: string
+          processing_stage: string
+          retry_count?: number | null
+          source_id: string
+          stage_metadata?: Json | null
+          stage_status: string
+          started_at?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          completed_at?: string | null
+          created_at?: string | null
+          error_details?: Json | null
+          id?: string
+          processing_stage?: string
+          retry_count?: number | null
+          source_id?: string
+          stage_metadata?: Json | null
+          stage_status?: string
+          started_at?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "source_processing_status_source_id_fkey"
+            columns: ["source_id"]
+            isOneToOne: false
+            referencedRelation: "source_context_complete"
+            referencedColumns: ["source_id"]
+          },
+          {
+            foreignKeyName: "source_processing_status_source_id_fkey"
+            columns: ["source_id"]
+            isOneToOne: false
+            referencedRelation: "sources"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      source_type_definitions: {
+        Row: {
+          color_code: string | null
+          created_at: string | null
+          default_processing_pipeline: string | null
+          description: string | null
+          display_name: string
+          icon_name: string | null
+          id: string
+          is_active: boolean | null
+          requires_external_id: boolean | null
+          source_type: Database["core"]["Enums"]["source_type"]
+          supports_real_time: boolean | null
+          updated_at: string | null
+          validation_schema: Json | null
+        }
+        Insert: {
+          color_code?: string | null
+          created_at?: string | null
+          default_processing_pipeline?: string | null
+          description?: string | null
+          display_name: string
+          icon_name?: string | null
+          id?: string
+          is_active?: boolean | null
+          requires_external_id?: boolean | null
+          source_type: Database["core"]["Enums"]["source_type"]
+          supports_real_time?: boolean | null
+          updated_at?: string | null
+          validation_schema?: Json | null
+        }
+        Update: {
+          color_code?: string | null
+          created_at?: string | null
+          default_processing_pipeline?: string | null
+          description?: string | null
+          display_name?: string
+          icon_name?: string | null
+          id?: string
+          is_active?: boolean | null
+          requires_external_id?: boolean | null
+          source_type?: Database["core"]["Enums"]["source_type"]
+          supports_real_time?: boolean | null
+          updated_at?: string | null
+          validation_schema?: Json | null
+        }
+        Relationships: []
+      }
       sources: {
         Row: {
           created_at: string
@@ -2426,6 +2630,51 @@ export type Database = {
         }
         Relationships: []
       }
+      source_context_complete: {
+        Row: {
+          completed_stages: number | null
+          error_operations: number | null
+          failed_stages: number | null
+          latest_completed_stage: string | null
+          latest_operation: string | null
+          mapped_entities: number | null
+          source_created_at: string | null
+          source_id: string | null
+          source_type: Database["core"]["Enums"]["source_type"] | null
+          total_operations: number | null
+          total_stages: number | null
+          user_id: string | null
+        }
+        Insert: {
+          completed_stages?: never
+          error_operations?: never
+          failed_stages?: never
+          latest_completed_stage?: never
+          latest_operation?: never
+          mapped_entities?: never
+          source_created_at?: string | null
+          source_id?: string | null
+          source_type?: Database["core"]["Enums"]["source_type"] | null
+          total_operations?: never
+          total_stages?: never
+          user_id?: string | null
+        }
+        Update: {
+          completed_stages?: never
+          error_operations?: never
+          failed_stages?: never
+          latest_completed_stage?: never
+          latest_operation?: never
+          mapped_entities?: never
+          source_created_at?: string | null
+          source_id?: string | null
+          source_type?: Database["core"]["Enums"]["source_type"] | null
+          total_operations?: never
+          total_stages?: never
+          user_id?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       acquire_multi_graph_lock: {
@@ -2463,6 +2712,57 @@ export type Database = {
         Args: Record<PropertyKey, never>
         Returns: number
       }
+      get_active_source_types: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          source_type: Database["core"]["Enums"]["source_type"]
+          display_name: string
+          description: string
+          icon_name: string
+          color_code: string
+          supports_real_time: boolean
+          default_processing_pipeline: string
+        }[]
+      }
+      get_source_processing_pipeline_status: {
+        Args: { p_source_id: string }
+        Returns: {
+          source_id: string
+          processing_stage: string
+          stage_status: string
+          stage_metadata: Json
+          started_at: string
+          completed_at: string
+          error_details: Json
+          retry_count: number
+        }[]
+      }
+      get_source_type_info: {
+        Args: { p_source_type: Database["core"]["Enums"]["source_type"] }
+        Returns: {
+          source_type: Database["core"]["Enums"]["source_type"]
+          display_name: string
+          description: string
+          icon_name: string
+          color_code: string
+          is_active: boolean
+          supports_real_time: boolean
+        }[]
+      }
+      log_source_context_audit: {
+        Args: {
+          p_source_id: string
+          p_operation_type: string
+          p_operation_context: Json
+          p_service_name: string
+          p_pipeline_name?: string
+          p_job_id?: string
+          p_user_id?: string
+          p_error_details?: Json
+          p_processing_time_ms?: number
+        }
+        Returns: string
+      }
       release_multi_graph_lock: {
         Args: { p_session_id: string; p_graph_ids: string[] }
         Returns: boolean
@@ -2470,6 +2770,23 @@ export type Database = {
       schedule_consolidation_cleanup: {
         Args: Record<PropertyKey, never>
         Returns: undefined
+      }
+      update_source_processing_status: {
+        Args: {
+          p_source_id: string
+          p_processing_stage: string
+          p_stage_status: string
+          p_stage_metadata?: Json
+          p_error_details?: Json
+        }
+        Returns: string
+      }
+      validate_source_type: {
+        Args: {
+          p_source_type: Database["core"]["Enums"]["source_type"]
+          p_source_data: Json
+        }
+        Returns: boolean
       }
     }
     Enums: {
@@ -2481,7 +2798,15 @@ export type Database = {
         | "admin"
         | "other"
       communication_style: "friendly" | "professional" | "direct" | "casual"
-      source_type: "email" | "document" | "calendar_event" | "sms"
+      source_type:
+        | "email"
+        | "document"
+        | "calendar_event"
+        | "sms"
+        | "webhook"
+        | "manual"
+        | "phone_call"
+        | "api"
       work_schedule:
         | "mornings"
         | "evenings"
@@ -2600,6 +2925,7 @@ export type Database = {
           group_id: string | null
           id: string
           metadata: Json | null
+          source_context: Json | null
           source_id: string | null
           status: string | null
           storage_object_id: string | null
@@ -2614,6 +2940,7 @@ export type Database = {
           group_id?: string | null
           id?: string
           metadata?: Json | null
+          source_context?: Json | null
           source_id?: string | null
           status?: string | null
           storage_object_id?: string | null
@@ -2628,6 +2955,7 @@ export type Database = {
           group_id?: string | null
           id?: string
           metadata?: Json | null
+          source_context?: Json | null
           source_id?: string | null
           status?: string | null
           storage_object_id?: string | null
@@ -2765,6 +3093,7 @@ export type Database = {
           location: string | null
           metadata: Json | null
           recurring_rule: string | null
+          source_id: string
           start_time: string
           status: string | null
           summary: string
@@ -2784,6 +3113,7 @@ export type Database = {
           location?: string | null
           metadata?: Json | null
           recurring_rule?: string | null
+          source_id: string
           start_time: string
           status?: string | null
           summary: string
@@ -2803,6 +3133,7 @@ export type Database = {
           location?: string | null
           metadata?: Json | null
           recurring_rule?: string | null
+          source_id?: string
           start_time?: string
           status?: string | null
           summary?: string
@@ -3126,14 +3457,14 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "fk_channel"
+            foreignKeyName: "google_webhook_notifications_channel_fkey"
             columns: ["user_id", "channel_id"]
             isOneToOne: false
             referencedRelation: "google_webhook_channels"
             referencedColumns: ["user_id", "channel_id"]
           },
           {
-            foreignKeyName: "fk_channel"
+            foreignKeyName: "google_webhook_notifications_channel_fkey"
             columns: ["user_id", "channel_id"]
             isOneToOne: false
             referencedRelation: "webhook_channel_health"
@@ -4459,18 +4790,24 @@ export type Database = {
         Row: {
           client_id: string
           payload: Json
+          source_context_details: Json | null
+          source_ids: Json | null
           updated_at: string | null
           user_id: string | null
         }
         Insert: {
           client_id: string
           payload: Json
+          source_context_details?: Json | null
+          source_ids?: Json | null
           updated_at?: string | null
           user_id?: string | null
         }
         Update: {
           client_id?: string
           payload?: Json
+          source_context_details?: Json | null
+          source_ids?: Json | null
           updated_at?: string | null
           user_id?: string | null
         }
@@ -4480,18 +4817,24 @@ export type Database = {
         Row: {
           client_id: string
           payload: Json
+          source_context_details: Json | null
+          source_ids: Json | null
           updated_at: string | null
           user_id: string | null
         }
         Insert: {
           client_id: string
           payload: Json
+          source_context_details?: Json | null
+          source_ids?: Json | null
           updated_at?: string | null
           user_id?: string | null
         }
         Update: {
           client_id?: string
           payload?: Json
+          source_context_details?: Json | null
+          source_ids?: Json | null
           updated_at?: string | null
           user_id?: string | null
         }
@@ -4501,18 +4844,24 @@ export type Database = {
         Row: {
           deal_id: string
           payload: Json
+          source_context_details: Json | null
+          source_ids: Json | null
           updated_at: string | null
           user_id: string | null
         }
         Insert: {
           deal_id: string
           payload: Json
+          source_context_details?: Json | null
+          source_ids?: Json | null
           updated_at?: string | null
           user_id?: string | null
         }
         Update: {
           deal_id?: string
           payload?: Json
+          source_context_details?: Json | null
+          source_ids?: Json | null
           updated_at?: string | null
           user_id?: string | null
         }
@@ -4522,18 +4871,24 @@ export type Database = {
         Row: {
           deal_id: string
           payload: Json
+          source_context_details: Json | null
+          source_ids: Json | null
           updated_at: string | null
           user_id: string | null
         }
         Insert: {
           deal_id: string
           payload: Json
+          source_context_details?: Json | null
+          source_ids?: Json | null
           updated_at?: string | null
           user_id?: string | null
         }
         Update: {
           deal_id?: string
           payload?: Json
+          source_context_details?: Json | null
+          source_ids?: Json | null
           updated_at?: string | null
           user_id?: string | null
         }
@@ -4550,7 +4905,33 @@ export type Database = {
           last_touch: string | null
           linked_deal_count: number | null
           recommended_actions_json: Json | null
+          source_context_details: Json | null
+          source_ids: Json | null
           user_id: string | null
+        }
+        Insert: {
+          associated_deals_json?: never
+          client_id?: string | null
+          client_summary?: string | null
+          enriched_extracted_data?: Json | null
+          last_touch?: never
+          linked_deal_count?: never
+          recommended_actions_json?: never
+          source_context_details?: never
+          source_ids?: never
+          user_id?: string | null
+        }
+        Update: {
+          associated_deals_json?: never
+          client_id?: string | null
+          client_summary?: string | null
+          enriched_extracted_data?: Json | null
+          last_touch?: never
+          linked_deal_count?: never
+          recommended_actions_json?: never
+          source_context_details?: never
+          source_ids?: never
+          user_id?: string | null
         }
         Relationships: []
       }
@@ -4698,6 +5079,8 @@ export type Database = {
           deal_summary: string | null
           last_touch: string | null
           primary_client_summary: string | null
+          source_context_details: Json | null
+          source_ids: Json | null
           user_id: string | null
         }
         Insert: {
@@ -4705,6 +5088,8 @@ export type Database = {
           deal_summary?: string | null
           last_touch?: never
           primary_client_summary?: never
+          source_context_details?: never
+          source_ids?: never
           user_id?: string | null
         }
         Update: {
@@ -4712,6 +5097,8 @@ export type Database = {
           deal_summary?: string | null
           last_touch?: never
           primary_client_summary?: never
+          source_context_details?: never
+          source_ids?: never
           user_id?: string | null
         }
         Relationships: []
@@ -4806,7 +5193,31 @@ export type Database = {
           deal_summary: string | null
           last_touch: string | null
           linked_client_count: number | null
+          source_context_details: Json | null
+          source_ids: Json | null
           user_id: string | null
+        }
+        Insert: {
+          associated_clients_json?: never
+          deal_data_json?: never
+          deal_id?: string | null
+          deal_summary?: string | null
+          last_touch?: never
+          linked_client_count?: never
+          source_context_details?: never
+          source_ids?: never
+          user_id?: string | null
+        }
+        Update: {
+          associated_clients_json?: never
+          deal_data_json?: never
+          deal_id?: string | null
+          deal_summary?: string | null
+          last_touch?: never
+          linked_client_count?: never
+          source_context_details?: never
+          source_ids?: never
+          user_id?: string | null
         }
         Relationships: []
       }
@@ -5274,7 +5685,16 @@ export const Constants = {
         "other",
       ],
       communication_style: ["friendly", "professional", "direct", "casual"],
-      source_type: ["email", "document", "calendar_event", "sms"],
+      source_type: [
+        "email",
+        "document",
+        "calendar_event",
+        "sms",
+        "webhook",
+        "manual",
+        "phone_call",
+        "api",
+      ],
       work_schedule: [
         "mornings",
         "evenings",
