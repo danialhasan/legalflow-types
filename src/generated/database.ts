@@ -2019,6 +2019,7 @@ export type Database = {
           max_retries: number
           origin: string | null
           params: Json
+          parent_job_id: string | null
           priority: string
           result: Json | null
           retry_count: number
@@ -2038,6 +2039,7 @@ export type Database = {
           max_retries?: number
           origin?: string | null
           params: Json
+          parent_job_id?: string | null
           priority?: string
           result?: Json | null
           retry_count?: number
@@ -2057,6 +2059,7 @@ export type Database = {
           max_retries?: number
           origin?: string | null
           params?: Json
+          parent_job_id?: string | null
           priority?: string
           result?: Json | null
           retry_count?: number
@@ -2067,7 +2070,15 @@ export type Database = {
           updated_at?: string
           worker_id?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "jobs_parent_job_id_fkey"
+            columns: ["parent_job_id"]
+            isOneToOne: false
+            referencedRelation: "jobs"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       onboarding_resume_tokens: {
         Row: {
@@ -2436,6 +2447,7 @@ export type Database = {
           max_retries: number
           origin: string | null
           params: Json
+          parent_job_id: string | null
           priority: string
           result: Json | null
           retry_count: number

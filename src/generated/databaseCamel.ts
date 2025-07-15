@@ -2014,6 +2014,7 @@ export type DatabaseCamel = {
           maxRetries: number
           origin: string | null
           params: Json
+          parentJobId: string | null
           priority: string
           result: Json | null
           retryCount: number
@@ -2033,6 +2034,7 @@ export type DatabaseCamel = {
           maxRetries?: number
           origin?: string | null
           params: Json
+          parentJobId?: string | null
           priority?: string
           result?: Json | null
           retryCount?: number
@@ -2052,6 +2054,7 @@ export type DatabaseCamel = {
           maxRetries?: number
           origin?: string | null
           params?: Json
+          parentJobId?: string | null
           priority?: string
           result?: Json | null
           retryCount?: number
@@ -2062,7 +2065,15 @@ export type DatabaseCamel = {
           updatedAt?: string
           workerId?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "jobs_parent_job_id_fkey"
+            columns: ["parent_job_id"]
+            isOneToOne: false
+            referencedRelation: "jobs"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       onboardingResumeTokens: {
         Row: {
@@ -2431,6 +2442,7 @@ export type DatabaseCamel = {
           maxRetries: number
           origin: string | null
           params: Json
+          parentJobId: string | null
           priority: string
           result: Json | null
           retryCount: number
