@@ -5010,7 +5010,33 @@ export type Database = {
           last_touch: string | null
           linked_deal_count: number | null
           recommendations_json: Json | null
+          source_context_details: Json | null
+          source_ids: Json | null
           user_id: string | null
+        }
+        Insert: {
+          associated_deals_json?: never
+          client_id?: string | null
+          client_summary?: string | null
+          enriched_extracted_data?: Json | null
+          last_touch?: never
+          linked_deal_count?: never
+          recommendations_json?: never
+          source_context_details?: never
+          source_ids?: never
+          user_id?: string | null
+        }
+        Update: {
+          associated_deals_json?: never
+          client_id?: string | null
+          client_summary?: string | null
+          enriched_extracted_data?: Json | null
+          last_touch?: never
+          linked_deal_count?: never
+          recommendations_json?: never
+          source_context_details?: never
+          source_ids?: never
+          user_id?: string | null
         }
         Relationships: []
       }
